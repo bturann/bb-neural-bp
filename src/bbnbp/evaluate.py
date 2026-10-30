@@ -26,6 +26,14 @@ from .noise.code_capacity import CodeCapacitySampler
 def tuned_factor(table, config, p):
     with Path(table).open(newline="") as f:
         rows = list(csv.DictReader(f))
+    # Check the data actually used for tuning, including unselected candidates.
+    # The caller may supply a table produced from another configuration.
+    tuning_seeds = {int(row["seed"]) for row in rows}
+    evaluation_seeds = {config.seed+config.eval.seed_offset+i
+                        for i in range(len(config.noise.p_grid))}
+    overlap = tuning_seeds & evaluation_seeds
+    if overlap:
+        raise ValueError(f"Tuning and evaluation seeds overlap: {sorted(overlap)}")
     candidates = [r for r in rows if r["code"] == config.code.name
                   and r["noise_model"] == config.noise.model and r["basis"] == config.noise.basis
                   and r["rounds"] == ("" if config.noise.rounds is None else str(config.noise.rounds))
@@ -34,8 +42,6 @@ def tuned_factor(table, config, p):
     if len(candidates) != 1:
         raise ValueError(f"Expected one validation-tuned factor for p={p}, T={config.eval.stage1_iters}")
     row = candidates[0]
-    if int(row["seed"]) >= config.seed+config.eval.seed_offset and config.eval.purpose == "final":
-        raise ValueError("Tuning seed overlaps the reserved final evaluation seed region")
     return float(row["ms_scaling"])
 
 

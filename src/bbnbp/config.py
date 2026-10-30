@@ -173,8 +173,8 @@ class Config:
             raise ValueError("Minimum learning rate exceeds the initial learning rate")
         if any(type(x) is not int or x < 0 for x in (self.eval.latency_shots, self.eval.latency_warmup)):
             raise ValueError("Latency counts must be nonnegative integers")
-        if self.eval.seed_offset < 0 or self.sweep.seed_offset < 0:
-            raise ValueError("Seed offsets must be nonnegative")
+        if any(type(x) is not int or x < 0 for x in (self.eval.seed_offset, self.sweep.seed_offset)):
+            raise ValueError("Seed offsets must be nonnegative integers")
         if abs(self.eval.seed_offset-self.sweep.seed_offset) < len(self.noise.p_grid):
             raise ValueError("Sweep and evaluation seed offsets must differ")
         # Reject NaN and non-serializable values before running an experiment.

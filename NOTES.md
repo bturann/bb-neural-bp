@@ -180,3 +180,18 @@ Numba compiled CPU smoke test and PyTorch autograd smoke test passed.
 M3: implement the QUITS adapter with explicit noise placement and round semantics,
 DEM conversion preserving fault-column order, exact fault-label sampling, and the
 six-round circuit-level acceptance tests. The M0 smoke circuit alone does not pass M3.
+
+## M2 audit corrections (2026-10-30)
+
+- Reproduced the default experiment command's failure on the already committed
+  tuning CSV. The command now creates a timestamped E0 bundle with its own tuning
+  table and evaluation output. A regression invokes it twice and checks that all
+  first-run files retain identical bytes.
+- Reproduced acceptance of overlapping tuning/development RNG streams by supplying
+  a tuning table from another configuration. Evaluation now checks every saved
+  tuning seed, including unselected candidates, against all evaluation seeds for
+  both development and final runs. The original E0 streams remain disjoint.
+- Seed offsets must now be nonnegative integers; floats and booleans are rejected
+  before any experiment starts.
+- Regression and full acceptance suite: **48 passed** (11.82 s). No existing results
+  or supplied reference files were edited.

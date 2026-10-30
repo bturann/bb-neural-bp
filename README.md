@@ -19,7 +19,7 @@ The unchanged handoff is preserved in `docs/implementation_spec.md`.
 
 M0–M2 are complete: environment/API verification, both BB code constructions and
 their symmetries, code-capacity sampling, BP/BP-OSD baselines, scaling tuning, and
-paired E0 evaluation. The full suite currently has 37 passing tests, including the
+paired E0 evaluation. The full suite currently has 48 passing tests, including the
 slow acceptance checks. Circuit-level integration is the next milestone (M3).
 
 ## Code-capacity baseline experiment (E0)
@@ -31,7 +31,9 @@ bash scripts/run_experiment.sh
 This runs the full scaling sweep on separate validation samples, then evaluates
 ordinary and tuned BP, both alone and with BP-OSD fallback, on paired development
 shots. It writes the sweep, its config, and a timestamped evaluation directory under
-`results/`. Existing tuning evidence is never overwritten. Final-test seeds are
+`results/e0-<timestamp>/`. Each invocation creates a fresh bundle, including a new
+tuning table, so the command can be run again without overwriting evidence. Use
+`--config <path> --output-root <directory>` to customize the run. Final-test seeds are
 reserved for later milestones; E0 uses a separate development seed range.
 
 Every evaluation includes the resolved YAML, exact-schema CSV, paired per-shot

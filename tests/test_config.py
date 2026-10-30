@@ -5,8 +5,18 @@ import pytest
 import yaml
 
 from bbnbp.config import load_config
+from dataclasses import replace
 
 BASE = Path(__file__).resolve().parents[1]/"configs/base.yaml"
+
+
+@pytest.mark.parametrize("section", ["eval", "sweep"])
+@pytest.mark.parametrize("offset", [True, False, 1000.5, -1])
+def test_seed_offset_requires_nonnegative_integer(section, offset):
+    config = load_config(BASE)
+    updated = replace(config, **{section: replace(getattr(config, section), seed_offset=offset)})
+    with pytest.raises(ValueError, match="Seed offsets"):
+        updated.validate()
 
 
 def test_config_roundtrip_and_hash(tmp_path):
