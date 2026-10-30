@@ -424,3 +424,81 @@ M5 passed: `results/m5/20261030T220645511485Z-3a224cbf`; wins 4/7, best step 100
 - M3 and M5 are now both passed, so the go/no-go permits M6. Next work is
   circuit-level training with the main three seeds, followed by held-out paired
   BP/tuned-BP/NBP+OSD accuracy and compiled CPU latency evaluation.
+
+## M6 implementation and development checks — in progress
+
+- Corrected the earlier accelerator discovery: inside the restricted process,
+  `torch.backends.mps.is_available()` returned false. An approved process outside
+  that restriction detects MPS successfully. Hardware is Apple M4 Pro, 12 logical
+  CPUs, 24 GiB RAM; CUDA is unavailable. The historical M5 CPU run is unchanged.
+- The first deterministic MPS backward probe failed because
+  `index_put_with_accumulate_mps` lacks a deterministic implementation. Added
+  fixed inverse-index gather/sum autograd operations for MPS, with their gradients
+  checked against CPU gather/index-add. Determinism remains enabled. MPS priors
+  use float32 because it cannot hold float64 buffers; canonical CPU inference
+  retains the original prior precision. CPU/CUDA message reductions are unchanged.
+- The parity loss runs on CPU for MPS, with differentiable transfers. All draws
+  still use explicit configured generators. No new dependencies were added.
+- Receipts in `results/m6_preflight/` measure six-round bb72, structural T=15:
+  CPU batch-32 forward/loss/backward was 2.253 s; MPS warmed batch-32 was 1.658 s,
+  and batch-8 was 0.437 s. Repeated MPS gradients were bit-identical and finite at
+  both batch sizes. This excludes optimizer, mining and validation overhead.
+  A nominal 20k-update run is therefore at least 9.2 local GPU-hours per seed at
+  batch 32; an early-stopped run could finish sooner. Three full CPU runs project
+  about 38 hours of forward/loss/backward alone. These are estimates, not outcomes.
+- Batch 32 limits memory on the 16,164-variable circuit problem (CPU peak RSS
+  about 1.87 GB in the batch-32 probe); the handoff's example GPU batch 2,048 is
+  unsuitable for this local memory budget. The research question and E1/E2 matrix
+  have not changed.
+- Main CUDA/MPS configs are prepared for seeds 1234–1236, a 5k-step curriculum,
+  at most 20k updates, 20k fixed validation shots per p, and canonical Numba CPU
+  checkpoint selection. The three seeds share validation sets 1734–1738 and have
+  independent training streams. Eight validations without improvement stop a run.
+  The full 11-factor, T=15/50/100 independent scaling sweep is configured separately.
+- `scripts/m6.py` and the Slurm array template prepare explicit stages. Each training
+  launch has a four-hour external deadline, with cumulative GPU budget on resume.
+  Budget exhaustion reports incomplete training; it cannot masquerade as success.
+  E1/E2 launchers require three selected main checkpoints and completed reports.
+  The real development checkpoint was rejected by this guard. No cluster jobs or
+  full main runs have been launched; no spending above four GPU-hours is authorized.
+- A configuration-generation check initially rejected the two-point E2 config
+  because an irrelevant inherited M5 four-point training gate was present. Fixed
+  evaluation-only configs to omit training runtime. All experiment configs load.
+- Development tuning uses only three factors, T=15, 128 shots/p, seeds 9234–9238.
+  It is stored under `results/m6_development/` and will never substitute for the
+  main full sweep. The 15-step MPS mechanics run completed in 20.80 s and selected
+  step 10: `training/20261030T231030592263Z-5d4b322e/`. All losses were finite and
+  its plotted curves were visually checked. Selected validation fallback was
+  0.925 versus the coarsely tuned baseline's 0.890625, with zero strict wins on
+  five 64-shot points. This short run makes no circuit-improvement claim.
+- Selected development checkpoint SHA-256:
+  `ad665b148baed57f8f5921208f2d73e4b06d0483384af0c72b3ca6e1e029e37e`.
+  Both selected and continuation checkpoints retain portable parameters/RNG state.
+- Development accuracy exercises all five p values, 32 shared shots/p, three
+  decoders, and order-7 fallback. Development latency exercises p=.001/.003,
+  four warmups plus 16 measured shots per decoder, including exact stage/overhead
+  accounting. It ran alongside other development work and is unsuitable for
+  performance claims. GPU throughput was separately exercised on 64 shots/p.
+- Main E1 keeps paired failure stopping (100 failures/all models, max 10M shots).
+  E2 keeps 1,000 warmups and 20k measured shots/p, batch one and single CPU thread,
+  comparing compiled Numba with ldpc C++. Its fixed timing sample supplies its
+  own counts, avoiding a duplicate failure-stopping decode. All models see the
+  same latency syndromes from an independent tagged RNG stream; warmups are excluded.
+  Fallback timing includes fresh BP plus OSD. Raw component samples are retained.
+- The main summary computes mean and sample standard deviation across three
+  independently trained models. Per-model LER/Wilson intervals remain separate;
+  shared test shots are never pooled as independent samples across model seeds.
+- M6 remains **incomplete**: full independent tuning, three main training runs,
+  held-out E1 and full E2, and main secondary throughput are still required.
+  Final-test seeds remain untouched. Development checks do not satisfy the M6 gate.
+- Trained-checkpoint export verification passed on **10,000 circuit-level shots**
+  at p=.003: exact corrections, convergence flags, and first-convergence iterations
+  agree between canonical CPU PyTorch and Numba. Independent audit reproduced all
+  **320** saved selected-checkpoint validation outcomes and checked **21** CSV rows
+  and **96** raw latency measurements. See `results/m6_development/audit.json` and
+  `export_verification.json`. The source receipts identify the pre-commit dirty
+  revision and exact file hashes used for each check; prior results were not edited.
+- Full suite before the M6 development commit: **103 passed** (33.04 s), including
+  the slow checks. Shell entry points pass `bash -n`; the source whitespace check
+  is clean. Retained CSV artifacts use Python csv.writer's CRLF line endings,
+  which Git's global whitespace check flags. Their executed bytes were preserved.

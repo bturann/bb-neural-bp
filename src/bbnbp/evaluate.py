@@ -8,6 +8,9 @@ import json
 import platform
 import shutil
 import time
+import hashlib
+import subprocess
+from dataclasses import replace
 from datetime import datetime, timezone
 from itertools import combinations
 from pathlib import Path
@@ -21,6 +24,7 @@ from .io import append_results, git_sha, source_manifest
 from .metrics import latency_stats, mcnemar, wilson
 from .noise.base import parity
 from .noise.factory import make_sampler
+from .checkpoints import load_model, read_checkpoint
 
 
 def tuned_factor(table, config, p):
@@ -46,11 +50,27 @@ def tuned_factor(table, config, p):
 
 
 def make_decoder(name, problem, config, p, tuning_table):
-    if name not in {"bp", "bp_tuned", "bp_only", "bp_tuned_only"}:
-        raise ValueError(f"Decoder {name!r} is not implemented at M2")
-    alpha = tuned_factor(tuning_table, config, p) if "tuned" in name else config.model.ms_scaling
-    stage1 = LdpcBP(problem, config.eval.stage1_iters, alpha)
-    stage1.name = "bp_tuned" if "tuned" in name else "bp"
+    neural = name == "nbp" or name.startswith("nbp_")
+    if neural:
+        index = int(name.split("_")[-1]) if name.startswith("nbp_") else 0
+        if index >= len(config.eval.checkpoints):
+            raise ValueError("Neural evaluation requires a checkpoint for every named model")
+        path = config.eval.checkpoints[index]
+        model = load_model(path, problem)
+        if model.T != config.eval.stage1_iters:
+            raise ValueError("Checkpoint iteration budget differs from the baseline budget")
+        stage1 = model.export_cpu()
+        stage1.name = name
+        stage1.sharing = model.sharing
+        stage1.checkpoint_path = path
+        stage1.training_seed = read_checkpoint(path)["config"]["seed"]
+        alpha = config.model.ms_scaling
+    else:
+        if name not in {"bp", "bp_tuned", "bp_only", "bp_tuned_only"}:
+            raise ValueError(f"Unknown decoder {name!r}")
+        alpha = tuned_factor(tuning_table, config, p) if "tuned" in name else config.model.ms_scaling
+        stage1 = LdpcBP(problem, config.eval.stage1_iters, alpha)
+        stage1.name = "bp_tuned" if "tuned" in name else "bp"
     if name.endswith("_only"):
         return stage1, stage1, alpha
     settings = config.eval.osd
@@ -106,19 +126,67 @@ def evaluate_p(sampler, decoders, rng, *, stop_failures, max_shots, batch, progr
 
 
 def measure_latency(sampler, decoder, rng, shots, warmup):
-    s, _, _ = sampler.sample(shots+warmup, rng)
+    s, observations, _ = sampler.sample(shots+warmup, rng)
     timings = np.empty(shots)
+    stage1_times, osd_times, used = np.zeros(shots), np.zeros(shots), np.zeros(shots, dtype=bool)
+    failed, logical, first_logical = np.zeros(shots, dtype=bool), np.zeros(shots, dtype=bool), np.zeros(shots, dtype=bool)
+    executed, iterations = np.zeros(shots, dtype=bool), np.zeros(shots, dtype=np.int64)
     for i, row in enumerate(s):
         start = time.perf_counter_ns()
-        decoder.decode_batch(row[None, :])
+        result = decoder.decode_timed_one(row) if isinstance(decoder, TwoStageDecoder) else decoder.decode_batch(row[None, :])
         elapsed = (time.perf_counter_ns()-start)/1000
         if i >= warmup:
-            timings[i-warmup] = elapsed
-    return timings
+            j = i-warmup
+            timings[j] = elapsed
+            if isinstance(decoder, TwoStageDecoder):
+                stage1_times[j] = result["stage1_ns"]/1000
+                osd_times[j] = result["osd_ns"]/1000
+                used[j] = bool(result["osd_used"][0])
+                failed[j] = not bool(result["stage1_converged"][0])
+                executed[j] = result["osd_executed"][0]
+                correction, first = result["e_hat"], result["stage1_e_hat"]
+                iterations[j] = decoder.stage1.last_iterations[0]
+            else:
+                stage1_times[j] = elapsed
+                correction, conv = result
+                first = correction
+                failed[j] = not bool(conv[0])
+                iterations[j] = decoder.last_iterations[0]
+            logical[j] = bool((parity(sampler.problem.L, correction)[0] != observations[i]).any())
+            if not isinstance(decoder, TwoStageDecoder):
+                logical[j] |= failed[j]
+            first_logical[j] = failed[j] or bool((parity(sampler.problem.L, first)[0] != observations[i]).any())
+    return dict(total_us=timings, stage1_us=stage1_times, osd_us=osd_times,
+                overhead_us=timings-stage1_times-osd_times, osd_used=used,
+                stage1_failed=failed, logical_flags=logical, stage1_logical_flags=first_logical,
+                osd_executed=executed, iterations=iterations,
+                syndrome_sha256=np.array(hashlib.sha256(s[warmup:].tobytes()).hexdigest()))
+
+
+def cpu_model_label(override=None):
+    if override:
+        return override
+    info = Path("/proc/cpuinfo")
+    if info.exists():
+        for line in info.read_text().splitlines():
+            if line.lower().startswith("model name"):
+                return line.split(":", 1)[1].strip()
+    try:
+        return subprocess.check_output(["/usr/sbin/sysctl", "-n", "machdep.cpu.brand_string"],
+                                        text=True, stderr=subprocess.DEVNULL).strip()
+    except (OSError, subprocess.CalledProcessError):
+        return f"{platform.machine()} (CPU brand unavailable)"
 
 
 def run(config, names, tuning_table, output_root, *, progress=False):
     config.validate()
+    import torch
+    from numba import set_num_threads
+    torch.set_num_threads(config.eval.threads)
+    set_num_threads(config.eval.threads)
+    if "nbp" in names and len(config.eval.checkpoints) > 1:
+        names = [label for name in names for label in
+                 ([f"nbp_{i}" for i in range(len(config.eval.checkpoints))] if name == "nbp" else [name])]
     if not names or len(names) != len(set(names)):
         raise ValueError("Specify unique decoder names")
     timestamp = datetime.now(timezone.utc)
@@ -129,6 +197,20 @@ def run(config, names, tuning_table, output_root, *, progress=False):
     (outdir/"source_manifest.json").write_text(json.dumps(source_manifest(), indent=2)+"\n")
     if any("tuned" in name for name in names):
         shutil.copyfile(tuning_table, outdir/"tuned_scaling.csv")
+    checkpoint_manifest = []
+    for index, path in enumerate(config.eval.checkpoints):
+        payload = read_checkpoint(path)
+        training = payload["config"]
+        runtime = training["train"].get("runtime")
+        if runtime:
+            validation_seeds = {training["seed"]+runtime["validation_seed_offset"]+i
+                                for i in range(len(training["noise"]["p_grid"]))}
+            test_seeds = {config.seed+config.eval.seed_offset+i for i in range(len(config.noise.p_grid))}
+            if validation_seeds & test_seeds:
+                raise ValueError("Checkpoint validation seeds overlap evaluation seeds")
+        shutil.copyfile(path, outdir/f"checkpoint-{index}.pt")
+        checkpoint_manifest.append(dict(path=path, sha256=hashlib.sha256(Path(path).read_bytes()).hexdigest(),
+                                        training_seed=payload["config"]["seed"], step=payload["step"]))
     sha = git_sha()
     rows, details = [], {}
     try:
@@ -152,10 +234,25 @@ def run(config, names, tuning_table, output_root, *, progress=False):
                                     for name, record in counts.items())
                 print(f"p={p:g} shots={shots}: {summary}; elapsed={time.perf_counter()-started:.1f}s", flush=True)
 
-            counts = evaluate_p(sampler, decoders, rng,
-                                stop_failures=config.eval.stop_failures,
-                                max_shots=config.eval.max_shots, batch=config.eval.batch,
-                                progress=report if progress else None)
+            measured = {}
+            if config.eval.latency_only:
+                counts = {}
+                for name, (decoder, _, _) in decoders.items():
+                    samples = measure_latency(sampler, decoder,
+                                              np.random.default_rng(np.random.SeedSequence([seed, 1])),
+                                              config.eval.latency_shots, config.eval.latency_warmup)
+                    measured[name] = samples
+                    counts[name] = dict(shots=config.eval.latency_shots, logical=int(samples["logical_flags"].sum()),
+                                        stage1_fail=int(samples["stage1_failed"].sum()),
+                                        stage1_logical=int(samples["stage1_logical_flags"].sum()),
+                                        calls=int(samples["osd_used"].sum()), executed=int(samples["osd_executed"].sum()),
+                                        iterations=int(samples["iterations"].sum()), used=samples["osd_used"],
+                                        logical_flags=samples["logical_flags"])
+            else:
+                counts = evaluate_p(sampler, decoders, rng,
+                                    stop_failures=config.eval.stop_failures,
+                                    max_shots=config.eval.max_shots, batch=config.eval.batch,
+                                    progress=report if progress else None)
             paired, logical_flags = {}, {}
             for name, (decoder, _, alpha) in decoders.items():
                 count = counts[name]
@@ -165,10 +262,20 @@ def run(config, names, tuning_table, output_root, *, progress=False):
                 if config.eval.latency_shots:
                     # Separate stream: timing does not consume the accuracy stream.
                     timing_rng = np.random.default_rng(np.random.SeedSequence([seed, 1]))
-                    times = measure_latency(sampler, decoder, timing_rng,
-                                            config.eval.latency_shots, config.eval.latency_warmup)
-                    np.save(outdir/f"latency-p{i}-{name}.npy", times, allow_pickle=False)
-                    latency = latency_stats(times)
+                    samples = measured.get(name)
+                    if samples is None:
+                        samples = measure_latency(sampler, decoder, timing_rng,
+                                                  config.eval.latency_shots, config.eval.latency_warmup)
+                    np.save(outdir/f"latency-p{i}-{name}.npy", samples["total_us"], allow_pickle=False)
+                    np.savez_compressed(outdir/f"latency-components-p{i}-{name}.npz", **samples)
+                    latency = latency_stats(samples["total_us"])
+                    details[f"latency-p{i}:{name}"] = dict(
+                        stage1_mean_us=float(samples["stage1_us"].mean()),
+                        osd_mean_us=float(samples["osd_us"].mean()),
+                        overhead_mean_us=float(samples["overhead_us"].mean()),
+                        osd_calls=int(samples["osd_used"].sum()),
+                        warmup=config.eval.latency_warmup, shots=config.eval.latency_shots,
+                        learned_backend="numba" if name.startswith("nbp") else "ldpc C++")
                 fallback = isinstance(decoder, TwoStageDecoder)
                 row = dict(run_id=run_id, git_sha=sha, config_hash=config.config_hash,
                            timestamp=timestamp.isoformat(), code=config.code.name,
@@ -176,7 +283,7 @@ def run(config, names, tuning_table, output_root, *, progress=False):
                            basis=config.noise.basis, p=p,
                            decoder=decoder.name if fallback else decoder.name+"_only",
                            stage1=decoder.stage1.name if fallback else decoder.name,
-                           T=config.eval.stage1_iters, weight_sharing="scalar",
+                           T=config.eval.stage1_iters, weight_sharing=getattr(decoders[name][1], "sharing", "scalar"),
                            osd_method=config.eval.osd.method if fallback else "",
                            osd_order=config.eval.osd.order if fallback else "", ms_scaling=alpha,
                            shots=shots, stage1_failures=count["stage1_fail"],
@@ -184,7 +291,7 @@ def run(config, names, tuning_table, output_root, *, progress=False):
                            logical_failures=count["logical"], ler=count["logical"]/shots,
                            ler_lo=lo, ler_hi=hi, ler_stage1=count["stage1_logical"]/shots,
                            **latency, lat_threads=config.eval.threads,
-                           device=f"CPU {platform.machine()} {platform.processor()}", seed=seed)
+                           device=f"CPU {cpu_model_label(config.eval.cpu_model)}; {platform.platform()}", seed=seed)
                 rows.append(row)
                 paired[name] = count["used"]
                 logical_flags[name] = count["logical_flags"]
@@ -200,8 +307,13 @@ def run(config, names, tuning_table, output_root, *, progress=False):
                     details[f"p{i}:{a}_vs_{b}"] = mcnemar(paired[a], paired[b])
         append_results(outdir/"results.csv", rows)
         details.update(purpose=config.eval.purpose, git_sha=sha,
+                       checkpoints=checkpoint_manifest,
+                       cpu_model=cpu_model_label(config.eval.cpu_model),
+                       torch_threads=torch.get_num_threads(),
+                       gpu_throughput="not measured in this CPU evaluation",
                        sample_offset=config.eval.sample_offset,
-                       stopping="shared batch boundary; all decoders reach target or max_shots",
+                       stopping="fixed measured latency shots after warmup" if config.eval.latency_only else
+                                "shared batch boundary; all decoders reach target or max_shots",
                        osd_rate_definition="stage-2 calls/shots; internal OSD executions in this file")
         (outdir/"diagnostics.json").write_text(json.dumps(details, indent=2)+"\n")
     except Exception as exc:
@@ -218,6 +330,10 @@ if __name__ == "__main__":
     parser.add_argument("--tuning-table", default="results/tuned_scaling.csv")
     parser.add_argument("--output-root", default="results")
     parser.add_argument("--progress", action="store_true", help="Print a progress record after each batch")
+    parser.add_argument("--checkpoint", action="append", default=[], help="Repeat for multiple trained seeds")
     args = parser.parse_args()
-    run(load_config(args.config), args.decoders.split(","), args.tuning_table, args.output_root,
+    config = load_config(args.config)
+    if args.checkpoint:
+        config = replace(config, eval=replace(config.eval, checkpoints=tuple(args.checkpoint)))
+    run(config, args.decoders.split(","), args.tuning_table, args.output_root,
         progress=args.progress)

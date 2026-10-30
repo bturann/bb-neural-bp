@@ -1,0 +1,16 @@
+code,noise_model,rounds,basis,p,T,ms_scaling,shots,nonconverged,ler_stage1,seed,config_hash,git_sha,selected
+bb72,circuit_level,6,Z,0.001,15,0.5,128,94,0.734375,9234,5d4b322e0290fb5f250acd88dcc1ba6a8793a6e6,de9abbbc67b16c38d8ec128f729f84358c3b4d4b-dirty,False
+bb72,circuit_level,6,Z,0.001,15,0.75,128,100,0.78125,9234,5d4b322e0290fb5f250acd88dcc1ba6a8793a6e6,de9abbbc67b16c38d8ec128f729f84358c3b4d4b-dirty,False
+bb72,circuit_level,6,Z,0.001,15,1.0,128,80,0.625,9234,5d4b322e0290fb5f250acd88dcc1ba6a8793a6e6,de9abbbc67b16c38d8ec128f729f84358c3b4d4b-dirty,True
+bb72,circuit_level,6,Z,0.002,15,0.5,128,123,0.9609375,9235,5d4b322e0290fb5f250acd88dcc1ba6a8793a6e6,de9abbbc67b16c38d8ec128f729f84358c3b4d4b-dirty,False
+bb72,circuit_level,6,Z,0.002,15,0.75,128,120,0.9375,9235,5d4b322e0290fb5f250acd88dcc1ba6a8793a6e6,de9abbbc67b16c38d8ec128f729f84358c3b4d4b-dirty,False
+bb72,circuit_level,6,Z,0.002,15,1.0,128,114,0.890625,9235,5d4b322e0290fb5f250acd88dcc1ba6a8793a6e6,de9abbbc67b16c38d8ec128f729f84358c3b4d4b-dirty,True
+bb72,circuit_level,6,Z,0.003,15,0.5,128,126,0.984375,9236,5d4b322e0290fb5f250acd88dcc1ba6a8793a6e6,de9abbbc67b16c38d8ec128f729f84358c3b4d4b-dirty,True
+bb72,circuit_level,6,Z,0.003,15,0.75,128,126,0.984375,9236,5d4b322e0290fb5f250acd88dcc1ba6a8793a6e6,de9abbbc67b16c38d8ec128f729f84358c3b4d4b-dirty,False
+bb72,circuit_level,6,Z,0.003,15,1.0,128,126,0.984375,9236,5d4b322e0290fb5f250acd88dcc1ba6a8793a6e6,de9abbbc67b16c38d8ec128f729f84358c3b4d4b-dirty,False
+bb72,circuit_level,6,Z,0.004,15,0.5,128,128,1.0,9237,5d4b322e0290fb5f250acd88dcc1ba6a8793a6e6,de9abbbc67b16c38d8ec128f729f84358c3b4d4b-dirty,False
+bb72,circuit_level,6,Z,0.004,15,0.75,128,127,0.9921875,9237,5d4b322e0290fb5f250acd88dcc1ba6a8793a6e6,de9abbbc67b16c38d8ec128f729f84358c3b4d4b-dirty,True
+bb72,circuit_level,6,Z,0.004,15,1.0,128,128,1.0,9237,5d4b322e0290fb5f250acd88dcc1ba6a8793a6e6,de9abbbc67b16c38d8ec128f729f84358c3b4d4b-dirty,False
+bb72,circuit_level,6,Z,0.005,15,0.5,128,128,1.0,9238,5d4b322e0290fb5f250acd88dcc1ba6a8793a6e6,de9abbbc67b16c38d8ec128f729f84358c3b4d4b-dirty,True
+bb72,circuit_level,6,Z,0.005,15,0.75,128,128,1.0,9238,5d4b322e0290fb5f250acd88dcc1ba6a8793a6e6,de9abbbc67b16c38d8ec128f729f84358c3b4d4b-dirty,False
+bb72,circuit_level,6,Z,0.005,15,1.0,128,128,1.0,9238,5d4b322e0290fb5f250acd88dcc1ba6a8793a6e6,de9abbbc67b16c38d8ec128f729f84358c3b4d4b-dirty,False

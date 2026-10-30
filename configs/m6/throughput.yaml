@@ -1,0 +1,7 @@
+purpose: secondary_batched_gpu_throughput
+seed_entropy: [1234, 11000]
+p_grid: [0.001, 0.003]
+batch: 32
+shots: 4096
+warmup_batches: 8
+threads: 1

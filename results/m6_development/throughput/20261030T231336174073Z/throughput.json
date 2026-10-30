@@ -1,0 +1,27 @@
+{
+  "purpose": "development_secondary_batched_gpu_throughput",
+  "device": "mps",
+  "device_name": "Apple MPS",
+  "git_sha": "de9abbbc67b16c38d8ec128f729f84358c3b4d4b-dirty",
+  "rows": [
+    {
+      "p": 0.001,
+      "checkpoint": "checkpoints/m6_development/20261030T231030592263Z-5d4b322e/best.pt",
+      "checkpoint_sha256": "ad665b148baed57f8f5921208f2d73e4b06d0483384af0c72b3ca6e1e029e37e",
+      "shots": 64,
+      "batch": 8,
+      "elapsed_s": 0.5894027919857763,
+      "shots_per_s": 108.58448733229699
+    },
+    {
+      "p": 0.003,
+      "checkpoint": "checkpoints/m6_development/20261030T231030592263Z-5d4b322e/best.pt",
+      "checkpoint_sha256": "ad665b148baed57f8f5921208f2d73e4b06d0483384af0c72b3ca6e1e029e37e",
+      "shots": 64,
+      "batch": 8,
+      "elapsed_s": 0.554712584009394,
+      "shots_per_s": 115.37506421328304
+    }
+  ],
+  "methodology": "Batched Stage-1 PyTorch inference with first-convergence stopping; device-resident inputs, no OSD; synchronized before and after timing; includes model host synchronizations. Not primary per-shot latency."
+}

@@ -87,3 +87,14 @@ def test_training_resume_matches_uninterrupted_steps(tmp_path, monkeypatch):
         torch.testing.assert_close(first["parameters"][key], second["parameters"][key], rtol=0, atol=0)
     assert first["training_state"]["numpy_state"] == second["training_state"]["numpy_state"]
     assert (resumed/"loss_curves.png").exists() and (resumed/"loss_curves.pdf").exists()
+
+
+def test_m6_training_reports_completion_without_claiming_m5_acceptance(tmp_path):
+    config = tiny_config(tmp_path)
+    config = replace(config, train=replace(config.train, max_steps=1,
+                     runtime=replace(config.train.runtime, purpose="m6_train", validation_backend="torch")))
+    output = run(config, tmp_path/"results", tmp_path/"checkpoints", record_notes=False)
+    report = json.loads((output/"training_summary.json").read_text())
+    assert report["training_complete"] and report["steps_completed"] == 1
+    assert "passed" not in report and "eligible_for_m6" not in report
+    assert not (output/"m5_gate.json").exists()

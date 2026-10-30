@@ -1,0 +1,168 @@
+{
+  "p0:bp": {
+    "osd_executions": 24,
+    "mean_stage1_iterations": 12.65625,
+    "reached_failure_target": false
+  },
+  "p0:bp_tuned": {
+    "osd_executions": 18,
+    "mean_stage1_iterations": 12.875,
+    "reached_failure_target": false
+  },
+  "p0:nbp": {
+    "osd_executions": 24,
+    "mean_stage1_iterations": 12.5625,
+    "reached_failure_target": false
+  },
+  "p0:bp_vs_bp_tuned": {
+    "first_only": 7,
+    "second_only": 2,
+    "pvalue": 0.1796875
+  },
+  "p0:bp_vs_nbp": {
+    "first_only": 1,
+    "second_only": 0,
+    "pvalue": 1.0
+  },
+  "p0:bp_tuned_vs_nbp": {
+    "first_only": 2,
+    "second_only": 6,
+    "pvalue": 0.2890625
+  },
+  "p1:bp": {
+    "osd_executions": 30,
+    "mean_stage1_iterations": 14.5625,
+    "reached_failure_target": false
+  },
+  "p1:bp_tuned": {
+    "osd_executions": 28,
+    "mean_stage1_iterations": 14.5625,
+    "reached_failure_target": false
+  },
+  "p1:nbp": {
+    "osd_executions": 30,
+    "mean_stage1_iterations": 14.5625,
+    "reached_failure_target": false
+  },
+  "p1:bp_vs_bp_tuned": {
+    "first_only": 2,
+    "second_only": 1,
+    "pvalue": 1.0
+  },
+  "p1:bp_vs_nbp": {
+    "first_only": 0,
+    "second_only": 0,
+    "pvalue": 1.0
+  },
+  "p1:bp_tuned_vs_nbp": {
+    "first_only": 1,
+    "second_only": 2,
+    "pvalue": 1.0
+  },
+  "p2:bp": {
+    "osd_executions": 32,
+    "mean_stage1_iterations": 15.0,
+    "reached_failure_target": false
+  },
+  "p2:bp_tuned": {
+    "osd_executions": 31,
+    "mean_stage1_iterations": 14.65625,
+    "reached_failure_target": false
+  },
+  "p2:nbp": {
+    "osd_executions": 32,
+    "mean_stage1_iterations": 15.0,
+    "reached_failure_target": false
+  },
+  "p2:bp_vs_bp_tuned": {
+    "first_only": 1,
+    "second_only": 0,
+    "pvalue": 1.0
+  },
+  "p2:bp_vs_nbp": {
+    "first_only": 0,
+    "second_only": 0,
+    "pvalue": 1.0
+  },
+  "p2:bp_tuned_vs_nbp": {
+    "first_only": 0,
+    "second_only": 1,
+    "pvalue": 1.0
+  },
+  "p3:bp": {
+    "osd_executions": 32,
+    "mean_stage1_iterations": 15.0,
+    "reached_failure_target": false
+  },
+  "p3:bp_tuned": {
+    "osd_executions": 31,
+    "mean_stage1_iterations": 14.96875,
+    "reached_failure_target": false
+  },
+  "p3:nbp": {
+    "osd_executions": 32,
+    "mean_stage1_iterations": 15.0,
+    "reached_failure_target": false
+  },
+  "p3:bp_vs_bp_tuned": {
+    "first_only": 1,
+    "second_only": 0,
+    "pvalue": 1.0
+  },
+  "p3:bp_vs_nbp": {
+    "first_only": 0,
+    "second_only": 0,
+    "pvalue": 1.0
+  },
+  "p3:bp_tuned_vs_nbp": {
+    "first_only": 0,
+    "second_only": 1,
+    "pvalue": 1.0
+  },
+  "p4:bp": {
+    "osd_executions": 32,
+    "mean_stage1_iterations": 15.0,
+    "reached_failure_target": false
+  },
+  "p4:bp_tuned": {
+    "osd_executions": 32,
+    "mean_stage1_iterations": 15.0,
+    "reached_failure_target": false
+  },
+  "p4:nbp": {
+    "osd_executions": 32,
+    "mean_stage1_iterations": 15.0,
+    "reached_failure_target": false
+  },
+  "p4:bp_vs_bp_tuned": {
+    "first_only": 0,
+    "second_only": 0,
+    "pvalue": 1.0
+  },
+  "p4:bp_vs_nbp": {
+    "first_only": 0,
+    "second_only": 0,
+    "pvalue": 1.0
+  },
+  "p4:bp_tuned_vs_nbp": {
+    "first_only": 0,
+    "second_only": 0,
+    "pvalue": 1.0
+  },
+  "purpose": "development",
+  "git_sha": "de9abbbc67b16c38d8ec128f729f84358c3b4d4b-dirty",
+  "checkpoints": [
+    {
+      "path": "checkpoints/m6_development/20261030T231030592263Z-5d4b322e/best.pt",
+      "sha256": "ad665b148baed57f8f5921208f2d73e4b06d0483384af0c72b3ca6e1e029e37e",
+      "training_seed": 1234,
+      "step": 10
+    }
+  ],
+  "cpu_model": "Apple M4 Pro",
+  "torch_threads": 1,
+  "gpu_throughput": "not measured in this CPU evaluation",
+  "sample_offset": 0,
+  "stopping": "shared batch boundary; all decoders reach target or max_shots",
+  "osd_rate_definition": "stage-2 calls/shots; internal OSD executions in this file"
+}

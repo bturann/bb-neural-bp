@@ -1,0 +1,92 @@
+{
+  "0.001": {
+    "bp": {
+      "nonconverged": 47,
+      "osd_rate": 0.734375,
+      "logical_failures": 47,
+      "ler_stage1": 0.734375,
+      "ms_scaling": 0.625,
+      "mean_iterations": 12.15625
+    },
+    "bp_tuned": {
+      "nonconverged": 40,
+      "osd_rate": 0.625,
+      "logical_failures": 40,
+      "ler_stage1": 0.625,
+      "ms_scaling": 1.0,
+      "mean_iterations": 11.765625
+    }
+  },
+  "0.002": {
+    "bp": {
+      "nonconverged": 59,
+      "osd_rate": 0.921875,
+      "logical_failures": 59,
+      "ler_stage1": 0.921875,
+      "ms_scaling": 0.625,
+      "mean_iterations": 14.453125
+    },
+    "bp_tuned": {
+      "nonconverged": 54,
+      "osd_rate": 0.84375,
+      "logical_failures": 54,
+      "ler_stage1": 0.84375,
+      "ms_scaling": 1.0,
+      "mean_iterations": 14.171875
+    }
+  },
+  "0.003": {
+    "bp": {
+      "nonconverged": 64,
+      "osd_rate": 1.0,
+      "logical_failures": 64,
+      "ler_stage1": 1.0,
+      "ms_scaling": 0.625,
+      "mean_iterations": 15.0
+    },
+    "bp_tuned": {
+      "nonconverged": 64,
+      "osd_rate": 1.0,
+      "logical_failures": 64,
+      "ler_stage1": 1.0,
+      "ms_scaling": 0.5,
+      "mean_iterations": 15.0
+    }
+  },
+  "0.004": {
+    "bp": {
+      "nonconverged": 63,
+      "osd_rate": 0.984375,
+      "logical_failures": 63,
+      "ler_stage1": 0.984375,
+      "ms_scaling": 0.625,
+      "mean_iterations": 14.90625
+    },
+    "bp_tuned": {
+      "nonconverged": 63,
+      "osd_rate": 0.984375,
+      "logical_failures": 63,
+      "ler_stage1": 0.984375,
+      "ms_scaling": 0.75,
+      "mean_iterations": 14.875
+    }
+  },
+  "0.005": {
+    "bp": {
+      "nonconverged": 64,
+      "osd_rate": 1.0,
+      "logical_failures": 64,
+      "ler_stage1": 1.0,
+      "ms_scaling": 0.625,
+      "mean_iterations": 15.0
+    },
+    "bp_tuned": {
+      "nonconverged": 64,
+      "osd_rate": 1.0,
+      "logical_failures": 64,
+      "ler_stage1": 1.0,
+      "ms_scaling": 0.5,
+      "mean_iterations": 15.0
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "p": 0.003,
+  "seed_entropy": [
+    1234,
+    601
+  ],
+  "results": [
+    {
+      "decoder": "numba_nbp_t15",
+      "shots": 256,
+      "seconds": 1.11476354196202,
+      "seconds_per_shot": 0.004354545085789141
+    },
+    {
+      "decoder": "ldpc_bp_t15",
+      "shots": 256,
+      "seconds": 1.8078042090055533,
+      "seconds_per_shot": 0.0070617351914279425
+    },
+    {
+      "decoder": "ldpc_bp_t50",
+      "shots": 256,
+      "seconds": 5.521769915998448,
+      "seconds_per_shot": 0.021569413734368936
+    }
+  ]
+}

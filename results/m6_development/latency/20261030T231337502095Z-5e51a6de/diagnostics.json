@@ -1,0 +1,132 @@
+{
+  "latency-p0:bp": {
+    "stage1_mean_us": 7080.6485,
+    "osd_mean_us": 436623.414,
+    "overhead_mean_us": 95.9792500000125,
+    "osd_calls": 12,
+    "warmup": 4,
+    "shots": 16,
+    "learned_backend": "ldpc C++"
+  },
+  "p0:bp": {
+    "osd_executions": 12,
+    "mean_stage1_iterations": 13.5,
+    "reached_failure_target": false
+  },
+  "latency-p0:bp_tuned": {
+    "stage1_mean_us": 6186.4087500000005,
+    "osd_mean_us": 361107.0624375,
+    "overhead_mean_us": 91.99743749999611,
+    "osd_calls": 10,
+    "warmup": 4,
+    "shots": 16,
+    "learned_backend": "ldpc C++"
+  },
+  "p0:bp_tuned": {
+    "osd_executions": 10,
+    "mean_stage1_iterations": 12.5,
+    "reached_failure_target": false
+  },
+  "latency-p0:nbp": {
+    "stage1_mean_us": 4114.8776875,
+    "osd_mean_us": 399928.361875,
+    "overhead_mean_us": 104.6276249999994,
+    "osd_calls": 12,
+    "warmup": 4,
+    "shots": 16,
+    "learned_backend": "numba"
+  },
+  "p0:nbp": {
+    "osd_executions": 11,
+    "mean_stage1_iterations": 12.9375,
+    "reached_failure_target": false
+  },
+  "p0:bp_vs_bp_tuned": {
+    "first_only": 2,
+    "second_only": 0,
+    "pvalue": 0.5
+  },
+  "p0:bp_vs_nbp": {
+    "first_only": 1,
+    "second_only": 1,
+    "pvalue": 1.0
+  },
+  "p0:bp_tuned_vs_nbp": {
+    "first_only": 0,
+    "second_only": 2,
+    "pvalue": 0.5
+  },
+  "latency-p1:bp": {
+    "stage1_mean_us": 8770.4296875,
+    "osd_mean_us": 645269.7656874999,
+    "overhead_mean_us": 113.28887499999473,
+    "osd_calls": 16,
+    "warmup": 4,
+    "shots": 16,
+    "learned_backend": "ldpc C++"
+  },
+  "p1:bp": {
+    "osd_executions": 16,
+    "mean_stage1_iterations": 15.0,
+    "reached_failure_target": false
+  },
+  "latency-p1:bp_tuned": {
+    "stage1_mean_us": 7597.5233124999995,
+    "osd_mean_us": 613360.2916875,
+    "overhead_mean_us": 113.35418749999735,
+    "osd_calls": 16,
+    "warmup": 4,
+    "shots": 16,
+    "learned_backend": "ldpc C++"
+  },
+  "p1:bp_tuned": {
+    "osd_executions": 16,
+    "mean_stage1_iterations": 15.0,
+    "reached_failure_target": false
+  },
+  "latency-p1:nbp": {
+    "stage1_mean_us": 4362.8436249999995,
+    "osd_mean_us": 639209.2215,
+    "overhead_mean_us": 111.88274999999703,
+    "osd_calls": 16,
+    "warmup": 4,
+    "shots": 16,
+    "learned_backend": "numba"
+  },
+  "p1:nbp": {
+    "osd_executions": 16,
+    "mean_stage1_iterations": 15.0,
+    "reached_failure_target": false
+  },
+  "p1:bp_vs_bp_tuned": {
+    "first_only": 0,
+    "second_only": 0,
+    "pvalue": 1.0
+  },
+  "p1:bp_vs_nbp": {
+    "first_only": 0,
+    "second_only": 0,
+    "pvalue": 1.0
+  },
+  "p1:bp_tuned_vs_nbp": {
+    "first_only": 0,
+    "second_only": 0,
+    "pvalue": 1.0
+  },
+  "purpose": "development",
+  "git_sha": "de9abbbc67b16c38d8ec128f729f84358c3b4d4b-dirty",
+  "checkpoints": [
+    {
+      "path": "checkpoints/m6_development/20261030T231030592263Z-5d4b322e/best.pt",
+      "sha256": "ad665b148baed57f8f5921208f2d73e4b06d0483384af0c72b3ca6e1e029e37e",
+      "training_seed": 1234,
+      "step": 10
+    }
+  ],
+  "cpu_model": "Apple M4 Pro",
+  "torch_threads": 1,
+  "gpu_throughput": "not measured in this CPU evaluation",
+  "sample_offset": 0,
+  "stopping": "fixed measured latency shots after warmup",
+  "osd_rate_definition": "stage-2 calls/shots; internal OSD executions in this file"
+}

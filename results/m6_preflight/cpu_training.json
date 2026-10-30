@@ -1,0 +1,27 @@
+{
+  "source": "de9abbbc67b16c38d8ec128f729f84358c3b4d4b",
+  "p": 0.003,
+  "rounds": 6,
+  "seed_entropy": [
+    1234,
+    600
+  ],
+  "results": [
+    {
+      "batch": 8,
+      "seconds_per_step": 0.522582458506804,
+      "steps_measured": 2,
+      "T": 15,
+      "threads": 1,
+      "peak_rss_bytes": 762970112
+    },
+    {
+      "batch": 32,
+      "seconds_per_step": 2.2534504165232647,
+      "steps_measured": 2,
+      "T": 15,
+      "threads": 1,
+      "peak_rss_bytes": 1868005376
+    }
+  ]
+}

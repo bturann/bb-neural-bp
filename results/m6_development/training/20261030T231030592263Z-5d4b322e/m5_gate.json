@@ -1,0 +1,175 @@
+{
+  "passed": false,
+  "purpose": "smoke",
+  "wins": 0,
+  "required_wins": 4,
+  "best_step": 10,
+  "best_mean_osd_rate": 0.925,
+  "steps_completed": 15,
+  "stopping": "max_steps",
+  "elapsed_s": 20.796648083021864,
+  "m3_passed": true,
+  "eligible_for_m6": false,
+  "final_test_data_used": false,
+  "rows": [
+    {
+      "p": 0.001,
+      "shots": 64,
+      "seed": 8234,
+      "nonconverged": 46,
+      "osd_rate": 0.71875,
+      "ler_stage1": 0.71875,
+      "logical_failures": 46,
+      "mean_iterations": 12.140625,
+      "tuned": {
+        "nonconverged": 40,
+        "osd_rate": 0.625,
+        "logical_failures": 40,
+        "ler_stage1": 0.625,
+        "ms_scaling": 1.0,
+        "mean_iterations": 11.765625
+      },
+      "bp": {
+        "nonconverged": 47,
+        "osd_rate": 0.734375,
+        "logical_failures": 47,
+        "ler_stage1": 0.734375,
+        "ms_scaling": 0.625,
+        "mean_iterations": 12.15625
+      },
+      "paired_vs_tuned": {
+        "first_only": 6,
+        "second_only": 12,
+        "pvalue": 0.237884521484375
+      }
+    },
+    {
+      "p": 0.002,
+      "shots": 64,
+      "seed": 8235,
+      "nonconverged": 59,
+      "osd_rate": 0.921875,
+      "ler_stage1": 0.921875,
+      "logical_failures": 59,
+      "mean_iterations": 14.4375,
+      "tuned": {
+        "nonconverged": 54,
+        "osd_rate": 0.84375,
+        "logical_failures": 54,
+        "ler_stage1": 0.84375,
+        "ms_scaling": 1.0,
+        "mean_iterations": 14.171875
+      },
+      "bp": {
+        "nonconverged": 59,
+        "osd_rate": 0.921875,
+        "logical_failures": 59,
+        "ler_stage1": 0.921875,
+        "ms_scaling": 0.625,
+        "mean_iterations": 14.453125
+      },
+      "paired_vs_tuned": {
+        "first_only": 2,
+        "second_only": 7,
+        "pvalue": 0.1796875
+      }
+    },
+    {
+      "p": 0.003,
+      "shots": 64,
+      "seed": 8236,
+      "nonconverged": 64,
+      "osd_rate": 1.0,
+      "ler_stage1": 1.0,
+      "logical_failures": 64,
+      "mean_iterations": 15.0,
+      "tuned": {
+        "nonconverged": 64,
+        "osd_rate": 1.0,
+        "logical_failures": 64,
+        "ler_stage1": 1.0,
+        "ms_scaling": 0.5,
+        "mean_iterations": 15.0
+      },
+      "bp": {
+        "nonconverged": 64,
+        "osd_rate": 1.0,
+        "logical_failures": 64,
+        "ler_stage1": 1.0,
+        "ms_scaling": 0.625,
+        "mean_iterations": 15.0
+      },
+      "paired_vs_tuned": {
+        "first_only": 0,
+        "second_only": 0,
+        "pvalue": 1.0
+      }
+    },
+    {
+      "p": 0.004,
+      "shots": 64,
+      "seed": 8237,
+      "nonconverged": 63,
+      "osd_rate": 0.984375,
+      "ler_stage1": 0.984375,
+      "logical_failures": 63,
+      "mean_iterations": 14.90625,
+      "tuned": {
+        "nonconverged": 63,
+        "osd_rate": 0.984375,
+        "logical_failures": 63,
+        "ler_stage1": 0.984375,
+        "ms_scaling": 0.75,
+        "mean_iterations": 14.875
+      },
+      "bp": {
+        "nonconverged": 63,
+        "osd_rate": 0.984375,
+        "logical_failures": 63,
+        "ler_stage1": 0.984375,
+        "ms_scaling": 0.625,
+        "mean_iterations": 14.90625
+      },
+      "paired_vs_tuned": {
+        "first_only": 0,
+        "second_only": 0,
+        "pvalue": 1.0
+      }
+    },
+    {
+      "p": 0.005,
+      "shots": 64,
+      "seed": 8238,
+      "nonconverged": 64,
+      "osd_rate": 1.0,
+      "ler_stage1": 1.0,
+      "logical_failures": 64,
+      "mean_iterations": 15.0,
+      "tuned": {
+        "nonconverged": 64,
+        "osd_rate": 1.0,
+        "logical_failures": 64,
+        "ler_stage1": 1.0,
+        "ms_scaling": 0.5,
+        "mean_iterations": 15.0
+      },
+      "bp": {
+        "nonconverged": 64,
+        "osd_rate": 1.0,
+        "logical_failures": 64,
+        "ler_stage1": 1.0,
+        "ms_scaling": 0.625,
+        "mean_iterations": 15.0
+      },
+      "paired_vs_tuned": {
+        "first_only": 0,
+        "second_only": 0,
+        "pvalue": 1.0
+      }
+    }
+  ],
+  "checkpoint_directory": "checkpoints/m6_development/20261030T231030592263Z-5d4b322e",
+  "best_checkpoint_sha256": "ad665b148baed57f8f5921208f2d73e4b06d0483384af0c72b3ca6e1e029e37e",
+  "training_complete": true,
+  "gpu_elapsed_s": 20.79672516701976
+}

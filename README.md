@@ -22,8 +22,8 @@ M0–M2 are complete: environment/API verification, both BB code constructions a
 their symmetries, code-capacity sampling, BP/BP-OSD baselines, scaling tuning, and
 paired E0 evaluation. M3 passed with the specified OSD-CS order-7 baseline; the
 earlier OSD-0 failed development check remains recorded. M4's neural model and matching
-compiled CPU inference passed their acceptance checks. The full suite currently has
-97 passing tests, including the slow checks. See `NOTES.md` for evidence.
+compiled CPU inference passed their acceptance checks. See `NOTES.md` for the
+latest full-suite test count and evidence, including the slow checks.
 
 ## Code-capacity baseline experiment (E0)
 
@@ -143,4 +143,64 @@ Evidence: `results/m5/20261030T220645511485Z-3a224cbf/m5_gate.json` and
 `checkpoint_replay.json`. The selected weights are
 `checkpoints/20261030T220645511485Z-3a224cbf/best.pt`; use `last.pt` only to continue
 the final training state. An artifact audit reproduced every saved outcome on all
-140,000 validation shots using the selected weights. M6 is the next milestone.
+140,000 validation shots using the selected weights. M6 is in progress.
+
+## Circuit training and paired evaluation (M6, in progress)
+
+The main configs preserve bb72, six rounds, structural sharing, T=15, three training
+seeds (1234–1236), and OSD-CS order 7. Training uses a 5,000-step high-to-low
+curriculum, then a uniform p-grid mixture, batch 32, at most 20,000 updates, and
+20,000 fixed validation shots per p. Selection uses the canonical compiled CPU
+decoder; eight validations without improvement stop training. M6 has not passed.
+
+Run the independent full baseline sweep first, then one training job per seed:
+
+```sh
+bash scripts/run_experiment.sh m6-tune
+bash scripts/run_experiment.sh m6-train --device cuda --seed 1234
+bash scripts/run_experiment.sh m6-train --device cuda --seed 1235
+bash scripts/run_experiment.sh m6-train --device cuda --seed 1236
+```
+
+Use `--device mps` for local Apple GPU jobs. Deterministic gather-and-sum reductions
+avoid unsupported MPS scatter backward operations; the parity loss runs on CPU
+with differentiable transfers. No determinism checks are disabled. The Slurm array
+template is `scripts/m6_gpu.slurm`; set the site's partition/account and install the
+pinned environment before submitting it. No cluster jobs have been submitted here.
+Each training command has a four-hour wall-clock deadline and tracks cumulative
+GPU budget across resumes. A budget-stopped run remains incomplete and cannot be
+fed to E1/E2 through the launcher. Resume adds `--resume <run>/last.pt`.
+
+At the measured local MPS rate, all 20,000 optimizer updates would require at least
+9.2 hours per seed before mining and validation. Early stopping may finish sooner;
+otherwise a faster accelerator or explicit approval for a larger per-run budget
+is required. The four-hour cap is not an experimental success criterion.
+
+After all three training reports are complete, use the selected checkpoints:
+
+```sh
+bash scripts/run_experiment.sh e1 --checkpoint <seed1234>/best.pt --checkpoint <seed1235>/best.pt --checkpoint <seed1236>/best.pt
+bash scripts/run_experiment.sh e2 --checkpoint <seed1234>/best.pt --checkpoint <seed1235>/best.pt --checkpoint <seed1236>/best.pt
+.venv/bin/python -m bbnbp.m6_report --e1 <E1-output-directory> --e2 <E2-output-directory> --output results/m6/summary.json
+```
+
+E1 pairs all five decoders on the same held-out shots until every decoder reaches
+100 logical failures or 10 million shots. E2 uses 1,000 warmups and 20,000 measured
+shots at each of p=0.001 and 0.003, single thread, batch one, compiled Numba versus
+ldpc C++. Run it on an otherwise idle machine. It saves total, Stage-1, fallback,
+and overhead timing samples, with mean/p50/p99/max in the CSV. Fallback time includes
+the fresh BP+OSD call. Timing samples use a separate deterministic sampling stream;
+warmups do not enter reported counts. GPU throughput is a separate Stage-1 regime:
+
+```sh
+BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib .venv/bin/python scripts/m6_throughput.py --device cuda --checkpoint <seed1234>/best.pt --checkpoint <seed1235>/best.pt --checkpoint <seed1236>/best.pt
+```
+
+The summary reports mean and sample standard deviation of fallback rate across
+training seeds. LER counts and Wilson intervals remain separate per model because
+their shared test shots cannot be pooled as independent observations.
+
+Local development evidence is under `results/m6_development/`; preflight receipts
+are under `results/m6_preflight/`. These short checks use distinct development
+seeds and establish mechanics only. They are not the three main models or final
+accuracy/latency evidence.

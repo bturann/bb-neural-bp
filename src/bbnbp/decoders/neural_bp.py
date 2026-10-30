@@ -11,6 +11,7 @@ from torch import nn
 from .._construction import CODES
 from ..codes import edge_orbits
 from ..graph import build_tanner, weight_map
+from ..reductions import DeterministicGather, DeterministicSegmentSum, inverse_slots
 from .base import validate_syndromes
 
 
@@ -44,8 +45,25 @@ class NeuralMinSum(nn.Module):
         n_weights = int(mapping[graph.chk_mask].max())+1 if graph.chk_mask.any() else 1
         self.w = nn.Parameter(torch.full((T, n_weights), float(ms_scaling), dtype=dtype))
         self.alpha = nn.Parameter(torch.ones(T, dtype=dtype))
+        self.register_buffer("var_inverse", inverse_slots(graph.chk_idx.numpy(), graph.n_vars,
+                                                           graph.chk_mask.numpy()), persistent=False)
+        self.register_buffer("weight_inverse", inverse_slots(mapping.numpy(), n_weights,
+                                                              graph.chk_mask.numpy()), persistent=False)
         self.last_hard_decisions = []
         self.last_iterations = np.empty(0, dtype=np.int64)
+
+    def _apply(self, fn, recurse=True):
+        # MPS cannot transfer float64 buffers. Recreate the current problem's
+        # exact CPU/CUDA prior or its float32 MPS representation after moving.
+        prior = self._buffers.pop("llr")
+        try:
+            result = super()._apply(fn, recurse=recurse)
+        except BaseException:
+            self.register_buffer("llr", prior)
+            raise
+        prior_dtype = torch.float32 if self.w.device.type == "mps" else torch.float64
+        self.register_buffer("llr", torch.tensor(self.problem.llr, dtype=prior_dtype, device=self.w.device))
+        return result
 
     def forward(self, s, llr=None, early_stop=False):
         if early_stop and torch.is_grad_enabled():
@@ -76,15 +94,29 @@ class NeuralMinSum(nn.Module):
         for t in range(self.T):
             if early_stop and bool(converged.all()):
                 break
-            mu = (self.alpha[t]*prior + total)[:, self.chk_idx]-messages
+            variable_values = self.alpha[t]*prior+total
+            if device.type == "mps":
+                gathered = DeterministicGather.apply(variable_values, self.chk_idx.reshape(-1), self.var_inverse)
+                mu = gathered.reshape_as(messages)-messages
+            else:
+                mu = variable_values[:, self.chk_idx]-messages
             mu = torch.where(self.chk_mask, mu, torch.full_like(mu, 1e18))
             signs = torch.where(mu < 0, -torch.ones_like(mu), torch.ones_like(mu))
             magnitudes = mu.abs()
             minima = magnitudes.topk(2, dim=-1, largest=False).values
             extrinsic = torch.where(magnitudes == minima[..., :1], minima[..., 1:], minima[..., :1])
-            messages = self.w[t][self.w_map]*sign_s*signs.prod(dim=-1, keepdim=True)*signs*extrinsic
+            if device.type == "mps":
+                weights = DeterministicGather.apply(self.w[t:t+1], self.w_map.reshape(-1), self.weight_inverse)
+                weights = weights.reshape(1, *self.w_map.shape)
+            else:
+                weights = self.w[t][self.w_map]
+            messages = weights*sign_s*signs.prod(dim=-1, keepdim=True)*signs*extrinsic
             messages = messages.clamp(-self.msg_clip, self.msg_clip)*self.chk_mask
-            total = torch.zeros_like(total).index_add(1, variables, messages[:, self.chk_mask])
+            if device.type == "mps":
+                total = DeterministicSegmentSum.apply(messages.flatten(1), self.var_inverse,
+                                                     self.chk_idx.reshape(-1), self.chk_mask.reshape(-1))
+            else:
+                total = torch.zeros_like(total).index_add(1, variables, messages[:, self.chk_mask])
             posterior = prior+total  # posterior always uses the unweighted prior
             hard = posterior < 0
             outputs.append(torch.sigmoid(-posterior))

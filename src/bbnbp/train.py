@@ -136,7 +136,9 @@ def run(config, output_root="results/m5", checkpoint_root="checkpoints", *, resu
     if config.eval.stage1_iters != config.model.T:
         raise ValueError("M5 validation must use the same T for neural and tuned BP")
     device = torch.device(config.train.device)
-    if device.type not in {"cpu", "cuda"} or (device.type == "cuda" and not torch.cuda.is_available()):
+    if (device.type not in {"cpu", "cuda", "mps"}
+            or (device.type == "cuda" and not torch.cuda.is_available())
+            or (device.type == "mps" and not torch.backends.mps.is_available())):
         raise ValueError(f"Requested training device is unavailable or unsupported: {device}")
     run_id = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")+"-"+config.config_hash[:8]
     directory, checkpoint_dir = Path(output_root)/run_id, Path(checkpoint_root)/run_id
@@ -156,6 +158,7 @@ def run(config, output_root="results/m5", checkpoint_root="checkpoints", *, resu
     torch.use_deterministic_algorithms(True)
     events = ScalarEventWriter(directory/"events") if runtime.tensorboard else None
     started = time.perf_counter()
+    prior_gpu_seconds = 0.0
     try:
         table = Path(runtime.baseline_table)
         with table.open(newline="") as f:
@@ -189,12 +192,16 @@ def run(config, output_root="results/m5", checkpoint_root="checkpoints", *, resu
         np.savez_compressed(directory/"baseline_flags.npz", **baseline_arrays)
         model = make_model(template, config).to(device)
         frozen = make_model(template, config).to(device).eval().requires_grad_(False)
-        objective = ParityLoss(template, config.train.beta_logical, runtime.loss_eps, runtime.loss_floor).to(device)
+        loss_device = torch.device("cpu") if runtime.loss_device == "cpu" else device
+        if device.type == "mps" and loss_device.type != "cpu":
+            raise ValueError("Deterministic MPS training requires the explicit CPU parity-loss backend")
+        objective = ParityLoss(template, config.train.beta_logical, runtime.loss_eps, runtime.loss_floor).to(loss_device)
         per_shot_loss = objective if config.train.loss == "parity" else lambda p, e: bitwise_bce(p, e, runtime.loss_eps)
         optimizer = torch.optim.Adam(model.parameters(), lr=config.train.lr)
         scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=config.train.max_steps, eta_min=config.train.min_lr)
         rng = np.random.default_rng(np.random.SeedSequence([config.seed, runtime.training_stream]))
-        torch_rng = torch.Generator(device=device).manual_seed(config.seed+runtime.torch_seed_offset)
+        generator_device = "cpu" if device.type == "mps" else device
+        torch_rng = torch.Generator(device=generator_device).manual_seed(config.seed+runtime.torch_seed_offset)
         step, best_score, best_step, stale = 0, float("inf"), 0, 0
         if resume is not None:
             payload = read_checkpoint(resume)
@@ -207,24 +214,27 @@ def run(config, output_root="results/m5", checkpoint_root="checkpoints", *, resu
             rng.bit_generator.state = state["numpy_state"]
             torch_rng.set_state(state["torch_state"])
             step, best_score, best_step, stale = payload["step"], state["best_score"], state["best_step"], state["stale"]
+            prior_gpu_seconds = state.get("gpu_elapsed_s", 0.0)
             shutil.copyfile(Path(resume).parent/"best.pt", checkpoint_dir/"best.pt")
 
-        val_models = {p: make_model(samplers[p].problem, config) for p in config.noise.p_grid}
+        validation_device = device if runtime.validation_backend == "torch" else torch.device("cpu")
+        val_models = {p: make_model(samplers[p].problem, config).to(validation_device) for p in config.noise.p_grid}
         history = []
 
         def state():
             return dict(optimizer=optimizer.state_dict(), scheduler=scheduler.state_dict(),
                         numpy_state=rng.bit_generator.state, torch_state=torch_rng.get_state(),
-                        best_score=best_score, best_step=best_step, stale=stale)
+                        best_score=best_score, best_step=best_step, stale=stale,
+                        gpu_elapsed_s=prior_gpu_seconds+(time.perf_counter()-started if device.type != "cpu" else 0))
 
         def validate_current(at_step):
             rows, flags = [], {}
             for i, p in enumerate(config.noise.p_grid):
                 candidate = val_models[p]
                 with torch.no_grad():
-                    candidate.w.copy_(model.w.detach().cpu())
-                    candidate.alpha.copy_(model.alpha.detach().cpu())
-                decoder = candidate.export_cpu()
+                    candidate.w.copy_(model.w.detach().to(validation_device))
+                    candidate.alpha.copy_(model.alpha.detach().to(validation_device))
+                decoder = candidate.export_cpu() if runtime.validation_backend == "numba" else candidate
                 s, o, seed = validation[p]
                 failed, logical, iterations = _inference(decoder, s, o, samplers[p].problem, runtime.val_batch)
                 flags[f"nbp-p{i}"] = failed
@@ -254,10 +264,10 @@ def run(config, output_root="results/m5", checkpoint_root="checkpoints", *, resu
             _write_json(directory/"best_validation.json", initial)
             np.savez_compressed(directory/"best_validation_flags.npz", **flags)
         last_summary = initial
-        stopping = "max_steps"
+        stopping = "validation_patience" if stale >= config.train.patience else "max_steps"
         with (directory/"training.jsonl").open("a") as training_log:
-            while step < config.train.max_steps:
-                if device.type != "cpu" and time.perf_counter()-started >= runtime.max_gpu_hours*3600:
+            while step < config.train.max_steps and stale < config.train.patience:
+                if device.type != "cpu" and prior_gpu_seconds+time.perf_counter()-started >= runtime.max_gpu_hours*3600:
                     stopping = "gpu_budget"
                     break
                 p = training_probability(config, step, rng)
@@ -274,9 +284,9 @@ def run(config, output_root="results/m5", checkpoint_root="checkpoints", *, resu
                 model.train()
                 optimizer.zero_grad(set_to_none=True)
                 outputs = model(torch.from_numpy(s).to(device), llr=llr)
-                faults = torch.from_numpy(e).to(device)
-                weight_tensor = torch.tensor(weights, dtype=model.w.dtype, device=device)
-                loss = multi_loss(outputs, faults, per_shot_loss, weight_tensor)
+                faults = torch.from_numpy(e).to(loss_device)
+                weight_tensor = torch.tensor(weights, dtype=model.w.dtype, device=loss_device)
+                loss = multi_loss([p.to(loss_device) for p in outputs], faults, per_shot_loss, weight_tensor)
                 if not torch.isfinite(loss):
                     raise FloatingPointError("Training loss is not finite")
                 loss.backward()
@@ -326,21 +336,29 @@ def run(config, output_root="results/m5", checkpoint_root="checkpoints", *, resu
                       eligible_for_m6=accepted and bool(m3["passed"]), final_test_data_used=False,
                       rows=best["rows"], checkpoint_directory=str(checkpoint_dir),
                       best_checkpoint_sha256=hashlib.sha256((checkpoint_dir/"best.pt").read_bytes()).hexdigest())
-        _write_json(directory/"m5_gate.json", report)
+        report["training_complete"] = stopping != "gpu_budget"
+        report["gpu_elapsed_s"] = prior_gpu_seconds+(time.perf_counter()-started if device.type != "cpu" else 0)
+        if runtime.purpose == "m6_train":
+            for key in ("passed", "required_wins", "eligible_for_m6"):
+                report.pop(key)
+        summary_name = "training_summary.json" if runtime.purpose == "m6_train" else "m5_gate.json"
+        _write_json(directory/summary_name, report)
         _plot_history(directory)
         if record_notes and runtime.purpose == "m5_gate":
             with (ROOT/"NOTES.md").open("a") as f:
                 f.write(f"\nM5 {'passed' if accepted else 'gate failed'}: `{directory}`; "
                         f"wins {wins}/{len(best['rows'])}, best step {best_step}, "
                         f"mean fallback {best_score}. Final-test data untouched.\n")
-        print(f"M5 {'PASS' if accepted else 'NOT ACCEPTED'}: wins={wins}/{len(best['rows'])}, "
+        label = ("M6 TRAINING "+("COMPLETE" if report["training_complete"] else "BUDGET-STOPPED")) if runtime.purpose == "m6_train" else f"M5 {'PASS' if accepted else 'NOT ACCEPTED'}"
+        print(f"{label}: wins={wins}/{len(best['rows'])}, "
               f"best_step={best_step}; {directory}", flush=True)
         return directory
     except BaseException as exc:
         (directory/"FAILURE.txt").write_text(f"{type(exc).__name__}: {exc}\n")
         if record_notes:
             with (ROOT/"NOTES.md").open("a") as f:
-                f.write(f"\nM5 execution failed in `{directory}`: {type(exc).__name__}: {exc}.\n")
+                milestone = "M6" if runtime.purpose == "m6_train" else "M5/development"
+                f.write(f"\n{milestone} execution failed in `{directory}`: {type(exc).__name__}: {exc}.\n")
         raise
     finally:
         if events:
@@ -357,5 +375,8 @@ if __name__ == "__main__":
     parser.add_argument("--resume")
     args = parser.parse_args()
     result = run(load_config(args.config), args.output_root, args.checkpoint_root, resume=args.resume)
-    gate = json.loads((result/"m5_gate.json").read_text())
+    path = result/"training_summary.json" if (result/"training_summary.json").exists() else result/"m5_gate.json"
+    gate = json.loads(path.read_text())
+    if gate["purpose"] == "m6_train":
+        raise SystemExit(0 if gate["training_complete"] else 2)
     raise SystemExit(0 if gate["passed"] or gate["purpose"] == "smoke" else 1)

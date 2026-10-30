@@ -1,0 +1,20 @@
+T: 15
+batch_sizes:
+- 8
+- 32
+cpu_model: Apple M4 Pro
+inference_seed_entropy:
+- 1234
+- 601
+inference_shots: 256
+logical_cpus: 12
+memory_bytes: 25769803776
+p: 0.003
+rounds: 6
+seed_entropy:
+- 1234
+- 600
+sharing: struct
+steps_per_batch: 3
+threads: 1
+warmup_steps: 1

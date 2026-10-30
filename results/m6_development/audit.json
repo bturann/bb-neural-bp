@@ -1,0 +1,16 @@
+{
+  "purpose": "development_artifact_audit",
+  "checks_passed": true,
+  "m6_complete": false,
+  "final_test_data_used": false,
+  "checkpoint_sha256": "ad665b148baed57f8f5921208f2d73e4b06d0483384af0c72b3ca6e1e029e37e",
+  "validation_flags_reproduced": 320,
+  "evaluation_rows_checked": 21,
+  "timing_samples_checked": 96,
+  "trained_circuit_export_shots": 10000,
+  "evaluations": {
+    "evaluation": "results/m6_development/evaluation/20261030T231113438502Z-ecce9121",
+    "latency": "results/m6_development/latency/20261030T231337502095Z-5e51a6de"
+  },
+  "caveat": "Tiny development accuracy samples; latency ran alongside other development work. These measurements support mechanics checks only, not performance claims."
+}

@@ -73,6 +73,8 @@ class TrainingRuntimeConfig:
     baseline_table: str
     purpose: str
     m3_gate_report: str
+    loss_device: str = "model"
+    validation_backend: str = "numba"
 
 
 @dataclass(frozen=True)
@@ -116,6 +118,9 @@ class EvalConfig:
     seed_offset: int
     purpose: str
     sample_offset: int = 0
+    checkpoints: tuple[str, ...] = ()
+    cpu_model: str | None = None
+    latency_only: bool = False
 
 
 @dataclass(frozen=True)
@@ -150,6 +155,16 @@ class Config:
             del raw["eval"]["sample_offset"]
         if self.train.runtime is None:
             del raw["train"]["runtime"]
+        else:
+            for key, value in (("loss_device", "model"), ("validation_backend", "numba")):
+                if raw["train"]["runtime"][key] == value:
+                    del raw["train"]["runtime"][key]
+        if not self.eval.checkpoints:
+            del raw["eval"]["checkpoints"]
+        if self.eval.cpu_model is None:
+            del raw["eval"]["cpu_model"]
+        if not self.eval.latency_only:
+            del raw["eval"]["latency_only"]
         return raw
 
     def save(self, path: str | Path) -> None:
@@ -230,6 +245,8 @@ class Config:
             raise ValueError("Minimum learning rate exceeds the initial learning rate")
         if any(type(x) is not int or x < 0 for x in (self.eval.latency_shots, self.eval.latency_warmup)):
             raise ValueError("Latency counts must be nonnegative integers")
+        if type(self.eval.latency_only) is not bool or (self.eval.latency_only and self.eval.latency_shots < 1):
+            raise ValueError("Latency-only evaluation requires a positive latency shot count")
         if any(type(x) is not int or x < 0 for x in (self.eval.seed_offset, self.sweep.seed_offset)):
             raise ValueError("Seed offsets must be nonnegative integers")
         if abs(self.eval.seed_offset-self.sweep.seed_offset) < len(self.noise.p_grid):
@@ -240,8 +257,10 @@ class Config:
             raise ValueError("Sample offset must be a multiple of the sampling batch")
         runtime = self.train.runtime
         if runtime is not None:
-            if runtime.purpose not in {"smoke", "m5_gate"}:
-                raise ValueError("Training purpose must be smoke or m5_gate")
+            if runtime.purpose not in {"smoke", "m5_gate", "m6_train"}:
+                raise ValueError("Training purpose must be smoke, m5_gate or m6_train")
+            if runtime.loss_device not in {"model", "cpu"} or runtime.validation_backend not in {"numba", "torch"}:
+                raise ValueError("Invalid training loss device or validation backend")
             for field in ("threads", "val_batch", "log_every", "gate_min_points"):
                 if type(getattr(runtime, field)) is not int or getattr(runtime, field) < 1:
                     raise ValueError(f"train.runtime.{field} must be a positive integer")
@@ -291,6 +310,8 @@ def load_config(path: str | Path) -> Config:
             train["runtime"] = TrainingRuntimeConfig(**train["runtime"])
         ev = dict(raw["eval"])
         ev["osd"] = OsdConfig(**ev["osd"])
+        if "checkpoints" in ev:
+            ev["checkpoints"] = tuple(ev["checkpoints"])
         sweep = dict(raw["sweep"])
         sweep["factors"] = tuple(sweep["factors"])
         sweep["iterations"] = tuple(sweep["iterations"])
