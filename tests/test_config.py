@@ -34,6 +34,13 @@ def test_circuit_policy_is_explicit(tmp_path):
     assert load_config(tmp_path/"circuit.yaml") == config
 
 
+@pytest.mark.parametrize("offset", [-1, True, 0.5, 1])
+def test_sample_offset_is_whole_sampling_batches(offset):
+    config = load_config(BASE)
+    with pytest.raises(ValueError, match="Sample offset"):
+        replace(config, eval=replace(config.eval, sample_offset=offset)).validate()
+
+
 def test_config_roundtrip_and_hash(tmp_path):
     config = load_config(BASE)
     config.save(tmp_path/"resolved.yaml")

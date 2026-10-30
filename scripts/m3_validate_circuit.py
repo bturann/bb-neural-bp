@@ -15,12 +15,7 @@ from bbnbp.noise.factory import make_sampler
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def validate(config, output_root):
-    if config.noise.model != "circuit_level" or config.eval.purpose != "development":
-        raise ValueError("M3 acceptance uses an explicit circuit-level development configuration")
-    output = run(config, ["bp"], None, output_root)
-    with (output/"results.csv").open() as f:
-        rows = sorted(csv.DictReader(f), key=lambda row: float(row["p"]))
+def check_noise_grid(config):
     checks = []
     first_h, first_l = None, None
     for i, p in enumerate(config.noise.p_grid):
@@ -41,6 +36,16 @@ def validate(config, output_root):
                            H_nnz=problem.H.nnz, L_nnz=problem.L.nnz,
                            max_check_degree=int(np.diff(problem.H.indptr).max()),
                            priors_min=float(problem.priors.min()), priors_max=float(problem.priors.max())))
+    return checks
+
+
+def validate(config, output_root):
+    if config.noise.model != "circuit_level" or config.eval.purpose != "development":
+        raise ValueError("M3 acceptance uses an explicit circuit-level development configuration")
+    output = run(config, ["bp"], None, output_root)
+    with (output/"results.csv").open() as f:
+        rows = sorted(csv.DictReader(f), key=lambda row: float(row["p"]))
+    checks = check_noise_grid(config)
     monotonic = all(float(a["ler"]) <= float(b["ler"]) for a, b in zip(rows, rows[1:]))
     low = rows[0]
     has_low_point = float(low["p"]) == 0.001

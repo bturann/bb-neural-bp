@@ -254,3 +254,24 @@ M3 gate failed for `results/m3/20261030T210408544859Z-ae88f467`: monotonic=True,
 - No experiments were dropped and no final-test seeds were touched. All previous
   E0 results and reference sources remain unchanged. The source tree was dirty
   while M3 ran, as identified in its CSV and source manifest.
+
+## M3 stronger-baseline validation plan (authorized continuation)
+
+- The human authorized running the specified OSD-CS order-7 baseline after review
+  of the failed OSD-0 gate. Only the OSD method/order changes; circuit policy, BP
+  settings, p grid, and per-p RNG streams stay matched to the original run.
+- Predeclared plan: `configs/m3_order7_validation.yaml`. First decode the same 2,048
+  p=0.001 shots (seed 4234, batch 128). If the Wilson interval straddles 0.01,
+  extend the same stream to 4,096, then 8,192 total shots, without decoding earlier
+  shots again. Stop earlier if the interval is wholly below or above the threshold.
+- These repeated Wilson checks are an exploratory development gate, not an
+  anytime-valid test, an equivalence claim, or final paper evidence. All intermediate
+  outcomes and the predeclared cap are retained.
+- If the low-p check passes, evaluate the remaining four p values using original
+  seeds 4235–4238. Then recheck exact fault labels across all five points and the
+  monotonic curve. A failed/inconclusive low-p gate does not authorize M4.
+- Evaluation now saves per-shot logical outcomes and emits optional batch progress.
+  `sample_offset` skips whole sampling batches without decoding them. A regression
+  verifies that concatenated segments reproduce continuous per-shot fallback and
+  logical arrays. Historical zero-offset config hashes remain unchanged.
+- Validation infrastructure and existing suite: **65 passed** (16.08 s).

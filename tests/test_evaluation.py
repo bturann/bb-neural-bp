@@ -6,6 +6,7 @@ from dataclasses import replace
 from pathlib import Path
 
 import pytest
+import numpy as np
 
 from bbnbp.config import load_config, CIRCUIT_POLICY
 from bbnbp.evaluate import run, tuned_factor
@@ -42,6 +43,10 @@ def test_small_tuning_and_evaluation_roundtrip(tmp_path):
     assert all(int(r["shots"]) <= 40 for r in records)
     for row in records[:2]:
         assert int(row["osd_calls"]) == int(row["stage1_failures"])
+    with np.load(output/"logical-p0.npz") as flags:
+        for name, row in zip(["bp", "bp_tuned", "bp_only"], records):
+            assert len(flags[name]) == int(row["shots"])
+            assert int(flags[name].sum()) == int(row["logical_failures"])
 
 
 def test_result_schema_enforced(tmp_path):
@@ -97,3 +102,22 @@ def test_circuit_evaluation_records_actual_circuit_and_dem(tmp_path):
     assert meta["rounds"] == 1 and meta["n_detectors"] == 72
     assert meta["circuit_policy"]["noisy_final_meas"] is True
     assert meta["n_faults"] > 0
+
+
+def test_segmented_evaluation_reproduces_continuous_sample_stream(tmp_path):
+    config = load_config(ROOT/"configs/cc_bb72_e0.yaml")
+    config = replace(config, noise=replace(config.noise, p_grid=(0.06,)),
+                     eval=replace(config.eval, max_shots=40, batch=10, stop_failures=100)).validate()
+    whole = run(config, ["bp"], None, tmp_path/"whole")
+    parts = []
+    for offset in (0, 20):
+        part = replace(config, eval=replace(config.eval, max_shots=20, sample_offset=offset)).validate()
+        parts.append(run(part, ["bp"], None, tmp_path/"parts"))
+    for artifact in ("paired-p0.npz", "logical-p0.npz"):
+        with np.load(whole/artifact) as data:
+            expected = data["bp"].copy()
+        arrays = []
+        for directory in parts:
+            with np.load(directory/artifact) as data:
+                arrays.append(data["bp"].copy())
+        np.testing.assert_array_equal(expected, np.concatenate(arrays))

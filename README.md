@@ -71,3 +71,15 @@ The first development run had 20/2048 logical failures at p=0.001 (0.98%, Wilson
 95% interval 0.63%–1.50%) and failed the low-error gate. The command returns nonzero
 on this gate failure and records it. M3 remains unaccepted pending review and a full
 check of the stronger baseline; these results make no claim about neural performance.
+
+The authorized stronger-baseline check uses the same circuit and sample streams:
+
+```sh
+BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib OMP_NUM_THREADS=1 .venv/bin/python -u scripts/m3_validate_order7.py
+```
+
+Its predeclared plan starts with 2,048 paired low-p shots, extends to 4,096 and
+8,192 only if needed, and runs the rest of the grid only after the low-p check
+passes. Each segment, per-shot logical outcomes, pairing checks, and gate decision
+are saved in a new `results/m3/order7-<timestamp>/` bundle. These are exploratory
+development confidence checks; final statistical claims require the later experiments.

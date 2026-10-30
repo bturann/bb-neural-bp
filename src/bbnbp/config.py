@@ -96,6 +96,7 @@ class EvalConfig:
     threads: int
     seed_offset: int
     purpose: str
+    sample_offset: int = 0
 
 
 @dataclass(frozen=True)
@@ -126,6 +127,8 @@ class Config:
         # Keep historical code-capacity config hashes stable as circuit options are added.
         if self.noise.circuit is None:
             del raw["noise"]["circuit"]
+        if self.eval.sample_offset == 0:
+            del raw["eval"]["sample_offset"]
         return raw
 
     def save(self, path: str | Path) -> None:
@@ -210,6 +213,10 @@ class Config:
             raise ValueError("Seed offsets must be nonnegative integers")
         if abs(self.eval.seed_offset-self.sweep.seed_offset) < len(self.noise.p_grid):
             raise ValueError("Sweep and evaluation seed offsets must differ")
+        if type(self.eval.sample_offset) is not int or self.eval.sample_offset < 0:
+            raise ValueError("Sample offset must be a nonnegative integer")
+        if self.eval.sample_offset % self.eval.batch:
+            raise ValueError("Sample offset must be a multiple of the sampling batch")
         # Reject NaN and non-serializable values before running an experiment.
         _ = self.config_hash
         return self

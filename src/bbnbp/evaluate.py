@@ -59,7 +59,7 @@ def make_decoder(name, problem, config, p, tuning_table):
     return TwoStageDecoder(stage1, osd), stage1, alpha
 
 
-def evaluate_p(sampler, decoders, rng, *, stop_failures, max_shots, batch):
+def evaluate_p(sampler, decoders, rng, *, stop_failures, max_shots, batch, progress=None):
     """Stop at a shared batch boundary when every decoder reaches its failure target.
 
     All decoders see every shot. Overshoot is bounded by one batch for the last
@@ -68,7 +68,7 @@ def evaluate_p(sampler, decoders, rng, *, stop_failures, max_shots, batch):
     if min(stop_failures, max_shots, batch) < 1:
         raise ValueError("Stopping and batch counts must be positive")
     counts = {name: dict(logical=0, stage1_fail=0, stage1_logical=0, calls=0, executed=0,
-                         iterations=0, used=[]) for name in decoders}
+                         iterations=0, used=[], logical_flags=[]) for name in decoders}
     shots = 0
     while shots < max_shots and not all(v["logical"] >= stop_failures for v in counts.values()):
         n = min(batch, max_shots-shots)
@@ -94,9 +94,13 @@ def evaluate_p(sampler, decoders, rng, *, stop_failures, max_shots, batch):
             record["calls"] += int(used.sum())
             record["iterations"] += int(stage1.last_iterations.sum())
             record["used"].append(used)
+            record["logical_flags"].append(logical)
         shots += n
+        if progress is not None:
+            progress(shots, counts)
     for record in counts.values():
         record["used"] = np.concatenate(record["used"])
+        record["logical_flags"] = np.concatenate(record["logical_flags"])
         record["shots"] = shots
     return counts
 
@@ -113,7 +117,7 @@ def measure_latency(sampler, decoder, rng, shots, warmup):
     return timings
 
 
-def run(config, names, tuning_table, output_root):
+def run(config, names, tuning_table, output_root, *, progress=False):
     config.validate()
     if not names or len(names) != len(set(names)):
         raise ValueError("Specify unique decoder names")
@@ -136,10 +140,23 @@ def run(config, names, tuning_table, output_root):
                 (outdir/f"problem-p{i}.json").write_text(json.dumps(sampler.problem.meta, indent=2)+"\n")
             decoders = {name: make_decoder(name, sampler.problem, config, p, tuning_table) for name in names}
             seed = config.seed+config.eval.seed_offset+i
-            counts = evaluate_p(sampler, decoders, np.random.default_rng(seed),
+            rng = np.random.default_rng(seed)
+            # Advance the sampling stream without repeating expensive decoding.
+            # Keeping the original batch size preserves Stim sub-seeds exactly.
+            for _ in range(config.eval.sample_offset//config.eval.batch):
+                sampler.sample(config.eval.batch, rng)
+            started = time.perf_counter()
+
+            def report(shots, counts):
+                summary = ", ".join(f"{name}: {record['logical']} failures, {record['calls']} fallback calls"
+                                    for name, record in counts.items())
+                print(f"p={p:g} shots={shots}: {summary}; elapsed={time.perf_counter()-started:.1f}s", flush=True)
+
+            counts = evaluate_p(sampler, decoders, rng,
                                 stop_failures=config.eval.stop_failures,
-                                max_shots=config.eval.max_shots, batch=config.eval.batch)
-            paired = {}
+                                max_shots=config.eval.max_shots, batch=config.eval.batch,
+                                progress=report if progress else None)
+            paired, logical_flags = {}, {}
             for name, (decoder, _, alpha) in decoders.items():
                 count = counts[name]
                 shots = count["shots"]
@@ -170,17 +187,20 @@ def run(config, names, tuning_table, output_root):
                            device=f"CPU {platform.machine()} {platform.processor()}", seed=seed)
                 rows.append(row)
                 paired[name] = count["used"]
+                logical_flags[name] = count["logical_flags"]
                 details[f"p{i}:{name}"] = dict(osd_executions=count["executed"],
                                                mean_stage1_iterations=count["iterations"]/shots,
                                                reached_failure_target=count["logical"] >= config.eval.stop_failures)
                 print(f"p={p:g} {row['decoder']}: shots={shots}, "
                       f"fallback={row['osd_rate']:.4f}, LER={row['ler']:.5f}", flush=True)
             np.savez_compressed(outdir/f"paired-p{i}.npz", **paired)
+            np.savez_compressed(outdir/f"logical-p{i}.npz", **logical_flags)
             for a, b in combinations(names, 2):
                 if isinstance(decoders[a][0], TwoStageDecoder) and isinstance(decoders[b][0], TwoStageDecoder):
                     details[f"p{i}:{a}_vs_{b}"] = mcnemar(paired[a], paired[b])
         append_results(outdir/"results.csv", rows)
         details.update(purpose=config.eval.purpose, git_sha=sha,
+                       sample_offset=config.eval.sample_offset,
                        stopping="shared batch boundary; all decoders reach target or max_shots",
                        osd_rate_definition="stage-2 calls/shots; internal OSD executions in this file")
         (outdir/"diagnostics.json").write_text(json.dumps(details, indent=2)+"\n")
@@ -197,5 +217,7 @@ if __name__ == "__main__":
     parser.add_argument("--decoders", default="bp,bp_tuned,bp_only,bp_tuned_only")
     parser.add_argument("--tuning-table", default="results/tuned_scaling.csv")
     parser.add_argument("--output-root", default="results")
+    parser.add_argument("--progress", action="store_true", help="Print a progress record after each batch")
     args = parser.parse_args()
-    run(load_config(args.config), args.decoders.split(","), args.tuning_table, args.output_root)
+    run(load_config(args.config), args.decoders.split(","), args.tuning_table, args.output_root,
+        progress=args.progress)
