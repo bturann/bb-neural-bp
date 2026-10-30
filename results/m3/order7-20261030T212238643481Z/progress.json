@@ -1,0 +1,37 @@
+{
+  "reference_run": "/Users/berkaybaristuran/Desktop/Research/QuantAI/codebase/results/m3/20261030T210408544859Z-ae88f467",
+  "purpose": "M3 stronger-baseline development gate",
+  "threshold": 0.01,
+  "checkpoints": [
+    {
+      "shots": 2048,
+      "logical_failures": 8,
+      "ler": 0.00390625,
+      "ler_lo": 0.0019806786976977143,
+      "ler_hi": 0.007689395340136621,
+      "fallback_calls": 1450,
+      "source_runs": [
+        "20261030T212238645326Z-0ffbb368"
+      ]
+    }
+  ],
+  "statistical_scope": "exploratory Wilson checks; not anytime-valid inference",
+  "reference_pairing": {
+    "shots": 2048,
+    "seed": 4234,
+    "original_logical_failures": 20,
+    "stage1_flags_identical": true,
+    "dem_sha256": "f0b35ce063e23e232c69bfded7088cc28a2ab04c1c1f02c4f5966db2e45042bc"
+  },
+  "low_p_summary": {
+    "shots": 2048,
+    "logical_failures": 8,
+    "ler": 0.00390625,
+    "ler_lo": 0.0019806786976977143,
+    "ler_hi": 0.007689395340136621,
+    "fallback_calls": 1450,
+    "source_runs": [
+      "20261030T212238645326Z-0ffbb368"
+    ]
+  }
+}

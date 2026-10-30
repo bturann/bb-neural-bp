@@ -275,3 +275,25 @@ M3 gate failed for `results/m3/20261030T210408544859Z-ae88f467`: monotonic=True,
   verifies that concatenated segments reproduce continuous per-shot fallback and
   logical arrays. Historical zero-offset config hashes remain unchanged.
 - Validation infrastructure and existing suite: **65 passed** (16.08 s).
+
+M3 order-7 validation passed: `results/m3/order7-20261030T212238643481Z`. Low-p summary: {'shots': 2048, 'logical_failures': 8, 'ler': 0.00390625, 'ler_lo': 0.0019806786976977143, 'ler_hi': 0.007689395340136621, 'fallback_calls': 1450, 'source_runs': ['20261030T212238645326Z-0ffbb368']}.
+
+### M3 stronger-baseline outcome — acceptance passed
+
+- The specified OSD-CS order-7 baseline passed at the first, predeclared checkpoint:
+  **8/2048** failures at p=0.001, LER **0.00390625**, Wilson interval
+  **[0.0019806787, 0.0076893953]**. The extensions were not used.
+- Both circuit and DEM files are byte-identical to the OSD-0 reference, and all
+  2,048 stage-1 fallback flags are identical (1,450 calls). The sampling seed and
+  batch size are unchanged. The order-0 reference had 20 failures on these shots.
+- Remaining grid, in increasing p order: 20/384 failures at 0.002, 27/128 at 0.003,
+  60/128 at 0.004, and 68/128 at 0.005. LER is monotonic. These development points
+  retain their Wilson intervals and do not constitute the final E1 experiment.
+- Exact H/L labels reverified on 10,000 independent verification samples per p,
+  totaling 50,000. Matrix structure is unchanged across p.
+- `results/m3/order7-20261030T212238643481Z/m3_gate.json` records **passed=true**;
+  raw segment CSVs/configs, logical outcomes, fallback flags, circuits, DEMs,
+  source hashes, and the predeclared plan are retained. Both runs identify the
+  clean source revision 840db5b.
+- The earlier OSD-0 failure remains intact. Acceptance uses the stronger baseline
+  originally specified, with the same noise policy and low-p threshold.

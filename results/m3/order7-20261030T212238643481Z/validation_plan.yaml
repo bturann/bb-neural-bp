@@ -1,0 +1,9 @@
+full_config: configs/cl_bb72_m3_order7.yaml
+low_p: 0.001
+low_p_segments:
+- configs/cl_bb72_m3_order7_pilot.yaml
+- configs/cl_bb72_m3_order7_extension1.yaml
+- configs/cl_bb72_m3_order7_extension2.yaml
+max_ler: 0.01
+reference_run: results/m3/20261030T210408544859Z-ae88f467
+tail_config: configs/cl_bb72_m3_order7_tail.yaml

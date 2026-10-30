@@ -19,9 +19,9 @@ The unchanged handoff is preserved in `docs/implementation_spec.md`.
 
 M0–M2 are complete: environment/API verification, both BB code constructions and
 their symmetries, code-capacity sampling, BP/BP-OSD baselines, scaling tuning, and
-paired E0 evaluation. The full suite currently has 60 passing tests, including the
-slow acceptance checks. M3 circuit integration is implemented, but its OSD-0
-development performance gate has not passed; see `NOTES.md` and the saved gate report.
+paired E0 evaluation. M3 passed with the specified OSD-CS order-7 baseline; the
+earlier OSD-0 failed development check remains recorded. The full suite currently
+has 65 passing tests, including the slow acceptance checks. See `NOTES.md` for evidence.
 
 ## Code-capacity baseline experiment (E0)
 
@@ -69,8 +69,7 @@ order 7. Verification samples use a separate recorded RNG stream.
 
 The first development run had 20/2048 logical failures at p=0.001 (0.98%, Wilson
 95% interval 0.63%–1.50%) and failed the low-error gate. The command returns nonzero
-on this gate failure and records it. M3 remains unaccepted pending review and a full
-check of the stronger baseline; these results make no claim about neural performance.
+on this gate failure and records it. These OSD-0 results make no claim about neural performance.
 
 The authorized stronger-baseline check uses the same circuit and sample streams:
 
@@ -83,3 +82,9 @@ Its predeclared plan starts with 2,048 paired low-p shots, extends to 4,096 and
 passes. Each segment, per-shot logical outcomes, pairing checks, and gate decision
 are saved in a new `results/m3/order7-<timestamp>/` bundle. These are exploratory
 development confidence checks; final statistical claims require the later experiments.
+
+The stronger baseline passed at 2,048 shots: 8 logical failures at p=0.001 (0.39%,
+95% Wilson interval 0.20%–0.77%), with identical circuit, DEM, and stage-1 fallback
+flags to the OSD-0 reference. The full grid is monotonic and exact labels were
+verified on 50,000 samples. Evidence is in
+`results/m3/order7-20261030T212238643481Z/m3_gate.json`. Neural model work is next.
