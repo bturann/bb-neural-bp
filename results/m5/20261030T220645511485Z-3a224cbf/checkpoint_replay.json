@@ -1,0 +1,71 @@
+{
+  "passed": true,
+  "replayed_shots": 140000,
+  "rows": [
+    {
+      "p": 0.02,
+      "shots": 20000,
+      "seed": 1734,
+      "nonconverged": 133,
+      "all_flags_match": true,
+      "evaluation_priors_preserved": true
+    },
+    {
+      "p": 0.03,
+      "shots": 20000,
+      "seed": 1735,
+      "nonconverged": 526,
+      "all_flags_match": true,
+      "evaluation_priors_preserved": true
+    },
+    {
+      "p": 0.04,
+      "shots": 20000,
+      "seed": 1736,
+      "nonconverged": 1278,
+      "all_flags_match": true,
+      "evaluation_priors_preserved": true
+    },
+    {
+      "p": 0.05,
+      "shots": 20000,
+      "seed": 1737,
+      "nonconverged": 2406,
+      "all_flags_match": true,
+      "evaluation_priors_preserved": true
+    },
+    {
+      "p": 0.06,
+      "shots": 20000,
+      "seed": 1738,
+      "nonconverged": 3988,
+      "all_flags_match": true,
+      "evaluation_priors_preserved": true
+    },
+    {
+      "p": 0.07,
+      "shots": 20000,
+      "seed": 1739,
+      "nonconverged": 5563,
+      "all_flags_match": true,
+      "evaluation_priors_preserved": true
+    },
+    {
+      "p": 0.08,
+      "shots": 20000,
+      "seed": 1740,
+      "nonconverged": 7364,
+      "all_flags_match": true,
+      "evaluation_priors_preserved": true
+    }
+  ],
+  "checkpoint_sha256": "90a98815b7f4794ea701f78e6d0cef2e1f48886772ca3d72ac4de3152a120197",
+  "best_step": 1000,
+  "steps_completed": 3000,
+  "capped_batches": 281,
+  "streamed_candidate_shots": 9249280,
+  "effective_training_shots": 745060,
+  "loss_finite": true,
+  "statistical_scope": "Repeated fixed-validation selection; no final held-out inference",
+  "elapsed_s": 849.112595374987
+}

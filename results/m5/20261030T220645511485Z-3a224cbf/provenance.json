@@ -1,0 +1,21 @@
+{
+  "git_sha": "803a3911e5e8ec842beb7c3b66bf1dbfa306fdee",
+  "config_hash": "3a224cbf2db01bf5734a3bda757b07df54ebde2e",
+  "purpose": "m5_gate",
+  "checkpoint_directory": "checkpoints/20261030T220645511485Z-3a224cbf",
+  "validation_seeds": [
+    1734,
+    1735,
+    1736,
+    1737,
+    1738,
+    1739,
+    1740
+  ],
+  "training_entropy": [
+    1234,
+    701
+  ],
+  "final_test_data_used": false,
+  "validation_metric": "Stage-1 nonconvergence; OSD is not called during training validation"
+}

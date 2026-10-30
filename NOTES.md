@@ -377,3 +377,50 @@ M3 order-7 validation passed: `results/m3/order7-20261030T212238643481Z`. Low-p 
   50-update smoke run at `results/m5_smoke/20261030T220420918152Z-68bce5e1/` completed
   in 6.73 s, wrote finite losses/checkpoints/events/curves, and did not pass a research
   gate (purpose=smoke). Its curves were visually inspected. The main run is pending.
+
+M5 passed: `results/m5/20261030T220645511485Z-3a224cbf`; wins 4/7, best step 1000, mean fallback 0.15184285714285714. Final-test data untouched.
+
+### M5 outcome — acceptance passed
+
+- The predeclared CPU run stopped at step **3,000** after eight validations without
+  improvement; the selected checkpoint is step **1,000**, not the final weights.
+  Wall time was **849.11 s** (14.15 min), with zero GPU use.
+- On 20,000 fixed validation shots per p, selected model vs tuned BP fallback demand:
+
+  | p | Neural BP | Tuned BP | Neural failures / shots |
+  |---|---|---|---|
+  | 0.02 | 0.665% | 0.965% | 133 / 20000 |
+  | 0.03 | 2.630% | 3.510% | 526 / 20000 |
+  | 0.04 | 6.390% | 7.205% | 1278 / 20000 |
+  | 0.05 | 12.030% | 12.585% | 2406 / 20000 |
+  | 0.06 | 19.940% | 19.665% | 3988 / 20000 |
+  | 0.07 | 27.815% | 27.405% | 5563 / 20000 |
+  | 0.08 | 36.820% | 35.670% | 7364 / 20000 |
+
+- **4/7 strict wins** satisfy the stated M5 gate. Mean fallback demand is
+  **0.1518428571 vs 0.1528642857** (a modest 0.102 percentage-point reduction).
+  Higher-noise points are worse; this is not a uniform improvement claim.
+- The 105-parameter code-capacity orbit model is saved at
+  `checkpoints/20261030T220645511485Z-3a224cbf/best.pt`; `last.pt` preserves the
+  step-3000 continuation state. Configs, event logs, complete training/validation
+  history, per-shot flags, paired comparisons, and PNG/PDF loss curves are retained
+  under `results/m5/20261030T220645511485Z-3a224cbf/`.
+- The run streamed **9,249,280** candidate shots and used **745,060** selected hard
+  shots for optimization. **281** batches hit the configured 50-draw cap; their
+  actual smaller effective batch sizes are recorded. No easy samples were silently
+  substituted and no extra training runs were selected after seeing this outcome.
+- Independent artifact audit: reloaded `best.pt` separately at all seven p values,
+  verified each current prior vector, and reproduced **all 140,000** saved per-shot
+  convergence/logical outcomes and mean iteration counts exactly. Checkpoint SHA-256:
+  `90a98815b7f4794ea701f78e6d0cef2e1f48886772ca3d72ac4de3152a120197`.
+- The gate report and replay audit agree on best step, all wins, stopping reason,
+  and source revision 803a391. Existing M3/reference/E0 evidence is unchanged.
+- Full suite before the outcome commit: **97 passed** (21.12 s). Main loss curves
+  were visually inspected and are legible.
+- Statistical scope: the same validation set selected the checkpoint across repeated
+  validations. Paired p-values are exploratory diagnostics, not post-selection
+  confirmatory inference. Final-test seeds have not been touched. No claim of equal
+  two-stage LER, circuit-level neural improvement, or latency speedup is made yet.
+- M3 and M5 are now both passed, so the go/no-go permits M6. Next work is
+  circuit-level training with the main three seeds, followed by held-out paired
+  BP/tuned-BP/NBP+OSD accuracy and compiled CPU latency evaluation.

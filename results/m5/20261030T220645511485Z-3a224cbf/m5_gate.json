@@ -1,0 +1,235 @@
+{
+  "passed": true,
+  "purpose": "m5_gate",
+  "wins": 4,
+  "required_wins": 4,
+  "best_step": 1000,
+  "best_mean_osd_rate": 0.15184285714285714,
+  "steps_completed": 3000,
+  "stopping": "validation_patience",
+  "elapsed_s": 849.112595374987,
+  "m3_passed": true,
+  "eligible_for_m6": true,
+  "final_test_data_used": false,
+  "rows": [
+    {
+      "p": 0.02,
+      "shots": 20000,
+      "seed": 1734,
+      "nonconverged": 133,
+      "osd_rate": 0.00665,
+      "ler_stage1": 0.01075,
+      "logical_failures": 215,
+      "mean_iterations": 1.78995,
+      "tuned": {
+        "nonconverged": 193,
+        "osd_rate": 0.00965,
+        "logical_failures": 285,
+        "ler_stage1": 0.01425,
+        "ms_scaling": 0.75,
+        "mean_iterations": 1.1983
+      },
+      "bp": {
+        "nonconverged": 261,
+        "osd_rate": 0.01305,
+        "logical_failures": 309,
+        "ler_stage1": 0.01545,
+        "ms_scaling": 0.625,
+        "mean_iterations": 1.1872
+      },
+      "paired_vs_tuned": {
+        "first_only": 125,
+        "second_only": 65,
+        "pvalue": 1.603136406800957e-05
+      }
+    },
+    {
+      "p": 0.03,
+      "shots": 20000,
+      "seed": 1735,
+      "nonconverged": 526,
+      "osd_rate": 0.0263,
+      "ler_stage1": 0.04215,
+      "logical_failures": 843,
+      "mean_iterations": 2.5508,
+      "tuned": {
+        "nonconverged": 702,
+        "osd_rate": 0.0351,
+        "logical_failures": 1027,
+        "ler_stage1": 0.05135,
+        "ms_scaling": 0.8,
+        "mean_iterations": 2.148
+      },
+      "bp": {
+        "nonconverged": 881,
+        "osd_rate": 0.04405,
+        "logical_failures": 1074,
+        "ler_stage1": 0.0537,
+        "ms_scaling": 0.625,
+        "mean_iterations": 2.0356
+      },
+      "paired_vs_tuned": {
+        "first_only": 376,
+        "second_only": 200,
+        "pvalue": 2.0025971991903093e-13
+      }
+    },
+    {
+      "p": 0.04,
+      "shots": 20000,
+      "seed": 1736,
+      "nonconverged": 1278,
+      "osd_rate": 0.0639,
+      "ler_stage1": 0.0993,
+      "logical_failures": 1986,
+      "mean_iterations": 3.47215,
+      "tuned": {
+        "nonconverged": 1441,
+        "osd_rate": 0.07205,
+        "logical_failures": 2222,
+        "ler_stage1": 0.1111,
+        "ms_scaling": 0.75,
+        "mean_iterations": 3.1687
+      },
+      "bp": {
+        "nonconverged": 1862,
+        "osd_rate": 0.0931,
+        "logical_failures": 2359,
+        "ler_stage1": 0.11795,
+        "ms_scaling": 0.625,
+        "mean_iterations": 3.1446
+      },
+      "paired_vs_tuned": {
+        "first_only": 589,
+        "second_only": 426,
+        "pvalue": 3.48063178681641e-07
+      }
+    },
+    {
+      "p": 0.05,
+      "shots": 20000,
+      "seed": 1737,
+      "nonconverged": 2406,
+      "osd_rate": 0.1203,
+      "ler_stage1": 0.1802,
+      "logical_failures": 3604,
+      "mean_iterations": 4.5653,
+      "tuned": {
+        "nonconverged": 2517,
+        "osd_rate": 0.12585,
+        "logical_failures": 3854,
+        "ler_stage1": 0.1927,
+        "ms_scaling": 0.75,
+        "mean_iterations": 4.47945
+      },
+      "bp": {
+        "nonconverged": 3241,
+        "osd_rate": 0.16205,
+        "logical_failures": 4096,
+        "ler_stage1": 0.2048,
+        "ms_scaling": 0.625,
+        "mean_iterations": 4.4761
+      },
+      "paired_vs_tuned": {
+        "first_only": 797,
+        "second_only": 686,
+        "pvalue": 0.004268962748312822
+      }
+    },
+    {
+      "p": 0.06,
+      "shots": 20000,
+      "seed": 1738,
+      "nonconverged": 3988,
+      "osd_rate": 0.1994,
+      "ler_stage1": 0.28885,
+      "logical_failures": 5777,
+      "mean_iterations": 5.86635,
+      "tuned": {
+        "nonconverged": 3933,
+        "osd_rate": 0.19665,
+        "logical_failures": 5983,
+        "ler_stage1": 0.29915,
+        "ms_scaling": 0.75,
+        "mean_iterations": 5.9383
+      },
+      "bp": {
+        "nonconverged": 4960,
+        "osd_rate": 0.248,
+        "logical_failures": 6327,
+        "ler_stage1": 0.31635,
+        "ms_scaling": 0.625,
+        "mean_iterations": 5.9955
+      },
+      "paired_vs_tuned": {
+        "first_only": 995,
+        "second_only": 1050,
+        "pvalue": 0.23242386871203288
+      }
+    },
+    {
+      "p": 0.07,
+      "shots": 20000,
+      "seed": 1739,
+      "nonconverged": 5563,
+      "osd_rate": 0.27815,
+      "ler_stage1": 0.39625,
+      "logical_failures": 7925,
+      "mean_iterations": 7.08685,
+      "tuned": {
+        "nonconverged": 5481,
+        "osd_rate": 0.27405,
+        "logical_failures": 8194,
+        "ler_stage1": 0.4097,
+        "ms_scaling": 0.75,
+        "mean_iterations": 7.3504
+      },
+      "bp": {
+        "nonconverged": 6718,
+        "osd_rate": 0.3359,
+        "logical_failures": 8531,
+        "ler_stage1": 0.42655,
+        "ms_scaling": 0.625,
+        "mean_iterations": 7.43615
+      },
+      "paired_vs_tuned": {
+        "first_only": 1176,
+        "second_only": 1258,
+        "pvalue": 0.10060818854344614
+      }
+    },
+    {
+      "p": 0.08,
+      "shots": 20000,
+      "seed": 1740,
+      "nonconverged": 7364,
+      "osd_rate": 0.3682,
+      "ler_stage1": 0.5181,
+      "logical_failures": 10362,
+      "mean_iterations": 8.34865,
+      "tuned": {
+        "nonconverged": 7134,
+        "osd_rate": 0.3567,
+        "logical_failures": 10548,
+        "ler_stage1": 0.5274,
+        "ms_scaling": 0.75,
+        "mean_iterations": 8.70665
+      },
+      "bp": {
+        "nonconverged": 8707,
+        "osd_rate": 0.43535,
+        "logical_failures": 10972,
+        "ler_stage1": 0.5486,
+        "ms_scaling": 0.625,
+        "mean_iterations": 8.8776
+      },
+      "paired_vs_tuned": {
+        "first_only": 1224,
+        "second_only": 1454,
+        "pvalue": 9.522648072087456e-06
+      }
+    }
+  ],
+  "checkpoint_directory": "checkpoints/20261030T220645511485Z-3a224cbf",
+  "best_checkpoint_sha256": "90a98815b7f4794ea701f78e6d0cef2e1f48886772ca3d72ac4de3152a120197"
+}

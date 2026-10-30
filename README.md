@@ -2,8 +2,8 @@
 
 Research implementation of a neural min-sum first stage with BP-OSD fallback.
 The target is fewer fallback calls at preserved logical error performance, measured
-against ordinary and tuned-scaling BP. The neural model and training pipeline are
-implemented; the M5 performance gate is pending.
+against ordinary and tuned-scaling BP. M0–M5 acceptance checks are complete;
+circuit-level neural results and the final performance claim remain pending.
 
 ## Setup
 
@@ -132,3 +132,15 @@ no TensorBoard package is required to train. A reader/viewer is not installed he
 
 `configs/cc_bb72_m5_smoke.yaml` is a short, separately labelled mechanics check.
 It cannot establish M5 acceptance.
+
+The completed acceptance run selected step 1,000 and stopped at step 3,000. On the
+fixed 20k-shot-per-p validation grid, Neural BP beat tuned BP at four of seven noise
+rates (p=0.02–0.05); higher-noise points were worse. Mean fallback demand was
+15.184% vs 15.286%. This passes M5's screening rule, with a modest mean improvement.
+The final test data have not been used and equal two-stage LER/latency is untested.
+
+Evidence: `results/m5/20261030T220645511485Z-3a224cbf/m5_gate.json` and
+`checkpoint_replay.json`. The selected weights are
+`checkpoints/20261030T220645511485Z-3a224cbf/best.pt`; use `last.pt` only to continue
+the final training state. An artifact audit reproduced every saved outcome on all
+140,000 validation shots using the selected weights. M6 is the next milestone.
