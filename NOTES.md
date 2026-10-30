@@ -129,3 +129,54 @@ Numba compiled CPU smoke test and PyTorch autograd smoke test passed.
 - Additional tests cover GF(2) rank/nullity and rejection of broken symmetries.
 - Validation before the M1 commit: full suite **37 passed** (6.95 s), including
   the slow-marked statistical acceptance tests.
+
+## M2 — code-capacity data and baselines (acceptance passed)
+
+- Implemented strict frozen configuration sections, canonical SHA-1 config hashes,
+  resolved YAML output, binary sparse decoding problems, explicitly seeded samplers,
+  reusable ldpc adapters, and the two-stage pipeline. Convergence flags are checked
+  against the actual syndrome. The tests cover X/Z bookkeeping and both code sizes.
+- Added Wilson intervals, shared-shot multi-decoder stopping, exact paired McNemar
+  tests, schema-checked CSV writing, source checksums, and source Git provenance.
+- Full test suite: **37 passed** (7.01 s), including T2.x/T3.x, both reference-rate
+  calibration points, and slow-marked tests. Reference nonconvergence agreement is
+  within the requested 3-sigma band and the p=0.04/0.06 sanity rates are within 30%.
+- Validation sweep executed: `results/tuned_scaling.csv`, **231 configurations**
+  (7 p values × 3 iteration budgets × 11 factors), 5,000 paired validation shots
+  per p. Selection is independent for each (p,T); ties prefer lower stage-1 LER,
+  then the lower factor. All candidates, selected flags, configs, and source hashes
+  are saved. No final-test seeds were used.
+- E0 executed: `results/20261030T191424331467Z-0c364ef1/`. It contains **28 rows**
+  (four decoders × seven p values), seven per-shot pairing archives, a resolved
+  config, a copy of the tuning table, diagnostics, and source checksums. Shared
+  shot counts total 18,432 per decoder across the p grid. Every decoder reached
+  100 logical failures at every p; the configured 20,000-shot development cap was
+  not reached. Integrity checks verified counts, CI bounds, and schema.
+- Example development result at p=0.04, T=50, 2,048 shared shots: BP+OSD fallback
+  153/2048 = 7.47%; tuned BP+OSD fallback 77/2048 = 3.76%. LERs are 171/2048 and
+  164/2048 respectively, with Wilson intervals in the CSV. This establishes a
+  strong tuned baseline; it is not evidence for neural improvement or equivalence.
+- Runs were made from the M1 commit plus the pending M2 source files, so the
+  CSVs correctly identify a dirty source tree. Exact source hashes accompany them;
+  results were not altered to insert the later commit SHA.
+
+### Explicit M2 conventions and deviations
+
+- E0 uses development evaluation seeds 3234–3240, validation tuning seeds 2234–2240,
+  and a 20k shot cap. The final seed region beginning at seed+10,000 is untouched.
+- Paired stopping keeps all decoders running on the same samples until all reach
+  their target, or the shared shot cap. Final-batch overshoot is documented.
+- The CSV's `osd_calls` and `osd_rate` count stage-2 invocations as specified. Actual
+  internal OSD executions are separate diagnostics. Standalone BP makes no stage-2
+  calls; its potential fallback demand is `stage1_failures/shots`, and its LER
+  counts nonconvergence as failure.
+- Tuning uses validation shots only and picks a factor separately for each fixed T;
+  evaluation never silently changes the iteration budget to obtain a better rate.
+- E0 disables latency sampling. Fair compiled neural-vs-BP timing and timing splits
+  remain M6 work, alongside the learned decoder. No GPU training has been launched.
+
+## Next milestone
+
+M3: implement the QUITS adapter with explicit noise placement and round semantics,
+DEM conversion preserving fault-column order, exact fault-label sampling, and the
+six-round circuit-level acceptance tests. The M0 smoke circuit alone does not pass M3.

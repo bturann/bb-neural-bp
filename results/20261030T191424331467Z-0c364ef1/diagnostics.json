@@ -1,0 +1,181 @@
+{
+  "p0:bp": {
+    "osd_executions": 98,
+    "mean_stage1_iterations": 1.5818142361111112,
+    "reached_failure_target": true
+  },
+  "p0:bp_tuned": {
+    "osd_executions": 42,
+    "mean_stage1_iterations": 1.6366102430555556,
+    "reached_failure_target": true
+  },
+  "p0:bp_only": {
+    "osd_executions": 0,
+    "mean_stage1_iterations": 1.5818142361111112,
+    "reached_failure_target": true
+  },
+  "p0:bp_tuned_only": {
+    "osd_executions": 0,
+    "mean_stage1_iterations": 1.6366102430555556,
+    "reached_failure_target": true
+  },
+  "p0:bp_vs_bp_tuned": {
+    "first_only": 56,
+    "second_only": 0,
+    "pvalue": 2.7755575615628914e-17
+  },
+  "p1:bp": {
+    "osd_executions": 116,
+    "mean_stage1_iterations": 3.4095052083333335,
+    "reached_failure_target": true
+  },
+  "p1:bp_tuned": {
+    "osd_executions": 59,
+    "mean_stage1_iterations": 3.2734375,
+    "reached_failure_target": true
+  },
+  "p1:bp_only": {
+    "osd_executions": 0,
+    "mean_stage1_iterations": 3.4095052083333335,
+    "reached_failure_target": true
+  },
+  "p1:bp_tuned_only": {
+    "osd_executions": 0,
+    "mean_stage1_iterations": 3.2734375,
+    "reached_failure_target": true
+  },
+  "p1:bp_vs_bp_tuned": {
+    "first_only": 57,
+    "second_only": 3,
+    "pvalue": 6.253851603243987e-14
+  },
+  "p2:bp": {
+    "osd_executions": 153,
+    "mean_stage1_iterations": 5.876953125,
+    "reached_failure_target": true
+  },
+  "p2:bp_tuned": {
+    "osd_executions": 74,
+    "mean_stage1_iterations": 5.943359375,
+    "reached_failure_target": true
+  },
+  "p2:bp_only": {
+    "osd_executions": 0,
+    "mean_stage1_iterations": 5.876953125,
+    "reached_failure_target": true
+  },
+  "p2:bp_tuned_only": {
+    "osd_executions": 0,
+    "mean_stage1_iterations": 5.943359375,
+    "reached_failure_target": true
+  },
+  "p2:bp_vs_bp_tuned": {
+    "first_only": 79,
+    "second_only": 3,
+    "pvalue": 3.803541892641332e-20
+  },
+  "p3:bp": {
+    "osd_executions": 127,
+    "mean_stage1_iterations": 9.0869140625,
+    "reached_failure_target": true
+  },
+  "p3:bp_tuned": {
+    "osd_executions": 62,
+    "mean_stage1_iterations": 8.158203125,
+    "reached_failure_target": true
+  },
+  "p3:bp_only": {
+    "osd_executions": 0,
+    "mean_stage1_iterations": 9.0869140625,
+    "reached_failure_target": true
+  },
+  "p3:bp_tuned_only": {
+    "osd_executions": 0,
+    "mean_stage1_iterations": 8.158203125,
+    "reached_failure_target": true
+  },
+  "p3:bp_vs_bp_tuned": {
+    "first_only": 65,
+    "second_only": 1,
+    "pvalue": 1.81603863891322e-18
+  },
+  "p4:bp": {
+    "osd_executions": 220,
+    "mean_stage1_iterations": 13.9365234375,
+    "reached_failure_target": true
+  },
+  "p4:bp_tuned": {
+    "osd_executions": 121,
+    "mean_stage1_iterations": 11.794921875,
+    "reached_failure_target": true
+  },
+  "p4:bp_only": {
+    "osd_executions": 0,
+    "mean_stage1_iterations": 13.9365234375,
+    "reached_failure_target": true
+  },
+  "p4:bp_tuned_only": {
+    "osd_executions": 0,
+    "mean_stage1_iterations": 11.794921875,
+    "reached_failure_target": true
+  },
+  "p4:bp_vs_bp_tuned": {
+    "first_only": 99,
+    "second_only": 1,
+    "pvalue": 1.5934990285464438e-28
+  },
+  "p5:bp": {
+    "osd_executions": 285,
+    "mean_stage1_iterations": 17.7451171875,
+    "reached_failure_target": true
+  },
+  "p5:bp_tuned": {
+    "osd_executions": 163,
+    "mean_stage1_iterations": 15.6181640625,
+    "reached_failure_target": true
+  },
+  "p5:bp_only": {
+    "osd_executions": 0,
+    "mean_stage1_iterations": 17.7451171875,
+    "reached_failure_target": true
+  },
+  "p5:bp_tuned_only": {
+    "osd_executions": 0,
+    "mean_stage1_iterations": 15.6181640625,
+    "reached_failure_target": true
+  },
+  "p5:bp_vs_bp_tuned": {
+    "first_only": 122,
+    "second_only": 1,
+    "pvalue": 2.3321807920314184e-35
+  },
+  "p6:bp": {
+    "osd_executions": 397,
+    "mean_stage1_iterations": 23.193359375,
+    "reached_failure_target": true
+  },
+  "p6:bp_tuned": {
+    "osd_executions": 257,
+    "mean_stage1_iterations": 20.0634765625,
+    "reached_failure_target": true
+  },
+  "p6:bp_only": {
+    "osd_executions": 0,
+    "mean_stage1_iterations": 23.193359375,
+    "reached_failure_target": true
+  },
+  "p6:bp_tuned_only": {
+    "osd_executions": 0,
+    "mean_stage1_iterations": 20.0634765625,
+    "reached_failure_target": true
+  },
+  "p6:bp_vs_bp_tuned": {
+    "first_only": 140,
+    "second_only": 8,
+    "pvalue": 2.797312157195774e-32
+  },
+  "purpose": "development",
+  "git_sha": "3f3e9deed3ca18187ed7b8efc3866e72490404d0-dirty",
+  "stopping": "shared batch boundary; all decoders reach target or max_shots",
+  "osd_rate_definition": "stage-2 calls/shots; internal OSD executions in this file"
+}

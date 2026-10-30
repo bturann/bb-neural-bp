@@ -17,6 +17,11 @@ MPLCONFIGDIR=.cache/matplotlib .venv/bin/python scripts/m0_verify_apis.py
 See `NOTES.md` for milestone status, API findings, and recorded deviations.
 The unchanged handoff is preserved in `docs/implementation_spec.md`.
 
+M0–M2 are complete: environment/API verification, both BB code constructions and
+their symmetries, code-capacity sampling, BP/BP-OSD baselines, scaling tuning, and
+paired E0 evaluation. The full suite currently has 37 passing tests, including the
+slow acceptance checks. Circuit-level integration is the next milestone (M3).
+
 ## Code-capacity baseline experiment (E0)
 
 ```sh

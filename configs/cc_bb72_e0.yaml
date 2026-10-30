@@ -1,0 +1,36 @@
+seed: 1234
+code: {name: bb72}
+noise: {model: code_capacity, rounds: null, basis: Z, p_grid: [0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08]}
+model: {T: 15, sharing: orbit, ms_scaling: 0.625, msg_clip: 20.0}
+train:
+  batch: 2048
+  max_steps: 20000
+  lr: 0.001
+  min_lr: 0.00001
+  grad_clip: 1.0
+  loss: parity
+  beta_logical: 5.0
+  hard_mining: filter
+  hard_weight: 10.0
+  mining_max_draws: 50
+  curriculum: {p_start: 0.08, p_end: 0.03, steps: 5000}
+  val_every: 500
+  val_shots: 200000
+  patience: 8
+  device: cpu
+eval:
+  stop_failures: 100
+  max_shots: 20000
+  batch: 1024
+  stage1_iters: 50
+  osd: {method: osd_cs, order: 7, bp_iters: 50, ms_scaling: 0.625}
+  latency_shots: 0
+  latency_warmup: 1000
+  threads: 1
+  seed_offset: 2000
+  purpose: development
+sweep:
+  factors: [0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1.0]
+  iterations: [15, 50, 100]
+  shots: 5000
+  seed_offset: 1000
