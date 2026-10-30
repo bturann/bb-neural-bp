@@ -35,7 +35,10 @@ No research claims have been established. Results must come from executed code.
 
 - The reference min-sum implementation does not clip messages. Initialization
   equivalence must distinguish the unclipped reference from configured clipping.
+  M4 verified exact hard decisions at the configured T=15 with clip=20; larger
+  iteration budgets require their own checks before use.
 - Reference batch convergence differs from first-convergence freezing in inference.
+  M4 tests explicitly distinguish per-iteration forward outputs from frozen inference.
 - Overlapping LER confidence intervals alone do not establish statistical equivalence.
 - The M3 low-noise test is stochastic; a nonzero noise rate does not guarantee zero
   detection events. Do not turn an expected low failure rate into a deterministic claim.
@@ -297,3 +300,43 @@ M3 order-7 validation passed: `results/m3/order7-20261030T212238643481Z`. Low-p 
   clean source revision 840db5b.
 - The earlier OSD-0 failure remains intact. Acceptance uses the stronger baseline
   originally specified, with the same noise policy and low-p threshold.
+
+## M4 — neural min-sum model (acceptance passed)
+
+- Implemented padded Tanner tensors, deterministic CSR edge order, scalar/orbit/full
+  maps, and structural maps using check degree, variable degree, and temporal offset.
+  Padding is masked and degree-zero/one checks are handled explicitly.
+- For circuit DEMs the temporal anchor is the earliest detector round affected by
+  the mechanism. A DEM mechanism can represent multiple physical fault locations,
+  so this is an explicit reproducible structural feature, not a claimed physical
+  gate time or exact translation orbit. The source of detector round labels is
+  the verified QUITS instruction layout recorded at M3.
+- `NeuralMinSum` unrolls T flooding updates, with learnable per-iteration edge-group
+  weights and prior weights. Initialization is w=0.625, alpha=1, with clip=20. The
+  posterior uses the unweighted prior. Default computation is float32.
+- Inference freezes each shot at its first matching syndrome; zero syndromes return
+  zero corrections at iteration zero. Training forward returns all T probability
+  tensors. Hard decisions use posterior LLR signs directly, avoiding sigmoid
+  rounding around probability 0.5.
+- T5.1: default clipped initialization at T=15 matches the immutable NumPy reference
+  hard decisions **at every iteration**, on 500 p=0.03 and 500 p=0.06 code-capacity
+  shots, in float64. A runtime copy adds the trace hook; reference files are unchanged.
+- T5.2/T5.3: dummy-zero-row invariance, finite/nonzero gradients for every parameter
+  under scalar/orbit/full tying, and degree-one/zero-message cases pass.
+- T5.4: Numba inference snapshots reproduce PyTorch corrections, convergence flags,
+  and iteration counts on **10,000** code-capacity shots with trained-like random
+  weights. Float32 scalar/full exports, circuit structural exports, and per-shot
+  freezing are also tested. A six-cycle float32 structural model with randomized
+  weights and heterogeneous circuit priors passes an additional 64-shot equivalence check.
+- Both neural and compiled stages work in the shared BP-OSD pipeline. Weight exports
+  are independent snapshots, and both provide the Decoder protocol.
+- Configured six-cycle readiness run: `results/m4/20261030T214824647527Z/`. T=15,
+  structural tying yields **96 groups and 1,455 parameters**. The padded message
+  tensor is 53,526,528 bytes at the configured 128-shot evaluation batch. PyTorch
+  and Numba matched exactly on all 128 untrained smoke shots; 29 converged.
+- Full acceptance/reference suite: **84 passed** (31.09 s), including slow checks.
+  All work was CPU-only, and no training or learned-performance claim is made.
+- Next is M5: parity/BCE losses, streamed training, validation/checkpoint selection,
+  and the code-capacity gate against tuned BP. Checkpoint restoration must preserve
+  the evaluation problem's current p-specific prior LLRs, rather than overwrite
+  them with a training p's saved buffer.

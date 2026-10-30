@@ -1,0 +1,30 @@
+{
+  "trained": false,
+  "purpose": "M4 inference readiness smoke; not E1 performance",
+  "code": "bb72",
+  "noise_model": "circuit_level",
+  "rounds": 6,
+  "p": 0.001,
+  "shots": 128,
+  "seed_entropy": [
+    1234,
+    4
+  ],
+  "n_checks": 432,
+  "n_variables": 16164,
+  "n_edges": 91116,
+  "max_check_degree": 242,
+  "T": 15,
+  "sharing": "struct",
+  "msg_clip": 20.0,
+  "weight_groups": 96,
+  "n_parameters": 1455,
+  "message_tensor_bytes": 53526528,
+  "converged_shots": 29,
+  "torch_numba_exact_match": true,
+  "dtype": "torch.float32",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "config_hash": "6deb5462bb900536e60f7102e27a6813335183f0",
+  "git_sha": "6694f8dde73f95da0d9180db7050b9f6124d4399-dirty",
+  "temporal_anchor": "earliest affected detector round; not physical gate time"
+}
