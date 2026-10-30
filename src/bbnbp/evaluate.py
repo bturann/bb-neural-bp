@@ -20,7 +20,7 @@ from .decoders.pipeline import TwoStageDecoder
 from .io import append_results, git_sha, source_manifest
 from .metrics import latency_stats, mcnemar, wilson
 from .noise.base import parity
-from .noise.code_capacity import CodeCapacitySampler
+from .noise.factory import make_sampler
 
 
 def tuned_factor(table, config, p):
@@ -114,8 +114,7 @@ def measure_latency(sampler, decoder, rng, shots, warmup):
 
 
 def run(config, names, tuning_table, output_root):
-    if config.noise.model != "code_capacity":
-        raise ValueError("M2 evaluation supports code_capacity; circuit-level support comes in M3")
+    config.validate()
     if not names or len(names) != len(set(names)):
         raise ValueError("Specify unique decoder names")
     timestamp = datetime.now(timezone.utc)
@@ -130,7 +129,11 @@ def run(config, names, tuning_table, output_root):
     rows, details = [], {}
     try:
         for i, p in enumerate(config.noise.p_grid):
-            sampler = CodeCapacitySampler(config.code.name, p, config.noise.basis)
+            sampler = make_sampler(config, p)
+            if config.noise.model == "circuit_level":
+                (outdir/f"circuit-p{i}.stim").write_text(str(sampler.circuit)+"\n")
+                (outdir/f"dem-p{i}.dem").write_text(str(sampler.dem)+"\n")
+                (outdir/f"problem-p{i}.json").write_text(json.dumps(sampler.problem.meta, indent=2)+"\n")
             decoders = {name: make_decoder(name, sampler.problem, config, p, tuning_table) for name in names}
             seed = config.seed+config.eval.seed_offset+i
             counts = evaluate_p(sampler, decoders, np.random.default_rng(seed),

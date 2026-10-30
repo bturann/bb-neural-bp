@@ -1,0 +1,131 @@
+{
+  "passed": false,
+  "config_hash": "ae88f46751c4ed6145d19ba78d7b2ae565d07a9a",
+  "noise_grid_checks": [
+    {
+      "p": 0.001,
+      "exact_label_shots": 10000,
+      "seed_entropy": [
+        1234,
+        3000,
+        0,
+        3
+      ],
+      "H_shape": [
+        432,
+        16164
+      ],
+      "L_shape": [
+        12,
+        16164
+      ],
+      "H_nnz": 91116,
+      "L_nnz": 30863,
+      "max_check_degree": 242,
+      "priors_min": 6.669779853440971e-05,
+      "priors_max": 0.005176989972497841
+    },
+    {
+      "p": 0.002,
+      "exact_label_shots": 10000,
+      "seed_entropy": [
+        1234,
+        3000,
+        1,
+        3
+      ],
+      "H_shape": [
+        432,
+        16164
+      ],
+      "L_shape": [
+        12,
+        16164
+      ],
+      "H_nnz": 91116,
+      "L_nnz": 30863,
+      "max_check_degree": 242,
+      "priors_min": 0.00013345794395852595,
+      "priors_max": 0.01030818577746878
+    },
+    {
+      "p": 0.003,
+      "exact_label_shots": 10000,
+      "seed_entropy": [
+        1234,
+        3000,
+        2,
+        3
+      ],
+      "H_shape": [
+        432,
+        16164
+      ],
+      "L_shape": [
+        12,
+        16164
+      ],
+      "H_nnz": 91116,
+      "L_nnz": 30863,
+      "max_check_degree": 242,
+      "priors_min": 0.00020028056129117733,
+      "priors_max": 0.015393924744510755
+    },
+    {
+      "p": 0.004,
+      "exact_label_shots": 10000,
+      "seed_entropy": [
+        1234,
+        3000,
+        3,
+        3
+      ],
+      "H_shape": [
+        432,
+        16164
+      ],
+      "L_shape": [
+        12,
+        16164
+      ],
+      "H_nnz": 91116,
+      "L_nnz": 30863,
+      "max_check_degree": 242,
+      "priors_min": 0.0002671657759360513,
+      "priors_max": 0.02043454220824821
+    },
+    {
+      "p": 0.005,
+      "exact_label_shots": 10000,
+      "seed_entropy": [
+        1234,
+        3000,
+        4,
+        3
+      ],
+      "H_shape": [
+        432,
+        16164
+      ],
+      "L_shape": [
+        12,
+        16164
+      ],
+      "H_nnz": 91116,
+      "L_nnz": 30863,
+      "max_check_degree": 242,
+      "priors_min": 0.0003341137136832484,
+      "priors_max": 0.025430371517282283
+    }
+  ],
+  "matrices_identical_across_p": true,
+  "monotonic_ler": true,
+  "low_p": "0.001",
+  "low_p_ler": "0.009765625",
+  "low_p_ler_hi": "0.015036263050956185",
+  "low_p_upper_below_one_percent": false,
+  "low_p_rule": "95% Wilson upper bound at p=0.001 < 0.01",
+  "osd_method": "osd0",
+  "osd_order": 0,
+  "purpose": "M3 development baseline; not the final E1 experiment"
+}

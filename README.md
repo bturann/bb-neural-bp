@@ -19,8 +19,9 @@ The unchanged handoff is preserved in `docs/implementation_spec.md`.
 
 M0–M2 are complete: environment/API verification, both BB code constructions and
 their symmetries, code-capacity sampling, BP/BP-OSD baselines, scaling tuning, and
-paired E0 evaluation. The full suite currently has 48 passing tests, including the
-slow acceptance checks. Circuit-level integration is the next milestone (M3).
+paired E0 evaluation. The full suite currently has 60 passing tests, including the
+slow acceptance checks. M3 circuit integration is implemented, but its OSD-0
+development performance gate has not passed; see `NOTES.md` and the saved gate report.
 
 ## Code-capacity baseline experiment (E0)
 
@@ -44,9 +45,29 @@ as failure. With several decoders, stopping occurs at a shared batch boundary wh
 all reach the logical-failure target, or at the configured maximum shot count.
 
 Latency is disabled in E0. The primary latency comparison, including compiled neural
-inference, belongs to M6. Neural training and circuit-level evaluation are not yet
-implemented.
+inference, belongs to M6. Neural training is not yet implemented.
 
 Set `BBNBP_CACHE_DIR` to control logical-operator caching (default `~/.cache/bbnbp`).
 The experiment script uses a repository-local cache so it also works in a restricted
 workspace. The supplied `reference/` files are immutable copies of the handoff.
+
+## Circuit-level development check (M3)
+
+```sh
+BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib OMP_NUM_THREADS=1 .venv/bin/python scripts/m3_validate_circuit.py
+```
+
+This builds six total syndrome-extraction cycles using QUITS, with noisy preparation,
+final measurements, gates, and idle qubits, and both bases of detectors. It preserves
+the order of every DEM fault column. Circuit-level `basis` denotes the stored and
+measured logical basis; code-capacity `basis` denotes the error basis.
+
+Each invocation writes a new directory under `results/m3/`, including the actual
+circuits, DEMs, resolved configuration, CSV, metadata, and gate report. The M3 config
+uses the cheaper OSD-0 decoder for development; the base experiment retains OSD-CS
+order 7. Verification samples use a separate recorded RNG stream.
+
+The first development run had 20/2048 logical failures at p=0.001 (0.98%, Wilson
+95% interval 0.63%–1.50%) and failed the low-error gate. The command returns nonzero
+on this gate failure and records it. M3 remains unaccepted pending review and a full
+check of the stronger baseline; these results make no claim about neural performance.

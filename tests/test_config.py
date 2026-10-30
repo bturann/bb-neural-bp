@@ -4,7 +4,7 @@ from pathlib import Path
 import pytest
 import yaml
 
-from bbnbp.config import load_config
+from bbnbp.config import load_config, CIRCUIT_POLICY
 from dataclasses import replace
 
 BASE = Path(__file__).resolve().parents[1]/"configs/base.yaml"
@@ -17,6 +17,21 @@ def test_seed_offset_requires_nonnegative_integer(section, offset):
     updated = replace(config, **{section: replace(getattr(config, section), seed_offset=offset)})
     with pytest.raises(ValueError, match="Seed offsets"):
         updated.validate()
+
+
+def test_historical_config_hash_is_preserved():
+    path = BASE.parents[0].parent/"results/20261030T191424331467Z-0c364ef1/config.yaml"
+    assert load_config(path).config_hash == "0c364ef1c90ff244cd0f53277ac4602a3984025c"
+
+
+def test_circuit_policy_is_explicit(tmp_path):
+    config = load_config(BASE)
+    config = replace(config, noise=replace(config.noise, model="circuit_level", rounds=6))
+    with pytest.raises(ValueError, match="explicitly"):
+        config.validate()
+    config = replace(config, noise=replace(config.noise, circuit=CIRCUIT_POLICY)).validate()
+    config.save(tmp_path/"circuit.yaml")
+    assert load_config(tmp_path/"circuit.yaml") == config
 
 
 def test_config_roundtrip_and_hash(tmp_path):

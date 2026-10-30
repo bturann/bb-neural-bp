@@ -7,7 +7,7 @@ from pathlib import Path
 
 import pytest
 
-from bbnbp.config import load_config
+from bbnbp.config import load_config, CIRCUIT_POLICY
 from bbnbp.evaluate import run, tuned_factor
 from bbnbp.io import RESULT_COLUMNS, append_results
 
@@ -82,3 +82,18 @@ def test_experiment_command_can_run_twice(tmp_path):
     assert len(list((tmp_path/"runs").glob("e0-*"))) == 2
     assert len(list((tmp_path/"runs").glob("e0-*/*/results.csv"))) == 2
     assert all(Path(p).read_bytes() == data for p, data in first.items())
+
+
+def test_circuit_evaluation_records_actual_circuit_and_dem(tmp_path):
+    config = load_config(ROOT/"configs/cc_bb72_e0.yaml")
+    config = replace(config, noise=replace(config.noise, model="circuit_level", rounds=1,
+                                           p_grid=(0.001,), circuit=CIRCUIT_POLICY),
+                     eval=replace(config.eval, max_shots=4, batch=4, stop_failures=1,
+                                  osd=replace(config.eval.osd, method="osd0", order=0))).validate()
+    output = run(config, ["bp"], None, tmp_path/"results")
+    assert (output/"circuit-p0.stim").exists()
+    assert (output/"dem-p0.dem").exists()
+    meta = json.loads((output/"problem-p0.json").read_text())
+    assert meta["rounds"] == 1 and meta["n_detectors"] == 72
+    assert meta["circuit_policy"]["noisy_final_meas"] is True
+    assert meta["n_faults"] > 0

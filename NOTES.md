@@ -175,7 +175,7 @@ Numba compiled CPU smoke test and PyTorch autograd smoke test passed.
 - E0 disables latency sampling. Fair compiled neural-vs-BP timing and timing splits
   remain M6 work, alongside the learned decoder. No GPU training has been launched.
 
-## Next milestone
+## Next milestone after the original M2 checkpoint
 
 M3: implement the QUITS adapter with explicit noise placement and round semantics,
 DEM conversion preserving fault-column order, exact fault-label sampling, and the
@@ -195,3 +195,62 @@ six-round circuit-level acceptance tests. The M0 smoke circuit alone does not pa
   before any experiment starts.
 - Regression and full acceptance suite: **48 passed** (11.82 s). No existing results
   or supplied reference files were edited.
+
+## M3 implementation and development checks (gate not passed)
+
+- QUITS 1.2.0's `num_rounds` means cycles after its zeroth cycle. The adapter maps
+  six total extraction cycles to `num_rounds=5`, sets noisy zeroth preparation and
+  noisy final data measurement explicitly, and retains detectors from both bases.
+- Noise is uniform at rate p: DEPOLARIZE1 after H and on idle qubits,
+  DEPOLARIZE2 after CX, basis-appropriate preparation/measurement flips. This is
+  QUITS' SPAM convention, not SI1000. Its parity-check matrices match the reference.
+- Exact-label smoke checks passed on 1,000 bb72 shots: H has shape (432, 16164),
+  L has shape (12, 16164), and every fault instruction remains a separate column.
+- QUITS supplies no detector coordinates for this builder. Detector round and basis
+  metadata is derived from its verified order: boundary block, paired Z/X blocks
+  per subsequent extraction cycle, final boundary block.
+- Performance probes on 128 identical p=0.001 shots: BP+OSD-CS order 7 took 49.21 s;
+  BP+OSD-0 took 5.09 s. Both had 0 logical failures and 91 stage-2 calls in that
+  small probe. At p=0.005 the order-7 probe took 90.51 s and had 76 failures on
+  128 shots. These are development wall times, not fair per-shot latency results.
+- The M3 development configuration explicitly uses OSD-0, 20 target failures and a
+  5,000-shot cap to check the circuit pipeline at manageable CPU cost. The main
+  experiment's OSD-CS order-7 setting is unchanged in the base configuration.
+- The first strengthened noise-placement test failed because it assumed separate
+  gate/idle DEPOLARIZE1 instructions. Stim coalesces equal-rate instructions. The
+  assertion now checks coverage of the gate targets; circuit construction was not
+  changed to satisfy the test.
+- T4.3 is interpreted physically: p=0 must yield no detectors/observables, and
+  decoded logical failures at p=1e-6 are checked on 10,000 shots. Nonzero p cannot
+  guarantee zero raw detector events or raw logical-observable flips.
+- Rare-column empirical-rate checks use simultaneous exact binomial intervals
+  (99% family coverage) plus a pooled 5-sigma check, avoiding spurious failures
+  from Gaussian approximations across thousands of low-probability columns.
+
+M3 gate failed for `results/m3/20261030T210408544859Z-ae88f467`: monotonic=True, low-p LER=0.009765625 (Wilson upper 0.015036263050956185). Stop at the M3 gate and review this measured evidence.
+
+### M3 outcome
+
+- Full unit/integration/reference suite: **60 passed** (17.32 s), including slow
+  tests, exact identities on 10,000 six-cycle samples, zero-noise detectors and
+  logicals, and zero decoded logical failures on 10,000 p=1e-6 samples.
+- The development runner separately checked exact H/L fault labels on **10,000
+  shots at each of five p values** and identical H/L structure throughout the grid.
+  bb72 has 91,116 Tanner edges, maximum check degree 242, 432 detectors, and 16,164
+  DEM fault columns under the recorded circuit policy.
+- The executed curve is saved under `results/m3/20261030T210408544859Z-ae88f467/`,
+  with the resolved config, source checksums, five circuits, five DEMs, per-shot
+  fallback flags, problem metadata, diagnostics, and `m3_gate.json`.
+- The OSD-0 development curve is monotonic. At p=0.001 it has **20/2048 logical
+  failures**: LER 0.009765625, Wilson interval [0.0063306211, 0.0150362631]. This
+  does not meet the operationalized low-noise criterion (95% upper bound < 0.01),
+  and the point estimate is not well below 0.01 either.
+- **M3 is not accepted.** Successful code/label tests do not override this failed
+  research gate. No M4 model or neural training was started after the failure.
+- The stronger, specified OSD-CS order-7 full curve is still pending. These OSD-0
+  results do not demonstrate that the stronger baseline or research hypothesis
+  fails. The next diagnostic for review is that stronger baseline under the same
+  recorded circuit policy; do not silently weaken the noise or change the gate.
+- No experiments were dropped and no final-test seeds were touched. All previous
+  E0 results and reference sources remain unchanged. The source tree was dirty
+  while M3 ran, as identified in its CSV and source manifest.

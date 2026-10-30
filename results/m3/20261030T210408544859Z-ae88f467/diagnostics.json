@@ -1,0 +1,31 @@
+{
+  "p0:bp": {
+    "osd_executions": 1450,
+    "mean_stage1_iterations": 37.8349609375,
+    "reached_failure_target": true
+  },
+  "p1:bp": {
+    "osd_executions": 231,
+    "mean_stage1_iterations": 46.5390625,
+    "reached_failure_target": true
+  },
+  "p2:bp": {
+    "osd_executions": 127,
+    "mean_stage1_iterations": 49.65625,
+    "reached_failure_target": true
+  },
+  "p3:bp": {
+    "osd_executions": 126,
+    "mean_stage1_iterations": 49.3125,
+    "reached_failure_target": true
+  },
+  "p4:bp": {
+    "osd_executions": 127,
+    "mean_stage1_iterations": 49.9765625,
+    "reached_failure_target": true
+  },
+  "purpose": "development",
+  "git_sha": "c9bc7b92e9a8a35c54a70da7413391e56255bfcb-dirty",
+  "stopping": "shared batch boundary; all decoders reach target or max_shots",
+  "osd_rate_definition": "stage-2 calls/shots; internal OSD executions in this file"
+}

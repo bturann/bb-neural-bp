@@ -16,11 +16,30 @@ class CodeConfig:
 
 
 @dataclass(frozen=True)
+class CircuitConfig:
+    strategy: str
+    idle_noise: bool
+    get_all_detectors: bool
+    noisy_zeroth_round: bool
+    noisy_final_meas: bool
+    decompose_errors: bool
+    total_rounds_include_zeroth: bool
+
+
+CIRCUIT_POLICY = CircuitConfig(
+    strategy="custom", idle_noise=True, get_all_detectors=True,
+    noisy_zeroth_round=True, noisy_final_meas=True, decompose_errors=False,
+    total_rounds_include_zeroth=True,
+)
+
+
+@dataclass(frozen=True)
 class NoiseConfig:
     model: str
     rounds: int | None
     basis: str
     p_grid: tuple[float, ...]
+    circuit: CircuitConfig | None = None
 
 
 @dataclass(frozen=True)
@@ -99,14 +118,21 @@ class Config:
 
     @property
     def config_hash(self) -> str:
-        canonical = json.dumps(asdict(self), sort_keys=True, separators=(",", ":"), allow_nan=False)
+        canonical = json.dumps(self.to_dict(), sort_keys=True, separators=(",", ":"), allow_nan=False)
         return hashlib.sha1(canonical.encode()).hexdigest()
+
+    def to_dict(self):
+        raw = asdict(self)
+        # Keep historical code-capacity config hashes stable as circuit options are added.
+        if self.noise.circuit is None:
+            del raw["noise"]["circuit"]
+        return raw
 
     def save(self, path: str | Path) -> None:
         path = Path(path)
         path.parent.mkdir(parents=True, exist_ok=True)
         # JSON roundtrip converts tuples to safe YAML lists.
-        path.write_text(yaml.safe_dump(json.loads(json.dumps(asdict(self))), sort_keys=True))
+        path.write_text(yaml.safe_dump(json.loads(json.dumps(self.to_dict())), sort_keys=True))
 
     def validate(self):
         if type(self.seed) is not int or self.seed < 0:
@@ -122,6 +148,13 @@ class Config:
                 raise ValueError("Code capacity has no rounds")
         elif type(self.noise.rounds) is not int or self.noise.rounds < 1:
             raise ValueError("Noisy measurement models require positive integer rounds")
+        if self.noise.model == "circuit_level":
+            if self.noise.circuit != CIRCUIT_POLICY:
+                raise ValueError("Circuit noise options must explicitly match the supported uniform-noise policy")
+            if any(type(v) is not bool for k, v in asdict(self.noise.circuit).items() if k != "strategy"):
+                raise ValueError("Circuit policy toggles must be booleans")
+        elif self.noise.circuit is not None:
+            raise ValueError("Circuit options require circuit_level noise")
         if not self.noise.p_grid or any(not 0 < p < 0.5 for p in self.noise.p_grid):
             raise ValueError("p_grid must be nonempty with probabilities in (0, 0.5)")
         if len(set(self.noise.p_grid)) != len(self.noise.p_grid):
@@ -190,6 +223,8 @@ def load_config(path: str | Path) -> Config:
     try:
         noise = dict(raw["noise"])
         noise["p_grid"] = tuple(noise["p_grid"])
+        if "circuit" in noise:
+            noise["circuit"] = CircuitConfig(**noise["circuit"])
         train = dict(raw["train"])
         train["curriculum"] = CurriculumConfig(**train["curriculum"])
         ev = dict(raw["eval"])

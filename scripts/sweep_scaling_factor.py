@@ -13,20 +13,19 @@ import numpy as np
 from bbnbp.config import load_config
 from bbnbp.decoders.bp_ldpc import LdpcBP
 from bbnbp.io import git_sha, source_manifest
-from bbnbp.noise.code_capacity import CodeCapacitySampler
+from bbnbp.noise.factory import make_sampler
 from bbnbp.noise.base import parity
 
 
 def run(config, output):
-    if config.noise.model != "code_capacity":
-        raise ValueError("This M2 sweep currently supports code_capacity only")
+    config.validate()
     output = Path(output)
     if output.exists():
         raise FileExistsError(f"Refusing to overwrite tuning evidence: {output}")
     rows = []
     sha = git_sha()
     for i, p in enumerate(config.noise.p_grid):
-        sampler = CodeCapacitySampler(config.code.name, p, config.noise.basis)
+        sampler = make_sampler(config, p)
         seed = config.seed + config.sweep.seed_offset + i
         s, obs, _ = sampler.sample(config.sweep.shots, np.random.default_rng(seed))
         for T in config.sweep.iterations:
