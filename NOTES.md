@@ -113,3 +113,19 @@ Numba compiled CPU smoke test and PyTorch autograd smoke test passed.
 
 **M0 acceptance: PASS.**
 <!-- M0 API REPORT END -->
+
+## M1 — codes and reference (acceptance passed)
+
+- Copied both supplied reference files byte-for-byte. Their tests pass unchanged.
+- Copied the GF(2) and BB construction routines from the reference. Both codes have
+  k=12, commuting CSS checks, check weight 6, variable degree 3, and full-rank
+  logical X/Z pairings. Tests verify both bases and the independent logical rows.
+- All l*m simultaneous check/qubit translations preserve both parity-check matrices.
+  Union-find identifies **6 edge orbits** for each matrix: 36 edges per orbit for
+  bb72 and 72 per orbit for bb144.
+- Logical operators are cached with matrix validation and atomic writes. The public
+  default remains `~/.cache/bbnbp`; `BBNBP_CACHE_DIR` permits a writable workspace
+  cache. Tests use isolated temporary caches.
+- Additional tests cover GF(2) rank/nullity and rejection of broken symmetries.
+- Validation before the M1 commit: full suite **37 passed** (6.95 s), including
+  the slow-marked statistical acceptance tests.
