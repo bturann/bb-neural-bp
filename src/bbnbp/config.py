@@ -58,6 +58,24 @@ class CurriculumConfig:
 
 
 @dataclass(frozen=True)
+class TrainingRuntimeConfig:
+    threads: int
+    val_batch: int
+    validation_seed_offset: int
+    training_stream: int
+    torch_seed_offset: int
+    log_every: int
+    loss_eps: float
+    loss_floor: float
+    gate_min_points: int
+    tensorboard: bool
+    max_gpu_hours: float
+    baseline_table: str
+    purpose: str
+    m3_gate_report: str
+
+
+@dataclass(frozen=True)
 class TrainConfig:
     batch: int
     max_steps: int
@@ -74,6 +92,7 @@ class TrainConfig:
     val_shots: int
     patience: int
     device: str
+    runtime: TrainingRuntimeConfig | None = None
 
 
 @dataclass(frozen=True)
@@ -129,6 +148,8 @@ class Config:
             del raw["noise"]["circuit"]
         if self.eval.sample_offset == 0:
             del raw["eval"]["sample_offset"]
+        if self.train.runtime is None:
+            del raw["train"]["runtime"]
         return raw
 
     def save(self, path: str | Path) -> None:
@@ -217,6 +238,38 @@ class Config:
             raise ValueError("Sample offset must be a nonnegative integer")
         if self.eval.sample_offset % self.eval.batch:
             raise ValueError("Sample offset must be a multiple of the sampling batch")
+        runtime = self.train.runtime
+        if runtime is not None:
+            if runtime.purpose not in {"smoke", "m5_gate"}:
+                raise ValueError("Training purpose must be smoke or m5_gate")
+            for field in ("threads", "val_batch", "log_every", "gate_min_points"):
+                if type(getattr(runtime, field)) is not int or getattr(runtime, field) < 1:
+                    raise ValueError(f"train.runtime.{field} must be a positive integer")
+            for field in ("validation_seed_offset", "training_stream", "torch_seed_offset"):
+                if type(getattr(runtime, field)) is not int or getattr(runtime, field) < 0:
+                    raise ValueError(f"train.runtime.{field} must be a nonnegative integer")
+            if not 0 < runtime.loss_eps < 0.5 or not 0 < runtime.loss_floor < 0.5:
+                raise ValueError("Training loss clamps must be in (0, 0.5)")
+            if runtime.gate_min_points > len(self.noise.p_grid):
+                raise ValueError("Training gate requires more points than the configured grid")
+            if not 0 < runtime.max_gpu_hours <= 4:
+                raise ValueError("Training runs are capped at four GPU-hours; larger runs require human agreement")
+            if type(runtime.tensorboard) is not bool:
+                raise ValueError("TensorBoard toggle must be boolean")
+            val_seeds = set(range(self.seed+runtime.validation_seed_offset,
+                                  self.seed+runtime.validation_seed_offset+len(self.noise.p_grid)))
+            for offset in (self.eval.seed_offset, self.sweep.seed_offset, 10000):
+                if val_seeds & set(range(self.seed+offset, self.seed+offset+len(self.noise.p_grid))):
+                    raise ValueError("Training validation seeds overlap tuning/evaluation/final seeds")
+            if type(self.train.curriculum.steps) is not int or self.train.curriculum.steps < 0:
+                raise ValueError("Curriculum steps must be a nonnegative integer")
+            if runtime.purpose == "m5_gate":
+                expected_grid = (0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08)
+                if (self.code.name != "bb72" or self.noise.model != "code_capacity"
+                        or self.model.sharing != "orbit" or self.noise.p_grid != expected_grid
+                        or runtime.gate_min_points != 4 or self.train.val_shots < 20000):
+                    raise ValueError("M5 acceptance requires bb72 code capacity, orbit sharing, seven p values, "
+                                     "20k validation shots per p and wins at four points")
         # Reject NaN and non-serializable values before running an experiment.
         _ = self.config_hash
         return self
@@ -234,6 +287,8 @@ def load_config(path: str | Path) -> Config:
             noise["circuit"] = CircuitConfig(**noise["circuit"])
         train = dict(raw["train"])
         train["curriculum"] = CurriculumConfig(**train["curriculum"])
+        if "runtime" in train:
+            train["runtime"] = TrainingRuntimeConfig(**train["runtime"])
         ev = dict(raw["eval"])
         ev["osd"] = OsdConfig(**ev["osd"])
         sweep = dict(raw["sweep"])

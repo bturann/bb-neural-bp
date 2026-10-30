@@ -2,8 +2,8 @@
 
 Research implementation of a neural min-sum first stage with BP-OSD fallback.
 The target is fewer fallback calls at preserved logical error performance, measured
-against ordinary and tuned-scaling BP. The neural model is implemented; training
-and learned-performance results are still pending.
+against ordinary and tuned-scaling BP. The neural model and training pipeline are
+implemented; the M5 performance gate is pending.
 
 ## Setup
 
@@ -23,7 +23,7 @@ their symmetries, code-capacity sampling, BP/BP-OSD baselines, scaling tuning, a
 paired E0 evaluation. M3 passed with the specified OSD-CS order-7 baseline; the
 earlier OSD-0 failed development check remains recorded. M4's neural model and matching
 compiled CPU inference passed their acceptance checks. The full suite currently has
-84 passing tests, including the slow checks. See `NOTES.md` for evidence.
+97 passing tests, including the slow checks. See `NOTES.md` for evidence.
 
 ## Code-capacity baseline experiment (E0)
 
@@ -47,7 +47,7 @@ as failure. With several decoders, stopping occurs at a shared batch boundary wh
 all reach the logical-failure target, or at the configured maximum shot count.
 
 Latency is disabled in E0. The primary latency comparison, including compiled neural
-inference, belongs to M6. Neural training is not yet implemented.
+inference, belongs to M6.
 
 Set `BBNBP_CACHE_DIR` to control logical-operator caching (default `~/.cache/bbnbp`).
 The experiment script uses a repository-local cache so it also works in a restricted
@@ -108,4 +108,27 @@ The configured circuit model has 1,455 parameters (96 structural message groups,
 not unique physical gate times. CPU tests cover exact initialization decisions,
 gradients, padding, edge cases, and trained-like PyTorch/Numba agreement on 10,000
 shots. The readiness command saves an explicitly **untrained** smoke result with
-configuration, source hashes, and per-shot corrections. M5 training is next.
+configuration, source hashes, and per-shot corrections.
+
+## Streamed training and validation (M5)
+
+```sh
+BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 .venv/bin/python -u -m bbnbp.train --config configs/cc_bb72_m5_cpu.yaml
+```
+
+The CPU acceptance run streams fresh samples, filters the initial BP's hard cases,
+and trains orbit-tied min-sum with the parity multi-loss. Validation uses 20,000
+fixed, paired shots per p and the independently tuned scaling table at the same T.
+The gate requires improvement at four of seven p values. Final-test seeds are not
+used. The process returns nonzero if an acceptance run fails its gate.
+
+Results, scalar event logs, JSONL history, and loss curves are saved under
+`results/m5/<run_id>/`; `best.pt`, `last.pt`, and their config are saved under
+`checkpoints/<run_id>/`. To resume an interrupted run with the exact same config,
+add `--resume checkpoints/<run_id>/last.pt`. Parameter-only restoration preserves
+the evaluation problem's current prior probabilities. Checkpoints include generator,
+optimizer, and scheduler state. The TensorBoard scalar format is written directly;
+no TensorBoard package is required to train. A reader/viewer is not installed here.
+
+`configs/cc_bb72_m5_smoke.yaml` is a short, separately labelled mechanics check.
+It cannot establish M5 acceptance.

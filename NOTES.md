@@ -340,3 +340,40 @@ M3 order-7 validation passed: `results/m3/order7-20261030T212238643481Z`. Low-p 
   and the code-capacity gate against tuned BP. Checkpoint restoration must preserve
   the evaluation problem's current p-specific prior LLRs, rather than overwrite
   them with a training p's saved buffer.
+
+## M5 implementation and predeclared CPU run (in progress)
+
+- Implemented log-space degeneracy-aware parity multi-loss and the bitwise BCE
+  ablation. The parity-product backward pass analytically handles exact zero factors
+  (probability 0.5), preserving gradients that a naive clamped log implementation
+  would discard. Float64 gradcheck and degenerate-equivalence tests pass.
+- Added streamed sampling, high-to-low p curriculum, off/filter/upweight mining,
+  Adam, cosine decay, gradient clipping, fixed paired validation, best/last parameter
+  checkpoints, and deterministic resume. Evaluation priors are constructed from the
+  evaluation problem and never replaced by a training p's checkpoint buffer.
+- Checkpoints contain optimizer/scheduler and explicit NumPy/Torch generator states.
+  A simulated interruption after two updates resumes to bit-identical learned
+  parameters and RNG state relative to an uninterrupted four-update test.
+- No CUDA/MPS accelerator is available. The acceptance config is
+  `configs/cc_bb72_m5_cpu.yaml`: bb72 code capacity, orbit sharing, T=15, batch 256,
+  at most 4,000 updates, a 1,000-update p=0.08→0.03 curriculum then a uniform p-grid
+  mixture, filtered hard examples (50-draw cap), lr 1e-3→1e-5, and clip norm 1.
+- Predeclared selection/gate: validate every 250 updates on 20,000 fixed shots at
+  each of seven p values; select lowest mean Stage-1 nonconvergence; stop after eight
+  validations without improvement. M5 passes only with lower nonconvergence than
+  tuned BP at at least four points. Both use T=15 and see the same validation shots.
+- Validation seeds 1734–1740 are separate from the tuning table's 2234–2240 and
+  final-test region. Training uses explicit SeedSequence entropy [1234, 701].
+- TensorBoard itself is not installed and is outside the handoff's direct dependency
+  list. A standard-library writer emits the scalar Event/TFRecord format without
+  adding dependencies; CRC32C and wire framing are tested against the published
+  TensorFlow schema. Actual TensorBoard-reader integration has not been run here.
+  JSONL training/validation records and rendered PNG/PDF curves are also saved.
+- Sources for the scalar event format:
+  https://raw.githubusercontent.com/tensorflow/tensorflow/master/tensorflow/core/util/event.proto ,
+  https://raw.githubusercontent.com/tensorflow/tensorflow/master/tensorflow/core/framework/summary.proto ,
+  https://www.tensorflow.org/tutorials/load_data/tfrecord .
+- Full mechanics/reference suite: **97 passed** (21.68 s). The separately labelled
+  50-update smoke run at `results/m5_smoke/20261030T220420918152Z-68bce5e1/` completed
+  in 6.73 s, wrote finite losses/checkpoints/events/curves, and did not pass a research
+  gate (purpose=smoke). Its curves were visually inspected. The main run is pending.

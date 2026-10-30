@@ -61,3 +61,15 @@ def validate_shots(shots: int, rng: np.random.Generator):
 
 def parity(matrix, faults):
     return np.asarray((matrix @ faults.T).T % 2, dtype=np.uint8)
+
+
+class IndependentFaultSampler:
+    """Sample independent Bernoulli mechanisms for an explicit H/L problem."""
+
+    def __init__(self, problem):
+        self.problem = problem
+
+    def sample(self, shots, rng):
+        validate_shots(shots, rng)
+        e = (rng.random((shots, self.problem.H.shape[1])) < self.problem.priors).astype(np.uint8)
+        return parity(self.problem.H, e), parity(self.problem.L, e), e

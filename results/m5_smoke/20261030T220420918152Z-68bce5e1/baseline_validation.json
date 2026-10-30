@@ -1,0 +1,128 @@
+{
+  "0.02": {
+    "bp": {
+      "nonconverged": 5,
+      "osd_rate": 0.01953125,
+      "logical_failures": 5,
+      "ler_stage1": 0.01953125,
+      "ms_scaling": 0.625,
+      "mean_iterations": 1.29296875
+    },
+    "bp_tuned": {
+      "nonconverged": 4,
+      "osd_rate": 0.015625,
+      "logical_failures": 4,
+      "ler_stage1": 0.015625,
+      "ms_scaling": 0.75,
+      "mean_iterations": 1.34765625
+    }
+  },
+  "0.03": {
+    "bp": {
+      "nonconverged": 8,
+      "osd_rate": 0.03125,
+      "logical_failures": 10,
+      "ler_stage1": 0.0390625,
+      "ms_scaling": 0.625,
+      "mean_iterations": 1.8359375
+    },
+    "bp_tuned": {
+      "nonconverged": 8,
+      "osd_rate": 0.03125,
+      "logical_failures": 11,
+      "ler_stage1": 0.04296875,
+      "ms_scaling": 0.8,
+      "mean_iterations": 1.98828125
+    }
+  },
+  "0.04": {
+    "bp": {
+      "nonconverged": 28,
+      "osd_rate": 0.109375,
+      "logical_failures": 29,
+      "ler_stage1": 0.11328125,
+      "ms_scaling": 0.625,
+      "mean_iterations": 3.25390625
+    },
+    "bp_tuned": {
+      "nonconverged": 16,
+      "osd_rate": 0.0625,
+      "logical_failures": 24,
+      "ler_stage1": 0.09375,
+      "ms_scaling": 0.75,
+      "mean_iterations": 3.08984375
+    }
+  },
+  "0.05": {
+    "bp": {
+      "nonconverged": 42,
+      "osd_rate": 0.1640625,
+      "logical_failures": 57,
+      "ler_stage1": 0.22265625,
+      "ms_scaling": 0.625,
+      "mean_iterations": 4.625
+    },
+    "bp_tuned": {
+      "nonconverged": 31,
+      "osd_rate": 0.12109375,
+      "logical_failures": 52,
+      "ler_stage1": 0.203125,
+      "ms_scaling": 0.75,
+      "mean_iterations": 4.6640625
+    }
+  },
+  "0.06": {
+    "bp": {
+      "nonconverged": 59,
+      "osd_rate": 0.23046875,
+      "logical_failures": 68,
+      "ler_stage1": 0.265625,
+      "ms_scaling": 0.625,
+      "mean_iterations": 5.53125
+    },
+    "bp_tuned": {
+      "nonconverged": 44,
+      "osd_rate": 0.171875,
+      "logical_failures": 63,
+      "ler_stage1": 0.24609375,
+      "ms_scaling": 0.75,
+      "mean_iterations": 5.5234375
+    }
+  },
+  "0.07": {
+    "bp": {
+      "nonconverged": 91,
+      "osd_rate": 0.35546875,
+      "logical_failures": 111,
+      "ler_stage1": 0.43359375,
+      "ms_scaling": 0.625,
+      "mean_iterations": 7.7421875
+    },
+    "bp_tuned": {
+      "nonconverged": 77,
+      "osd_rate": 0.30078125,
+      "logical_failures": 108,
+      "ler_stage1": 0.421875,
+      "ms_scaling": 0.75,
+      "mean_iterations": 7.77734375
+    }
+  },
+  "0.08": {
+    "bp": {
+      "nonconverged": 111,
+      "osd_rate": 0.43359375,
+      "logical_failures": 140,
+      "ler_stage1": 0.546875,
+      "ms_scaling": 0.625,
+      "mean_iterations": 8.83984375
+    },
+    "bp_tuned": {
+      "nonconverged": 94,
+      "osd_rate": 0.3671875,
+      "logical_failures": 136,
+      "ler_stage1": 0.53125,
+      "ms_scaling": 0.75,
+      "mean_iterations": 8.65625
+    }
+  }
+}
