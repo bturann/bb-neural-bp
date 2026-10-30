@@ -1,0 +1,12 @@
+numpy>=1.26
+scipy>=1.11
+stim>=1.13
+ldpc>=2.0
+torch>=2.2
+numba>=0.59
+pyyaml
+pandas
+matplotlib
+pytest
+tqdm
+quits

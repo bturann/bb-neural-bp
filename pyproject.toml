@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bbnbp"
+version = "0.1.0"
+description = "Reproducible learned min-sum decoding experiments for bivariate bicycle codes"
+requires-python = ">=3.11,<3.12"
+dynamic = ["dependencies"]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "reference"]
+pythonpath = ["src", "reference"]
+markers = ["slow: statistical or integration checks taking over 30 seconds"]
