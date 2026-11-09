@@ -1,0 +1,22 @@
+purpose: auxiliary_first_pass_conditioned_training
+wall_seconds: 1200
+finalization_reserve_seconds: 120
+training_cases: 1024
+training_pool_seed: 48234
+training_pool_batch: 256
+training_pool_max_shots: 8192
+unseen_cases: 1024
+unseen_seed: 42234
+shuffle_seed_entropy:
+- 1234
+- 917
+training_min_correct_gain: 0.1
+loss_min_relative_reduction: 0.1
+unseen_min_correct_gain: 0.02
+unseen_min_fallback_reduction: 0.02
+alpha: 0.05
+export_check_shots: 64
+checkpoint_rule: fixed_final_update_or_budget_stop
+unseen_evaluation_steps: initial_and_final_only
+mining_decoder: tuned_first_pass
+validation_source: results/m6_cascade_tuning/p0/20261109T090855243984Z-277fb140/cases.npz

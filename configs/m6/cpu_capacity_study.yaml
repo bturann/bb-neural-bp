@@ -1,0 +1,23 @@
+purpose: matched_capacity_learning_rate_factorial
+training_cases: 32000
+pool_seed: 52234
+pool_batch: 512
+pool_max_shots: 65536
+shuffle_entropy:
+- 1234
+- 921
+prepare_wall_seconds: 600
+arm_wall_seconds: 3600
+finalization_reserve_seconds: 120
+deadline_utc: '2026-11-09T14:00:00+00:00'
+first_pass_table: results/m6_cpu_pilot_check/20261109T040246608374Z-cb99df2f/tuned_scaling.csv
+validation_bundles:
+- results/m6_cascade_tuning/p0/20261109T090855243984Z-277fb140
+- results/m6_cascade_tuning/p1/20261109T090855243992Z-277fb140
+arms:
+  struct_standard: configs/m6/cpu_capacity_struct_standard.yaml
+  struct_low: configs/m6/cpu_capacity_struct_low.yaml
+  full_standard: configs/m6/cpu_capacity_full_standard.yaml
+  full_low: configs/m6/cpu_capacity_full_low.yaml
+checkpoint_selection: minimum_total_validation_cascade_failures_then_earliest_step
+selection_deadline_utc: '2026-11-09T12:30:00+00:00'

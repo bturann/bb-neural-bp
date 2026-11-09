@@ -1,0 +1,31 @@
+{
+  "train": {
+    "shots": 256,
+    "mean_loss": 32.599037170410156,
+    "failures": 128,
+    "fallback_demand": 0.5,
+    "logical_failures": 128,
+    "logical_failure_rate": 0.5,
+    "correct_decodes": 128,
+    "mean_iterations": 10.703125,
+    "export_check_shots": 64,
+    "hard_correct": 0,
+    "easy_correct": 128
+  },
+  "unseen": {
+    "shots": 2048,
+    "mean_loss": 38.29457092285156,
+    "failures": 1267,
+    "fallback_demand": 0.61865234375,
+    "logical_failures": 1267,
+    "logical_failure_rate": 0.61865234375,
+    "correct_decodes": 781,
+    "mean_iterations": 11.900390625,
+    "export_check_shots": 64
+  },
+  "tuned": {
+    "fallback_demand": 0.61767578125,
+    "logical_failure_rate": 0.61767578125,
+    "mean_iterations": 11.95361328125
+  }
+}

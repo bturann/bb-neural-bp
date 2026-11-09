@@ -1,0 +1,32 @@
+{
+  "purpose": "Read-only exact-column structural diagnostics; no decoder or experiment matrix change",
+  "p": 0.001,
+  "fault_columns": 16164,
+  "detectors": 432,
+  "edges": 91116,
+  "parameters": 1455,
+  "unique_detector_columns": 16164,
+  "unique_detector_observable_columns": 16164,
+  "duplicate_detector_groups": 0,
+  "faults_in_duplicate_detector_groups": 0,
+  "redundant_identical_detector_observable_columns": 0,
+  "redundant_identical_columns_and_priors": 0,
+  "detector_column_multiplicities": {
+    "1": 16164
+  },
+  "variable_degrees": {
+    "1": 72,
+    "2": 504,
+    "3": 2412,
+    "4": 1224,
+    "5": 2916,
+    "6": 4212,
+    "7": 1872,
+    "8": 1620,
+    "9": 1332
+  },
+  "zero_detector_columns": 0,
+  "scope": "An exact equality check, not proof of absent higher-order graph symmetries or a cause of learning failure.",
+  "final_test_data_used": false,
+  "m6_complete": false
+}

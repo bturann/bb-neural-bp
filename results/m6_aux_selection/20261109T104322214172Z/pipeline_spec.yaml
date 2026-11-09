@@ -1,0 +1,1003 @@
+alpha: 0.05
+checkpoint_sha256: 48591637735919bb3e12febe8793eca7f9a81e8e23584dfe53a07d9f6b098c3d
+clear_gain_rule: Mean reduction >= .01 versus ordinary, at least one corrected primary
+  benefit, no corrected primary harm; learning also requires lower mean and a corrected
+  benefit versus initialization.
+confirmation_data_used: false
+confirmation_seeds:
+- 44234
+- 44235
+confirmation_shots: 4096
+final_test_data_used: false
+frozen_before_confirmation: true
+learning_family: Selected learned versus architecture-matched initialization; two
+  p values, Holm adjustment
+m6_complete: false
+maximum_stage1_iterations: 30
+minimum_mean_gain: 0.01
+model_design: cycle30
+options:
+- candidate: fixed1200
+  design: cascade15
+  failures: 1442
+  logical_failures: 1442
+  points:
+  - candidate: fixed1200
+    design: cascade15
+    exact_export_shots: 64
+    failures: 483
+    logical_failures: 483
+    mean_iterations: 19.65234375
+    p: 0.001
+    seed: 42234
+    shots: 1024
+    wrong_logical_converged: 0
+  - candidate: fixed1200
+    design: cascade15
+    exact_export_shots: 64
+    failures: 959
+    logical_failures: 959
+    mean_iterations: 29.076171875
+    p: 0.003
+    seed: 42235
+    shots: 1024
+    wrong_logical_converged: 0
+  source_checkpoint: results/m6_fixed_case/20261109T083753363297Z-9fa92ed1/last.pt
+  source_sha256: 1d3f6b6e6b4f51d30353ef749ed5f61ce0818f7edfe2d2e895c51a3495c464ac
+  source_step: 1200
+  validation_directory: results/m6_candidate_validation/fixed1200/20261109T093126888595Z
+- candidate: fixed1200
+  design: cycle30
+  failures: 1342
+  logical_failures: 1342
+  points:
+  - candidate: fixed1200
+    design: cycle30
+    exact_export_shots: 64
+    failures: 417
+    logical_failures: 417
+    mean_iterations: 18.9833984375
+    p: 0.001
+    seed: 42234
+    shots: 1024
+    wrong_logical_converged: 0
+  - candidate: fixed1200
+    design: cycle30
+    exact_export_shots: 64
+    failures: 925
+    logical_failures: 925
+    mean_iterations: 28.775390625
+    p: 0.003
+    seed: 42235
+    shots: 1024
+    wrong_logical_converged: 0
+  source_checkpoint: results/m6_fixed_case/20261109T083753363297Z-9fa92ed1/last.pt
+  source_sha256: 1d3f6b6e6b4f51d30353ef749ed5f61ce0818f7edfe2d2e895c51a3495c464ac
+  source_step: 1200
+  validation_directory: results/m6_candidate_validation/fixed1200/20261109T093126888595Z
+- candidate: fixed1200
+  design: last30
+  failures: 1325
+  logical_failures: 1325
+  points:
+  - candidate: fixed1200
+    design: last30
+    exact_export_shots: 64
+    failures: 406
+    logical_failures: 406
+    mean_iterations: 18.9140625
+    p: 0.001
+    seed: 42234
+    shots: 1024
+    wrong_logical_converged: 0
+  - candidate: fixed1200
+    design: last30
+    exact_export_shots: 64
+    failures: 919
+    logical_failures: 919
+    mean_iterations: 28.740234375
+    p: 0.003
+    seed: 42235
+    shots: 1024
+    wrong_logical_converged: 0
+  source_checkpoint: results/m6_fixed_case/20261109T083753363297Z-9fa92ed1/last.pt
+  source_sha256: 1d3f6b6e6b4f51d30353ef749ed5f61ce0818f7edfe2d2e895c51a3495c464ac
+  source_step: 1200
+  validation_directory: results/m6_candidate_validation/fixed1200/20261109T093126888595Z
+- candidate: hard800
+  design: cascade15
+  failures: 1456
+  logical_failures: 1456
+  points:
+  - candidate: hard800
+    design: cascade15
+    exact_export_shots: 64
+    failures: 494
+    logical_failures: 494
+    mean_iterations: 19.7294921875
+    p: 0.001
+    seed: 42234
+    shots: 1024
+    wrong_logical_converged: 0
+  - candidate: hard800
+    design: cascade15
+    exact_export_shots: 64
+    failures: 962
+    logical_failures: 962
+    mean_iterations: 29.103515625
+    p: 0.003
+    seed: 42235
+    shots: 1024
+    wrong_logical_converged: 0
+  source_checkpoint: results/m6_retention/20261109T090301820313Z-dda8532f/hard_only/last.pt
+  source_sha256: e57f6682c54e4057f9d8b3ce765baecc29a91113a385b99a73e561a0ad70c995
+  source_step: 800
+  validation_directory: results/m6_candidate_validation/hard800/20261109T093126888423Z
+- candidate: hard800
+  design: cycle30
+  failures: 1352
+  logical_failures: 1352
+  points:
+  - candidate: hard800
+    design: cycle30
+    exact_export_shots: 64
+    failures: 433
+    logical_failures: 433
+    mean_iterations: 18.82421875
+    p: 0.001
+    seed: 42234
+    shots: 1024
+    wrong_logical_converged: 0
+  - candidate: hard800
+    design: cycle30
+    exact_export_shots: 64
+    failures: 919
+    logical_failures: 919
+    mean_iterations: 28.7841796875
+    p: 0.003
+    seed: 42235
+    shots: 1024
+    wrong_logical_converged: 0
+  source_checkpoint: results/m6_retention/20261109T090301820313Z-dda8532f/hard_only/last.pt
+  source_sha256: e57f6682c54e4057f9d8b3ce765baecc29a91113a385b99a73e561a0ad70c995
+  source_step: 800
+  validation_directory: results/m6_candidate_validation/hard800/20261109T093126888423Z
+- candidate: hard800
+  design: last30
+  failures: 1333
+  logical_failures: 1333
+  points:
+  - candidate: hard800
+    design: last30
+    exact_export_shots: 64
+    failures: 419
+    logical_failures: 419
+    mean_iterations: 18.7880859375
+    p: 0.001
+    seed: 42234
+    shots: 1024
+    wrong_logical_converged: 0
+  - candidate: hard800
+    design: last30
+    exact_export_shots: 64
+    failures: 914
+    logical_failures: 914
+    mean_iterations: 28.7314453125
+    p: 0.003
+    seed: 42235
+    shots: 1024
+    wrong_logical_converged: 0
+  source_checkpoint: results/m6_retention/20261109T090301820313Z-dda8532f/hard_only/last.pt
+  source_sha256: e57f6682c54e4057f9d8b3ce765baecc29a91113a385b99a73e561a0ad70c995
+  source_step: 800
+  validation_directory: results/m6_candidate_validation/hard800/20261109T093126888423Z
+- candidate: retain800
+  design: cascade15
+  failures: 1441
+  logical_failures: 1441
+  points:
+  - candidate: retain800
+    design: cascade15
+    exact_export_shots: 64
+    failures: 475
+    logical_failures: 475
+    mean_iterations: 19.5478515625
+    p: 0.001
+    seed: 42234
+    shots: 1024
+    wrong_logical_converged: 0
+  - candidate: retain800
+    design: cascade15
+    exact_export_shots: 64
+    failures: 966
+    logical_failures: 966
+    mean_iterations: 29.1103515625
+    p: 0.003
+    seed: 42235
+    shots: 1024
+    wrong_logical_converged: 0
+  source_checkpoint: results/m6_retention/20261109T090301820313Z-dda8532f/retain_easy/last.pt
+  source_sha256: b92af61a3e6d358b13bca7c89c814a1d95a5285c049c3a039a11a045c598110d
+  source_step: 800
+  validation_directory: results/m6_candidate_validation/retain800/20261109T093126888426Z
+- candidate: retain800
+  design: cycle30
+  failures: 1361
+  logical_failures: 1361
+  points:
+  - candidate: retain800
+    design: cycle30
+    exact_export_shots: 64
+    failures: 434
+    logical_failures: 434
+    mean_iterations: 18.7666015625
+    p: 0.001
+    seed: 42234
+    shots: 1024
+    wrong_logical_converged: 0
+  - candidate: retain800
+    design: cycle30
+    exact_export_shots: 64
+    failures: 927
+    logical_failures: 927
+    mean_iterations: 28.8876953125
+    p: 0.003
+    seed: 42235
+    shots: 1024
+    wrong_logical_converged: 0
+  source_checkpoint: results/m6_retention/20261109T090301820313Z-dda8532f/retain_easy/last.pt
+  source_sha256: b92af61a3e6d358b13bca7c89c814a1d95a5285c049c3a039a11a045c598110d
+  source_step: 800
+  validation_directory: results/m6_candidate_validation/retain800/20261109T093126888426Z
+- candidate: retain800
+  design: last30
+  failures: 1326
+  logical_failures: 1326
+  points:
+  - candidate: retain800
+    design: last30
+    exact_export_shots: 64
+    failures: 403
+    logical_failures: 403
+    mean_iterations: 18.6083984375
+    p: 0.001
+    seed: 42234
+    shots: 1024
+    wrong_logical_converged: 0
+  - candidate: retain800
+    design: last30
+    exact_export_shots: 64
+    failures: 923
+    logical_failures: 923
+    mean_iterations: 28.8681640625
+    p: 0.003
+    seed: 42235
+    shots: 1024
+    wrong_logical_converged: 0
+  source_checkpoint: results/m6_retention/20261109T090301820313Z-dda8532f/retain_easy/last.pt
+  source_sha256: b92af61a3e6d358b13bca7c89c814a1d95a5285c049c3a039a11a045c598110d
+  source_step: 800
+  validation_directory: results/m6_candidate_validation/retain800/20261109T093126888426Z
+- candidate: conditional0
+  design: cascade15
+  failures: 1436
+  logical_failures: 1436
+  points:
+  - candidate: conditional0
+    design: cascade15
+    exact_export_shots: 64
+    failures: 465
+    logical_failures: 465
+    mean_iterations: 19.57421875
+    p: 0.001
+    seed: 42234
+    shots: 1024
+    wrong_logical_converged: 0
+  - candidate: conditional0
+    design: cascade15
+    exact_export_shots: 64
+    failures: 971
+    logical_failures: 971
+    mean_iterations: 29.13671875
+    p: 0.003
+    seed: 42235
+    shots: 1024
+    wrong_logical_converged: 0
+  source_checkpoint: results/m6_conditional/stream0/20261109T092350866777Z-e959d987/last.pt
+  source_sha256: 2105307e3785bdea3ca92f5ee8b17e3f9f41b36b5be5d9183dca35d4a0d23f23
+  source_step: 1200
+  validation_directory: results/m6_candidate_validation/conditional0/20261109T094441431244Z
+- candidate: conditional0
+  design: cycle30
+  failures: 1350
+  logical_failures: 1350
+  points:
+  - candidate: conditional0
+    design: cycle30
+    exact_export_shots: 64
+    failures: 420
+    logical_failures: 420
+    mean_iterations: 18.9462890625
+    p: 0.001
+    seed: 42234
+    shots: 1024
+    wrong_logical_converged: 0
+  - candidate: conditional0
+    design: cycle30
+    exact_export_shots: 64
+    failures: 930
+    logical_failures: 930
+    mean_iterations: 28.908203125
+    p: 0.003
+    seed: 42235
+    shots: 1024
+    wrong_logical_converged: 0
+  source_checkpoint: results/m6_conditional/stream0/20261109T092350866777Z-e959d987/last.pt
+  source_sha256: 2105307e3785bdea3ca92f5ee8b17e3f9f41b36b5be5d9183dca35d4a0d23f23
+  source_step: 1200
+  validation_directory: results/m6_candidate_validation/conditional0/20261109T094441431244Z
+- candidate: conditional0
+  design: last30
+  failures: 1340
+  logical_failures: 1340
+  points:
+  - candidate: conditional0
+    design: last30
+    exact_export_shots: 64
+    failures: 410
+    logical_failures: 410
+    mean_iterations: 18.8623046875
+    p: 0.001
+    seed: 42234
+    shots: 1024
+    wrong_logical_converged: 0
+  - candidate: conditional0
+    design: last30
+    exact_export_shots: 64
+    failures: 930
+    logical_failures: 930
+    mean_iterations: 28.9853515625
+    p: 0.003
+    seed: 42235
+    shots: 1024
+    wrong_logical_converged: 0
+  source_checkpoint: results/m6_conditional/stream0/20261109T092350866777Z-e959d987/last.pt
+  source_sha256: 2105307e3785bdea3ca92f5ee8b17e3f9f41b36b5be5d9183dca35d4a0d23f23
+  source_step: 1200
+  validation_directory: results/m6_candidate_validation/conditional0/20261109T094441431244Z
+- candidate: conditional1
+  design: cascade15
+  failures: 1435
+  logical_failures: 1435
+  points:
+  - candidate: conditional1
+    design: cascade15
+    exact_export_shots: 64
+    failures: 470
+    logical_failures: 470
+    mean_iterations: 19.53125
+    p: 0.001
+    seed: 42234
+    shots: 1024
+    wrong_logical_converged: 0
+  - candidate: conditional1
+    design: cascade15
+    exact_export_shots: 64
+    failures: 965
+    logical_failures: 965
+    mean_iterations: 29.12890625
+    p: 0.003
+    seed: 42235
+    shots: 1024
+    wrong_logical_converged: 0
+  source_checkpoint: results/m6_conditional/stream1/20261109T092350866795Z-d450d95a/last.pt
+  source_sha256: 92d2bcf70c362a89218e0ff347eb3fe5bf49827acc4080df03cb91731220e430
+  source_step: 1200
+  validation_directory: results/m6_candidate_validation/conditional1/20261109T094441431099Z
+- candidate: conditional1
+  design: cycle30
+  failures: 1329
+  logical_failures: 1330
+  points:
+  - candidate: conditional1
+    design: cycle30
+    exact_export_shots: 64
+    failures: 406
+    logical_failures: 406
+    mean_iterations: 18.626953125
+    p: 0.001
+    seed: 42234
+    shots: 1024
+    wrong_logical_converged: 0
+  - candidate: conditional1
+    design: cycle30
+    exact_export_shots: 64
+    failures: 923
+    logical_failures: 924
+    mean_iterations: 28.8603515625
+    p: 0.003
+    seed: 42235
+    shots: 1024
+    wrong_logical_converged: 1
+  source_checkpoint: results/m6_conditional/stream1/20261109T092350866795Z-d450d95a/last.pt
+  source_sha256: 92d2bcf70c362a89218e0ff347eb3fe5bf49827acc4080df03cb91731220e430
+  source_step: 1200
+  validation_directory: results/m6_candidate_validation/conditional1/20261109T094441431099Z
+- candidate: conditional1
+  design: last30
+  failures: 1328
+  logical_failures: 1329
+  points:
+  - candidate: conditional1
+    design: last30
+    exact_export_shots: 64
+    failures: 411
+    logical_failures: 411
+    mean_iterations: 18.66015625
+    p: 0.001
+    seed: 42234
+    shots: 1024
+    wrong_logical_converged: 0
+  - candidate: conditional1
+    design: last30
+    exact_export_shots: 64
+    failures: 917
+    logical_failures: 918
+    mean_iterations: 28.8115234375
+    p: 0.003
+    seed: 42235
+    shots: 1024
+    wrong_logical_converged: 1
+  source_checkpoint: results/m6_conditional/stream1/20261109T092350866795Z-d450d95a/last.pt
+  source_sha256: 92d2bcf70c362a89218e0ff347eb3fe5bf49827acc4080df03cb91731220e430
+  source_step: 1200
+  validation_directory: results/m6_candidate_validation/conditional1/20261109T094441431099Z
+- candidate: capacity_struct_standard
+  design: cascade15
+  failures: 1417
+  logical_failures: 1417
+  points:
+  - candidate: capacity_struct_standard
+    design: cascade15
+    exact_export_shots: 64
+    failures: 454
+    logical_failures: 454
+    mean_iterations: 19.59765625
+    p: 0.001
+    seed: 42234
+    shots: 1024
+    wrong_logical_converged: 0
+  - candidate: capacity_struct_standard
+    design: cascade15
+    exact_export_shots: 64
+    failures: 963
+    logical_failures: 963
+    mean_iterations: 29.109375
+    p: 0.003
+    seed: 42235
+    shots: 1024
+    wrong_logical_converged: 0
+  source_checkpoint: results/m6_capacity/20261109T093911371390Z/struct_standard/best.pt
+  source_sha256: 48591637735919bb3e12febe8793eca7f9a81e8e23584dfe53a07d9f6b098c3d
+  source_step: 4000
+  validation_directory: results/m6_candidate_validation/capacity_struct_standard/20261109T103530866617Z
+- &id001
+  candidate: capacity_struct_standard
+  design: cycle30
+  failures: 1299
+  logical_failures: 1299
+  points:
+  - candidate: capacity_struct_standard
+    design: cycle30
+    exact_export_shots: 64
+    failures: 372
+    logical_failures: 372
+    mean_iterations: 18.4267578125
+    p: 0.001
+    seed: 42234
+    shots: 1024
+    wrong_logical_converged: 0
+  - candidate: capacity_struct_standard
+    design: cycle30
+    exact_export_shots: 64
+    failures: 927
+    logical_failures: 927
+    mean_iterations: 28.8408203125
+    p: 0.003
+    seed: 42235
+    shots: 1024
+    wrong_logical_converged: 0
+  source_checkpoint: results/m6_capacity/20261109T093911371390Z/struct_standard/best.pt
+  source_sha256: 48591637735919bb3e12febe8793eca7f9a81e8e23584dfe53a07d9f6b098c3d
+  source_step: 4000
+  validation_directory: results/m6_candidate_validation/capacity_struct_standard/20261109T103530866617Z
+- candidate: capacity_struct_standard
+  design: last30
+  failures: 1305
+  logical_failures: 1305
+  points:
+  - candidate: capacity_struct_standard
+    design: last30
+    exact_export_shots: 64
+    failures: 389
+    logical_failures: 389
+    mean_iterations: 18.5166015625
+    p: 0.001
+    seed: 42234
+    shots: 1024
+    wrong_logical_converged: 0
+  - candidate: capacity_struct_standard
+    design: last30
+    exact_export_shots: 64
+    failures: 916
+    logical_failures: 916
+    mean_iterations: 28.7919921875
+    p: 0.003
+    seed: 42235
+    shots: 1024
+    wrong_logical_converged: 0
+  source_checkpoint: results/m6_capacity/20261109T093911371390Z/struct_standard/best.pt
+  source_sha256: 48591637735919bb3e12febe8793eca7f9a81e8e23584dfe53a07d9f6b098c3d
+  source_step: 4000
+  validation_directory: results/m6_candidate_validation/capacity_struct_standard/20261109T103530866617Z
+- candidate: capacity_struct_low
+  design: cascade15
+  failures: 1440
+  logical_failures: 1440
+  points:
+  - candidate: capacity_struct_low
+    design: cascade15
+    exact_export_shots: 64
+    failures: 472
+    logical_failures: 472
+    mean_iterations: 19.6484375
+    p: 0.001
+    seed: 42234
+    shots: 1024
+    wrong_logical_converged: 0
+  - candidate: capacity_struct_low
+    design: cascade15
+    exact_export_shots: 64
+    failures: 968
+    logical_failures: 968
+    mean_iterations: 29.1318359375
+    p: 0.003
+    seed: 42235
+    shots: 1024
+    wrong_logical_converged: 0
+  source_checkpoint: results/m6_capacity/20261109T093911371390Z/struct_low/best.pt
+  source_sha256: 03c67c36de6604827dc5617dceadcea4118a9142c8beb686a159527a32a52f92
+  source_step: 1000
+  validation_directory: results/m6_candidate_validation/capacity_struct_low/20261109T103530866616Z
+- candidate: capacity_struct_low
+  design: cycle30
+  failures: 1323
+  logical_failures: 1323
+  points:
+  - candidate: capacity_struct_low
+    design: cycle30
+    exact_export_shots: 64
+    failures: 397
+    logical_failures: 397
+    mean_iterations: 18.5625
+    p: 0.001
+    seed: 42234
+    shots: 1024
+    wrong_logical_converged: 0
+  - candidate: capacity_struct_low
+    design: cycle30
+    exact_export_shots: 64
+    failures: 926
+    logical_failures: 926
+    mean_iterations: 28.798828125
+    p: 0.003
+    seed: 42235
+    shots: 1024
+    wrong_logical_converged: 0
+  source_checkpoint: results/m6_capacity/20261109T093911371390Z/struct_low/best.pt
+  source_sha256: 03c67c36de6604827dc5617dceadcea4118a9142c8beb686a159527a32a52f92
+  source_step: 1000
+  validation_directory: results/m6_candidate_validation/capacity_struct_low/20261109T103530866616Z
+- candidate: capacity_struct_low
+  design: last30
+  failures: 1343
+  logical_failures: 1343
+  points:
+  - candidate: capacity_struct_low
+    design: last30
+    exact_export_shots: 64
+    failures: 411
+    logical_failures: 411
+    mean_iterations: 18.6650390625
+    p: 0.001
+    seed: 42234
+    shots: 1024
+    wrong_logical_converged: 0
+  - candidate: capacity_struct_low
+    design: last30
+    exact_export_shots: 64
+    failures: 932
+    logical_failures: 932
+    mean_iterations: 28.8203125
+    p: 0.003
+    seed: 42235
+    shots: 1024
+    wrong_logical_converged: 0
+  source_checkpoint: results/m6_capacity/20261109T093911371390Z/struct_low/best.pt
+  source_sha256: 03c67c36de6604827dc5617dceadcea4118a9142c8beb686a159527a32a52f92
+  source_step: 1000
+  validation_directory: results/m6_candidate_validation/capacity_struct_low/20261109T103530866616Z
+- candidate: capacity_full_standard
+  design: cascade15
+  failures: 1424
+  logical_failures: 1424
+  points:
+  - candidate: capacity_full_standard
+    design: cascade15
+    exact_export_shots: 64
+    failures: 461
+    logical_failures: 461
+    mean_iterations: 19.525390625
+    p: 0.001
+    seed: 42234
+    shots: 1024
+    wrong_logical_converged: 0
+  - candidate: capacity_full_standard
+    design: cascade15
+    exact_export_shots: 64
+    failures: 963
+    logical_failures: 963
+    mean_iterations: 29.1240234375
+    p: 0.003
+    seed: 42235
+    shots: 1024
+    wrong_logical_converged: 0
+  source_checkpoint: results/m6_capacity/20261109T093911371390Z/full_standard/best.pt
+  source_sha256: 2321ca2e26bef91bb9917f94068db5495266719eef32c0da1157b66b16902cde
+  source_step: 2000
+  validation_directory: results/m6_candidate_validation/capacity_full_standard/20261109T103530868910Z
+- candidate: capacity_full_standard
+  design: cycle30
+  failures: 1324
+  logical_failures: 1324
+  points:
+  - candidate: capacity_full_standard
+    design: cycle30
+    exact_export_shots: 64
+    failures: 407
+    logical_failures: 407
+    mean_iterations: 18.4599609375
+    p: 0.001
+    seed: 42234
+    shots: 1024
+    wrong_logical_converged: 0
+  - candidate: capacity_full_standard
+    design: cycle30
+    exact_export_shots: 64
+    failures: 917
+    logical_failures: 917
+    mean_iterations: 28.8701171875
+    p: 0.003
+    seed: 42235
+    shots: 1024
+    wrong_logical_converged: 0
+  source_checkpoint: results/m6_capacity/20261109T093911371390Z/full_standard/best.pt
+  source_sha256: 2321ca2e26bef91bb9917f94068db5495266719eef32c0da1157b66b16902cde
+  source_step: 2000
+  validation_directory: results/m6_candidate_validation/capacity_full_standard/20261109T103530868910Z
+- candidate: capacity_full_standard
+  design: last30
+  failures: 1325
+  logical_failures: 1326
+  points:
+  - candidate: capacity_full_standard
+    design: last30
+    exact_export_shots: 64
+    failures: 404
+    logical_failures: 404
+    mean_iterations: 18.4638671875
+    p: 0.001
+    seed: 42234
+    shots: 1024
+    wrong_logical_converged: 0
+  - candidate: capacity_full_standard
+    design: last30
+    exact_export_shots: 64
+    failures: 921
+    logical_failures: 922
+    mean_iterations: 28.8388671875
+    p: 0.003
+    seed: 42235
+    shots: 1024
+    wrong_logical_converged: 1
+  source_checkpoint: results/m6_capacity/20261109T093911371390Z/full_standard/best.pt
+  source_sha256: 2321ca2e26bef91bb9917f94068db5495266719eef32c0da1157b66b16902cde
+  source_step: 2000
+  validation_directory: results/m6_candidate_validation/capacity_full_standard/20261109T103530868910Z
+- candidate: capacity_full_low
+  design: cascade15
+  failures: 1447
+  logical_failures: 1447
+  points:
+  - candidate: capacity_full_low
+    design: cascade15
+    exact_export_shots: 64
+    failures: 483
+    logical_failures: 483
+    mean_iterations: 19.7412109375
+    p: 0.001
+    seed: 42234
+    shots: 1024
+    wrong_logical_converged: 0
+  - candidate: capacity_full_low
+    design: cascade15
+    exact_export_shots: 64
+    failures: 964
+    logical_failures: 964
+    mean_iterations: 29.1064453125
+    p: 0.003
+    seed: 42235
+    shots: 1024
+    wrong_logical_converged: 0
+  source_checkpoint: results/m6_capacity/20261109T093911371390Z/full_low/best.pt
+  source_sha256: 66c47897fcc245d88a0a8ecf75e5027cce01c7bd539927d35b38017cbe661df9
+  source_step: 4000
+  validation_directory: results/m6_candidate_validation/capacity_full_low/20261109T103530868962Z
+- candidate: capacity_full_low
+  design: cycle30
+  failures: 1363
+  logical_failures: 1363
+  points:
+  - candidate: capacity_full_low
+    design: cycle30
+    exact_export_shots: 64
+    failures: 436
+    logical_failures: 436
+    mean_iterations: 19.005859375
+    p: 0.001
+    seed: 42234
+    shots: 1024
+    wrong_logical_converged: 0
+  - candidate: capacity_full_low
+    design: cycle30
+    exact_export_shots: 64
+    failures: 927
+    logical_failures: 927
+    mean_iterations: 28.798828125
+    p: 0.003
+    seed: 42235
+    shots: 1024
+    wrong_logical_converged: 0
+  source_checkpoint: results/m6_capacity/20261109T093911371390Z/full_low/best.pt
+  source_sha256: 66c47897fcc245d88a0a8ecf75e5027cce01c7bd539927d35b38017cbe661df9
+  source_step: 4000
+  validation_directory: results/m6_candidate_validation/capacity_full_low/20261109T103530868962Z
+- candidate: capacity_full_low
+  design: last30
+  failures: 1363
+  logical_failures: 1363
+  points:
+  - candidate: capacity_full_low
+    design: last30
+    exact_export_shots: 64
+    failures: 429
+    logical_failures: 429
+    mean_iterations: 19.037109375
+    p: 0.001
+    seed: 42234
+    shots: 1024
+    wrong_logical_converged: 0
+  - candidate: capacity_full_low
+    design: last30
+    exact_export_shots: 64
+    failures: 934
+    logical_failures: 934
+    mean_iterations: 28.814453125
+    p: 0.003
+    seed: 42235
+    shots: 1024
+    wrong_logical_converged: 0
+  source_checkpoint: results/m6_capacity/20261109T093911371390Z/full_low/best.pt
+  source_sha256: 66c47897fcc245d88a0a8ecf75e5027cce01c7bd539927d35b38017cbe661df9
+  source_step: 4000
+  validation_directory: results/m6_candidate_validation/capacity_full_low/20261109T103530868962Z
+- candidate: sine_struct_low
+  design: cascade15
+  failures: 1437
+  logical_failures: 1437
+  points:
+  - candidate: sine_struct_low
+    design: cascade15
+    exact_export_shots: 64
+    failures: 471
+    logical_failures: 471
+    mean_iterations: 19.677734375
+    p: 0.001
+    seed: 42234
+    shots: 1024
+    wrong_logical_converged: 0
+  - candidate: sine_struct_low
+    design: cascade15
+    exact_export_shots: 64
+    failures: 966
+    logical_failures: 966
+    mean_iterations: 29.12109375
+    p: 0.003
+    seed: 42235
+    shots: 1024
+    wrong_logical_converged: 0
+  source_checkpoint: results/m6_sine_capacity/20261109T093911371390Z/struct_low/best.pt
+  source_sha256: 06ddd13363b39aa9be769c2d8ccf936ecb0302cba357ab2f2b233367d4478cbf
+  source_step: 2500
+  validation_directory: results/m6_candidate_validation/sine_struct_low/20261109T103530866592Z
+- candidate: sine_struct_low
+  design: cycle30
+  failures: 1347
+  logical_failures: 1347
+  points:
+  - candidate: sine_struct_low
+    design: cycle30
+    exact_export_shots: 64
+    failures: 425
+    logical_failures: 425
+    mean_iterations: 18.7265625
+    p: 0.001
+    seed: 42234
+    shots: 1024
+    wrong_logical_converged: 0
+  - candidate: sine_struct_low
+    design: cycle30
+    exact_export_shots: 64
+    failures: 922
+    logical_failures: 922
+    mean_iterations: 28.73046875
+    p: 0.003
+    seed: 42235
+    shots: 1024
+    wrong_logical_converged: 0
+  source_checkpoint: results/m6_sine_capacity/20261109T093911371390Z/struct_low/best.pt
+  source_sha256: 06ddd13363b39aa9be769c2d8ccf936ecb0302cba357ab2f2b233367d4478cbf
+  source_step: 2500
+  validation_directory: results/m6_candidate_validation/sine_struct_low/20261109T103530866592Z
+- candidate: sine_struct_low
+  design: last30
+  failures: 1343
+  logical_failures: 1343
+  points:
+  - candidate: sine_struct_low
+    design: last30
+    exact_export_shots: 64
+    failures: 415
+    logical_failures: 415
+    mean_iterations: 18.6650390625
+    p: 0.001
+    seed: 42234
+    shots: 1024
+    wrong_logical_converged: 0
+  - candidate: sine_struct_low
+    design: last30
+    exact_export_shots: 64
+    failures: 928
+    logical_failures: 928
+    mean_iterations: 28.7685546875
+    p: 0.003
+    seed: 42235
+    shots: 1024
+    wrong_logical_converged: 0
+  source_checkpoint: results/m6_sine_capacity/20261109T093911371390Z/struct_low/best.pt
+  source_sha256: 06ddd13363b39aa9be769c2d8ccf936ecb0302cba357ab2f2b233367d4478cbf
+  source_step: 2500
+  validation_directory: results/m6_candidate_validation/sine_struct_low/20261109T103530866592Z
+- candidate: sine_full_low
+  design: cascade15
+  failures: 1453
+  logical_failures: 1453
+  points:
+  - candidate: sine_full_low
+    design: cascade15
+    exact_export_shots: 64
+    failures: 482
+    logical_failures: 482
+    mean_iterations: 19.6767578125
+    p: 0.001
+    seed: 42234
+    shots: 1024
+    wrong_logical_converged: 0
+  - candidate: sine_full_low
+    design: cascade15
+    exact_export_shots: 64
+    failures: 971
+    logical_failures: 971
+    mean_iterations: 29.1328125
+    p: 0.003
+    seed: 42235
+    shots: 1024
+    wrong_logical_converged: 0
+  source_checkpoint: results/m6_sine_capacity/20261109T093911371390Z/full_low/best.pt
+  source_sha256: aa56f5b852fb370ce85a9f60e8ccd6f3e67320ddc51de438d2519ecfddaaf0fa
+  source_step: 500
+  validation_directory: results/m6_candidate_validation/sine_full_low/20261109T103530868912Z
+- candidate: sine_full_low
+  design: cycle30
+  failures: 1310
+  logical_failures: 1310
+  points:
+  - candidate: sine_full_low
+    design: cycle30
+    exact_export_shots: 64
+    failures: 387
+    logical_failures: 387
+    mean_iterations: 18.7548828125
+    p: 0.001
+    seed: 42234
+    shots: 1024
+    wrong_logical_converged: 0
+  - candidate: sine_full_low
+    design: cycle30
+    exact_export_shots: 64
+    failures: 923
+    logical_failures: 923
+    mean_iterations: 28.845703125
+    p: 0.003
+    seed: 42235
+    shots: 1024
+    wrong_logical_converged: 0
+  source_checkpoint: results/m6_sine_capacity/20261109T093911371390Z/full_low/best.pt
+  source_sha256: aa56f5b852fb370ce85a9f60e8ccd6f3e67320ddc51de438d2519ecfddaaf0fa
+  source_step: 500
+  validation_directory: results/m6_candidate_validation/sine_full_low/20261109T103530868912Z
+- candidate: sine_full_low
+  design: last30
+  failures: 1340
+  logical_failures: 1340
+  points:
+  - candidate: sine_full_low
+    design: last30
+    exact_export_shots: 64
+    failures: 406
+    logical_failures: 406
+    mean_iterations: 18.84375
+    p: 0.001
+    seed: 42234
+    shots: 1024
+    wrong_logical_converged: 0
+  - candidate: sine_full_low
+    design: last30
+    exact_export_shots: 64
+    failures: 934
+    logical_failures: 934
+    mean_iterations: 28.8759765625
+    p: 0.003
+    seed: 42235
+    shots: 1024
+    wrong_logical_converged: 0
+  source_checkpoint: results/m6_sine_capacity/20261109T093911371390Z/full_low/best.pt
+  source_sha256: aa56f5b852fb370ce85a9f60e8ccd6f3e67320ddc51de438d2519ecfddaaf0fa
+  source_step: 500
+  validation_directory: results/m6_candidate_validation/sine_full_low/20261109T103530868912Z
+ordinary_controls:
+- failures: 404
+  kind: longer
+  logical_failures: 404
+  mean_iterations: 18.81640625
+  name: bp30
+  p: 0.001
+  scaling: 0.95
+  seed: 42234
+  shots: 1024
+- failures: 931
+  kind: longer
+  logical_failures: 931
+  mean_iterations: 28.9990234375
+  name: bp30
+  p: 0.003
+  scaling: 1.0
+  seed: 42235
+  shots: 1024
+prefix_builder_checks: 768
+primary_family: Selected learned versus validation-best ordinary control; two p values,
+  Holm adjustment
+purpose: frozen_auxiliary_pipeline_confirmation
+scope: Auxiliary single-source-model study; validation selected among all listed choices.
+  No main M6 completion or logical-equivalence/latency claim.
+selected: *id001

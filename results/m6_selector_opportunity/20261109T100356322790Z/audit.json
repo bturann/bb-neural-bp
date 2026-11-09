@@ -1,0 +1,6 @@
+{
+  "checks_passed": true,
+  "reconstructed_validation_factor_outcomes": 45056,
+  "scope": "Oracle union only, not an implementable decoder or performance result. Uses saved, already audited validation outcomes; no new decoding or training.",
+  "audit_source_sha256": "edfc7bdeaa670521689208bec0820bc8808d8d486909f95e2122a66c099ae775"
+}

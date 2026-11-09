@@ -76,6 +76,9 @@ def seed_guard(settings, config):
             checked+=1
             for row in reader:
                 if row.get("seed") and int(row["seed"]) in seeds:
+                    approved=settings.get("validation_source")
+                    if approved and int(row["seed"])==settings["unseen_seed"] and path.parent.resolve()==Path(approved).parent.resolve():
+                        continue
                     raise ValueError(f"Diagnostic seed previously used in {path}")
     for path in Path("results").rglob("provenance.json"):
         previous=json.loads(path.read_text())
@@ -145,6 +148,13 @@ def main():
     settings=yaml.safe_load(Path(args.settings).read_text())
     if c.train.device!="cpu" or len(c.noise.p_grid)!=1 or c.train.loss!="parity" or settings["checkpoint_rule"]!="fixed_final_update_or_budget_stop":
         raise ValueError("Expected the single-p CPU parity diagnostic with a fixed final checkpoint")
+    validation_source=settings.get("validation_source")
+    if validation_source:
+        metadata=json.loads(Path(validation_source).with_name("selection.json").read_text())
+        if (metadata["seed"]!=settings["unseen_seed"] or metadata["p"]!=c.noise.p_grid[0]
+                or metadata["shots"]!=settings["unseen_cases"]
+                or hashlib.sha256(Path(validation_source).read_bytes()).hexdigest()!=metadata["cases_sha256"]):
+            raise ValueError("Declared reused validation data do not match their frozen provenance")
     checked=seed_guard(settings,c)
     d=Path(args.output_root)/(datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")+"-"+c.config_hash[:8])
     d.mkdir(parents=True,exist_ok=False)
@@ -167,8 +177,18 @@ def main():
         sampler=make_sampler(c,p)
         model=make_model(sampler.problem,c)
         objective=ParityLoss(sampler.problem,c.train.beta_logical,c.train.runtime.loss_eps,c.train.runtime.loss_floor)
-        train,pool,indices,pool_state=hard_training_cases(sampler,model.export_cpu(),settings)
-        s,o,e=sampler.sample(settings["unseen_cases"],np.random.default_rng(settings["unseen_seed"]))
+        mining_decoder=model.export_cpu()
+        if settings.get("mining_decoder","initial_neural")=="tuned_first_pass":
+            factor=tuned_factor(c.train.runtime.baseline_table,c,p)
+            mining_decoder=LdpcBP(sampler.problem,c.model.T,factor)
+        elif settings.get("mining_decoder","initial_neural")!="initial_neural":
+            raise ValueError("Unknown fixed-case mining decoder")
+        train,pool,indices,pool_state=hard_training_cases(sampler,mining_decoder,settings)
+        if validation_source:
+            with np.load(validation_source) as saved:s,o,e=(saved[key] for key in ("syndromes","observables","faults"))
+            shutil.copyfile(Path(validation_source).with_name("selection.json"),d/"validation_source_metadata.json")
+        else:
+            s,o,e=sampler.sample(settings["unseen_cases"],np.random.default_rng(settings["unseen_seed"]))
         unseen=dict(syndromes=s,observables=o,faults=e)
         if set(row.tobytes() for row in train["syndromes"]) & set(row.tobytes() for row in s):
             raise ValueError("Unseen set contains a training syndrome")
@@ -262,7 +282,8 @@ def main():
             tuned_unseen=tuned_summary,unseen_screen=screen,**result,steps=step,completed_update_budget=completed,stopping=stopping,
             elapsed_s=time.perf_counter()-started,gpu_seconds=0,final_test_data_used=False,m6_complete=False,
             final_checkpoint_sha256=hashlib.sha256((d/"last.pt").read_bytes()).hexdigest(),
-            scope="Single-seed, single-p fixed-case learning diagnostic. Training cases are initially nonconvergent; "
+            scope=("Reuses declared validation cases for auxiliary neural candidate selection; this is not fresh confirmation. " if validation_source else "")+
+                  "Single-seed, single-p fixed-case learning diagnostic. Training cases fail the declared mining decoder; "
                   "unseen data are unfiltered and evaluated only initially/finally. Fixed final checkpoint, no unseen selection. "
                   "Thresholds are practical diagnostic screens, not M6 gates or evidence of equal two-stage LER/latency.")
         write_json(d/"summary.json",report)

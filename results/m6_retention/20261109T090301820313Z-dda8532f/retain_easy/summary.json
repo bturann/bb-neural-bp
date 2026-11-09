@@ -1,0 +1,35 @@
+{
+  "arm": "retain_easy",
+  "steps": 800,
+  "completed": true,
+  "stopping": "max_steps",
+  "train": {
+    "shots": 256,
+    "mean_loss": 33.22301483154297,
+    "failures": 137,
+    "fallback_demand": 0.53515625,
+    "logical_failures": 137,
+    "logical_failure_rate": 0.53515625,
+    "correct_decodes": 119,
+    "mean_iterations": 10.96484375,
+    "export_check_shots": 64,
+    "hard_correct": 26,
+    "easy_correct": 93
+  },
+  "unseen": {
+    "shots": 2048,
+    "mean_loss": 38.012420654296875,
+    "failures": 1268,
+    "fallback_demand": 0.619140625,
+    "logical_failures": 1268,
+    "logical_failure_rate": 0.619140625,
+    "correct_decodes": 780,
+    "mean_iterations": 11.67919921875,
+    "export_check_shots": 64
+  },
+  "elapsed_s": 898.0321727920091,
+  "checkpoint_sha256": "b92af61a3e6d358b13bca7c89c814a1d95a5285c049c3a039a11a045c598110d",
+  "gpu_seconds": 0,
+  "final_test_data_used": false,
+  "m6_complete": false
+}

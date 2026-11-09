@@ -1,0 +1,39 @@
+purpose: frozen_auxiliary_independent_assessment
+deadline_utc: '2026-11-09T14:00:00+00:00'
+finalization_utc: '2026-11-09T13:50:00+00:00'
+confirmation_wall_seconds: 1200
+accuracy_targets:
+- 16384
+- 1024
+accuracy_wall_seconds: 6300
+accuracy_point_wall_seconds:
+- 5700
+- 600
+accuracy_extension_seeds:
+- 64234
+- 64235
+accuracy_models:
+- ordinary
+- matched_init
+- selected
+accuracy_prefetch_batch: 256
+accuracy_prefetch_depth: 1
+latency_models:
+- bp15
+- ordinary
+- matched_init
+- selected
+latency_shots: 512
+latency_warmup: 64
+latency_seed_offset: 65000
+latency_order_entropy:
+- 1234
+- 965
+latency_wall_seconds: 2400
+latency_bootstrap_repeats: 5000
+latency_bootstrap_entropy: [1234, 967]
+alpha: 0.05
+scope: Auxiliary fixed-choice pilot, not main E1/E2. Cached accuracy reports hypothetical
+  per-model fallback requests separately from actual shared executions. Latency always
+  uses fresh uncached fallback calls on an idle machine.
+accuracy_latest_finish_utc: '2026-11-09T13:00:00+00:00'

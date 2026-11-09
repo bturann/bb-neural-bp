@@ -68,14 +68,15 @@ def main():
     axes[0].set(xlabel="Optimizer update",ylabel="Mean parity/logical multi-loss",title="Fixed training cases")
     axes[1].plot(steps,[100*(1-row["logical_failure_rate"]) for row in training],marker="o",color="#2166ac")
     axes[1].axhline(100*r["settings"]["training_min_correct_gain"],linestyle="--",color="black",label="Training gain screen")
-    axes[1].set(xlabel="Optimizer update",ylabel="Logically correct Stage-1 decodes (%)",ylim=(0,100),title="128 initially hard cases")
+    axes[1].set(xlabel="Optimizer update",ylabel="Logically correct Stage-1 decodes (%)",ylim=(0,100),title=f"{r['settings']['training_cases']:,} fixed training cases")
     axes[1].legend(fontsize=8)
     demand=[100*r[key]["fallback_demand"] for key in ("initial_unseen","final_unseen","tuned_unseen")]
     bars=axes[2].bar(["Initial","Final","Tuned BP"],demand,color=["#777777","#2166ac","#c65c15"])
     axes[2].bar_label(bars,fmt="%.2f%%",padding=3,fontsize=9)
-    axes[2].set(ylabel="Fallback demand (%)",ylim=(0,100),title="2,048 fixed unseen cases")
+    pool_name="reused validation cases" if r["settings"].get("validation_source") else "fixed unseen cases"
+    axes[2].set(ylabel="Fallback demand (%)",ylim=(0,100),title=f"{r['settings']['unseen_cases']:,} {pool_name}")
     for ax in axes:ax.grid(axis="y",alpha=.2)
-    fig.text(.5,.02,"Single-seed diagnostic at p=0.001. Training is conditional on initial failure; unseen cases are unfiltered. No OSD or latency claim.",ha="center",fontsize=8)
+    fig.text(.5,.02,f"Single-stream diagnostic at p={c.noise.p_grid[0]:g}. Training is conditional on the declared mining decoder's failure. No OSD or latency claim.",ha="center",fontsize=8)
     fig.tight_layout(rect=(0,.06,1,1))
     for extension in ("png","pdf"):fig.savefig(d/f"learning_diagnostic.{extension}",dpi=180)
     plt.close(fig)

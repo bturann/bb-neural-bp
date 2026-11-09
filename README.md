@@ -5,6 +5,16 @@ The target is fewer fallback calls at preserved logical error performance, measu
 against ordinary and tuned-scaling BP. M0–M5 acceptance checks are complete;
 circuit-level neural results and the final performance claim remain pending.
 
+The November 9 CPU auxiliary study has its first independent Stage 1 gain:
+learned30 requested fallback on 1,640/4,096 cases at p=.001, versus 1,830/4,096
+for validation-tuned BP30 (10.4% fewer requests). The p=.003 primary difference
+was inconclusive. Matched-initialization comparisons support a learning effect;
+the raw-data/statistics audit passed. Full-pipeline accuracy, additional training
+seeds, and uncached CPU timing are still being assessed. See the
+[confirmation evidence](results/m6_aux_confirmation/20261109T105342558744Z/summary.json)
+and [initial report](results/m6_aux_report/20261109T112138324849Z/report.md).
+This auxiliary result does not complete M6 or establish equal LER or lower p99.
+
 ## Setup
 
 ```sh

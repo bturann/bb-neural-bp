@@ -1226,3 +1226,288 @@ M5 passed: `results/m5/20261030T220645511485Z-3a224cbf`; wins 4/7, best step 100
   corrections/convergence/iteration results and all five CSV rows. Initial/final
   losses, paired tests, transition counts, checkpoint hashes and the predeclared
   decision reproduced. The source snapshot and audit source are retained.
+
+## Continued research window and controlled retention test — November 9, 2026
+
+- User extended authorized CPU research through **09:00 America/New_York**
+  (14:00 UTC). User also explicitly approved the auxiliary BP→NBP→OSD study with
+  longer-BP and two-BP-pass controls; `docs/m6_cascade_proposal.md` records the
+  approved scope. Original E1/E2 and other main experiments remain intact.
+- Within the original single-pass pipeline, test the specific retention hypothesis:
+  the same 128 hard training cases plus 128 initially logically correct anchors.
+  Both arms receive identical 16-shot forward batches (eight hard/eight easy),
+  initialized models, 800 updates, Adam/cosine schedule, clipping, and all seeds.
+  The control gives easy cases zero loss weight; retention gives hard and easy
+  cases equal positive weight. Thus both see the same hard examples and differ
+  only in whether easy-example loss contributes to gradients.
+- Config `cpu_retention.yaml`, hash `dda8532f05365dd03849a69bb06dff3be9009831`.
+  This deliberately reuses the audited 128-case hard training set. New easy-pool
+  seed **38234** and unseen seed **40234** are separate from earlier selection,
+  comparisons, tuning and final tests. Freeze 2,048 unfiltered unseen cases and
+  the entire shared shuffled batch plan before either arm trains. Shuffle entropy
+  is **[1234, 913]**; no unseen checkpoint selection or early stopping.
+- Preparation has a 180-second CPU cap; each arm has a 1,200-second cap with
+  120 seconds reserved for finalization. Fixed final checkpoints only; both equal
+  800-update budgets must complete before a comparison can be called complete.
+  Stop training to honor the user's 14:00 UTC deadline if it becomes limiting.
+- Primary practical screen: retention must reduce fallback and standalone logical
+  failure by at least 2 pp versus *both* hard-only control and independently tuned
+  BP, with all four paired tests passing one joint Holm .05 family. Training hard
+  rescue/easy retention and initial-success gains/losses are descriptive diagnostics.
+  No OSD/latency/three-seed main claim follows from this single-p, single-seed test.
+- Targeted checks verify that zero-weight easy cases contribute no gradient and
+  that both groups receive complete, seeded matching epochs. Main/reference code
+  is unchanged. The cascade study is separate and will include extra-compute
+  controls before attributing any reduction to learning.
+
+### Approved cascade control tuning (predeclared)
+
+- User explicitly approved the separate cascade study and then extended work to
+  09:00 New York time. The saved-case screen is labelled posthoc: ordinary tuned
+  BP15→initial .95 BP15 had 1,019/2,048 nonconvergences (49.756%), while tuned
+  BP15→learned NBP15 had 1,039 (50.732%). Both improve over single-pass tuned BP's
+  1,249 (60.986%), but this screen gives no learning advantage over a fixed extra
+  pass. This motivates strong controls; it is not independent confirmation.
+- `cpu_cascade.yaml`, hash `277fb140c4406bd9fffb5d5da99aefbeea06272f`, freezes
+  p=.001/.003, 1,024 independent validation cases/p with seeds **42234–42235**.
+  First-pass BP15 uses the original independently tuned table with its provenance.
+  Tune single-pass BP30 and conditional second-pass BP15 on the 11-factor .50–1.00
+  grid. All selected controls minimize whole-pipeline nonconvergence, breaking ties
+  toward the lower factor. Preserve raw corrections, logical flags and iterations.
+- Each validation point has a 1,200-second CPU limit. Confirmation uses a separately
+  reserved 4,096-case/p stream, seeds **44234–44235**; it is not sampled during
+  control tuning or neural candidate selection. All inference routing must use
+  syndrome validity, never logical labels. The routing test explicitly retains
+  first-pass syndrome-valid wrong-logical outputs and accounts for both passes.
+  No OSD/LER-equivalence/latency claim follows from this Stage-1 control tuning.
+
+### Conditional second-pass training and selection discipline
+
+- The approved cascade will route only first-pass failures to its learned decoder.
+  Train two independent data/shuffle streams on **1,024 unique BP15-first-pass
+  failures** at p=.001, rather than failures of a different .95 neural initializer.
+  Training pool seeds **48234/48235**, shuffle entropies **[1234,917]/[1234,918]**.
+  The neural initializer, structural T=15, parity loss, batch 8, Adam/cosine,
+  1,200-update budget and clipping remain fixed. Training includes the second
+  decoder's initially correct cases naturally present among first-pass failures.
+- The independent cascade validation pool (seed 42234) is explicitly reused for
+  candidate scoring, with its original cases hash/selection metadata required.
+  It is *validation*, not a new independent confirmation. The normal fixed-case
+  runner still rejects accidental seed reuse; a narrow tested exception permits
+  this declared source directory only. The original diagnostic's executed source
+  remains preserved, and its numerical model/loss helpers are unchanged.
+- Config hashes: `e959d9874a26cdcb8fac8c7c7f5ca1773b5af8e2` and
+  `d450d95ab06ffcdc2e61edcd2820b8236cecf541`. Each CPU run has the same 1,200 s
+  hard deadline with 120 s reserved for final scoring, training checks every 300
+  updates, and fixed final checkpoint. No candidate is chosen on confirmation data.
+- The original fixed-case candidate, retention candidates and conditioned candidates
+  are development choices. All model/pipeline choices must be frozen on validation
+  before the reserved confirmation seeds 44234–44235 are sampled. Main final seeds
+  remain untouched. Candidate selection should finish by 07:30 New York time,
+  leaving the final window for independent outcomes, actual latency and verification.
+- An additional guard test caught an absolute/relative path comparison error in
+  the declared-validation exception. The first two conditional jobs were launched
+  before that test result was inspected; both were interrupted during initial
+  scoring, before any optimizer update. Their frozen pools, source snapshots and
+  `FAILURE.txt` files are retained. Canonical path comparison fixed the guard;
+  all seven targeted conditional/retention/routing checks then passed before the
+  corrected jobs were launched. Sampling parameters and all numerical training
+  functions stayed fixed; the original fixed-case run's executed source is intact.
+
+### Retention result and validation-only continuation catalogue
+
+- Both retention arms completed 800 matched batches. Hard-only final training had
+  24/128 hard and 102/128 easy cases correct; retention had 26/128 hard and 93/128
+  easy correct. On fresh seed 40234, demand was **61.71875% hard-only**, **61.91406%
+  retention**, **61.76758% tuned BP**, and **61.86523% initial**. All four corrected
+  paired p values were 1.0; `useful=false`. Merely adding equal-weight easy losses
+  did not establish the proposed preservation mechanism. Audit is running.
+- Independent control tuning chose BP30 factors .95 at p=.001 and 1.0 at p=.003;
+  validation demand was **39.453125%** and **90.917969%**. Conditional BP15 second
+  factors .90/.75 gave **45.117188%/94.628906%**. These are selection scores, not
+  held-out confirmation. Longer ordinary BP is a substantially stronger control.
+- `cpu_cascade_candidates.yaml` fixes five learned source candidates (the completed
+  fixed-case, both retention, and both conditioned streams). Each is checked in
+  three validation-only designs: BP15→NBP15, single NBP30 with its trained 15-step
+  schedule cycled, and single NBP30 repeating its last trained parameters after
+  step 15. Continuations involve **zero additional optimizer updates**; they are
+  explicit E5-style inference checks, not models trained at T=30. All use at most
+  30 Stage-1 iterations, matching the stronger BP controls' maximum budget.
+- All 15 options are developmental validation choices; selection minimizes total
+  validation nonconvergence with deterministic name/design tie breaking. The
+  reserved confirmation pools remain unsampled. Source checkpoint hashes, complete
+  training budgets and exact Torch/Numba exports must verify before scoring.
+- Added an auxiliary `CascadeDecoder` implementation with explicit per-pass routing
+  and iteration accounting. Tests retain first-pass syndrome-valid wrong-logical
+  outputs, skip the second pass after success, and reject mismatched priors/flags.
+  Continued-model tests preserve the trained prefix and verify the exact explicit
+  parameter schedules plus Torch/Numba identity. Three targeted tests passed.
+- Read-only structural diagnostics found **16,164 unique detector columns out of
+  16,164 faults**, with no exact parallel/duplicate columns or zero-detector columns.
+  A simple duplicate-column merging explanation is therefore unsupported; this
+  does not rule out higher-order graph symmetry or other capacity limitations.
+
+### Matched capacity / learning-rate factorial (predeclared)
+
+- Existing E3 already includes structural versus full edge weights. The read-only
+  graph check found no exact duplicate columns, while the small structurally tied
+  models showed limited learning/stability. Test capacity and optimization separately
+  with a **2×2 factorial**: structural/full weights and initial Adam lr 1e-3/1e-4.
+  Both schedules decay by the same factor 100; all other settings are matched.
+  This is an auxiliary development test, not a change to main configs or a claim
+  that graph symmetry or learning rate has been established as the cause.
+- Freeze **32,000 unique first-pass BP15 failures**, at p=.001, using new pool
+  seed **52234**, 512-shot generation batches, and at most 65,536 draws. A single
+  shared permutation with entropy **[1234,921]** supplies exactly 4,000 eight-shot
+  batches, one use of each selected case. This increases training diversity without
+  choosing training cases using any confirmation outcomes.
+- All four arms start at .95 min-sum, alpha=1, T=15, with the same parity/logical
+  full-unroll objective, clip=1, priors, and fault labels. Only the documented
+  sharing and learning-rate factors differ. Structural has 1,455 parameters; full
+  has 1,366,755. Matching batch hashes must verify across all completed arms.
+- Preparation cap is 600 s; each CPU-only arm has a 3,600 s cap with 120 s reserved
+  for finalization, plus the 14:00 UTC user deadline. Validation uses only the
+  existing 42234–42235 pools, every 500 updates. Select the earliest minimum total
+  BP15→NBP15 validation nonconvergence, saving best and last parameters. Complete
+  all 4,000 updates before treating an arm as complete. Confirmation remains
+  reserved until all final model/pipeline choices are frozen.
+- Published neural-BP work motivates checking weight flexibility and cautious
+  initialization, but its code/noise/model differ from this circuit experiment;
+  it does not establish that either factor will help here. See
+  [Liu and Poulin, 2019](https://arxiv.org/html/1811.07835v2), which discusses
+  learned weights and symmetry-breaking patterns in its studied code families.
+
+### Auxiliary sine parity surrogate (predeclared before its runs)
+
+- The product-of-probabilities objective can have very small direct probability
+  gradients on high-degree uncertain rows. Test a separate absolute-sine parity
+  surrogate adapted from Eq. 8 of the cited Liu/Poulin paper on the same circuit
+  H/L constraints. It is an adaptation, not a replication of their architecture
+  or noise model. Both objectives retain the logical weight beta=5 and the same
+  rising per-iteration multi-loss. The original objective/defaults remain intact.
+- Add exactly two auxiliary arms, structural/full at lr=1e-4, matched to the
+  corresponding product-loss controls on the identical 32,000-case pool, 4,000
+  batches, optimizer schedule, initial parameters, validation pools and time caps.
+  The only numerical treatment is the parity surrogate; result directories and
+  source snapshots are separate. No probability-product floor is used by the sine
+  surrogate. Its constructor and settings record that explicitly.
+- The alternate driver is derived from the capacity driver, base SHA-256
+  `8eafe106501b6af0c1cca5c8ef9caab2bacc218dd491284b06ca7e31a8477318`, with the
+  objective factory and output/protocol metadata changed. Its complete executed
+  source is saved per run. Core config hashes intentionally match the matched
+  low-rate controls; a full experiment hash additionally includes the surrogate
+  settings. Primary experiment configs and ongoing product-loss code are unmodified.
+- Two tests passed before launch: degeneracy/logical-penalty checks, float64
+  gradcheck, and a high-degree toy showing finite non-vanishing sine probability
+  gradients where the product gradient is tiny. That toy does not establish the
+  cause of the circuit learning failure or predict useful decoding improvements.
+  All new model selection remains validation-only; confirmation is still reserved.
+
+### Frozen auxiliary choice and independent assessment protocol
+
+- All four capacity/rate and two sine arms completed 4,000 updates. The expanded
+  validation catalogue has 11 source checkpoints × 3 inference designs. Its minimum
+  was **structural, lr=1e-3, 4,000 updates, cycle the learned 15-step schedule to
+  30 inference iterations**: 372/1,024 nonconvergences at p=.001 (36.328125%) and
+  927/1,024 at p=.003 (90.527344%). Tuned BP30 had 404/1,024 and 931/1,024.
+  These remain model-selection observations; the winner among many options can
+  be optimistic. Larger parameter count, lower lr and sine loss did not win.
+- Frozen bundle `results/m6_aux_selection/20261109T104322214172Z/` copies the
+  selected source checkpoint (SHA-256
+  `48591637735919bb3e12febe8793eca7f9a81e8e23584dfe53a07d9f6b098c3d`), the
+  builder/extension source and all ordinary control choices. **768** prefix
+  builder/correction/flag/iteration checks matched saved validation outputs.
+- Before confirmation sampling, two method replications were precommitted at
+  **10:50:18 UTC**, using training seeds 1235/1236, new pool seeds **68234/69234**,
+  and shuffle entropies **[1235,921]/[1236,921]**. The final 4,000-update checkpoint
+  and cycle30 rule are fixed for both, irrespective of primary confirmation.
+  Their source/data configs and code hashes are in `cpu_aux_replication_plan.yaml`.
+  These are auxiliary method replications, not official main M6 training runs.
+- Fixed Stage1 confirmation: **4,096 cases/p**, seeds **44234–44235**, primary
+  selected learned versus validation-best ordinary control, Holm over two p values;
+  architecture-matched initialization is a separate two-test learning family.
+  The predeclared screen requires at least 1 pp lower grid mean, at least one
+  corrected primary benefit, no corrected primary harm, and a corrected learning
+  benefit plus lower mean versus initialization. No model replacement after testing.
+- Regardless of that screen, the fixed selected/ordinary/initialization pipelines
+  receive auxiliary paired two-stage accuracy assessment, targeting **16,384 cases
+  at p=.001 and 1,024 at p=.003**. The initial confirmation pool is reused without
+  selection; new extension streams are **64234/64235**. Compute the common deterministic
+  OSD result once for cases requested by any pipeline, then compose each actual
+  Stage1 decision with that result. Report **per-model fallback requests separately
+  from actual unique executions** in a custom accuracy table; this is an evaluation
+  optimization, not a deployed cache or timing improvement. No fabricated physical
+  call counts enter the standard results schema.
+- Accuracy cap 6,300 s, point budgets 5,700/600 s. Any incomplete fixed target is
+  labelled budget-limited. For completed fixed samples, report logical rates and
+  joint one-sided bounds on learned-only logical failures versus ordinary and
+  initialization (four bounds, alpha/4). No equivalence margin or claim is invented.
+- Actual idle-machine timing uses **fresh uncached fallback calls**, 512 measured
+  cases plus 64 warmups/p, seeds **66234–66235**, for BP15, the ordinary control,
+  initialization and selected model. Randomize model order per paired case with
+  entropy **[1234,965,p-index]**. Cap 2,400 s and stop by 13:50 UTC for finalization.
+  This is explicitly a pilot, below main E2's 20k/1k regime; p99 uncertainty must
+  be shown rather than declaring the main latency criterion passed.
+- A loaded-machine budget calibration (not a performance comparison) measured
+  16 fallback calls/p after two warmups: means .473 s at p=.001 and .569 s at
+  p=.003. It explains the need for shared accuracy work and bounded timing samples.
+  All main final-test pools and M6/M7 completion status remain unchanged.
+
+### Auxiliary verification and stronger-control challenge (11:17 UTC)
+
+- The first fixed independent Stage1 confirmation passed its declared screen:
+  1,640 versus 1,830 failures at p=.001, and 3,671 versus 3,680 at p=.003,
+  each on 4,096 paired cases. Only the low-p primary difference is significant
+  after the two-point correction. Matched initialization had 1,803/3,751 failures;
+  both learned-versus-initialization points passed their separate correction.
+  This is a Stage1 result, not a complete LER/latency or M6 result.
+- Its audit regenerated 8,192 cases, verified 57,344 raw outcomes, replayed 896
+  decoder cases and reproduced the two paired families and screen. Full suite:
+  **134 passed in 30.70 s**. Full-pipeline accuracy and precommitted training-seed
+  replications remain in progress. Timing starts only after known CPU jobs finish.
+- Add a clearly **secondary, posthoc** challenge using ordinary BP at T=50/100,
+  which are already in the original handoff baseline sweep. Tune all eleven
+  factors on existing validation, freeze those choices, then assess the already
+  fixed auxiliary confirmation cases. This was proposed after seeing the T30
+  comparison and cannot replace it or acquire a predeclared-primary label.
+  Source/settings/results are separate; the selected learned model is unchanged.
+- The read-only oracle-opportunity audit initially used .50-style filenames while
+  the saved sweep uses .5. Preserve that failed audit source/error; the corrected
+  replay reproduced 45,056 saved validation factor outcomes. No selector has been
+  trained; its proposed future confirmation seeds are now 63234–63235 because
+  44234–44235 were used by the separate learned-message study.
+- Latency bootstrap settings are frozen before timing: 5,000 paired case
+  resamples, entropy [1234,967,p-index,baseline-index], nominal descriptive 95%
+  intervals for selected-minus-baseline mean and p99. They are not a main E2 gate.
+- Before inspecting T50/T100 outcomes, also specify a separate secondary latency
+  pilot for both longer controls, frozen learned30 and ordinary30. New seeds
+  72234/72235, 512 measured + 64 warmups, randomized order [1234,968,p-index],
+  5,000 paired bootstrap resamples [1234,969,p-index,baseline-index]. Run only
+  after original timing and known compute jobs finish, cap 1,800 s and stop by
+  13:50 UTC; budget-limited samples cannot pass main E2. This assesses whether
+  extra ordinary iterations are practically preferable, without selecting a new
+  learned checkpoint or changing the original experiment matrix.
+
+### Completed auxiliary diagnostics and provenance audits
+
+- Retention study `results/m6_retention/20261109T090301820313Z-dda8532f`:
+  adding initially correct anchors to the loss did not help. On 2,048 fresh
+  cases, fallback demand was 61.719% hard-only and 61.914% retention, versus
+  61.768% tuned BP; all four corrected tests were inconclusive. Its audit passed
+  800 paired input hashes, 6,912 model cases, 384 exact exports and four CSV rows.
+- Both completed 1,024-case conditional-training streams received 1,200 updates.
+  Neither met its useful-learning screen. Each audit regenerated its mining and
+  reused-validation sets, checked every update hash/schedule and first loss,
+  replayed 8,192 model cases and 512 exact export cases, and checked five CSV rows.
+  The earlier pre-update interrupted attempts remain recorded separately.
+- The six-arm capacity/rate/sine audit regenerated **52,736 mining cases** and
+  **32,000 unique selected failures**, reproduced the shuffle and all input hashes,
+  and checked all **24,000** recorded updates and their learning-rate schedules.
+  Initial losses reproduced exactly for every arm. It verified **122,880** raw
+  validation outcomes, replayed **1,536** neural/export cases, and reproduced
+  earliest-minimum checkpoint selection and checkpoint hashes. It does not claim
+  to replay every optimizer update. Evidence:
+  `results/m6_capacity/20261109T093911371390Z/audit.json`.
+- The structural/high-rate arm won validation; full weight flexibility, lower
+  learning rate and the sine surrogate did not improve the selected result.
+  Those negative arms and their complete checkpoints/source are retained.

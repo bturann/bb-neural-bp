@@ -1,0 +1,20 @@
+{
+  "frozen_before_updates": true,
+  "training_pool_seed": 48235,
+  "unseen_seed": 42234,
+  "training_pool_shots": 1792,
+  "training_pool_rng_state": {
+    "bit_generator": "PCG64",
+    "state": {
+      "state": 325965902686389944547243929914462453012,
+      "inc": 150803968902451727681426455360181177157
+    },
+    "has_uint32": 0,
+    "uinteger": 0
+  },
+  "prior_csv_seed_sources_checked": 47,
+  "sha256": {
+    "train": "aa3306e025c4311aef105197ee55cb8af5f62af1b21cbea84ba5a7f6019d0df3",
+    "unseen": "c6d71d31f7d9e24dfabe79b130df4351f7904b12932e97b54ba585020e4f02b0"
+  }
+}

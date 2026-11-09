@@ -1,0 +1,12 @@
+{
+  "scope": "Descriptive decomposition of the fixed unseen outcomes; no new test or checkpoint selection.",
+  "initial_hard_cases": 605,
+  "initial_correct_cases": 419,
+  "initial_hard_now_correct": 125,
+  "initial_hard_now_correct_fraction": 0.2066115702479339,
+  "initial_correct_now_failed": 122,
+  "initial_correct_now_failed_fraction": 0.2911694510739857,
+  "correct_decodes_gained": 125,
+  "correct_decodes_lost": 122,
+  "final_converged_wrong_logical": 0
+}

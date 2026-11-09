@@ -1,0 +1,112 @@
+{
+  "purpose": "auxiliary_first_pass_conditioned_training",
+  "config_hash": "d450d95ab06ffcdc2e61edcd2820b8236cecf541",
+  "settings": {
+    "purpose": "auxiliary_first_pass_conditioned_training",
+    "wall_seconds": 1200,
+    "finalization_reserve_seconds": 120,
+    "training_cases": 1024,
+    "training_pool_seed": 48235,
+    "training_pool_batch": 256,
+    "training_pool_max_shots": 8192,
+    "unseen_cases": 1024,
+    "unseen_seed": 42234,
+    "shuffle_seed_entropy": [
+      1234,
+      918
+    ],
+    "training_min_correct_gain": 0.1,
+    "loss_min_relative_reduction": 0.1,
+    "unseen_min_correct_gain": 0.02,
+    "unseen_min_fallback_reduction": 0.02,
+    "alpha": 0.05,
+    "export_check_shots": 64,
+    "checkpoint_rule": "fixed_final_update_or_budget_stop",
+    "unseen_evaluation_steps": "initial_and_final_only",
+    "mining_decoder": "tuned_first_pass",
+    "validation_source": "results/m6_cascade_tuning/p0/20261109T090855243984Z-277fb140/cases.npz"
+  },
+  "git_sha": "4cd9df9375b0713707a2f5f1d30f0c353284cc98-dirty",
+  "initial_train": {
+    "shots": 1024,
+    "mean_loss": 50.99053955078125,
+    "failures": 821,
+    "fallback_demand": 0.8017578125,
+    "logical_failures": 821,
+    "logical_failure_rate": 0.8017578125,
+    "correct_decodes": 203,
+    "mean_iterations": 13.9130859375,
+    "export_check_shots": 64
+  },
+  "final_train": {
+    "shots": 1024,
+    "mean_loss": 51.11705780029297,
+    "failures": 816,
+    "fallback_demand": 0.796875,
+    "logical_failures": 816,
+    "logical_failure_rate": 0.796875,
+    "correct_decodes": 208,
+    "mean_iterations": 13.896484375,
+    "export_check_shots": 64
+  },
+  "initial_unseen": {
+    "shots": 1024,
+    "mean_loss": 37.2108154296875,
+    "failures": 605,
+    "fallback_demand": 0.5908203125,
+    "logical_failures": 605,
+    "logical_failure_rate": 0.5908203125,
+    "correct_decodes": 419,
+    "mean_iterations": 11.4384765625,
+    "export_check_shots": 64
+  },
+  "final_unseen": {
+    "shots": 1024,
+    "mean_loss": 36.825862884521484,
+    "failures": 602,
+    "fallback_demand": 0.587890625,
+    "logical_failures": 602,
+    "logical_failure_rate": 0.587890625,
+    "correct_decodes": 422,
+    "mean_iterations": 11.333984375,
+    "export_check_shots": 64
+  },
+  "tuned_unseen": {
+    "fallback_demand": 0.583984375,
+    "logical_failure_rate": 0.583984375,
+    "mean_iterations": 11.5009765625
+  },
+  "unseen_screen": {
+    "correct_gain": 0.0029296875,
+    "fallback_reduction": 0.0029296875,
+    "tests": {
+      "failed": {
+        "first_only": 125,
+        "second_only": 122,
+        "pvalue": 0.8987706563307029,
+        "holm_pvalue": 1.0
+      },
+      "logical_failed": {
+        "first_only": 125,
+        "second_only": 122,
+        "pvalue": 0.8987706563307029,
+        "holm_pvalue": 1.0
+      }
+    },
+    "useful": false
+  },
+  "decision": "no_useful_learning_under_this_budget",
+  "training_correct_gain": 0.0048828125,
+  "training_relative_loss_reduction": -0.002481210252457121,
+  "training_useful": false,
+  "loss_reduced": false,
+  "steps": 1200,
+  "completed_update_budget": true,
+  "stopping": "max_steps",
+  "elapsed_s": 895.2861018329859,
+  "gpu_seconds": 0,
+  "final_test_data_used": false,
+  "m6_complete": false,
+  "final_checkpoint_sha256": "92d2bcf70c362a89218e0ff347eb3fe5bf49827acc4080df03cb91731220e430",
+  "scope": "Reuses declared validation cases for auxiliary neural candidate selection; this is not fresh confirmation. Single-seed, single-p fixed-case learning diagnostic. Training cases fail the declared mining decoder; unseen data are unfiltered and evaluated only initially/finally. Fixed final checkpoint, no unseen selection. Thresholds are practical diagnostic screens, not M6 gates or evidence of equal two-stage LER/latency."
+}

@@ -1,0 +1,127 @@
+{
+  "points": [
+    {
+      "p": 0.001,
+      "seed": 44234,
+      "shots": 4096,
+      "ordinary_name": "bp30",
+      "failures": {
+        "bp15": 2502,
+        "bp30": 1830,
+        "two_bp": 2009,
+        "native30": 1803,
+        "native_second": 2009,
+        "selected": 1640,
+        "matched_init": 1803
+      },
+      "wrong_logical_converged": {
+        "bp15": 0,
+        "bp30": 1,
+        "two_bp": 0,
+        "native30": 1,
+        "native_second": 0,
+        "selected": 0,
+        "matched_init": 1
+      },
+      "primary": {
+        "first_only": 637,
+        "second_only": 447,
+        "pvalue": 8.678332335919972e-09,
+        "holm_pvalue": 1.7356664671839945e-08
+      },
+      "learning": {
+        "first_only": 629,
+        "second_only": 466,
+        "pvalue": 9.378582292195823e-07,
+        "holm_pvalue": 1.8757164584391646e-06
+      }
+    },
+    {
+      "p": 0.003,
+      "seed": 44235,
+      "shots": 4096,
+      "ordinary_name": "bp30",
+      "failures": {
+        "bp15": 3973,
+        "bp30": 3680,
+        "two_bp": 3922,
+        "native30": 3689,
+        "native_second": 3922,
+        "selected": 3671,
+        "matched_init": 3751
+      },
+      "wrong_logical_converged": {
+        "bp15": 0,
+        "bp30": 1,
+        "two_bp": 1,
+        "native30": 1,
+        "native_second": 1,
+        "selected": 0,
+        "matched_init": 0
+      },
+      "primary": {
+        "first_only": 233,
+        "second_only": 224,
+        "pvalue": 0.708281326346703,
+        "holm_pvalue": 0.708281326346703
+      },
+      "learning": {
+        "first_only": 252,
+        "second_only": 172,
+        "pvalue": 0.00011954570260581936,
+        "holm_pvalue": 0.00011954570260581936
+      }
+    }
+  ],
+  "selected": {
+    "candidate": "capacity_struct_standard",
+    "design": "cycle30",
+    "failures": 1299,
+    "logical_failures": 1299,
+    "source_sha256": "48591637735919bb3e12febe8793eca7f9a81e8e23584dfe53a07d9f6b098c3d",
+    "source_checkpoint": "results/m6_capacity/20261109T093911371390Z/struct_standard/best.pt",
+    "source_step": 4000,
+    "validation_directory": "results/m6_candidate_validation/capacity_struct_standard/20261109T103530866617Z",
+    "points": [
+      {
+        "candidate": "capacity_struct_standard",
+        "design": "cycle30",
+        "p": 0.001,
+        "seed": 42234,
+        "shots": 1024,
+        "failures": 372,
+        "logical_failures": 372,
+        "wrong_logical_converged": 0,
+        "mean_iterations": 18.4267578125,
+        "exact_export_shots": 64
+      },
+      {
+        "candidate": "capacity_struct_standard",
+        "design": "cycle30",
+        "p": 0.003,
+        "seed": 42235,
+        "shots": 1024,
+        "failures": 927,
+        "logical_failures": 927,
+        "wrong_logical_converged": 0,
+        "mean_iterations": 28.8408203125,
+        "exact_export_shots": 64
+      }
+    ]
+  },
+  "model_design": "cycle30",
+  "checkpoint_sha256": "48591637735919bb3e12febe8793eca7f9a81e8e23584dfe53a07d9f6b098c3d",
+  "mean_selected": 0.6483154296875,
+  "mean_ordinary": 0.672607421875,
+  "mean_matched_init": 0.677978515625,
+  "primary_benefits": 1,
+  "primary_harms": 0,
+  "learning_benefits": 2,
+  "clear_gain": true,
+  "elapsed_s": 477.9628047500155,
+  "selection_directory": "results/m6_aux_selection/20261109T104322214172Z",
+  "final_test_data_used": false,
+  "gpu_seconds": 0,
+  "m6_complete": false,
+  "scope": "Fixed-shot independent auxiliary Stage1 confirmation. Two-point primary and initialization families corrected separately. No OSD, logical-equivalence or latency claim."
+}

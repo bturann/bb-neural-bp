@@ -1,0 +1,86 @@
+{
+  "purpose": "validation_only_learned_pipeline_selection",
+  "candidate": "retain800",
+  "source_checkpoint": "results/m6_retention/20261109T090301820313Z-dda8532f/retain_easy/last.pt",
+  "source_sha256": "b92af61a3e6d358b13bca7c89c814a1d95a5285c049c3a039a11a045c598110d",
+  "source_step": 800,
+  "records": [
+    {
+      "candidate": "retain800",
+      "design": "cascade15",
+      "p": 0.001,
+      "seed": 42234,
+      "shots": 1024,
+      "failures": 475,
+      "logical_failures": 475,
+      "wrong_logical_converged": 0,
+      "mean_iterations": 19.5478515625,
+      "exact_export_shots": 64
+    },
+    {
+      "candidate": "retain800",
+      "design": "cycle30",
+      "p": 0.001,
+      "seed": 42234,
+      "shots": 1024,
+      "failures": 434,
+      "logical_failures": 434,
+      "wrong_logical_converged": 0,
+      "mean_iterations": 18.7666015625,
+      "exact_export_shots": 64
+    },
+    {
+      "candidate": "retain800",
+      "design": "last30",
+      "p": 0.001,
+      "seed": 42234,
+      "shots": 1024,
+      "failures": 403,
+      "logical_failures": 403,
+      "wrong_logical_converged": 0,
+      "mean_iterations": 18.6083984375,
+      "exact_export_shots": 64
+    },
+    {
+      "candidate": "retain800",
+      "design": "cascade15",
+      "p": 0.003,
+      "seed": 42235,
+      "shots": 1024,
+      "failures": 966,
+      "logical_failures": 966,
+      "wrong_logical_converged": 0,
+      "mean_iterations": 29.1103515625,
+      "exact_export_shots": 64
+    },
+    {
+      "candidate": "retain800",
+      "design": "cycle30",
+      "p": 0.003,
+      "seed": 42235,
+      "shots": 1024,
+      "failures": 927,
+      "logical_failures": 927,
+      "wrong_logical_converged": 0,
+      "mean_iterations": 28.8876953125,
+      "exact_export_shots": 64
+    },
+    {
+      "candidate": "retain800",
+      "design": "last30",
+      "p": 0.003,
+      "seed": 42235,
+      "shots": 1024,
+      "failures": 923,
+      "logical_failures": 923,
+      "wrong_logical_converged": 0,
+      "mean_iterations": 28.8681640625,
+      "exact_export_shots": 64
+    }
+  ],
+  "elapsed_s": 45.75466704199789,
+  "confirmation_data_used": false,
+  "final_test_data_used": false,
+  "m6_complete": false,
+  "scope": "Reuses independent validation only. Continued models perform zero additional optimization; source trained unroll is T=15. All inference choices must be frozen before reserved confirmation is sampled."
+}

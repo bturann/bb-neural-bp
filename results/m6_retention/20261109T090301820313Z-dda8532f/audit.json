@@ -1,0 +1,16 @@
+{
+  "checks_passed": true,
+  "matched_training_batches": 800,
+  "regenerated_pool_cases": 512,
+  "regenerated_train_cases": 256,
+  "regenerated_unseen_cases": 2048,
+  "replayed_model_cases": 6912,
+  "exact_export_shots": 384,
+  "first_weighted_losses_reproduced": true,
+  "checkpoint_training_score_files_checked": 16,
+  "statistical_tests_reproduced": 4,
+  "csv_rows_checked": 4,
+  "final_test_data_used": false,
+  "m6_complete": false,
+  "audit_source_sha256": "9e3a6fd14b921bd915c93c22911ff1d6f15beeea432303392139e0f35353d452"
+}

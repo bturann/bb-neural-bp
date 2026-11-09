@@ -1,0 +1,10 @@
+alpha: 0.05
+deadline_utc: '2026-11-09T14:00:00+00:00'
+export_check_shots: 64
+first_pass_table: results/m6_cpu_pilot_check/20261109T040246608374Z-cb99df2f/tuned_scaling.csv
+min_mean_gain: 0.01
+purpose: approved_auxiliary_cascade_controls
+selection_rule: minimum_nonconvergence_then_lower_scaling
+threads: 1
+training_data_used: false
+wall_seconds: 1200

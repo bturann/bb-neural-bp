@@ -1,0 +1,5 @@
+The first replay audit exited before comparison because the audit constructed
+two_pass-0.50.npz, while the preserved tuning filenames use general formatting
+(two_pass-0.5.npz). FileNotFoundError was observed. failed_audit_source.py preserves
+that audit attempt. The audit filename formatting was corrected; original
+experimental outputs and numerical summaries were not changed.

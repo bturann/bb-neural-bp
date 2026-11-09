@@ -1,0 +1,34 @@
+{
+  "points": [
+    {
+      "p": 0.001,
+      "seed": 59234,
+      "measured": 16,
+      "mean_s": 0.47303867181250003,
+      "max_s": 0.626509708,
+      "internal_osd_executions": 15
+    },
+    {
+      "p": 0.003,
+      "seed": 59235,
+      "measured": 16,
+      "mean_s": 0.568608091,
+      "max_s": 0.676761958,
+      "internal_osd_executions": 16
+    }
+  ],
+  "settings": {
+    "purpose": "budget_only_fallback_cost_calibration",
+    "base_config": "configs/m6/cpu_cascade.yaml",
+    "seed_offset": 58000,
+    "draw_batch": 64,
+    "measured_fallbacks": 16,
+    "warmup_fallbacks": 2,
+    "wall_seconds": 120,
+    "training_active": true,
+    "performance_claim": false
+  },
+  "scope": "Loaded-machine fallback budget estimate only, not an idle-machine performance comparison or E2 result.",
+  "final_test_data_used": false,
+  "m6_complete": false
+}

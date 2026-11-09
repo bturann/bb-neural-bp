@@ -1,0 +1,15 @@
+{
+  "checks_passed": true,
+  "p": 0.003,
+  "seed": 42235,
+  "regenerated_cases": 1024,
+  "checked_control_rows": 44,
+  "checked_full_decoder_outcomes": 45056,
+  "replayed_model_cases": 7680,
+  "first_pass_replayed": true,
+  "all_selections_reproduced": true,
+  "confirmation_data_used": false,
+  "final_test_data_used": false,
+  "m6_complete": false,
+  "audit_source_sha256": "e5161e40cef891e1e3f7fd81532fb29a67f4c94693d2f6821d3c5299f869ebc2"
+}

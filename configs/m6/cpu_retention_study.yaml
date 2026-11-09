@@ -1,0 +1,25 @@
+purpose: controlled_initial_success_retention
+source_hard_bundle: results/m6_fixed_case/20261109T083753363297Z-9fa92ed1
+prepare_wall_seconds: 180
+arm_wall_seconds: 1200
+finalization_reserve_seconds: 120
+hard_cases: 128
+easy_cases: 128
+easy_seed: 38234
+easy_pool_batch: 256
+easy_pool_max_shots: 4096
+unseen_cases: 2048
+unseen_seed: 40234
+shuffle_seed_entropy:
+- 1234
+- 913
+hard_per_batch: 8
+easy_per_batch: 8
+easy_loss_weights:
+  hard_only: 0.0
+  retain_easy: 1.0
+alpha: 0.05
+min_net_gain: 0.02
+export_check_shots: 64
+deadline_utc: '2026-11-09T14:00:00+00:00'
+checkpoint_rule: fixed_final_update_or_budget_stop

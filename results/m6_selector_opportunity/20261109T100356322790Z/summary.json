@@ -1,0 +1,35 @@
+{
+  "points": [
+    {
+      "p": 0.001,
+      "seed": 42234,
+      "shots": 1024,
+      "first_failures": 598,
+      "best_constant_two_pass_failures": 462,
+      "bp30_failures": 404,
+      "oracle_union_failures": 291,
+      "oracle_union_fallback": 0.2841796875,
+      "oracle_correct_rescues": 307,
+      "scope": "Posthoc family upper bound on reused validation cases; not an implementable decoder or independent confirmation."
+    },
+    {
+      "p": 0.003,
+      "seed": 42235,
+      "shots": 1024,
+      "first_failures": 982,
+      "best_constant_two_pass_failures": 969,
+      "bp30_failures": 931,
+      "oracle_union_failures": 939,
+      "oracle_union_fallback": 0.9169921875,
+      "oracle_correct_rescues": 43,
+      "scope": "Posthoc family upper bound on reused validation cases; not an implementable decoder or independent confirmation."
+    }
+  ],
+  "validation_sources": [
+    "results/m6_cascade_tuning/p0/20261109T090855243984Z-277fb140",
+    "results/m6_cascade_tuning/p1/20261109T090855243992Z-277fb140"
+  ],
+  "confirmation_data_used": false,
+  "final_test_data_used": false,
+  "m6_complete": false
+}

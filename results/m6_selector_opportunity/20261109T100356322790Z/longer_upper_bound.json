@@ -1,0 +1,20 @@
+[
+  {
+    "p": 0.001,
+    "seed": 42234,
+    "shots": 1024,
+    "best_fixed_bp30_failures": 404,
+    "oracle_failures": 164,
+    "oracle_correct_failures": 164,
+    "scope": "Reused-validation upper bound only; not an executable selector."
+  },
+  {
+    "p": 0.003,
+    "seed": 42235,
+    "shots": 1024,
+    "best_fixed_bp30_failures": 931,
+    "oracle_failures": 838,
+    "oracle_correct_failures": 838,
+    "scope": "Reused-validation upper bound only; not an executable selector."
+  }
+]

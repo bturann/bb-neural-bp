@@ -1,0 +1,55 @@
+{
+  "purpose": "Posthoc routing screen on previously inspected cases, not fresh confirmation",
+  "source": "results/m6_fixed_case/20261109T083753363297Z-9fa92ed1",
+  "source_hashes": {
+    "initial": "ff7221a2f8702727552a61b31e2423274c44f478648b5c31886bcbd0a1a7a0e7",
+    "tuned": "f3099df76ec190d9d3bd51965c68f8cdbbb09b47a8e9f6c7896efd3c9c90e5f8",
+    "final": "1fcdab3a61c27126ca218f97703d69512abeae5853234ffcfdb1a53cafb89752"
+  },
+  "models": {
+    "initial": {
+      "shots": 2048,
+      "fallbacks": 1295,
+      "logical_failures": 1295,
+      "fallback_demand": 0.63232421875
+    },
+    "tuned": {
+      "shots": 2048,
+      "fallbacks": 1249,
+      "logical_failures": 1250,
+      "fallback_demand": 0.60986328125
+    },
+    "final": {
+      "shots": 2048,
+      "fallbacks": 1301,
+      "logical_failures": 1301,
+      "fallback_demand": 0.63525390625
+    },
+    "tuned_then_initial": {
+      "shots": 2048,
+      "fallbacks": 1019,
+      "logical_failures": 1020,
+      "fallback_demand": 0.49755859375
+    },
+    "tuned_then_learned": {
+      "shots": 2048,
+      "fallbacks": 1039,
+      "logical_failures": 1040,
+      "fallback_demand": 0.50732421875
+    },
+    "initial_then_learned": {
+      "shots": 2048,
+      "fallbacks": 1063,
+      "logical_failures": 1063,
+      "fallback_demand": 0.51904296875
+    }
+  },
+  "learned_vs_extra_fixed_pass": {
+    "first_only": 125,
+    "second_only": 145,
+    "pvalue": 0.24750858519029012
+  },
+  "scope": "Inference routing uses first-pass syndrome validity only, including any first-pass wrong-logical convergence. These are reused development outcomes motivating an approved auxiliary study, with no confirmatory statistical claim. T=30 and independently tuned second-pass controls are still required.",
+  "final_test_data_used": false,
+  "m6_complete": false
+}

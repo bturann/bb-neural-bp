@@ -1,0 +1,12 @@
+purpose: auxiliary_sine_parity_surrogate
+surrogate: absolute_sine
+source_data_directory: results/m6_capacity/20261109T093911371390Z
+comparison_arms:
+- struct_low
+- full_low
+probability_clamp: null
+row_aggregation: sum_H_plus_beta_L
+multi_loss_weights: iteration_index
+source_paper: https://arxiv.org/html/1811.07835v2
+scope: Adapted surrogate on circuit H/L constraints, not a replication of the paper
+  model; original objective unchanged.

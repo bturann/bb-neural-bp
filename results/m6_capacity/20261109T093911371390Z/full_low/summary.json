@@ -1,0 +1,42 @@
+{
+  "arm": "full_low",
+  "steps": 4000,
+  "completed": true,
+  "stopping": "max_steps",
+  "parameters": 1366755,
+  "best_step": 4000,
+  "best_validation_failures": 1447,
+  "final_validation": {
+    "step": 4000,
+    "points": [
+      {
+        "p": 0.001,
+        "seed": 42234,
+        "shots": 1024,
+        "failures": 483,
+        "logical_failures": 483,
+        "wrong_logical_converged": 0,
+        "mean_iterations": 19.7412109375
+      },
+      {
+        "p": 0.003,
+        "seed": 42235,
+        "shots": 1024,
+        "failures": 964,
+        "logical_failures": 964,
+        "wrong_logical_converged": 0,
+        "mean_iterations": 29.1064453125
+      }
+    ],
+    "total_failures": 1447,
+    "total_logical_failures": 1447
+  },
+  "elapsed_s": 2172.400779791991,
+  "training_inputs_sha256": "db8e3699d8acef470406baca60984e2e55ba6bbccc4877d2098e360a6fa749ae",
+  "best_checkpoint_sha256": "66c47897fcc245d88a0a8ecf75e5027cce01c7bd539927d35b38017cbe661df9",
+  "checkpoint_sha256": "38a22ab5c6925dece1ae58b0d4f5c6712d76a8742c303cf26acc685e5650e1ae",
+  "confirmation_data_used": false,
+  "final_test_data_used": false,
+  "gpu_seconds": 0,
+  "m6_complete": false
+}

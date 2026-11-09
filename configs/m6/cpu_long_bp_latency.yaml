@@ -1,0 +1,19 @@
+purpose: secondary_stronger_bp_budget_latency_pilot
+finalization_utc: '2026-11-09T13:50:00+00:00'
+latency_models: [ordinary, selected, bp50, bp100]
+latency_shots: 512
+latency_warmup: 64
+latency_seed_offset: 71000
+latency_order_entropy: [1234, 968]
+latency_wall_seconds: 1800
+latency_bootstrap_repeats: 5000
+latency_bootstrap_entropy: [1234, 969]
+latency_receipt_name: long_bp_latency_receipt.json
+latency_output_root: results/m6_long_bp_latency
+latency_scope: Secondary stronger-iteration-budget CPU pilot, specified after the
+  primary Stage1 result but before observing T50/T100 challenge outputs. New
+  fixed paired cases, fresh uncached fallback calls, random per-case method order,
+  single thread after known compute jobs finish. Nominal bootstrap intervals are
+  descriptive; 512 samples weakly characterize p99. No primary replacement or
+  main E2 acceptance. Runs after the original timing pilot within remaining time;
+  incomplete fixed targets are labelled budget-limited.

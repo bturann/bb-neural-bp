@@ -1,0 +1,257 @@
+{
+  "p": 0.003,
+  "seed": 42235,
+  "shots": 1024,
+  "first_factor": 0.95,
+  "selected": {
+    "longer": {
+      "p": 0.003,
+      "seed": 42235,
+      "shots": 1024,
+      "kind": "longer",
+      "scaling": 1.0,
+      "failures": 931,
+      "logical_failures": 931,
+      "mean_iterations": 28.9990234375
+    },
+    "two_pass": {
+      "p": 0.003,
+      "seed": 42235,
+      "shots": 1024,
+      "kind": "two_pass",
+      "scaling": 0.75,
+      "failures": 969,
+      "logical_failures": 969,
+      "mean_iterations": 29.12109375
+    }
+  },
+  "grid": [
+    {
+      "p": 0.003,
+      "seed": 42235,
+      "shots": 1024,
+      "kind": "longer",
+      "scaling": 0.5,
+      "failures": 1010,
+      "logical_failures": 1010,
+      "mean_iterations": 29.7705078125
+    },
+    {
+      "p": 0.003,
+      "seed": 42235,
+      "shots": 1024,
+      "kind": "two_pass",
+      "scaling": 0.5,
+      "failures": 979,
+      "logical_failures": 979,
+      "mean_iterations": 29.1484375
+    },
+    {
+      "p": 0.003,
+      "seed": 42235,
+      "shots": 1024,
+      "kind": "longer",
+      "scaling": 0.55,
+      "failures": 1009,
+      "logical_failures": 1009,
+      "mean_iterations": 29.7060546875
+    },
+    {
+      "p": 0.003,
+      "seed": 42235,
+      "shots": 1024,
+      "kind": "two_pass",
+      "scaling": 0.55,
+      "failures": 977,
+      "logical_failures": 977,
+      "mean_iterations": 29.1494140625
+    },
+    {
+      "p": 0.003,
+      "seed": 42235,
+      "shots": 1024,
+      "kind": "longer",
+      "scaling": 0.6,
+      "failures": 1012,
+      "logical_failures": 1012,
+      "mean_iterations": 29.7998046875
+    },
+    {
+      "p": 0.003,
+      "seed": 42235,
+      "shots": 1024,
+      "kind": "two_pass",
+      "scaling": 0.6,
+      "failures": 979,
+      "logical_failures": 979,
+      "mean_iterations": 29.1572265625
+    },
+    {
+      "p": 0.003,
+      "seed": 42235,
+      "shots": 1024,
+      "kind": "longer",
+      "scaling": 0.65,
+      "failures": 1006,
+      "logical_failures": 1006,
+      "mean_iterations": 29.716796875
+    },
+    {
+      "p": 0.003,
+      "seed": 42235,
+      "shots": 1024,
+      "kind": "two_pass",
+      "scaling": 0.65,
+      "failures": 979,
+      "logical_failures": 979,
+      "mean_iterations": 29.154296875
+    },
+    {
+      "p": 0.003,
+      "seed": 42235,
+      "shots": 1024,
+      "kind": "longer",
+      "scaling": 0.7,
+      "failures": 994,
+      "logical_failures": 994,
+      "mean_iterations": 29.53515625
+    },
+    {
+      "p": 0.003,
+      "seed": 42235,
+      "shots": 1024,
+      "kind": "two_pass",
+      "scaling": 0.7,
+      "failures": 973,
+      "logical_failures": 973,
+      "mean_iterations": 29.138671875
+    },
+    {
+      "p": 0.003,
+      "seed": 42235,
+      "shots": 1024,
+      "kind": "longer",
+      "scaling": 0.75,
+      "failures": 986,
+      "logical_failures": 986,
+      "mean_iterations": 29.3818359375
+    },
+    {
+      "p": 0.003,
+      "seed": 42235,
+      "shots": 1024,
+      "kind": "two_pass",
+      "scaling": 0.75,
+      "failures": 969,
+      "logical_failures": 969,
+      "mean_iterations": 29.12109375
+    },
+    {
+      "p": 0.003,
+      "seed": 42235,
+      "shots": 1024,
+      "kind": "longer",
+      "scaling": 0.8,
+      "failures": 982,
+      "logical_failures": 982,
+      "mean_iterations": 29.3828125
+    },
+    {
+      "p": 0.003,
+      "seed": 42235,
+      "shots": 1024,
+      "kind": "two_pass",
+      "scaling": 0.8,
+      "failures": 973,
+      "logical_failures": 973,
+      "mean_iterations": 29.1357421875
+    },
+    {
+      "p": 0.003,
+      "seed": 42235,
+      "shots": 1024,
+      "kind": "longer",
+      "scaling": 0.85,
+      "failures": 974,
+      "logical_failures": 974,
+      "mean_iterations": 29.2958984375
+    },
+    {
+      "p": 0.003,
+      "seed": 42235,
+      "shots": 1024,
+      "kind": "two_pass",
+      "scaling": 0.85,
+      "failures": 971,
+      "logical_failures": 971,
+      "mean_iterations": 29.1201171875
+    },
+    {
+      "p": 0.003,
+      "seed": 42235,
+      "shots": 1024,
+      "kind": "longer",
+      "scaling": 0.9,
+      "failures": 957,
+      "logical_failures": 957,
+      "mean_iterations": 29.2138671875
+    },
+    {
+      "p": 0.003,
+      "seed": 42235,
+      "shots": 1024,
+      "kind": "two_pass",
+      "scaling": 0.9,
+      "failures": 974,
+      "logical_failures": 974,
+      "mean_iterations": 29.1484375
+    },
+    {
+      "p": 0.003,
+      "seed": 42235,
+      "shots": 1024,
+      "kind": "longer",
+      "scaling": 0.95,
+      "failures": 933,
+      "logical_failures": 933,
+      "mean_iterations": 28.84375
+    },
+    {
+      "p": 0.003,
+      "seed": 42235,
+      "shots": 1024,
+      "kind": "two_pass",
+      "scaling": 0.95,
+      "failures": 982,
+      "logical_failures": 982,
+      "mean_iterations": 29.1669921875
+    },
+    {
+      "p": 0.003,
+      "seed": 42235,
+      "shots": 1024,
+      "kind": "longer",
+      "scaling": 1.0,
+      "failures": 931,
+      "logical_failures": 931,
+      "mean_iterations": 28.9990234375
+    },
+    {
+      "p": 0.003,
+      "seed": 42235,
+      "shots": 1024,
+      "kind": "two_pass",
+      "scaling": 1.0,
+      "failures": 969,
+      "logical_failures": 969,
+      "mean_iterations": 29.1259765625
+    }
+  ],
+  "elapsed_s": 238.43950837495504,
+  "git_sha": "4cd9df9375b0713707a2f5f1d30f0c353284cc98-dirty",
+  "config_hash": "277fb140c4406bd9fffb5d5da99aefbeea06272f",
+  "cases_sha256": "9149a681d84520542c8ce9b926d8833401ca08fa9e18104da387da4d83294741",
+  "scope": "Independent validation tuning of two auxiliary extra-compute controls. No fresh confirmation, OSD, or latency claim.",
+  "final_test_data_used": false,
+  "m6_complete": false
+}

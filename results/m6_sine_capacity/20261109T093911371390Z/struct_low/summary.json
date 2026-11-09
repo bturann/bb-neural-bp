@@ -1,0 +1,44 @@
+{
+  "arm": "struct_low",
+  "steps": 4000,
+  "completed": true,
+  "stopping": "max_steps",
+  "parameters": 1455,
+  "objective_name": "sine_parity",
+  "experiment_hash": "ce4f3bc1281c2d4f073319fe220367fe8f63c751",
+  "best_step": 2500,
+  "best_validation_failures": 1437,
+  "final_validation": {
+    "step": 4000,
+    "points": [
+      {
+        "p": 0.001,
+        "seed": 42234,
+        "shots": 1024,
+        "failures": 474,
+        "logical_failures": 474,
+        "wrong_logical_converged": 0,
+        "mean_iterations": 19.658203125
+      },
+      {
+        "p": 0.003,
+        "seed": 42235,
+        "shots": 1024,
+        "failures": 965,
+        "logical_failures": 965,
+        "wrong_logical_converged": 0,
+        "mean_iterations": 29.1259765625
+      }
+    ],
+    "total_failures": 1439,
+    "total_logical_failures": 1439
+  },
+  "elapsed_s": 1256.7854972500354,
+  "training_inputs_sha256": "db8e3699d8acef470406baca60984e2e55ba6bbccc4877d2098e360a6fa749ae",
+  "best_checkpoint_sha256": "06ddd13363b39aa9be769c2d8ccf936ecb0302cba357ab2f2b233367d4478cbf",
+  "checkpoint_sha256": "2b8d458f7ae543b3a0b2740df6af540b67c17394cd201798a720d3d0a7ed57ad",
+  "confirmation_data_used": false,
+  "final_test_data_used": false,
+  "gpu_seconds": 0,
+  "m6_complete": false
+}

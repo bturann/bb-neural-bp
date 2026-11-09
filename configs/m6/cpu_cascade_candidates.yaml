@@ -1,0 +1,40 @@
+purpose: validation_only_learned_pipeline_selection
+tuning_bundles:
+- results/m6_cascade_tuning/p0/20261109T090855243984Z-277fb140
+- results/m6_cascade_tuning/p1/20261109T090855243992Z-277fb140
+designs:
+- cascade15
+- cycle30
+- last30
+wall_seconds: 600
+threads: 1
+export_check_shots: 64
+selection_rule: minimum_total_fallback_then_candidate_name_then_design
+confirmation_seed_offset: 43000
+confirmation_shots: 4096
+candidates:
+  fixed1200:
+    checkpoint: results/m6_fixed_case/20261109T083753363297Z-9fa92ed1/last.pt
+    expected_step: 1200
+    complete_key: completed_update_budget
+    hash_key: final_checkpoint_sha256
+  hard800:
+    checkpoint: results/m6_retention/20261109T090301820313Z-dda8532f/hard_only/last.pt
+    expected_step: 800
+    complete_key: completed
+    hash_key: checkpoint_sha256
+  retain800:
+    checkpoint: results/m6_retention/20261109T090301820313Z-dda8532f/retain_easy/last.pt
+    expected_step: 800
+    complete_key: completed
+    hash_key: checkpoint_sha256
+  conditional0:
+    checkpoint: results/m6_conditional/stream0/20261109T092350866777Z-e959d987/last.pt
+    expected_step: 1200
+    complete_key: completed_update_budget
+    hash_key: final_checkpoint_sha256
+  conditional1:
+    checkpoint: results/m6_conditional/stream1/20261109T092350866795Z-d450d95a/last.pt
+    expected_step: 1200
+    complete_key: completed_update_budget
+    hash_key: final_checkpoint_sha256

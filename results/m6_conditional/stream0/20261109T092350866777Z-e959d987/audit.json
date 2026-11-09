@@ -1,0 +1,16 @@
+{
+  "checks_passed": true,
+  "regenerated_pool_cases": 1792,
+  "regenerated_train_cases": 1024,
+  "regenerated_unseen_cases": 1024,
+  "checked_training_updates": 1200,
+  "first_training_loss_reproduced": true,
+  "replayed_model_cases": 8192,
+  "exact_export_shots": 512,
+  "checkpoint_evaluations_reproduced": 5,
+  "checked_csv_rows": 5,
+  "frozen_data_hashes_verified": true,
+  "training_only_protocol_verified": true,
+  "decision_reproduced": "no_useful_learning_under_this_budget",
+  "audit_source_sha256": "2e4c5012253051dd2a94aa4e86e28e2b9b76e8b74764b35c6414fc95ff701c1c"
+}

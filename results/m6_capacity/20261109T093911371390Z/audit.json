@@ -1,0 +1,66 @@
+{
+  "checks_passed": true,
+  "regenerated_mining_cases": 52736,
+  "unique_selected_cases": 32000,
+  "regenerated_validation_cases": 2048,
+  "matching_batch_plan": true,
+  "training_inputs_sha256": "db8e3699d8acef470406baca60984e2e55ba6bbccc4877d2098e360a6fa749ae",
+  "arms": [
+    {
+      "directory": "results/m6_capacity/20261109T093911371390Z/full_low",
+      "updates": 4000,
+      "first_loss_reproduced": true,
+      "raw_validation_outcomes_verified": 20480,
+      "exact_replayed_neural_cases": 256,
+      "best_selection_reproduced": true,
+      "checkpoint_hashes_verified": true
+    },
+    {
+      "directory": "results/m6_capacity/20261109T093911371390Z/full_standard",
+      "updates": 4000,
+      "first_loss_reproduced": true,
+      "raw_validation_outcomes_verified": 20480,
+      "exact_replayed_neural_cases": 256,
+      "best_selection_reproduced": true,
+      "checkpoint_hashes_verified": true
+    },
+    {
+      "directory": "results/m6_capacity/20261109T093911371390Z/struct_low",
+      "updates": 4000,
+      "first_loss_reproduced": true,
+      "raw_validation_outcomes_verified": 20480,
+      "exact_replayed_neural_cases": 256,
+      "best_selection_reproduced": true,
+      "checkpoint_hashes_verified": true
+    },
+    {
+      "directory": "results/m6_capacity/20261109T093911371390Z/struct_standard",
+      "updates": 4000,
+      "first_loss_reproduced": true,
+      "raw_validation_outcomes_verified": 20480,
+      "exact_replayed_neural_cases": 256,
+      "best_selection_reproduced": true,
+      "checkpoint_hashes_verified": true
+    },
+    {
+      "directory": "results/m6_sine_capacity/20261109T093911371390Z/struct_low",
+      "updates": 4000,
+      "first_loss_reproduced": true,
+      "raw_validation_outcomes_verified": 20480,
+      "exact_replayed_neural_cases": 256,
+      "best_selection_reproduced": true,
+      "checkpoint_hashes_verified": true
+    },
+    {
+      "directory": "results/m6_sine_capacity/20261109T093911371390Z/full_low",
+      "updates": 4000,
+      "first_loss_reproduced": true,
+      "raw_validation_outcomes_verified": 20480,
+      "exact_replayed_neural_cases": 256,
+      "best_selection_reproduced": true,
+      "checkpoint_hashes_verified": true
+    }
+  ],
+  "scope": "Input, schedule, first-loss, raw outcomes, checkpoint/export and selection audit; does not replay every optimizer update.",
+  "audit_source_sha256": "4755eb7d921ef3e841ce4ab223341f4779462fef8ebac4b7888bc2a1f55e6c21"
+}

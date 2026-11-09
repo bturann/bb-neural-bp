@@ -1,0 +1,13 @@
+dtype: float32
+export_check_shots: 64
+longer_iterations: 30
+message_clip: 20.0
+purpose: matched_untrained_native_min_sum_controls
+second_iterations: 15
+selection_rule: minimum_nonconvergence_then_lower_scaling
+sharing: scalar
+threads: 1
+validation_bundles:
+- results/m6_cascade_tuning/p0/20261109T090855243984Z-277fb140
+- results/m6_cascade_tuning/p1/20261109T090855243992Z-277fb140
+wall_seconds: 600

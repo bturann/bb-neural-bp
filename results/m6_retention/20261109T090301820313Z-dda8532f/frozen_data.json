@@ -1,0 +1,19 @@
+{
+  "frozen_before_updates": true,
+  "source_hard_bundle": "results/m6_fixed_case/20261109T083753363297Z-9fa92ed1",
+  "easy_pool_shots": 512,
+  "easy_pool_rng_state": {
+    "bit_generator": "PCG64",
+    "state": {
+      "state": 80992052568988645970604772173052125041,
+      "inc": 111578672620677910115623590363061371169
+    },
+    "has_uint32": 0,
+    "uinteger": 0
+  },
+  "hashes": {
+    "cases-train.npz": "8f4065db1a14f7391e72608538b72c5f45062dac5de32aab7d62613dcf9286e7",
+    "cases-unseen.npz": "59d4135b99d08c111f490e9b43084e8732a3cfe6f8a705407541f78494f017b9",
+    "batch_plan.npz": "b3bb02d33fc938866565707a7d6b3ce4bdf8dd0ca2514d420063aff14d3e646d"
+  }
+}

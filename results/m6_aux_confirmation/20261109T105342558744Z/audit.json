@@ -1,0 +1,11 @@
+{
+  "checks_passed": true,
+  "regenerated_independent_cases": 8192,
+  "raw_outcomes_verified": 57344,
+  "replayed_decoder_cases": 896,
+  "checked_csv_rows": 14,
+  "frozen_checkpoint_verified": true,
+  "paired_families_and_gate_reproduced": true,
+  "clear_gain": true,
+  "audit_source_sha256": "a57a90a1a21fc143f338d7361f2f9e1802eb8a01c23a21e9038e4df51e2f2c79"
+}

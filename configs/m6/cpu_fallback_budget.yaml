@@ -1,0 +1,9 @@
+purpose: budget_only_fallback_cost_calibration
+base_config: configs/m6/cpu_cascade.yaml
+seed_offset: 58000
+draw_batch: 64
+measured_fallbacks: 16
+warmup_fallbacks: 2
+wall_seconds: 120
+training_active: true
+performance_claim: false

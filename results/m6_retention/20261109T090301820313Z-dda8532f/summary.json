@@ -1,0 +1,135 @@
+{
+  "purpose": "controlled_initial_success_retention",
+  "arms": {
+    "hard_only": {
+      "arm": "hard_only",
+      "steps": 800,
+      "completed": true,
+      "stopping": "max_steps",
+      "train": {
+        "shots": 256,
+        "mean_loss": 31.600170135498047,
+        "failures": 130,
+        "fallback_demand": 0.5078125,
+        "logical_failures": 130,
+        "logical_failure_rate": 0.5078125,
+        "correct_decodes": 126,
+        "mean_iterations": 10.7421875,
+        "export_check_shots": 64,
+        "hard_correct": 24,
+        "easy_correct": 102
+      },
+      "unseen": {
+        "shots": 2048,
+        "mean_loss": 37.957149505615234,
+        "failures": 1264,
+        "fallback_demand": 0.6171875,
+        "logical_failures": 1264,
+        "logical_failure_rate": 0.6171875,
+        "correct_decodes": 784,
+        "mean_iterations": 11.77099609375,
+        "export_check_shots": 64
+      },
+      "elapsed_s": 678.5545410839841,
+      "checkpoint_sha256": "e57f6682c54e4057f9d8b3ce765baecc29a91113a385b99a73e561a0ad70c995",
+      "gpu_seconds": 0,
+      "final_test_data_used": false,
+      "m6_complete": false
+    },
+    "retain_easy": {
+      "arm": "retain_easy",
+      "steps": 800,
+      "completed": true,
+      "stopping": "max_steps",
+      "train": {
+        "shots": 256,
+        "mean_loss": 33.22301483154297,
+        "failures": 137,
+        "fallback_demand": 0.53515625,
+        "logical_failures": 137,
+        "logical_failure_rate": 0.53515625,
+        "correct_decodes": 119,
+        "mean_iterations": 10.96484375,
+        "export_check_shots": 64,
+        "hard_correct": 26,
+        "easy_correct": 93
+      },
+      "unseen": {
+        "shots": 2048,
+        "mean_loss": 38.012420654296875,
+        "failures": 1268,
+        "fallback_demand": 0.619140625,
+        "logical_failures": 1268,
+        "logical_failure_rate": 0.619140625,
+        "correct_decodes": 780,
+        "mean_iterations": 11.67919921875,
+        "export_check_shots": 64
+      },
+      "elapsed_s": 898.0321727920091,
+      "checkpoint_sha256": "b92af61a3e6d358b13bca7c89c814a1d95a5285c049c3a039a11a045c598110d",
+      "gpu_seconds": 0,
+      "final_test_data_used": false,
+      "m6_complete": false
+    }
+  },
+  "tests": [
+    {
+      "comparator": "hard_only",
+      "metric": "failed",
+      "gain": -0.001953125,
+      "first_only": 240,
+      "second_only": 244,
+      "pvalue": 0.8915520885814509,
+      "holm_pvalue": 1.0
+    },
+    {
+      "comparator": "hard_only",
+      "metric": "logical_failed",
+      "gain": -0.001953125,
+      "first_only": 240,
+      "second_only": 244,
+      "pvalue": 0.8915520885814509,
+      "holm_pvalue": 1.0
+    },
+    {
+      "comparator": "tuned",
+      "metric": "failed",
+      "gain": -0.00146484375,
+      "first_only": 266,
+      "second_only": 269,
+      "pvalue": 0.9311054132119416,
+      "holm_pvalue": 1.0
+    },
+    {
+      "comparator": "tuned",
+      "metric": "logical_failed",
+      "gain": -0.00146484375,
+      "first_only": 266,
+      "second_only": 269,
+      "pvalue": 0.9311054132119416,
+      "holm_pvalue": 1.0
+    }
+  ],
+  "transitions": {
+    "hard_only": {
+      "gained": 223,
+      "lost": 220
+    },
+    "retain_easy": {
+      "gained": 238,
+      "lost": 239
+    }
+  },
+  "useful": false,
+  "matched_training_batches": 800,
+  "mean_fallback": {
+    "initial": 0.61865234375,
+    "tuned": 0.61767578125,
+    "hard_only": 0.6171875,
+    "retain_easy": 0.619140625
+  },
+  "final_test_data_used": false,
+  "gpu_seconds": 0,
+  "m6_complete": false,
+  "scope": "Controlled easy-example loss-weight ablation, fixed final checkpoints, fresh unseen data and a joint four-test Holm family. Single-p single-seed diagnostic; no OSD, latency or main-M6 claim."
+}

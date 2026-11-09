@@ -1,6 +1,9 @@
 import runpy
 
 import numpy as np
+import pytest
+
+from bbnbp.config import load_config
 
 
 HELPERS=runpy.run_path("scripts/m6_fixed_case_diagnostic.py")
@@ -45,3 +48,21 @@ def test_hard_case_selection_uses_initial_failures_and_unique_syndromes():
     np.testing.assert_array_equal(indices,[1,3])
     assert pool["failed"][indices].all()
     assert len(np.unique(train["syndromes"],axis=0))==2
+
+
+def test_reused_validation_seed_requires_the_explicit_source_directory(tmp_path,monkeypatch):
+    c=load_config("configs/m6/cpu_fixed_case.yaml")
+    monkeypatch.chdir(tmp_path)
+    parent=tmp_path/"results"/"approved"
+    parent.mkdir(parents=True)
+    (parent/"tuning.csv").write_text("seed\n42234\n")
+    settings=dict(training_pool_seed=48234,unseen_seed=42234)
+    with pytest.raises(ValueError,match="previously used"):
+        HELPERS["seed_guard"](settings,c)
+    settings["validation_source"]=str(parent/"cases.npz")
+    assert HELPERS["seed_guard"](settings,c)==1
+    other=tmp_path/"results"/"not_approved"
+    other.mkdir()
+    (other/"test.csv").write_text("seed\n42234\n")
+    with pytest.raises(ValueError,match="previously used"):
+        HELPERS["seed_guard"](settings,c)

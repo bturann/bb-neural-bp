@@ -41,7 +41,10 @@ def main():
     torch.use_deterministic_algorithms(True)
     sampler=make_sampler(c,c.noise.p_grid[0])
     initial=make_model(sampler.problem,c)
-    train,pool,indices,state=helpers["hard_training_cases"](sampler,initial.export_cpu(),settings)
+    mining=initial.export_cpu()
+    if settings.get("mining_decoder")=="tuned_first_pass":
+        mining=LdpcBP(sampler.problem,c.model.T,tuned_factor(c.train.runtime.baseline_table,c,c.noise.p_grid[0]))
+    train,pool,indices,state=helpers["hard_training_cases"](sampler,mining,settings)
     with np.load(d/"training_pool.npz") as saved:
         for key,value in pool.items():np.testing.assert_array_equal(value,saved[key])
         np.testing.assert_array_equal(indices,saved["selected_indices"])

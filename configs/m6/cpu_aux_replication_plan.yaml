@@ -1,0 +1,23 @@
+frozen_at_utc: '2026-11-09T10:50:18.443890+00:00'
+primary_selection: results/m6_aux_selection/20261109T104322214172Z
+replications:
+- seed: 1235
+  pool_seed: 68234
+  config: configs/m6/cpu_replication_1235.yaml
+  settings: configs/m6/cpu_replication_1235_study.yaml
+  source_checkpoint: last.pt
+  expected_step: 4000
+  inference_design: cycle30
+- seed: 1236
+  pool_seed: 69234
+  config: configs/m6/cpu_replication_1236.yaml
+  settings: configs/m6/cpu_replication_1236_study.yaml
+  source_checkpoint: last.pt
+  expected_step: 4000
+  inference_design: cycle30
+select_primary_on_replications: false
+source_hashes:
+  scripts/m6_capacity_data.py: 4295ce26e4aac6b30585b9b19a33bf86056876e5f024e9bfcbed6cae1b742a30
+  scripts/m6_capacity_train.py: 8eafe106501b6af0c1cca5c8ef9caab2bacc218dd491284b06ca7e31a8477318
+scope: Fixed final-step replications, specified before primary confirmation. Stage1
+  robustness only unless separately assessed; not official main M6 training.
