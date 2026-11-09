@@ -1,0 +1,19 @@
+{
+  "correction_shape": [
+    8,
+    16164
+  ],
+  "fallback_calls": 4,
+  "all_stage1_choices": [
+    9,
+    10,
+    9,
+    9,
+    10,
+    10,
+    10,
+    10
+  ],
+  "selection_sha256": "8167bb64e0964f19c96903b7ca3727eb271e15904adf01bfaeeb63cb4fdf8917",
+  "source": "first eight training cases; functional example only, not independent performance evidence"
+}

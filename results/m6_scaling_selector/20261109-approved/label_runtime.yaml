@@ -1,0 +1,8 @@
+audit_cases_per_factor: 64
+audit_entropy:
+- 1234
+- 1103
+reason: Resume identical factor decodes in six single-thread CPU processes to shorten
+  wall time
+wall_seconds: 7200
+workers: 6

@@ -1,0 +1,16 @@
+Selector labels: results/m6_scaling_selector/20261109-approved/p0
+p0 factor=0.5 cases=8192/32000; elapsed=93.6s
+p0 factor=0.5 cases=16384/32000; elapsed=180.3s
+p0 factor=0.5 cases=24576/32000; elapsed=269.9s
+p0 factor=0.5: failures=24765/32000; elapsed=347.7s
+p0 factor=0.55 cases=8192/32000; elapsed=435.1s
+Traceback (most recent call last):
+  File "/Users/berkaybaristuran/Desktop/Research/QuantAI/codebase/scripts/m6_selector_labels.py", line 111, in <module>
+    main()
+  File "/Users/berkaybaristuran/Desktop/Research/QuantAI/codebase/scripts/m6_selector_labels.py", line 85, in main
+    hat, conv = decoder.decode_batch(s[start:stop])
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/berkaybaristuran/Desktop/Research/QuantAI/codebase/src/bbnbp/decoders/bp_ldpc.py", line 32, in decode_batch
+    out[i] = self.decoder.decode(row)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

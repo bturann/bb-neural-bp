@@ -1,0 +1,15 @@
+p0 regenerated 32000 training cases and replayed all factors
+p1 regenerated 32000 training cases and replayed all factors
+{
+  "checks_passed": true,
+  "phase": "labels",
+  "regenerated_training_cases": 64000,
+  "replayed_training_factor_outcomes": 1408,
+  "regenerated_confirmation_cases": 0,
+  "replayed_confirmation_model_cases": 0,
+  "checked_validation_choices": 0,
+  "reconstructed_validation_candidates": 0,
+  "torch_numpy_and_single_batch_choice_cases": 0,
+  "audit_source_sha256": "a54efb607748164aa54c3156f15d6268e16b64d9d183f39b6e56f56fc006eb84",
+  "final_test_data_used": false
+}

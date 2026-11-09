@@ -1,0 +1,9 @@
+{
+  "selection_sha256": "8167bb64e0964f19c96903b7ca3727eb271e15904adf01bfaeeb63cb4fdf8917",
+  "started_at_utc": "2026-11-09T16:16:58.492785+00:00",
+  "seeds": [
+    63234,
+    63235
+  ],
+  "selection_frozen_before_sampling": true
+}

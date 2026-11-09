@@ -1,6 +1,8 @@
 # Proposed auxiliary neural scaling selector
 
-Status: prepared for human agreement; no selector training is authorized or run.
+Status: completed and independently audited after explicit user approval on
+2026-11-09. Fresh confirmation did not establish a benefit; see the
+[completed report](../results/m6_scaling_selector/20261109-approved/report/report.md).
 The original learned-message experiments
 and approved cascade controls stay intact.
 
@@ -39,4 +41,26 @@ the model, preprocessing, margins and fallback policy before sampling the reserv
 since been used for the separate, frozen learned-message confirmation; it can no
 longer serve as fresh confirmation for a future selector. Reuse of validation does not constitute independent
 confirmation. Main final-test pools stay reserved. All computation is local CPU,
-with jobs bounded by the 09:00 New York deadline and selection finished by 07:30.
+under `configs/m6/cpu_scaling_selector.yaml`. The earlier 09:00 New York window
+ended before this approval; it does not apply to the newly authorized study.
+Each labeling worker has a two-hour wall cap, training/selection a 30-minute cap,
+and fresh confirmation a 30-minute cap. Intermediate chunks and failures are
+preserved. No GPU or paid service is used.
+
+The executable protocol fixes joint training over both rates, syndrome bits,
+normalized syndrome count and known p as features. Linear and 64/32-hidden-unit
+ReLU predictors use multilabel BCE on logical success (nonconvergence is failure).
+Validation chooses architecture, checkpoint and switching margin by Stage1 logical
+failures, then fallback count, then simpler architecture/earlier checkpoint/margin.
+The fixed factor still uses independent validation convergence tuning. A separate
+ten-quantile syndrome-count rule uses the same training labels with 32-case prior
+shrinkage. No learned message weights or previous models are modified.
+
+Confirmation uses 4,096 cases per p, sampled once per point with seeds 63234/63235,
+after saving all choices and checkpoint hashes. Paired fallback comparisons of the
+neural selector against fixed BP30 and the count rule (two rates, four contrasts)
+form one Holm-corrected family. BP100/BP130 and two-pass controls are descriptive
+stronger-compute challenges. Full pipeline accuracy and uncached CPU timing follow
+only if the frozen selector improves fallback demand over fixed BP30 at both
+points; otherwise retain and report the negative result without a latency claim.
+Neither this study nor a small timing pilot completes main M6/E2.

@@ -1,0 +1,14 @@
+{
+  "seed": 56234,
+  "batch": 512,
+  "rng_state": {
+    "bit_generator": "PCG64",
+    "state": {
+      "state": 327212564768783492284312979888532568701,
+      "inc": 139658388801791982617378548057695617063
+    },
+    "has_uint32": 0,
+    "uinteger": 0
+  },
+  "unfiltered": true
+}

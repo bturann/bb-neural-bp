@@ -1,0 +1,94 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_____________ test_selector_study_freezes_then_confirms_and_audits _____________
+
+tmp_path = PosixPath('/private/var/folders/mb/3z6r9ks55sv8ny__jd3_njp40000gn/T/pytest-of-berkaybaristuran/pytest-87/test_selector_study_freezes_th0')
+
+    def test_selector_study_freezes_then_confirms_and_audits(tmp_path):
+        config = load_config('configs/m6/cpu_cascade.yaml')
+        config = replace(config, noise=replace(config.noise, model='code_capacity', rounds=None, p_grid=(.02, .04)))
+        base = tmp_path/'base.yaml'
+        config.save(base)
+        settings = yaml.safe_load(Path('configs/m6/cpu_scaling_selector.yaml').read_text())
+        settings.update(base_config=str(base), training_cases_per_point=128,
+                        epochs=5, validate_every=5, confirmation_shots=16,
+                        confirmation_seeds=[96234, 96235])
+        sampler = make_sampler(config, .02)
+        s, o, e = sampler.sample(512, np.random.default_rng(settings['train_seeds'][0]))
+        pool = tmp_path/'pool.npz'
+        np.savez_compressed(pool, syndromes=s, observables=o, faults=e)
+        settings['unfiltered_pool'] = str(pool)
+        opportunity = tmp_path/'opportunity'
+        opportunity.mkdir()
+        settings['opportunity'] = str(opportunity)
+        validation, long_controls, strong = [], [], []
+        decode = runpy.run_path('scripts/m6_cascade_tune.py')['decode']
+        for i, p in enumerate(config.noise.p_grid):
+            root = tmp_path/f'val{i}'
+            root.mkdir()
+            sampler = make_sampler(config, p)
+            s, o, e = sampler.sample(64, np.random.default_rng(42234+i))
+            np.savez_compressed(root/'cases.npz', syndromes=s, observables=o, faults=e)
+            conv, correct, records = [], [], []
+            for factor in config.sweep.factors:
+                values = decode(LdpcBP(sampler.problem, 30, factor), s, o, sampler.problem, 64)
+                conv.append(~values['failed'])
+                correct.append(~values['logical_failed'])
+                records.append(dict(scaling=factor, failures=int(values['failed'].sum())))
+            best = min(records, key=lambda row: (row['failures'], row['scaling']))
+            (root/'selection.json').write_text(json.dumps(dict(first_factor=1., selected=dict(longer=best, two_pass=dict(scaling=1.)))))
+            np.savez_compressed(opportunity/f'longer-validation-labels-p{i}.npz',
+                                factors=config.sweep.factors, converged=np.stack(conv, 1), correct=np.stack(correct, 1))
+            long = tmp_path/f'long{i}'
+            long.mkdir()
+            (long/'selection.json').write_text(json.dumps(dict(choices={'100': dict(factor=1.)})))
+            strong.append(dict(choices=dict(bp130=dict(factor=1.))))
+            validation.append(str(root))
+            long_controls.append(str(long))
+        strong_root = tmp_path/'strong'
+        strong_root.mkdir()
+        (strong_root/'selection.json').write_text(json.dumps(dict(points=strong)))
+        settings.update(validation_sources=validation, long_controls=long_controls, strong_study=str(strong_root))
+        settings_path = tmp_path/'settings.yaml'
+        settings_path.write_text(yaml.safe_dump(settings))
+        runtime = tmp_path/'runtime.yaml'
+        runtime.write_text(yaml.safe_dump(dict(workers=2, wall_seconds=120, audit_cases_per_factor=16, audit_entropy=[1234, 1103])))
+        d = tmp_path/'study'
+        env = dict(os.environ, OMP_NUM_THREADS='1', NUMBA_NUM_THREADS='1', OPENBLAS_NUM_THREADS='1', VECLIB_MAXIMUM_THREADS='1')
+        def run(script, *args):
+            result = subprocess.run([sys.executable, f'scripts/{script}.py', *map(str, args)], env=env,
+                                    text=True, capture_output=True, timeout=120)
+            assert result.returncode == 0, result.stdout+result.stderr
+        for i in (0, 1):
+>           run('m6_selector_labels', '--settings', settings_path, '--output', d, '--index', i, '--prepare-only')
+
+tests/test_scaling_selector_study.py:75: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+script = 'm6_selector_labels'
+args = ('--settings', PosixPath('/private/var/folders/mb/3z6r9ks55sv8ny__jd3_njp40000gn/T/pytest-of-berkaybaristuran/pytest-8...v8ny__jd3_njp40000gn/T/pytest-of-berkaybaristuran/pytest-87/test_selector_study_freezes_th0/study'), '--index', 0, ...)
+
+    def run(script, *args):
+        result = subprocess.run([sys.executable, f'scripts/{script}.py', *map(str, args)], env=env,
+                                text=True, capture_output=True, timeout=120)
+>       assert result.returncode == 0, result.stdout+result.stderr
+E       AssertionError: Traceback (most recent call last):
+E           File "/Users/berkaybaristuran/Desktop/Research/QuantAI/codebase/scripts/m6_selector_labels.py", line 116, in <module>
+E             main()
+E           File "/Users/berkaybaristuran/Desktop/Research/QuantAI/codebase/scripts/m6_selector_labels.py", line 34, in main
+E             c = load_config(settings['base_config'])
+E                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           File "/Users/berkaybaristuran/Desktop/Research/QuantAI/codebase/src/bbnbp/config.py", line 324, in load_config
+E             return Config(**raw).validate()
+E                    ^^^^^^^^^^^^^^^^^^^^^^^^
+E           File "/Users/berkaybaristuran/Desktop/Research/QuantAI/codebase/src/bbnbp/config.py", line 197, in validate
+E             raise ValueError("Circuit options require circuit_level noise")
+E         ValueError: Circuit options require circuit_level noise
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['/Users/berkaybaristuran/Desktop/Research/QuantAI/codebase/.venv/bin/python', 'scripts/m6_selec... ValueError("Circuit options require circuit_level noise")\nValueError: Circuit options require circuit_level noise\n').returncode
+
+tests/test_scaling_selector_study.py:73: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_scaling_selector_study.py::test_selector_study_freezes_then_confirms_and_audits
+1 failed in 1.71s

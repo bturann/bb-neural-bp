@@ -1,0 +1,12 @@
+models: [neural, fixed30, count, bp130]
+accuracy_shots: [4096, 1024]
+accuracy_wall_seconds: 1800
+timing_seeds: [92234, 92235]
+timing_shots: 256
+timing_warmups: 64
+timing_wall_seconds: 1800
+order_entropy: [1234, 1104]
+bootstrap_entropy: [1234, 1105]
+bootstrap_repeats: 5000
+audit_entropy: [1234, 1106]
+audit_cases_per_point: 16

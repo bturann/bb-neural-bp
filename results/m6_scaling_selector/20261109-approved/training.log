@@ -1,0 +1,196 @@
+linear epoch=5 train_bce=0.404304; elapsed=0.9s
+linear epoch=10 train_bce=0.342541; elapsed=1.2s
+linear epoch=15 train_bce=0.321821; elapsed=1.4s
+linear epoch=20 train_bce=0.313290; elapsed=1.7s
+linear epoch=25 train_bce=0.309492; elapsed=1.9s
+linear epoch=30 train_bce=0.307868; elapsed=2.2s
+linear epoch=35 train_bce=0.307234; elapsed=2.4s
+linear epoch=40 train_bce=0.307029; elapsed=2.6s
+linear epoch=45 train_bce=0.306938; elapsed=2.9s
+linear epoch=50 train_bce=0.306981; elapsed=3.1s
+linear epoch=55 train_bce=0.306917; elapsed=3.4s
+linear epoch=60 train_bce=0.306943; elapsed=3.6s
+mlp epoch=5 train_bce=0.285193; elapsed=4.0s
+mlp epoch=10 train_bce=0.257517; elapsed=4.4s
+mlp epoch=15 train_bce=0.235281; elapsed=4.7s
+mlp epoch=20 train_bce=0.221285; elapsed=5.1s
+mlp epoch=25 train_bce=0.212431; elapsed=5.5s
+mlp epoch=30 train_bce=0.206953; elapsed=5.8s
+mlp epoch=35 train_bce=0.201818; elapsed=6.2s
+mlp epoch=40 train_bce=0.198576; elapsed=6.6s
+mlp epoch=45 train_bce=0.195770; elapsed=7.0s
+mlp epoch=50 train_bce=0.193935; elapsed=7.4s
+mlp epoch=55 train_bce=0.192073; elapsed=7.7s
+mlp epoch=60 train_bce=0.190892; elapsed=8.1s
+[
+  {
+    "p": 0.001,
+    "fixed_index": 9,
+    "fixed_factor": 0.95,
+    "controls": {
+      "two30": {
+        "first_factor": 1.0,
+        "second_factor": 0.9
+      },
+      "bp100": {
+        "T": 100,
+        "factor": 1.0,
+        "failures": 124,
+        "logical_failures": 124,
+        "mean_iterations": 33.7802734375
+      },
+      "bp130": {
+        "name": "bp130",
+        "T": 130,
+        "total_T": 130,
+        "factor": 1.0,
+        "failures": 101,
+        "logical_failures": 101
+      }
+    },
+    "count": {
+      "file": "count-p0.npz",
+      "sha256": "d8fdf18d3a60367c2b948c39b110076b3f2502e3f16742fe7d46bb780653d3c1",
+      "failures": 404,
+      "logical_failures": 404,
+      "switched": 0,
+      "margin": 1.0
+    },
+    "count_grid": [
+      {
+        "failures": 408,
+        "logical_failures": 408,
+        "switched": 1024,
+        "margin": 0.0
+      },
+      {
+        "failures": 410,
+        "logical_failures": 410,
+        "switched": 942,
+        "margin": 0.01
+      },
+      {
+        "failures": 411,
+        "logical_failures": 411,
+        "switched": 494,
+        "margin": 0.025
+      },
+      {
+        "failures": 404,
+        "logical_failures": 404,
+        "switched": 0,
+        "margin": 0.05
+      },
+      {
+        "failures": 404,
+        "logical_failures": 404,
+        "switched": 0,
+        "margin": 0.1
+      },
+      {
+        "failures": 404,
+        "logical_failures": 404,
+        "switched": 0,
+        "margin": 1.0
+      }
+    ],
+    "neural": {
+      "index": 0,
+      "architecture": "linear",
+      "arch_index": 0,
+      "epoch": 40,
+      "file": "linear-epoch40.npz",
+      "train_bce": 0.30702858877182004,
+      "failures": 389,
+      "logical_failures": 389,
+      "switched": 479,
+      "margin": 0.025,
+      "sha256": "10437c4b2cf46425feea18d3769eaf0a4f07e6cfc90f14692c5e585ac5e86e3d"
+    }
+  },
+  {
+    "p": 0.003,
+    "fixed_index": 10,
+    "fixed_factor": 1.0,
+    "controls": {
+      "two30": {
+        "first_factor": 0.95,
+        "second_factor": 0.75
+      },
+      "bp100": {
+        "T": 100,
+        "factor": 1.0,
+        "failures": 693,
+        "logical_failures": 694,
+        "mean_iterations": 84.041015625
+      },
+      "bp130": {
+        "name": "bp130",
+        "T": 130,
+        "total_T": 130,
+        "factor": 1.0,
+        "failures": 626,
+        "logical_failures": 627
+      }
+    },
+    "count": {
+      "file": "count-p1.npz",
+      "sha256": "c0c5b3779cd38155cd95e087202809bac09eaa40cd2f710c18616e594a9b4987",
+      "failures": 931,
+      "logical_failures": 931,
+      "switched": 0,
+      "margin": 1.0
+    },
+    "count_grid": [
+      {
+        "failures": 932,
+        "logical_failures": 932,
+        "switched": 105,
+        "margin": 0.0
+      },
+      {
+        "failures": 931,
+        "logical_failures": 931,
+        "switched": 0,
+        "margin": 0.01
+      },
+      {
+        "failures": 931,
+        "logical_failures": 931,
+        "switched": 0,
+        "margin": 0.025
+      },
+      {
+        "failures": 931,
+        "logical_failures": 931,
+        "switched": 0,
+        "margin": 0.05
+      },
+      {
+        "failures": 931,
+        "logical_failures": 931,
+        "switched": 0,
+        "margin": 0.1
+      },
+      {
+        "failures": 931,
+        "logical_failures": 931,
+        "switched": 0,
+        "margin": 1.0
+      }
+    ],
+    "neural": {
+      "index": 1,
+      "architecture": "linear",
+      "arch_index": 0,
+      "epoch": 30,
+      "file": "linear-epoch30.npz",
+      "train_bce": 0.3078681137561798,
+      "failures": 927,
+      "logical_failures": 927,
+      "switched": 46,
+      "margin": 0.05,
+      "sha256": "6d3cf93a72d217bf1956ff554454e316f4f49b668fb4ae5dcdaeb19c7d0c87b1"
+    }
+  }
+]

@@ -1716,3 +1716,75 @@ M5 passed: `results/m5/20261030T220645511485Z-3a224cbf`; wins 4/7, best step 100
   All launched numerical jobs and audits finished. The optional focused timing
   and its planned pool were explicitly omitted for schedule; their outcomes are
   not claimed. No further training or benchmark jobs are queued past 09:00 NY.
+
+### Newly approved auxiliary factor selector (after the completed 09:00 handover)
+
+- At 15:41 UTC on 2026-11-09, resumed work on the user's explicit approval of
+  the syndrome-to-BP30 scaling selector. This is a new authorized CPU study after
+  the earlier deadline, not an extension of that expired overnight window.
+  Original learned-message studies, configs and final-test reservations remain.
+- Protocol: `configs/m6/cpu_scaling_selector.yaml`; 32,000 **unfiltered** training
+  cases per p, actual outcomes of all eleven factors, joint multilabel logical-
+  success BCE, syndrome bits/count/known-p features, linear and 64/32 MLP options.
+  Per-point validation selects architecture/checkpoint/margin. Fixed BP30 and
+  a ten-quantile count rule are controls; longer/two-pass controls are retained.
+- Started two sequential factor-label workers. To shorten wall time, transition
+  to six independent single-thread CPU processes using the same preserved cases
+  and exact factor decodes. `cpu_selector_label_runtime.yaml` bounds this phase;
+  `m6_selector_label_resume.py` verifies/reuses completed factors. Any interrupted
+  worker's failure receipt and source stay in place. This changes scheduling only.
+- Fresh confirmation remains 4,096 cases/p at 63234/63235, sampled only after
+  writing checkpoint hashes and the selection receipt. Main 11234–11238 untouched.
+  Four paired fallback tests (neural vs fixed/count at two p) use Holm correction.
+  Follow-up full-pipeline accuracy/timing is conditional on fewer fallback requests
+  than fixed BP30 at **both** points; otherwise record the negative study and stop.
+- Initial selector tests: **3 passed in 1.11 s** (single-pass routing/order,
+  conservative ties/margins, seeded initialization and Torch/NumPy equivalence).
+- Added actual-BP per-factor/empty-batch checks: **4 passed in 0.97 s**. Expanded
+  full suite: **138 passed in 32.47 s** while labeling continued (no timing run).
+  An independent small **code-capacity** CLI fixture exercised preparation,
+  parallel labels, label audit, training/freezing, fresh confirmation and audit:
+  **1 passed in 7.98 s**. Its first two setup attempts correctly failed config
+  validation because the fixture retained rounds/circuit-only settings; corrected
+  the fixture to rounds=None/circuit=None. All three test logs are preserved.
+  These are software checks, not selector circuit-level performance evidence.
+- Completed the 22 factor-label columns at 16:15:39 UTC: **704,000 actual BP30
+  case-factor outcomes**, 64,000 unfiltered inputs. Six-process resumed labeling
+  took **1,507.6 s**; the earlier sequential setup/completed factors are retained.
+  The independent label audit passed: regenerated **all 64,000 inputs** and their
+  H/L parities, verified every factor-column hash, and replayed **1,408** sampled
+  factor outcomes (including iterations). It is not a second exhaustive decode.
+  Started the declared linear/MLP training only after this audit passed.
+- Training and validation selection completed in **8.124 s**, frozen at
+  **16:16:39.843671 UTC**, before any 63234/63235 sampling. Both points selected
+  the 4,785-parameter linear predictor: epoch40/margin .025 at p=.001 and
+  epoch30/margin .05 at p=.003. Validation fallback counts: **389 vs fixed404**,
+  **927 vs fixed931**. The count rule selected margin1 (fixed-factor retention)
+  at both points. These modest development differences are not confirmation.
+  Started the fixed fresh 4,096/p comparison with all six declared methods.
+- Latest full software suite, including slow acceptance and the CLI integration:
+  **139 passed in 33.47 s**. No original decoder, reference, dependency or main
+  config changed. The tested eight-case frozen inference example produced an
+  8×16,164 correction array with four fallback requests; it uses training cases
+  and is functional evidence only, not an independent performance estimate.
+- The frozen selector confirmation completed all **8,192 cases × six methods**
+  in **767.35 s**. At p=.001: neural1779 vs fixed/count1774, two-pass30 1972,
+  BP100557, BP130409 failures out of4,096. At p=.003: neural3687 vs
+  fixed/count3677, two-pass30 3884, BP1002629, BP1302387. The selector has no
+  observed gain at either point. Neural-vs-fixed paired discordances were
+  287rescued/292harmed (Holm p=1) and13rescued/23harmed (Holm p=.5299927).
+  Neither superiority nor significant worsening was established.
+- The predeclared follow-up gate is **false**. No selector accuracy/timing pilot
+  is launched; do not claim a latency, p99 or LER-equivalence result for it.
+  The original learned100 evidence is unaffected. This approved auxiliary branch
+  is a negative result, not completion of main M6/M7 or a replacement model.
+- Confirmation audit **passed**: regenerated all8,192 fresh inputs, reconstructed
+  all288 validation candidates, checked4,096 chosen validation decisions,
+  replayed768 actual decoder model-cases, and checked Torch/NumPy and batch/single
+  factor choices on all8,192 cases. All saved corrections' H/L flags and primary
+  paired/Holm statistics reproduced. Main final-test streams remain unused.
+- Generated and visually checked the standalone PNG/PDF and evidence-linked
+  report at `results/m6_scaling_selector/20261109-approved/report/report.md`.
+  README and the reproduction/inference guide point to the completed study.
+  All launched labeling, training, confirmation, audit and software-test jobs
+  finished. Conditional selector accuracy/timing phases were not launched.

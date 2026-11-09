@@ -1,0 +1,13 @@
+{
+  "checks_passed": true,
+  "phase": "confirmation",
+  "regenerated_training_cases": 0,
+  "replayed_training_factor_outcomes": 0,
+  "regenerated_confirmation_cases": 8192,
+  "replayed_confirmation_model_cases": 768,
+  "checked_validation_choices": 4096,
+  "reconstructed_validation_candidates": 288,
+  "torch_numpy_and_single_batch_choice_cases": 8192,
+  "audit_source_sha256": "a54efb607748164aa54c3156f15d6268e16b64d9d183f39b6e56f56fc006eb84",
+  "final_test_data_used": false
+}

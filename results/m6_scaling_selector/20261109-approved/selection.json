@@ -1,0 +1,226 @@
+{
+  "factors": [
+    0.5,
+    0.55,
+    0.6,
+    0.65,
+    0.7,
+    0.75,
+    0.8,
+    0.85,
+    0.9,
+    0.95,
+    1.0
+  ],
+  "iterations": 30,
+  "points": [
+    {
+      "p": 0.001,
+      "fixed_index": 9,
+      "fixed_factor": 0.95,
+      "controls": {
+        "two30": {
+          "first_factor": 1.0,
+          "second_factor": 0.9
+        },
+        "bp100": {
+          "T": 100,
+          "factor": 1.0,
+          "failures": 124,
+          "logical_failures": 124,
+          "mean_iterations": 33.7802734375
+        },
+        "bp130": {
+          "name": "bp130",
+          "T": 130,
+          "total_T": 130,
+          "factor": 1.0,
+          "failures": 101,
+          "logical_failures": 101
+        }
+      },
+      "count": {
+        "file": "count-p0.npz",
+        "sha256": "d8fdf18d3a60367c2b948c39b110076b3f2502e3f16742fe7d46bb780653d3c1",
+        "failures": 404,
+        "logical_failures": 404,
+        "switched": 0,
+        "margin": 1.0
+      },
+      "count_grid": [
+        {
+          "failures": 408,
+          "logical_failures": 408,
+          "switched": 1024,
+          "margin": 0.0
+        },
+        {
+          "failures": 410,
+          "logical_failures": 410,
+          "switched": 942,
+          "margin": 0.01
+        },
+        {
+          "failures": 411,
+          "logical_failures": 411,
+          "switched": 494,
+          "margin": 0.025
+        },
+        {
+          "failures": 404,
+          "logical_failures": 404,
+          "switched": 0,
+          "margin": 0.05
+        },
+        {
+          "failures": 404,
+          "logical_failures": 404,
+          "switched": 0,
+          "margin": 0.1
+        },
+        {
+          "failures": 404,
+          "logical_failures": 404,
+          "switched": 0,
+          "margin": 1.0
+        }
+      ],
+      "neural": {
+        "index": 0,
+        "architecture": "linear",
+        "arch_index": 0,
+        "epoch": 40,
+        "file": "linear-epoch40.npz",
+        "train_bce": 0.30702858877182004,
+        "failures": 389,
+        "logical_failures": 389,
+        "switched": 479,
+        "margin": 0.025,
+        "sha256": "10437c4b2cf46425feea18d3769eaf0a4f07e6cfc90f14692c5e585ac5e86e3d"
+      }
+    },
+    {
+      "p": 0.003,
+      "fixed_index": 10,
+      "fixed_factor": 1.0,
+      "controls": {
+        "two30": {
+          "first_factor": 0.95,
+          "second_factor": 0.75
+        },
+        "bp100": {
+          "T": 100,
+          "factor": 1.0,
+          "failures": 693,
+          "logical_failures": 694,
+          "mean_iterations": 84.041015625
+        },
+        "bp130": {
+          "name": "bp130",
+          "T": 130,
+          "total_T": 130,
+          "factor": 1.0,
+          "failures": 626,
+          "logical_failures": 627
+        }
+      },
+      "count": {
+        "file": "count-p1.npz",
+        "sha256": "c0c5b3779cd38155cd95e087202809bac09eaa40cd2f710c18616e594a9b4987",
+        "failures": 931,
+        "logical_failures": 931,
+        "switched": 0,
+        "margin": 1.0
+      },
+      "count_grid": [
+        {
+          "failures": 932,
+          "logical_failures": 932,
+          "switched": 105,
+          "margin": 0.0
+        },
+        {
+          "failures": 931,
+          "logical_failures": 931,
+          "switched": 0,
+          "margin": 0.01
+        },
+        {
+          "failures": 931,
+          "logical_failures": 931,
+          "switched": 0,
+          "margin": 0.025
+        },
+        {
+          "failures": 931,
+          "logical_failures": 931,
+          "switched": 0,
+          "margin": 0.05
+        },
+        {
+          "failures": 931,
+          "logical_failures": 931,
+          "switched": 0,
+          "margin": 0.1
+        },
+        {
+          "failures": 931,
+          "logical_failures": 931,
+          "switched": 0,
+          "margin": 1.0
+        }
+      ],
+      "neural": {
+        "index": 1,
+        "architecture": "linear",
+        "arch_index": 0,
+        "epoch": 30,
+        "file": "linear-epoch30.npz",
+        "train_bce": 0.3078681137561798,
+        "failures": 927,
+        "logical_failures": 927,
+        "switched": 46,
+        "margin": 0.05,
+        "sha256": "6d3cf93a72d217bf1956ff554454e316f4f49b668fb4ae5dcdaeb19c7d0c87b1"
+      }
+    }
+  ],
+  "frozen_at_utc": "2026-11-09T16:16:39.843671+00:00",
+  "input_hashes": {
+    "results/m6_scaling_selector/20261109-approved/settings.yaml": "fc76c5e59b30016d7b653a92dd144c1911b8699ea11929998dfbd45c2afafe53",
+    "results/m6_scaling_selector/20261109-approved/config.yaml": "bfea338f4e9a282ee867ef79abc2739282179ae5de5e4be8f1c6a08f226ddbc8",
+    "results/m6_scaling_selector/20261109-approved/selector_source.py": "873b0845f2648675404db649ed039d65492d964d79552ee399202509201559b7",
+    "results/m6_scaling_selector/20261109-approved/executed_train_source.py": "7c8d7a597bd55b8ba9cbcdfe059423a6f4da826a46c4647a1088781142a5b520",
+    "results/m6_scaling_selector/20261109-approved/validation_grid.json": "4dfb36b2df106b706ced4263e04f2f5a04bc45152b43bac0b2cb52932290c531",
+    "results/m6_scaling_selector/20261109-approved/followup-settings.yaml": "82b225a06cc3970983b323b60f7ecd00ec7002ebb1b0bc1fb154615a61f3ced5",
+    "results/m6_scaling_selector/20261109-approved/p0/cases.npz": "fbeea644e8a696e117c12c143ea3ca641a31ae8d194a124f037cb0536de57084",
+    "results/m6_scaling_selector/20261109-approved/p0/labels.npz": "10f443d9e991218e40c3b06139f7148afb714b2850d3519bbfafdcdff69a40be",
+    "results/m6_cascade_tuning/p0/20261109T090855243984Z-277fb140/cases.npz": "c6d71d31f7d9e24dfabe79b130df4351f7904b12932e97b54ba585020e4f02b0",
+    "results/m6_scaling_selector/20261109-approved/count-p0.npz": "d8fdf18d3a60367c2b948c39b110076b3f2502e3f16742fe7d46bb780653d3c1",
+    "results/m6_scaling_selector/20261109-approved/linear-epoch40.npz": "10437c4b2cf46425feea18d3769eaf0a4f07e6cfc90f14692c5e585ac5e86e3d",
+    "results/m6_cascade_tuning/p0/20261109T090855243984Z-277fb140/selection.json": "e86e4b383682f053a42da139c4b345566b19ae1e8fbdfd7d905752baf2fb9172",
+    "results/m6_long_bp_challenge/p0/20261109T111840039294Z/selection.json": "afaba72f653cfc580641d0d024d3450baacbf126eb5aa8d5ebbb9ed2a775d06f",
+    "results/m6_scaling_selector/20261109-approved/p1/cases.npz": "8bad5b026a1526f352cb3fff38cb8d5e7491c37e6dfbdaaa55804d0700e5b0ab",
+    "results/m6_scaling_selector/20261109-approved/p1/labels.npz": "4c4257e4c7b9b050ff2f77c09e6d165e82926f7e64eca978871862259bc865e5",
+    "results/m6_cascade_tuning/p1/20261109T090855243992Z-277fb140/cases.npz": "9149a681d84520542c8ce9b926d8833401ca08fa9e18104da387da4d83294741",
+    "results/m6_scaling_selector/20261109-approved/count-p1.npz": "c0c5b3779cd38155cd95e087202809bac09eaa40cd2f710c18616e594a9b4987",
+    "results/m6_scaling_selector/20261109-approved/linear-epoch30.npz": "6d3cf93a72d217bf1956ff554454e316f4f49b668fb4ae5dcdaeb19c7d0c87b1",
+    "results/m6_cascade_tuning/p1/20261109T090855243992Z-277fb140/selection.json": "a1bf5eeb324b28db62b2e468b2bc9dd0ed4d6c38513c877b3c0d0511229c8768",
+    "results/m6_long_bp_challenge/p1/20261109T111840036201Z/selection.json": "ece345d0b1f5837e6da3964b0047e955c8a3d14c9c04535a7eb5d64157aac108",
+    "results/m6_strong_cascade/20261109T113533689212Z/selection.json": "2a05c744a336105b48291df84c8af4be12050fd1615c0c5f39e1feb1f231f17d"
+  },
+  "confirmation_seeds": [
+    63234,
+    63235
+  ],
+  "confirmation_shots": 4096,
+  "primary_family": "Holm: neural vs fixed30 and count rule, paired fallback failures, two noise rates (4 tests)",
+  "inference_inputs": [
+    "syndrome",
+    "known_p"
+  ],
+  "elapsed_s": 8.123666458996013,
+  "confirmation_data_used": false,
+  "final_test_data_used": false,
+  "m6_complete": false
+}

@@ -1,0 +1,62 @@
+architectures:
+- linear
+- mlp
+base_config: configs/m6/cpu_cascade.yaml
+batch: 256
+confirmation_seeds:
+- 63234
+- 63235
+confirmation_shots: 4096
+confirmation_wall_seconds: 1800
+count_bins: 10
+count_prior_cases: 32
+epochs: 60
+features: syndrome_bits_count_known_p
+hidden:
+- 64
+- 32
+iterations: 30
+label_batch: 128
+label_wall_seconds: 7200
+learning_rate: 0.001
+long_controls:
+- results/m6_long_bp_challenge/p0/20261109T111840039294Z
+- results/m6_long_bp_challenge/p1/20261109T111840036201Z
+margins:
+- 0.0
+- 0.01
+- 0.025
+- 0.05
+- 0.1
+- 1.0
+opportunity: results/m6_selector_opportunity/20261109T100356322790Z
+pool_batch: 512
+primary_alpha: 0.05
+scope: Approved auxiliary CPU scaling selector; original matrix unchanged
+shuffle_entropy:
+- 1234
+- 1102
+strong_study: results/m6_strong_cascade/20261109T113533689212Z
+threads: 1
+timing_if_positive:
+  bootstrap_repeats: 5000
+  seeds:
+  - 92234
+  - 92235
+  shots: 256
+  wall_seconds: 1800
+  warmups: 64
+torch_entropy:
+- 1234
+- 1101
+train_seeds:
+- 52234
+- 56234
+training_cases_per_point: 32000
+training_wall_seconds: 1800
+unfiltered_pool: results/m6_capacity/20261109T093911371390Z/mining-pool.npz
+validate_every: 5
+validation_sources:
+- results/m6_cascade_tuning/p0/20261109T090855243984Z-277fb140
+- results/m6_cascade_tuning/p1/20261109T090855243992Z-277fb140
+weight_decay: 0.0001

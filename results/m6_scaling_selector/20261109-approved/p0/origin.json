@@ -1,0 +1,7 @@
+{
+  "source": "results/m6_capacity/20261109T093911371390Z/mining-pool.npz",
+  "sha256": "0a1b3fa2ca83685907a901a91015a845ed3217f2a065b9ddaea01b5b098b1c96",
+  "prefix": 32000,
+  "unfiltered": true,
+  "seed": 52234
+}

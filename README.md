@@ -27,6 +27,15 @@ and [audited report](results/m6_aux_report/20261109T135141505262Z/report.md).
 The [frozen CPU inference example](docs/m6_frozen_cycle100.md) loads the tested
 100-step rule from its original 15-step source parameters.
 
+The separately approved CPU factor-selector study is complete and negative.
+After 64,000 unfiltered training cases and validation-only selection, its frozen
+syndrome-to-BP30 predictor requested fallback on 1,779/4,096 fresh cases versus
+fixed BP30's 1,774 at p=.001, and 3,687 versus 3,677 at p=.003. Neither paired
+comparison established a gain. The predeclared gate stopped additional selector
+accuracy/timing work. Both audits passed; original studies remain intact. See the
+[selector report](results/m6_scaling_selector/20261109-approved/report/report.md)
+and [reproduction/inference guide](docs/m6_scaling_selector.md).
+
 ## Setup
 
 ```sh
