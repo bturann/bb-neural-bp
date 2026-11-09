@@ -1,0 +1,17 @@
+purpose: frozen_candidate_independent_development_confirmation
+preferences: results/m6_validation_stability/20261109T073249552750Z/validation_preferences.json
+tuning_table: results/m6_cpu_pilot_check/20261109T040246608374Z-cb99df2f/tuned_scaling.csv
+template: configs/m6/cpu_pilot_check.yaml
+seed: 1234
+seed_offset: 27000
+shots_per_p: 2048
+batch: 64
+threads: 1
+export_check_shots: 64
+wall_seconds: 600
+alpha: 0.05
+bootstrap_replicates: 2000
+bootstrap_seed_entropy: [1234, 711]
+confidence_level: 0.95
+primary: nbp_bitwise_vs_bp_tuned
+clear_gain_rule: lower_grid_mean_and_holm_benefit_without_holm_regression

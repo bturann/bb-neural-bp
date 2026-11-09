@@ -335,3 +335,23 @@ zero. Parity's 0.303-percentage-point difference remained uncertain, and its sma
 blocks split 4–4. `validation_preferences.json` retains candidate hashes and the
 validation cases used for those preferences. They require independent confirmation;
 the original selected checkpoints and main experiment choices are unchanged.
+
+## Independent confirmation of frozen validation candidates
+
+```sh
+BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 .venv/bin/python -u scripts/m6_independent_confirmation.py
+BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 .venv/bin/python scripts/m6_audit_independent_confirmation.py <confirmation-bundle>
+```
+
+This freezes both step-500 candidates, matched initialization, and the independently
+tuned T=15 baseline before drawing 2,048 new paired cases per p. The guard excludes
+the larger validation set as well as training selection, tuning, and reserved final
+tests. Primary inference is BCE versus tuned BP with five-point Holm correction;
+two secondary contrasts are corrected jointly over ten tests. The predeclared
+clear-gain screen is saved in the settings and evaluated without changing the sample.
+
+The completed run found fallback demand of 88.916% for BCE and 88.789% for tuned BP.
+Its paired interval included zero and no primary point passed corrected .05.
+Parity's 88.643% is descriptive. A performance advantage was not confirmed, so no
+longer run or main model replacement followed. Full M6 still requires three-seed
+training and independent two-stage accuracy/latency evaluation.

@@ -954,3 +954,68 @@ M5 passed: `results/m5/20261030T220645511485Z-3a224cbf`; wins 4/7, best step 100
 - The complete first-noise-point cases and all five decoder/logical outcome arrays
   from the intentionally interrupted attempt match the corrected rerun exactly.
   The provenance correction did not alter those numerical observations.
+
+## Frozen-candidate independent confirmation — November 9, 2026 (started)
+
+- User authorized a fresh confirmation of the larger-validation candidates.
+  `configs/m6/cpu_independent_confirmation.yaml` freezes BCE step 500, parity step
+  500, matched untrained .95, and the independently tuned T=15 BP baseline before
+  sampling. Candidate hashes must match `validation_preferences.json` exactly.
+- New seeds **28234–28238** provide 2,048 shared fresh development cases/p
+  (10,240 total), separate from tuning, all previous selection/comparison regions
+  and reserved final-test seeds. The larger-selection seeds 26234–26238 are
+  explicitly excluded by the guard in addition to checkpoint validation and tuning.
+- The primary contrast is BCE versus tuned BP, exact paired McNemar with Holm
+  correction over five p values. Secondary BCE/parity and BCE/untrained contrasts
+  are corrected jointly over ten tests. Before outcomes, the clear-gain screen is:
+  lower grid-mean demand, at least one corrected primary benefit, and no corrected
+  primary regression. Otherwise confirmation is inconclusive under this screen.
+- A seeded paired stratified bootstrap gives a descriptive interval for grid-mean
+  BCE-minus-tuned demand. It does not replace the predeclared primary screen or
+  establish logical-error equality. Four Stage-1 decoders only; no OSD or latency
+  experiment. One CPU thread, 600-second cap, no training or changes to main configs.
+
+### Independent confirmation outcome — completed, clear gain not confirmed
+
+- Completed in **196.45 s** (3 min 16 s), on CPU only. All four candidate definitions
+  were frozen before sampling; hashes still match the larger-validation preference
+  record. No new selection, retuning or retraining was performed on these cases.
+  Bundle: `results/m6_independent_confirmation/20261109T074900968718Z-e7ad7a97/`.
+
+  | Decoder | Mean potential fallback demand |
+  |---|---|
+  | 11-factor T=15 tuned BP | 88.7890625% |
+  | Matched untrained .95 | 88.7890625% |
+  | Frozen parity step 500 | 88.642578125% |
+  | Frozen BCE step 500 | 88.916015625% |
+
+- BCE had **13 more** potential fallback calls than tuned BP across 10,240 paired
+  cases: +0.126953125 percentage points. Its descriptive 95% paired bootstrap
+  interval for BCE-minus-tuned was **[-0.45923, +0.71289] pp**, containing zero.
+  The generic bootstrap helper calls its sign frequencies `fraction_last_lower`
+  and `fraction_selected_lower`; in this contrast those mean BCE-lower and
+  tuned-BP-lower, respectively, and are not posterior probabilities.
+- No primary comparison passed Holm-adjusted .05 (smallest adjusted p=.08450 at
+  p=.004). There were zero corrected benefits and zero corrected regressions;
+  `clear_gain=false` under the unchanged predeclared rule. BCE was slightly worse
+  at the two lowest p values and slightly better at the other three. The secondary
+  comparison family also had no corrected differences (minimum adjusted p=.19211).
+- Parity's 15 fewer potential calls than tuned BP are a descriptive secondary
+  observation, not a new primary result or a reason to choose a new winner on
+  these confirmation cases. The validation preference for BCE step 500 within its
+  checkpoint pair did not establish superiority over the independently tuned
+  baseline on new data. This pilot is inconclusive, not proof of equal decoders.
+- No three-seed or longer run was launched from this outcome. Existing defaults,
+  checkpoint selections and the reserved main final-test pool remain unchanged.
+  The next research decision concerns training/convergence alignment or study
+  design, rather than assuming the current pilot has a confirmed performance gain.
+- Independent audit regenerated all **10,240** confirmation cases and H/L labels,
+  checked **40,960** decoder flags and all **20** CSV rows, independently replayed
+  1,280 subset decodes, and verified exact PyTorch/Numba outputs/convergence/iterations
+  on 960 neural shots. Candidate hashes, original selection metadata, all paired
+  tests, bootstrap values and the predeclared decision rule reproduced exactly.
+- An extended audit additionally checked the new seed IDs against **29 prior CSV
+  seed sources** and found no collisions; both original and extended audit files
+  are retained. No prior result was overwritten. Full suite before this development
+  checkpoint commit: **113 passed** (34.44 s), including rejection of larger-selection
+  data reuse. Source whitespace checks are clean. Full M6/M7 remain incomplete.

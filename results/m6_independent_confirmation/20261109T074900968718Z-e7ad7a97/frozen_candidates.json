@@ -1,0 +1,12 @@
+{
+  "parity": {
+    "path": "checkpoints/m6_cpu_loss_ablation/parity/20261109T043539690088Z-9e18c87a/last.pt",
+    "step": 500,
+    "sha256": "5dd755f2a245ea4fe8a01d139598f39930f6cf2025231716da2723ff77083f52"
+  },
+  "bitwise": {
+    "path": "checkpoints/m6_cpu_loss_ablation/bitwise/20261109T043540738254Z-7fc55c14/last.pt",
+    "step": 500,
+    "sha256": "eec88f60383988755f70ed2c8f0fa690c291f5525783069a0aeb56acd504a594"
+  }
+}

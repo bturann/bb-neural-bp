@@ -1,0 +1,16 @@
+{
+  "checks_passed": true,
+  "independent_seed_guard_verified": true,
+  "prior_csv_seed_sources_checked": 29,
+  "frozen_candidate_hashes_unchanged": true,
+  "regenerated_cases": 10240,
+  "checked_decoder_flags": 40960,
+  "replayed_subset_decodes": 1280,
+  "exact_export_shots": 960,
+  "checked_csv_rows": 20,
+  "primary_family_tests": 5,
+  "secondary_family_tests": 10,
+  "bootstrap_and_decision_rule_reproduced": true,
+  "final_test_data_used": false,
+  "m6_complete": false
+}
