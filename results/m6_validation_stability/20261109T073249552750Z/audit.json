@@ -1,0 +1,14 @@
+{
+  "checks_passed": true,
+  "resolved_config_hash_verified": "30b4f27b6fd29fdb2aeaff100772436b5fc8331e",
+  "regenerated_cases": 10240,
+  "checked_decoder_flags": 51200,
+  "replayed_subset_decodes": 1600,
+  "exact_export_shots": 1600,
+  "checked_csv_rows": 25,
+  "bootstrap_reproduced": true,
+  "disjoint_blocks_reproduced": true,
+  "checkpoint_hashes_unchanged": true,
+  "final_test_data_used": false,
+  "independent_performance_claim": false
+}

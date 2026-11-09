@@ -314,3 +314,24 @@ alongside non-monotonic changes in loss and hard decoding. The retrospective BCE
 checkpoint ranking reversed between the tiny selection set and the larger saved
 comparison. A larger fixed development validation set is the next stability check;
 the planned main runs already use 20k shots per p.
+
+## Larger fixed validation for checkpoint stability
+
+```sh
+BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 .venv/bin/python scripts/m6_validation_stability.py
+BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 .venv/bin/python scripts/m6_audit_validation_stability.py <validation-bundle>
+MPLCONFIGDIR=.cache/matplotlib .venv/bin/python scripts/m6_plot_validation_stability.py <validation-bundle>
+```
+
+This compares existing selected/final checkpoints on 2,048 fixed new cases per p,
+eight times the pilot selection pool. It does not retrain or overwrite weights.
+Eight disjoint smaller blocks and a seeded, paired bootstrap describe how rankings
+change with sampling. Original and resolved configs are saved separately, and the
+CSV hash identifies the resolved sampling and candidate configuration.
+
+The corrected completed run favored BCE step 500 over its old step-50 selection:
+88.916% versus 89.609% fallback demand, with a descriptive paired interval excluding
+zero. Parity's 0.303-percentage-point difference remained uncertain, and its small
+blocks split 4–4. `validation_preferences.json` retains candidate hashes and the
+validation cases used for those preferences. They require independent confirmation;
+the original selected checkpoints and main experiment choices are unchanged.

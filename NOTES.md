@@ -878,3 +878,79 @@ M5 passed: `results/m5/20261030T220645511485Z-3a224cbf`; wins 4/7, best step 100
   all checks passed. Full suite before this diagnostic checkpoint commit:
   **110 passed** (69.79 s), including first-convergence/iteration-zero and ranking
   AUC edge-case checks. Source whitespace checks are clean. M6/M7 remain incomplete.
+
+## Larger fixed development validation — November 9, 2026 (started)
+
+- User authorized a larger fixed validation set before further training changes.
+  `configs/m6/cpu_validation_stability.yaml` fixes 2,048 cases/p, eight times the
+  earlier 256/p selection pool, for 10,240 new development cases total. New seeds
+  26234–26238 are disjoint from training-selection, tuning, comparison and final
+  regions. No training, reweighting or numerical decoder change is involved.
+- Candidate weights are frozen: parity step 250/500, BCE step 50/500, plus matched
+  untrained .95 as a reference. Rankings concern only these available checkpoints,
+  not intermediate checkpoints that were not retained. Original selected files
+  remain unchanged; any new preference is a development validation recommendation.
+- The study retains paired flags and exact-schema CSVs, makes CPU Torch/Numba
+  subset checks, and compares eight disjoint 256-shot/p blocks with the whole pool.
+  A fixed-seed 2,000-replicate paired bootstrap resamples the {-1,0,1} checkpoint
+  differences within each p, giving descriptive conditional intervals for the
+  grid-mean last-minus-selected difference. Bootstrap frequencies are not posterior
+  probabilities, and blocks are subsets of the larger pool, not independent tests
+  of a winner selected from that pool. Per-p paired tests use Holm over ten tests.
+- The initial attempt at `results/m6_validation_stability/20261109T073007704368Z/`
+  was intentionally interrupted after a metadata bug was noticed: CSV config hashes
+  referred to the source evaluation configuration rather than resolved new sampling
+  settings. Its partial artifacts and failure trace are preserved. SIGINT during a
+  Numba call surfaced as a SystemError; this is the deliberate interruption, not a
+  decoder finding. No protocol or weights were changed in response to its outcomes.
+- The corrected runner saves both the source config and a resolved actual config
+  with the new seed range, shot count, model initializer and candidate paths. The
+  same predeclared cases are rerun in a new bundle with no overwrites:
+  `results/m6_validation_stability/20261109T073249552750Z/`. One CPU thread, 600-second
+  cap, zero GPU use. This is validation, not independent performance or M6 completion.
+
+### Larger-validation outcome — completed
+
+- The corrected study completed in **228.13 s** (3 min 48 s) on one CPU thread,
+  using 10,240 fixed new validation cases and five frozen model states. No training
+  or numerical decoder changes were made. The resolved run config hash is
+  `30b4f27b6fd29fdb2aeaff100772436b5fc8331e`; CSV hashes/seeds/counts were audited
+  against that actual config rather than the separately saved source config.
+
+  | Loss | Original selected checkpoint | Existing step-500 checkpoint | Last minus selected |
+  |---|---|---|---|
+  | Parity | 89.541015625% | 89.23828125% | -0.302734375 pp |
+  | BCE | 89.609375% | 88.916015625% | -0.693359375 pp |
+
+- Matched initialization had 89.560546875% fallback demand. These are selection-set
+  measurements, not estimates from independent performance data. They must not be
+  compared directly with rates from earlier pools as though the cases were paired.
+- For BCE, the descriptive 95% paired bootstrap interval for last-minus-selected
+  was **[-1.22070, -0.17578] percentage points**. Six of eight disjoint small blocks
+  favored the final checkpoint, one favored the original selection and one tied.
+  For parity, the interval was **[-0.79126, +0.16602] pp**, and blocks split **4–4**.
+  BCE step 500 is the stronger within-loss validation candidate; parity remains
+  unresolved at this sample size. These are conditional, per-pair bootstrap
+  observations, not joint confirmatory inference or posterior probabilities.
+- No individual p comparison passed Holm correction over the ten tests (smallest
+  adjusted p=.16184). A grid-mean bootstrap interval and per-p corrected tests
+  address different quantities and are not interchangeable claims.
+- `validation_preferences.json` records lower-mean candidates, their immutable
+  hashes, the selection seed range and interval uncertainty for future independent
+  confirmation. It reproduces exactly from the saved summary. Original `best.pt`
+  files remain unchanged, and no main default loss or main checkpoint is replaced.
+- The PNG/PDF ranking plots were generated from saved observations and visually
+  inspected. They show the original small-set ranking reversal and fluctuations
+  across eight disjoint 256-shot/p blocks within the larger validation pool.
+- Independent audit regenerated all 10,240 cases and true H/L labels; checked
+  51,200 decoder flags, all 25 CSV rows and resolved provenance; replayed 1,600
+  subset decodes with exact PyTorch/Numba corrections, flags and iterations; and
+  reproduced the seeded bootstrap, block preferences and paired statistics.
+  All checkpoint hashes and all audit checks passed.
+- Full suite before the development checkpoint commit: **112 passed** (34.79 s),
+  including paired-bootstrap stratum weights/ties and block-ranking edge cases.
+  Final-test seeds remain untouched. Independent confirmation of any preferred
+  checkpoint and the full M6/M7 studies are still pending.
+- The complete first-noise-point cases and all five decoder/logical outcome arrays
+  from the intentionally interrupted attempt match the corrected rerun exactly.
+  The provenance correction did not alter those numerical observations.

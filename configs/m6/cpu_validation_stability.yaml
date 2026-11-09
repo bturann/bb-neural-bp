@@ -1,0 +1,14 @@
+purpose: larger_fixed_development_validation_stability
+source: results/m6_cpu_loss_ablation/comparison/20261109T044218253294Z-6e71d010
+seed: 1234
+validation_seed_offset: 25000
+shots_per_p: 2048
+small_block_shots: 256
+batch: 64
+threads: 1
+export_check_shots: 64
+bootstrap_replicates: 2000
+bootstrap_seed_entropy: [1234, 710]
+confidence_level: 0.95
+wall_seconds: 600
+tie_policy: keep_original_selected
