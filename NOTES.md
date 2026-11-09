@@ -800,3 +800,81 @@ M5 passed: `results/m5/20261030T220645511485Z-3a224cbf`; wins 4/7, best step 100
   including the controlled-input match and deliberate batch-mismatch rejection.
   Final-test seeds, decoder equations, loss definitions and reference files remain
   unchanged. This is a development E3 subset; M6/M7 remain incomplete.
+
+## Objective-alignment check — November 9, 2026 (started)
+
+- User requested the check following the controlled loss ablation. This is a
+  descriptive analysis of the first 128 saved development cases at each p,
+  not a new holdout experiment or a new training run. It compares the matched
+  initial model, both validation-selected models, and both step-500 continuations.
+- `configs/m6/cpu_objective_diagnostic.yaml` fixes batch 8, one CPU thread, a
+  300-second budget and eight-shot final-output gradient probes per p/model.
+  True faults are regenerated from the original explicit comparison seeds and
+  saved syndromes/observables must match exactly before scoring.
+- Both parity and bitwise multi-losses are evaluated on the same cases for each
+  model. Per-p failure-ranking AUC is reported only when both success/failure
+  classes exist. No pooled cross-p correlation is interpreted as learning evidence.
+- Full-unroll hard decisions are compared with canonical first-convergence
+  deployment, including iteration-zero success, any later loss of convergence,
+  final-iteration failure, and logical flags. Every traced deployed correction,
+  convergence flag and stopping iteration must match the Numba export exactly.
+- The implementation follows the handoff: training uses all unrolled iterations,
+  while inference freezes at first convergence. This intended difference is a
+  candidate source of objective/metric misalignment, not an identified decoder bug.
+  No production loss, stopping rule, main config or reference implementation is changed.
+
+### Objective and checkpoint check outcome — completed
+
+- The objective diagnostic completed in **113.3 s** on CPU, evaluating five model
+  states on the same 640 saved cases (128/p). It retained 3,200 per-model shot scores
+  and verified every traced first-convergence correction, flag and iteration count
+  against Numba exactly. No numerical decoder mismatch was found in these checks.
+  Bundle: `results/m6_objective_diagnostic/20261109T070451119909Z/`.
+- Parity multi-loss ranked failed versus successful cases well within p where
+  both classes existed (roughly .95–.99 AUC at the lower p values). Higher-p estimates
+  sometimes have only one or two successes, or no AUC when all shots fail. Thus the
+  loss is informative about individual failures, but that does not make a reduction
+  in mean loss a reliable guarantee of improved hard decoding.
+- On these 640 cases, the initial model decoded 73 shots; selected parity 78;
+  final parity 76; selected BCE 71; final BCE 85. These prefix results are diagnostic,
+  not independent performance estimates. Selected parity lowered its own loss on
+  434 cases but made two previously correct initial decodes nonconvergent despite
+  lower loss. Selected BCE did so on four cases (472 loss decreases). This directly
+  illustrates non-monotonic loss/decision changes without proving a loss-function bug.
+- Of selected parity's 78 first-converged shots, **seven** were no longer converged
+  at iteration 15; nine lost convergence at some later iteration. Deployment correctly
+  preserves their first successful corrections. The full-unroll training objective
+  still scores later outputs, as the handoff requires. This intentional difference
+  is a candidate for a controlled ablation, not an implementation error to silently fix.
+- Roughly 73% of probabilities were at the configured clamp boundary averaged over
+  iterations and shots. Final-output direct probability-gradient probes were sparse
+  (e.g. about 98% exactly zero at p=.001); all were finite. This can reflect correctly
+  confident variables. It does not establish that clipping causes weak parameter
+  learning, and no clamp or gradient behavior was changed.
+- A retrospective review then evaluated both existing step-500 continuations on
+  all 10,240 saved development cases, with the selected models unchanged. Results:
+
+  | Loss | Original validation-selected checkpoint | Existing final checkpoint |
+  |---|---|---|
+  | Parity | 88.349609375% | 88.466796875% |
+  | BCE | 88.525390625% | 88.3203125% |
+
+- BCE's selected step 50 beat step 500 on the 1,280-shot selection set by only one
+  case (88.203125% vs 88.28125%), while step 500 had 21 fewer potential fallback
+  calls on the saved development comparison. This demonstrates a ranking reversal
+  in this run, not proof that the final checkpoint is generally better. It was not
+  substituted into the earlier experiment or selected as a new winner after viewing
+  those cases. Review output is under `full_checkpoint_review/` in the diagnostic bundle.
+- The main training configs already specify 20,000 validation shots/p. The small
+  256-shot/p pilot shortcut is noisy relative to the tiny observed differences.
+  Before further hyperparameter changes, a larger fixed development selection set
+  is the most direct next stability check. No new training or final-test use occurred.
+- The full-checkpoint review completed in **87.97 s**, with exact Torch/Numba
+  subset checks on 640 final-model shots. All 20,480 final-checkpoint flags and
+  the selected-model hashes were independently rechecked from the saved files.
+  All per-p selected/final McNemar p-values were above .05 even before correction;
+  observed ranking reversals are descriptive, not significant performance claims.
+- Aggregate-score audit recomputed all 3,200 model-shot summaries and per-p AUCs;
+  all checks passed. Full suite before this diagnostic checkpoint commit:
+  **110 passed** (69.79 s), including first-convergence/iteration-zero and ranking
+  AUC edge-case checks. Source whitespace checks are clean. M6/M7 remain incomplete.

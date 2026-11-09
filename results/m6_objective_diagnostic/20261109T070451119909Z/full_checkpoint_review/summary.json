@@ -1,0 +1,177 @@
+{
+  "purpose": "retrospective_checkpoint_selection_check",
+  "settings": {
+    "purpose": "retrospective_checkpoint_selection_check",
+    "source": "results/m6_cpu_loss_ablation/comparison/20261109T044218253294Z-6e71d010",
+    "threads": 1,
+    "export_check_shots": 64,
+    "wall_seconds": 150
+  },
+  "rows": [
+    {
+      "p": 0.001,
+      "arm": "parity",
+      "shots": 2048,
+      "selected_fallback": 0.60693359375,
+      "last_fallback": 0.59765625,
+      "paired_last_vs_selected": {
+        "first_only": 196,
+        "second_only": 177,
+        "pvalue": 0.3513486397277978
+      },
+      "last_checkpoint_sha256": "5dd755f2a245ea4fe8a01d139598f39930f6cf2025231716da2723ff77083f52",
+      "export_checked_shots": 64,
+      "mean_last_iterations": 11.5986328125
+    },
+    {
+      "p": 0.001,
+      "arm": "bitwise",
+      "shots": 2048,
+      "selected_fallback": 0.60400390625,
+      "last_fallback": 0.603515625,
+      "paired_last_vs_selected": {
+        "first_only": 205,
+        "second_only": 204,
+        "pvalue": 1.0
+      },
+      "last_checkpoint_sha256": "eec88f60383988755f70ed2c8f0fa690c291f5525783069a0aeb56acd504a594",
+      "export_checked_shots": 64,
+      "mean_last_iterations": 11.63232421875
+    },
+    {
+      "p": 0.002,
+      "arm": "parity",
+      "shots": 2048,
+      "selected_fallback": 0.853515625,
+      "last_fallback": 0.8662109375,
+      "paired_last_vs_selected": {
+        "first_only": 87,
+        "second_only": 113,
+        "pvalue": 0.07683763213126032
+      },
+      "last_checkpoint_sha256": "5dd755f2a245ea4fe8a01d139598f39930f6cf2025231716da2723ff77083f52",
+      "export_checked_shots": 64,
+      "mean_last_iterations": 14.15966796875
+    },
+    {
+      "p": 0.002,
+      "arm": "bitwise",
+      "shots": 2048,
+      "selected_fallback": 0.8603515625,
+      "last_fallback": 0.8583984375,
+      "paired_last_vs_selected": {
+        "first_only": 103,
+        "second_only": 99,
+        "pvalue": 0.832890824044768
+      },
+      "last_checkpoint_sha256": "eec88f60383988755f70ed2c8f0fa690c291f5525783069a0aeb56acd504a594",
+      "export_checked_shots": 64,
+      "mean_last_iterations": 14.09033203125
+    },
+    {
+      "p": 0.003,
+      "arm": "parity",
+      "shots": 2048,
+      "selected_fallback": 0.96630859375,
+      "last_fallback": 0.96728515625,
+      "paired_last_vs_selected": {
+        "first_only": 34,
+        "second_only": 36,
+        "pvalue": 0.9049745264594622
+      },
+      "last_checkpoint_sha256": "5dd755f2a245ea4fe8a01d139598f39930f6cf2025231716da2723ff77083f52",
+      "export_checked_shots": 64,
+      "mean_last_iterations": 14.8408203125
+    },
+    {
+      "p": 0.003,
+      "arm": "bitwise",
+      "shots": 2048,
+      "selected_fallback": 0.970703125,
+      "last_fallback": 0.96240234375,
+      "paired_last_vs_selected": {
+        "first_only": 50,
+        "second_only": 33,
+        "pvalue": 0.07841962481580764
+      },
+      "last_checkpoint_sha256": "eec88f60383988755f70ed2c8f0fa690c291f5525783069a0aeb56acd504a594",
+      "export_checked_shots": 64,
+      "mean_last_iterations": 14.83837890625
+    },
+    {
+      "p": 0.004,
+      "arm": "parity",
+      "shots": 2048,
+      "selected_fallback": 0.99169921875,
+      "last_fallback": 0.99267578125,
+      "paired_last_vs_selected": {
+        "first_only": 6,
+        "second_only": 8,
+        "pvalue": 0.79052734375
+      },
+      "last_checkpoint_sha256": "5dd755f2a245ea4fe8a01d139598f39930f6cf2025231716da2723ff77083f52",
+      "export_checked_shots": 64,
+      "mean_last_iterations": 14.9716796875
+    },
+    {
+      "p": 0.004,
+      "arm": "bitwise",
+      "shots": 2048,
+      "selected_fallback": 0.99169921875,
+      "last_fallback": 0.99267578125,
+      "paired_last_vs_selected": {
+        "first_only": 11,
+        "second_only": 13,
+        "pvalue": 0.8388197422027588
+      },
+      "last_checkpoint_sha256": "eec88f60383988755f70ed2c8f0fa690c291f5525783069a0aeb56acd504a594",
+      "export_checked_shots": 64,
+      "mean_last_iterations": 14.9775390625
+    },
+    {
+      "p": 0.005,
+      "arm": "parity",
+      "shots": 2048,
+      "selected_fallback": 0.9990234375,
+      "last_fallback": 0.99951171875,
+      "paired_last_vs_selected": {
+        "first_only": 0,
+        "second_only": 1,
+        "pvalue": 1.0
+      },
+      "last_checkpoint_sha256": "5dd755f2a245ea4fe8a01d139598f39930f6cf2025231716da2723ff77083f52",
+      "export_checked_shots": 64,
+      "mean_last_iterations": 14.9990234375
+    },
+    {
+      "p": 0.005,
+      "arm": "bitwise",
+      "shots": 2048,
+      "selected_fallback": 0.99951171875,
+      "last_fallback": 0.9990234375,
+      "paired_last_vs_selected": {
+        "first_only": 2,
+        "second_only": 1,
+        "pvalue": 1.0
+      },
+      "last_checkpoint_sha256": "eec88f60383988755f70ed2c8f0fa690c291f5525783069a0aeb56acd504a594",
+      "export_checked_shots": 64,
+      "mean_last_iterations": 14.998046875
+    }
+  ],
+  "means": {
+    "parity": {
+      "selected": 0.88349609375,
+      "last": 0.88466796875
+    },
+    "bitwise": {
+      "selected": 0.88525390625,
+      "last": 0.883203125
+    }
+  },
+  "elapsed_s": 87.97064629202941,
+  "git_sha": "1da2c87c6532601f8851c890ca90c2e25f0a9f4b-dirty",
+  "final_test_data_used": false,
+  "selected_checkpoints_changed": false,
+  "scope": "Retrospective reuse of saved development cases; final checkpoints were saved before this analysis. No new checkpoint selection, training, final-test or confirmatory performance claim."
+}

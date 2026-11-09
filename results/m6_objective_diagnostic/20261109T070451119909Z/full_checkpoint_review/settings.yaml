@@ -1,0 +1,5 @@
+export_check_shots: 64
+purpose: retrospective_checkpoint_selection_check
+source: results/m6_cpu_loss_ablation/comparison/20261109T044218253294Z-6e71d010
+threads: 1
+wall_seconds: 150

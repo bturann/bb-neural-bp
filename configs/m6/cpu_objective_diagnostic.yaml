@@ -1,0 +1,7 @@
+purpose: objective_alignment_on_saved_development_cases
+source: results/m6_cpu_loss_ablation/comparison/20261109T044218253294Z-6e71d010
+shots_per_p: 128
+batch: 8
+gradient_probe_shots: 8
+threads: 1
+wall_seconds: 300

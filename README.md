@@ -293,3 +293,24 @@ The completed pilot found fallback demand of 88.350% for parity and 88.525% for 
 versus 88.467% for matched initialization and 88.672% for tuned BP. No primary or
 secondary point passed corrected .05. This is insufficient evidence to favor a
 different loss or claim useful extra learning; the planned parity default remains.
+
+## Objective-alignment and checkpoint review
+
+```sh
+BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 .venv/bin/python scripts/m6_objective_diagnostic.py
+.venv/bin/python scripts/m6_summarize_objective.py <printed-diagnostic-bundle>
+BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 .venv/bin/python scripts/m6_checkpoint_review.py --output <new-review-directory>
+```
+
+These tools reuse saved development cases for diagnosis. They measure both losses,
+first-versus-final convergence, probability clipping, and final-output gradients
+for initialization, selected checkpoints and final checkpoints. Failure-ranking
+AUC is computed within each p only. The first-convergence trace must match Numba.
+The separate review measures final checkpoints on all saved comparison cases and
+preserves the original checkpoint selections. Neither tool trains or uses final tests.
+
+The check found an informative loss ranking and correct first-convergence inference,
+alongside non-monotonic changes in loss and hard decoding. The retrospective BCE
+checkpoint ranking reversed between the tiny selection set and the larger saved
+comparison. A larger fixed development validation set is the next stability check;
+the planned main runs already use 20k shots per p.
