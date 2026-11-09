@@ -1,0 +1,27 @@
+validation baseline p=0.001: tuned fallback=0.60205
+validation baseline p=0.002: tuned fallback=0.87256
+validation baseline p=0.003: tuned fallback=0.97021
+validation baseline p=0.004: tuned fallback=0.99463
+validation baseline p=0.005: tuned fallback=0.99951
+step=0 validation mean fallback=0.890820; tuned=0.887793
+step=25 p=0.00400 loss=145.20261 elapsed=189.0s
+step=50 p=0.00400 loss=128.92157 elapsed=203.7s
+step=75 p=0.00300 loss=112.30916 elapsed=218.8s
+step=100 p=0.00200 loss=61.47281 elapsed=234.4s
+step=100 validation mean fallback=0.887988; tuned=0.887793
+step=125 p=0.00100 loss=62.47808 elapsed=288.6s
+step=150 p=0.00100 loss=60.53035 elapsed=304.3s
+step=175 p=0.00500 loss=203.51518 elapsed=319.2s
+step=200 p=0.00500 loss=174.76016 elapsed=334.5s
+step=200 validation mean fallback=0.885449; tuned=0.887793
+step=225 p=0.00500 loss=165.51730 elapsed=389.4s
+step=250 p=0.00200 loss=75.34967 elapsed=405.0s
+step=275 p=0.00400 loss=151.66721 elapsed=421.1s
+step=300 p=0.00400 loss=131.46516 elapsed=436.9s
+step=300 validation mean fallback=0.887012; tuned=0.887793
+step=325 p=0.00400 loss=131.32204 elapsed=492.1s
+step=350 p=0.00300 loss=70.34412 elapsed=507.5s
+step=375 p=0.00100 loss=54.91548 elapsed=523.5s
+step=400 p=0.00300 loss=107.40204 elapsed=539.7s
+step=400 validation mean fallback=0.886523; tuned=0.887793
+M5 NOT ACCEPTED: wins=3/5, best_step=200; /Users/berkaybaristuran/Desktop/Research/QuantAI/codebase/results/m6_cpu_readout/full_unroll/20261109T080813488970Z-65bd777f/training/20261109T080815001365Z-65bd777f

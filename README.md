@@ -355,3 +355,36 @@ Its paired interval included zero and no primary point passed corrected .05.
 Parity's 88.643% is descriptive. A performance advantage was not confirmed, so no
 longer run or main model replacement followed. Full M6 still requires three-seed
 training and independent two-stage accuracy/latency evaluation.
+
+## Controlled first-convergence training readout
+
+`train.runtime.readout: first_converged` freezes the differentiable soft prediction
+at the first syndrome-valid decision while retaining the existing parity/logical
+multi-loss. Wrong-logical convergence is still penalized. The default remains
+`full_unroll`; inference and the main experiment configurations are unchanged.
+
+Run the matched `cpu_readout_full_unroll.yaml` and
+`cpu_readout_first_converged.yaml` configs through `scripts/m6_cpu_pilot.py`, each
+with `--budget configs/m6/cpu_readout_training_budget.yaml` and separate output and
+checkpoint roots. Pass the printed training bundle paths to:
+
+```sh
+BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 .venv/bin/python scripts/m6_readout_ablation.py --full <full-training-bundle> --frozen <frozen-training-bundle>
+BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 .venv/bin/python scripts/m6_audit_readout_ablation.py <comparison-bundle>
+MPLCONFIGDIR=.cache/matplotlib .venv/bin/python scripts/m6_plot_readout_ablation.py <comparison-bundle>
+```
+
+Both arms receive 400 identical streamed batches, .95 initialization and 2,048
+fixed selection cases per p. The primary fresh comparison uses another 2,048
+paired cases per p and five-point Holm correction; frozen/tuned and frozen/initial
+contrasts form a separate ten-test family. Main final-test seeds remain reserved.
+The recorded first comparison timed out after an inter-stage delay consumed part
+of its overall allowance. `cpu_readout_completion.yaml` permits a separately
+capped four-minute repetition only with identical candidates and sampling choices;
+the failed attempt remains preserved. See `NOTES.md` for timing and evidence.
+
+On 10,240 fixed fresh development cases, frozen-readout demand was 88.691%, versus
+88.730% for full-unroll and 88.955% for tuned BP. The four-call difference from the
+control was inconclusive: no primary or secondary paired point passed corrected
+.05. Both arms selected step 200. The optional readout remains experimental, and
+M6's three-seed accuracy/latency claim is still pending.

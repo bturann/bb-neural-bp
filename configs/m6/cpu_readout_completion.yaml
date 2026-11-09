@@ -1,0 +1,10 @@
+purpose: fixed_readout_comparison_completion_after_timeout
+wall_seconds: 240
+comparison_wall_seconds: 240
+evaluation_seed_offset: 31000
+evaluation_shots: 2048
+evaluation_batch: 64
+threads: 1
+export_check_shots: 64
+alpha: 0.05
+completion_of: results/m6_cpu_readout/comparison/20261109T082051430751Z-9ecb5bb7

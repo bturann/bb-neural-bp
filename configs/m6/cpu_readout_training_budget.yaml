@@ -1,0 +1,5 @@
+purpose: controlled_training_readout_cpu_arm
+wall_seconds: 660
+interrupt_grace_seconds: 15
+kill_grace_seconds: 5
+profile_top_functions: 30

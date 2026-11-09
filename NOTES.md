@@ -1019,3 +1019,107 @@ M5 passed: `results/m5/20261030T220645511485Z-3a224cbf`; wins 4/7, best step 100
   are retained. No prior result was overwritten. Full suite before this development
   checkpoint commit: **113 passed** (34.44 s), including rejection of larger-selection
   data reuse. Source whitespace checks are clean. Full M6/M7 remain incomplete.
+
+## Controlled training-readout experiment — November 9, 2026 (started)
+
+- User authorized testing inference-aligned training. Added an explicit optional
+  `train.runtime.readout` setting: default `full_unroll` preserves historical config
+  hashes and behavior; `first_converged` freezes each shot's soft training readout
+  after its first syndrome-valid decision. Message updates continue internally,
+  and the same T=15 weighted parity/logical loss still scores every returned output.
+- Frozen probabilities retain their gradient path. Syndrome-valid wrong-logical
+  outputs are frozen too, matching actual inference, and remain penalized by the
+  logical loss. There is no oracle-dependent stop rule, discarded logical term,
+  inference change or NumPy/Numba decoder change. This is an authorized development
+  objective ablation; main experiment configs remain at the default readout.
+- Targeted model/config/loss/reference checks passed (44 tests) before training.
+  They verify soft prediction freezing, agreement with canonical first-convergence
+  corrections/iterations, finite gradients and a wrong-logical toy that retains
+  both its logical penalty and its first-iteration gradient.
+- Both parity-loss arms use .95 initialization, 400 updates, batch 8, a 100-update
+  curriculum, and the same frozen mining model. The 400-update budget leaves time
+  for the larger selection sets and fresh comparison under a 900-second study cap.
+  Validation every 100 updates uses 2,048 fixed cases/p; patience 5 guarantees the
+  equal 400-update budget. Each arm has a 660-second wall limit, one CPU thread,
+  and runs concurrently with the other arm. GPU use is zero.
+- Shared training entropy is [1234, 713]. Selection seeds **30234–30238** and fresh
+  comparison seeds **32234–32238** are new, separate from all prior development,
+  tuning and final regions. Inputs, ending RNG states and initial validation must
+  match exactly; the only configuration difference may be the readout setting.
+- The primary paired contrast is frozen-readout versus full-unroll, Holm over five
+  p values. Secondary frozen/tuned and frozen/untrained contrasts form a ten-test
+  family. All cases and model choices are fixed before fresh outcomes are sampled.
+  No OSD, two-stage LER, latency or main-M6 completion claim will follow from this pilot.
+- Training bundles: `results/m6_cpu_readout/full_unroll/20261109T080813488970Z-65bd777f/`
+  and `results/m6_cpu_readout/first_converged/20261109T080814638217Z-818b5db1/`.
+
+### Readout comparison timeout and fixed completion
+
+- Both training arms completed all 400 updates: 582.47 s for full-unroll and
+  589.31 s for first-converged, including profiler overhead. Their actual batch
+  hashes, mining metadata, ending generator states, initial validation and baseline
+  flags matched. Both selected step 200; frozen step 300 tied its step-200 score
+  and did not replace the earlier selection. Selection demand was 88.544921875%
+  for full-unroll and 88.30078125% for frozen readout (descriptive selection scores).
+- The first comparison began 757.94 s after the training start because of a delay
+  between stages, leaving 142.06 s of the original 900-second wall allowance.
+  Its decoder-boundary budget check stopped after 148.6 s, before completing
+  p=.004; only the first three complete points (12 CSV rows) were saved. The
+  failed bundle and original executed source remain untouched at
+  `results/m6_cpu_readout/comparison/20261109T082051430751Z-9ecb5bb7/`.
+  The overall 15-minute target was therefore missed; it is not reported as met.
+- A separately capped 240-second CPU comparison completion was launched with
+  `configs/m6/cpu_readout_completion.yaml`. It repeats the exact fixed candidate
+  bytes, resolved evaluation config, seeds, shot counts and statistical families.
+  Preflight rejects any changes to these choices and requires the recorded timeout.
+  There is no retraining, selection on comparison outcomes, extra sample, or claim
+  that repeated cases are an independent confirmation. The original 900-second
+  settings file is unchanged. Completion timing is explicitly comparison-only;
+  total elapsed time still includes the delay and stopped attempt.
+
+### Controlled readout outcome — completed, no confirmed advantage
+
+- The fixed comparison completion finished in **197.84 s** (CPU only), within its
+  separate 240-second allowance. Total elapsed time since the first training start
+  was **1,128.65 s** (18 min 49 s), including the delay and stopped attempt.
+  Completed bundle:
+  `results/m6_cpu_readout/comparison/20261109T082344302341Z-9ecb5bb7/`.
+
+  | Decoder | Mean potential fallback demand |
+  |---|---|
+  | Independent T=15 tuned BP | 88.955078125% |
+  | Matched untrained .95 | 88.8671875% |
+  | Full-unroll selected step 200 | 88.73046875% |
+  | First-converged selected step 200 | 88.69140625% |
+
+- Frozen readout had **four fewer** potential fallback calls than full-unroll
+  across 10,240 paired development cases, a difference of **-0.0390625 percentage
+  points**. Its differences versus full-unroll favored frozen readout at two p
+  values and full-unroll at three. All five primary Holm-adjusted p values were
+  **1.0**. All ten secondary adjusted p values were also **1.0**; the 27 fewer
+  potential calls than tuned BP do not establish a performance advantage.
+- The lower frozen selection score did not translate into a clear fresh-data gain.
+  This single-seed, short-training ablation is inconclusive; it does not prove
+  equivalence or justify promoting the optional readout into the main experiment.
+  Main parity/full-unroll settings and the reserved final-test seeds remain intact.
+  M6/M7 are incomplete; two-stage LER equality and latency have not been measured
+  by this study. No GPU, OSD or external compute was used.
+- Selected checkpoint SHA-256 values are
+  `9af773b51d99dd55ecaba1918df3333280e780ff1450ca4d3e54936482f820c9`
+  (full-unroll) and
+  `8e5c230c3d13503cadf728d69327666f123025a03e4b4dd48ba4e9b9f7cc3588`
+  (first-converged). Both selected and final checkpoints are retained with configs.
+- Full suite: **117 passed** (25.28 s), including readout gradient/logical edge
+  cases and historical config hash preservation. Source whitespace checks passed.
+  Generated validation/fresh-comparison plots are saved as PNG and PDF. A second
+  `readout_comparison_spaced` rendering adds annotation room; the original is retained.
+- Independent audit passed: **20,480** selected-validation cases replayed,
+  **10,240** comparison cases and H/L labels regenerated, **40,960** decoder flags
+  and **20** CSV rows checked, **1,280** subset decodes replayed, and **960** neural
+  shots matched exactly between PyTorch and Numba (outputs/convergence/iterations).
+  All **12** completed rows and saved case/flag arrays from the timed-out attempt
+  reproduced exactly. Both statistical families reproduced, selection was verified
+  as the earliest minimum validation score, and training/evaluation core source
+  hashes matched. A search across **31** prior CSV seed sources found no collisions.
+  Final parameter differences (max |delta w|=.0422532, |delta alpha|=.0272748)
+  confirm the readout treatment affected optimization despite the small outcome.

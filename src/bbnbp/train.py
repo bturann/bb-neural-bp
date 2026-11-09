@@ -293,7 +293,7 @@ def run(config, output_root="results/m5", checkpoint_root="checkpoints", *, resu
                     print(f"warning: hard mining capped at {config.train.mining_max_draws} draws; kept {len(s)} shots", flush=True)
                 model.train()
                 optimizer.zero_grad(set_to_none=True)
-                outputs = model(torch.from_numpy(s).to(device), llr=llr)
+                outputs = model(torch.from_numpy(s).to(device), llr=llr, readout=runtime.readout)
                 faults = torch.from_numpy(e).to(loss_device)
                 weight_tensor = torch.tensor(weights, dtype=model.w.dtype, device=loss_device)
                 loss = multi_loss([p.to(loss_device) for p in outputs], faults, per_shot_loss, weight_tensor)

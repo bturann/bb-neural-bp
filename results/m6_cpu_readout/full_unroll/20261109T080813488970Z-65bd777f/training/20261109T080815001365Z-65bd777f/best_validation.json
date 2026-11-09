@@ -1,0 +1,162 @@
+{
+  "step": 200,
+  "rows": [
+    {
+      "p": 0.001,
+      "shots": 2048,
+      "seed": 30234,
+      "nonconverged": 1225,
+      "osd_rate": 0.59814453125,
+      "ler_stage1": 0.59814453125,
+      "logical_failures": 1225,
+      "mean_iterations": 11.521484375,
+      "tuned": {
+        "nonconverged": 1233,
+        "osd_rate": 0.60205078125,
+        "logical_failures": 1233,
+        "ler_stage1": 0.60205078125,
+        "ms_scaling": 1.0,
+        "mean_iterations": 11.80908203125
+      },
+      "bp": {
+        "nonconverged": 1252,
+        "osd_rate": 0.611328125,
+        "logical_failures": 1252,
+        "ler_stage1": 0.611328125,
+        "ms_scaling": 0.95,
+        "mean_iterations": 11.70361328125
+      },
+      "paired_vs_tuned": {
+        "first_only": 239,
+        "second_only": 231,
+        "pvalue": 0.7468206092097918
+      }
+    },
+    {
+      "p": 0.002,
+      "shots": 2048,
+      "seed": 30235,
+      "nonconverged": 1777,
+      "osd_rate": 0.86767578125,
+      "ler_stage1": 0.8681640625,
+      "logical_failures": 1778,
+      "mean_iterations": 14.25439453125,
+      "tuned": {
+        "nonconverged": 1787,
+        "osd_rate": 0.87255859375,
+        "logical_failures": 1787,
+        "ler_stage1": 0.87255859375,
+        "ms_scaling": 1.0,
+        "mean_iterations": 14.2490234375
+      },
+      "bp": {
+        "nonconverged": 1802,
+        "osd_rate": 0.8798828125,
+        "logical_failures": 1802,
+        "ler_stage1": 0.8798828125,
+        "ms_scaling": 0.95,
+        "mean_iterations": 14.25830078125
+      },
+      "paired_vs_tuned": {
+        "first_only": 142,
+        "second_only": 132,
+        "pvalue": 0.5867219053297223
+      }
+    },
+    {
+      "p": 0.003,
+      "shots": 2048,
+      "seed": 30236,
+      "nonconverged": 1980,
+      "osd_rate": 0.966796875,
+      "ler_stage1": 0.966796875,
+      "logical_failures": 1980,
+      "mean_iterations": 14.84521484375,
+      "tuned": {
+        "nonconverged": 1987,
+        "osd_rate": 0.97021484375,
+        "logical_failures": 1987,
+        "ler_stage1": 0.97021484375,
+        "ms_scaling": 0.95,
+        "mean_iterations": 14.8525390625
+      },
+      "bp": {
+        "nonconverged": 1987,
+        "osd_rate": 0.97021484375,
+        "logical_failures": 1987,
+        "ler_stage1": 0.97021484375,
+        "ms_scaling": 0.95,
+        "mean_iterations": 14.8525390625
+      },
+      "paired_vs_tuned": {
+        "first_only": 37,
+        "second_only": 30,
+        "pvalue": 0.46381761789686937
+      }
+    },
+    {
+      "p": 0.004,
+      "shots": 2048,
+      "seed": 30237,
+      "nonconverged": 2037,
+      "osd_rate": 0.99462890625,
+      "ler_stage1": 0.99462890625,
+      "logical_failures": 2037,
+      "mean_iterations": 14.98388671875,
+      "tuned": {
+        "nonconverged": 2037,
+        "osd_rate": 0.99462890625,
+        "logical_failures": 2037,
+        "ler_stage1": 0.99462890625,
+        "ms_scaling": 0.75,
+        "mean_iterations": 14.982421875
+      },
+      "bp": {
+        "nonconverged": 2034,
+        "osd_rate": 0.9931640625,
+        "logical_failures": 2034,
+        "ler_stage1": 0.9931640625,
+        "ms_scaling": 0.95,
+        "mean_iterations": 14.97998046875
+      },
+      "paired_vs_tuned": {
+        "first_only": 8,
+        "second_only": 8,
+        "pvalue": 1.0
+      }
+    },
+    {
+      "p": 0.005,
+      "shots": 2048,
+      "seed": 30238,
+      "nonconverged": 2048,
+      "osd_rate": 1.0,
+      "ler_stage1": 1.0,
+      "logical_failures": 2048,
+      "mean_iterations": 15.0,
+      "tuned": {
+        "nonconverged": 2047,
+        "osd_rate": 0.99951171875,
+        "logical_failures": 2047,
+        "ler_stage1": 0.99951171875,
+        "ms_scaling": 0.85,
+        "mean_iterations": 14.99951171875
+      },
+      "bp": {
+        "nonconverged": 2047,
+        "osd_rate": 0.99951171875,
+        "logical_failures": 2047,
+        "ler_stage1": 0.99951171875,
+        "ms_scaling": 0.95,
+        "mean_iterations": 14.9990234375
+      },
+      "paired_vs_tuned": {
+        "first_only": 0,
+        "second_only": 1,
+        "pvalue": 1.0
+      }
+    }
+  ],
+  "mean_osd_rate": 0.88544921875,
+  "mean_tuned_rate": 0.88779296875
+}

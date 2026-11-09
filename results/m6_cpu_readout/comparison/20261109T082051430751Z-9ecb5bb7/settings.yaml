@@ -1,0 +1,9 @@
+alpha: 0.05
+comparison_wall_seconds: 240
+evaluation_batch: 64
+evaluation_seed_offset: 31000
+evaluation_shots: 2048
+export_check_shots: 64
+purpose: full_unroll_vs_first_converged_development_ablation
+threads: 1
+wall_seconds: 900

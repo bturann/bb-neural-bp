@@ -1,0 +1,297 @@
+{
+  "purpose": "fixed_readout_comparison_completion_after_timeout",
+  "settings": {
+    "purpose": "fixed_readout_comparison_completion_after_timeout",
+    "wall_seconds": 240,
+    "comparison_wall_seconds": 240,
+    "evaluation_seed_offset": 31000,
+    "evaluation_shots": 2048,
+    "evaluation_batch": 64,
+    "threads": 1,
+    "export_check_shots": 64,
+    "alpha": 0.05,
+    "completion_of": "results/m6_cpu_readout/comparison/20261109T082051430751Z-9ecb5bb7"
+  },
+  "controls": {
+    "configurations_differ_only_in_readout": true,
+    "matched_training_batches": 400,
+    "training_inputs_sha256": "806db33651daa8ca7028cd2f7dd540cb3b873014459988adb056bf193ef9fab2",
+    "ending_generators_match": true,
+    "baseline_validation_matches": true,
+    "initial_validation_matches": true
+  },
+  "points": [
+    {
+      "p": 0.001,
+      "seed": 32234,
+      "shots": 2048,
+      "tuned_factor": 1.0,
+      "models": {
+        "bp_tuned": {
+          "fallback_demand": 0.61328125,
+          "failures": 1256,
+          "mean_iterations": 11.8857421875
+        },
+        "nbp_initial": {
+          "fallback_demand": 0.61767578125,
+          "failures": 1265,
+          "mean_iterations": 11.80810546875
+        },
+        "nbp_full": {
+          "fallback_demand": 0.60595703125,
+          "failures": 1241,
+          "mean_iterations": 11.63232421875
+        },
+        "nbp_frozen": {
+          "fallback_demand": 0.6103515625,
+          "failures": 1250,
+          "mean_iterations": 11.6630859375
+        }
+      },
+      "primary": {
+        "first_only": 202,
+        "second_only": 211,
+        "pvalue": 0.6938860804575309,
+        "holm_pvalue": 1.0
+      },
+      "secondary": {
+        "bp_tuned": {
+          "first_only": 262,
+          "second_only": 256,
+          "pvalue": 0.8261409024748153,
+          "holm_pvalue": 1.0
+        },
+        "nbp_initial": {
+          "first_only": 235,
+          "second_only": 220,
+          "pvalue": 0.5116560053459215,
+          "holm_pvalue": 1.0
+        }
+      }
+    },
+    {
+      "p": 0.002,
+      "seed": 32235,
+      "shots": 2048,
+      "tuned_factor": 1.0,
+      "models": {
+        "bp_tuned": {
+          "fallback_demand": 0.873046875,
+          "failures": 1788,
+          "mean_iterations": 14.27490234375
+        },
+        "nbp_initial": {
+          "fallback_demand": 0.86572265625,
+          "failures": 1773,
+          "mean_iterations": 14.21533203125
+        },
+        "nbp_full": {
+          "fallback_demand": 0.8720703125,
+          "failures": 1786,
+          "mean_iterations": 14.25
+        },
+        "nbp_frozen": {
+          "fallback_demand": 0.8671875,
+          "failures": 1776,
+          "mean_iterations": 14.203125
+        }
+      },
+      "primary": {
+        "first_only": 125,
+        "second_only": 115,
+        "pvalue": 0.5613667386935357,
+        "holm_pvalue": 1.0
+      },
+      "secondary": {
+        "bp_tuned": {
+          "first_only": 152,
+          "second_only": 140,
+          "pvalue": 0.5198233007353309,
+          "holm_pvalue": 1.0
+        },
+        "nbp_initial": {
+          "first_only": 121,
+          "second_only": 124,
+          "pvalue": 0.8983608209312326,
+          "holm_pvalue": 1.0
+        }
+      }
+    },
+    {
+      "p": 0.003,
+      "seed": 32236,
+      "shots": 2048,
+      "tuned_factor": 0.95,
+      "models": {
+        "bp_tuned": {
+          "fallback_demand": 0.96630859375,
+          "failures": 1979,
+          "mean_iterations": 14.82958984375
+        },
+        "nbp_initial": {
+          "fallback_demand": 0.966796875,
+          "failures": 1980,
+          "mean_iterations": 14.82958984375
+        },
+        "nbp_full": {
+          "fallback_demand": 0.96826171875,
+          "failures": 1983,
+          "mean_iterations": 14.83642578125
+        },
+        "nbp_frozen": {
+          "fallback_demand": 0.96484375,
+          "failures": 1976,
+          "mean_iterations": 14.82568359375
+        }
+      },
+      "primary": {
+        "first_only": 34,
+        "second_only": 27,
+        "pvalue": 0.4426260049464714,
+        "holm_pvalue": 1.0
+      },
+      "secondary": {
+        "bp_tuned": {
+          "first_only": 38,
+          "second_only": 35,
+          "pvalue": 0.8151212352249976,
+          "holm_pvalue": 1.0
+        },
+        "nbp_initial": {
+          "first_only": 38,
+          "second_only": 34,
+          "pvalue": 0.7239481457469141,
+          "holm_pvalue": 1.0
+        }
+      }
+    },
+    {
+      "p": 0.004,
+      "seed": 32237,
+      "shots": 2048,
+      "tuned_factor": 0.75,
+      "models": {
+        "bp_tuned": {
+          "fallback_demand": 0.99609375,
+          "failures": 2040,
+          "mean_iterations": 14.98046875
+        },
+        "nbp_initial": {
+          "fallback_demand": 0.994140625,
+          "failures": 2036,
+          "mean_iterations": 14.974609375
+        },
+        "nbp_full": {
+          "fallback_demand": 0.9921875,
+          "failures": 2032,
+          "mean_iterations": 14.9736328125
+        },
+        "nbp_frozen": {
+          "fallback_demand": 0.99365234375,
+          "failures": 2035,
+          "mean_iterations": 14.97265625
+        }
+      },
+      "primary": {
+        "first_only": 7,
+        "second_only": 10,
+        "pvalue": 0.629058837890625,
+        "holm_pvalue": 1.0
+      },
+      "secondary": {
+        "bp_tuned": {
+          "first_only": 9,
+          "second_only": 4,
+          "pvalue": 0.266845703125,
+          "holm_pvalue": 1.0
+        },
+        "nbp_initial": {
+          "first_only": 5,
+          "second_only": 4,
+          "pvalue": 1.0,
+          "holm_pvalue": 1.0
+        }
+      }
+    },
+    {
+      "p": 0.005,
+      "seed": 32238,
+      "shots": 2048,
+      "tuned_factor": 0.85,
+      "models": {
+        "bp_tuned": {
+          "fallback_demand": 0.9990234375,
+          "failures": 2046,
+          "mean_iterations": 14.994140625
+        },
+        "nbp_initial": {
+          "fallback_demand": 0.9990234375,
+          "failures": 2046,
+          "mean_iterations": 14.99853515625
+        },
+        "nbp_full": {
+          "fallback_demand": 0.998046875,
+          "failures": 2044,
+          "mean_iterations": 14.9951171875
+        },
+        "nbp_frozen": {
+          "fallback_demand": 0.99853515625,
+          "failures": 2045,
+          "mean_iterations": 14.99658203125
+        }
+      },
+      "primary": {
+        "first_only": 2,
+        "second_only": 3,
+        "pvalue": 1.0,
+        "holm_pvalue": 1.0
+      },
+      "secondary": {
+        "bp_tuned": {
+          "first_only": 3,
+          "second_only": 2,
+          "pvalue": 1.0,
+          "holm_pvalue": 1.0
+        },
+        "nbp_initial": {
+          "first_only": 2,
+          "second_only": 1,
+          "pvalue": 1.0,
+          "holm_pvalue": 1.0
+        }
+      }
+    }
+  ],
+  "mean_fallback": {
+    "bp_tuned": 0.88955078125,
+    "nbp_initial": 0.888671875,
+    "nbp_full": 0.8873046875,
+    "nbp_frozen": 0.8869140625
+  },
+  "checkpoints": {
+    "full": {
+      "path": "checkpoints/m6_cpu_readout/full_unroll/20261109T080815001365Z-65bd777f/best.pt",
+      "step": 200,
+      "sha256": "9af773b51d99dd55ecaba1918df3333280e780ff1450ca4d3e54936482f820c9"
+    },
+    "frozen": {
+      "path": "checkpoints/m6_cpu_readout/first_converged/20261109T080816096759Z-818b5db1/best.pt",
+      "step": 200,
+      "sha256": "8e5c230c3d13503cadf728d69327666f123025a03e4b4dd48ba4e9b9f7cc3588"
+    }
+  },
+  "training_roots": {
+    "full": "results/m6_cpu_readout/full_unroll/20261109T080813488970Z-65bd777f",
+    "frozen": "results/m6_cpu_readout/first_converged/20261109T080814638217Z-818b5db1"
+  },
+  "frozen_minus_full_percentage_points": -0.03906249999999778,
+  "significant_primary_points": 0,
+  "elapsed_s": 197.84158174996264,
+  "total_study_elapsed_s": 1128.654952999961,
+  "completion_of": "results/m6_cpu_readout/comparison/20261109T082051430751Z-9ecb5bb7",
+  "budget_scope": "comparison_only",
+  "final_test_data_used": false,
+  "gpu_seconds": 0,
+  "m6_complete": false,
+  "scope": "Single-seed controlled development training-readout ablation. Both use unchanged parity/logical loss and identical actual batches. Primary Holm family: frozen/full at five p values; secondary family: frozen/tuned and frozen/initial across ten tests. Canonical first-convergence inference is identical for both arms. No OSD, two-stage LER or latency claim."
+}

@@ -52,6 +52,10 @@ def verify_control(parity, bitwise):
     a, b = parity["config"], bitwise["config"]
     if a.train.loss != "parity" or b.train.loss != "bitwise" or replace(b, train=replace(b.train, loss="parity")) != a:
         raise ValueError("Controlled configurations may differ only in train.loss")
+    return dict(configurations_differ_only_in_loss=True, **verify_training_inputs(parity,bitwise))
+
+
+def verify_training_inputs(parity, bitwise):
     keys = ("step", "p", "batch_sha256", "drawn", "hard", "effective_batch", "capped")
     first = [{key: row[key] for key in keys} for row in parity["history"]]
     second = [{key: row[key] for key in keys} for row in bitwise["history"]]
@@ -69,7 +73,7 @@ def verify_control(parity, bitwise):
         initial.append(json.loads((arm["run"]/"validation.jsonl").read_text().splitlines()[0]))
     if initial[0] != initial[1]:
         raise ValueError("Initial models or validation samples differ")
-    return dict(configurations_differ_only_in_loss=True, matched_training_batches=len(first),
+    return dict(matched_training_batches=len(first),
                 training_inputs_sha256=hashlib.sha256(json.dumps(first, sort_keys=True).encode()).hexdigest(),
                 ending_generators_match=True, baseline_validation_matches=True, initial_validation_matches=True)
 

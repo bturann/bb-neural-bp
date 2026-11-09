@@ -24,6 +24,17 @@ def test_historical_config_hash_is_preserved():
     assert load_config(path).config_hash == "0c364ef1c90ff244cd0f53277ac4602a3984025c"
 
 
+def test_training_readout_is_explicit_and_roundtrips(tmp_path):
+    c=load_config("configs/m6/cpu_readout_first_converged.yaml")
+    c.save(tmp_path/"readout.yaml")
+    assert load_config(tmp_path/"readout.yaml")==c
+    assert c.to_dict()["train"]["runtime"]["readout"]=="first_converged"
+    default=replace(c,train=replace(c.train,runtime=replace(c.train.runtime,readout="full_unroll")))
+    assert "readout" not in default.to_dict()["train"]["runtime"]
+    with pytest.raises(ValueError,match="Training readout"):
+        replace(c,train=replace(c.train,runtime=replace(c.train.runtime,readout="unknown"))).validate()
+
+
 def test_circuit_policy_is_explicit(tmp_path):
     config = load_config(BASE)
     config = replace(config, noise=replace(config.noise, model="circuit_level", rounds=6))

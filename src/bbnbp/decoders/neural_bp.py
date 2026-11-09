@@ -65,7 +65,9 @@ class NeuralMinSum(nn.Module):
         self.register_buffer("llr", torch.tensor(self.problem.llr, dtype=prior_dtype, device=self.w.device))
         return result
 
-    def forward(self, s, llr=None, early_stop=False):
+    def forward(self, s, llr=None, early_stop=False, readout="full_unroll"):
+        if readout not in {"full_unroll", "first_converged"}:
+            raise ValueError("Unknown neural training readout")
         if early_stop and torch.is_grad_enabled():
             raise ValueError("Early stopping is for inference; use no_grad or decode_batch")
         device, dtype = self.w.device, self.w.dtype
@@ -84,11 +86,13 @@ class NeuralMinSum(nn.Module):
         total = torch.zeros((batch, n), device=device, dtype=dtype)
         sign_s = (1-2*syndrome).unsqueeze(-1)
         variables = self.chk_idx[self.chk_mask]
-        converged = ~syndrome.bool().any(dim=1) if early_stop else torch.zeros(batch, device=device, dtype=torch.bool)
+        track_convergence = early_stop or readout == "first_converged"
+        converged = ~syndrome.bool().any(dim=1) if track_convergence else torch.zeros(batch, device=device, dtype=torch.bool)
         frozen = torch.zeros((batch, n), dtype=torch.bool, device=device)
         iterations = torch.full((batch,), self.T, dtype=torch.long, device=device)
-        if early_stop:
+        if track_convergence:
             iterations[converged] = 0
+        frozen_probabilities = torch.sigmoid(-prior).expand(batch, n) if readout == "first_converged" else None
         outputs, decisions = [], []
         hard = frozen
         for t in range(self.T):
@@ -122,14 +126,19 @@ class NeuralMinSum(nn.Module):
             outputs.append(torch.sigmoid(-posterior))
             # Hard decisions use the LLR sign directly, avoiding sigmoid rounding at 0.5.
             decisions.append(hard.detach())
-            if early_stop:
+            if track_convergence:
                 parity = (hard[:, self.chk_idx] & self.chk_mask).sum(dim=-1) % 2
                 now = (parity == syndrome).all(dim=1)
                 newly = now & ~converged
                 frozen = torch.where(newly[:, None], hard, frozen)
                 iterations = torch.where(newly, t+1, iterations)
                 converged = converged | now
-        if not early_stop:
+                if readout == "first_converged":
+                    # Keep the first soft prediction attached to its gradient path.
+                    # The parity objective still checks its logical correctness.
+                    frozen_probabilities = torch.where(newly[:, None], outputs[-1], frozen_probabilities)
+                    outputs[-1] = torch.where(converged[:, None], frozen_probabilities, outputs[-1])
+        if not track_convergence:
             parity = (hard[:, self.chk_idx] & self.chk_mask).sum(dim=-1) % 2
             converged = (parity == syndrome).all(dim=1)
             frozen = hard

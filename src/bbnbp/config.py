@@ -75,6 +75,7 @@ class TrainingRuntimeConfig:
     m3_gate_report: str
     loss_device: str = "model"
     validation_backend: str = "numba"
+    readout: str = "full_unroll"
 
 
 @dataclass(frozen=True)
@@ -156,7 +157,7 @@ class Config:
         if self.train.runtime is None:
             del raw["train"]["runtime"]
         else:
-            for key, value in (("loss_device", "model"), ("validation_backend", "numba")):
+            for key, value in (("loss_device", "model"), ("validation_backend", "numba"), ("readout", "full_unroll")):
                 if raw["train"]["runtime"][key] == value:
                     del raw["train"]["runtime"][key]
         if not self.eval.checkpoints:
@@ -257,6 +258,8 @@ class Config:
             raise ValueError("Sample offset must be a multiple of the sampling batch")
         runtime = self.train.runtime
         if runtime is not None:
+            if runtime.readout not in {"full_unroll", "first_converged"}:
+                raise ValueError("Training readout must be full_unroll or first_converged")
             if runtime.purpose not in {"smoke", "m5_gate", "m6_train"}:
                 raise ValueError("Training purpose must be smoke, m5_gate or m6_train")
             if runtime.loss_device not in {"model", "cpu"} or runtime.validation_backend not in {"numba", "torch"}:

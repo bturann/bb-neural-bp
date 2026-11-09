@@ -1,0 +1,12 @@
+{
+  "purpose": "controlled_training_readout_cpu_arm",
+  "git_sha": "daca4640db2e5141412fe5d6e19b7d888851eb7f-dirty",
+  "device": "cpu",
+  "gpu_seconds": 0,
+  "elapsed_s": 582.4724155000295,
+  "returncode": 0,
+  "stopping": "child_completed",
+  "final_test_data_used": false,
+  "m6_complete": false,
+  "timing_scope": "Profiled end-to-end CPU pilot; profiler overhead included"
+}

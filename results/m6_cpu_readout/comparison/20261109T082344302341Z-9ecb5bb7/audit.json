@@ -1,0 +1,23 @@
+{
+  "checks_passed": true,
+  "matched_training_batches": 400,
+  "validation_cases_replayed": 20480,
+  "regenerated_comparison_cases": 10240,
+  "checked_decoder_flags": 40960,
+  "subset_decodes_replayed": 1280,
+  "exact_export_shots": 960,
+  "checked_csv_rows": 20,
+  "final_parameter_max_difference": {
+    "w": 0.042253196239471436,
+    "alpha": 0.027274787425994873
+  },
+  "prior_csv_seed_sources_checked": 31,
+  "completed_partial_rows_reproduced": 12,
+  "audit_source_sha256": "6ff991622ef9e232c04c09de937f9d34ea1a2b0708c726d5d5aae7b665aa5b91",
+  "statistical_families_verified": [
+    5,
+    10
+  ],
+  "final_test_data_used": false,
+  "m6_complete": false
+}

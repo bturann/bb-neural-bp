@@ -1,0 +1,92 @@
+{
+  "0.001": {
+    "bp": {
+      "nonconverged": 1252,
+      "osd_rate": 0.611328125,
+      "logical_failures": 1252,
+      "ler_stage1": 0.611328125,
+      "ms_scaling": 0.95,
+      "mean_iterations": 11.70361328125
+    },
+    "bp_tuned": {
+      "nonconverged": 1233,
+      "osd_rate": 0.60205078125,
+      "logical_failures": 1233,
+      "ler_stage1": 0.60205078125,
+      "ms_scaling": 1.0,
+      "mean_iterations": 11.80908203125
+    }
+  },
+  "0.002": {
+    "bp": {
+      "nonconverged": 1802,
+      "osd_rate": 0.8798828125,
+      "logical_failures": 1802,
+      "ler_stage1": 0.8798828125,
+      "ms_scaling": 0.95,
+      "mean_iterations": 14.25830078125
+    },
+    "bp_tuned": {
+      "nonconverged": 1787,
+      "osd_rate": 0.87255859375,
+      "logical_failures": 1787,
+      "ler_stage1": 0.87255859375,
+      "ms_scaling": 1.0,
+      "mean_iterations": 14.2490234375
+    }
+  },
+  "0.003": {
+    "bp": {
+      "nonconverged": 1987,
+      "osd_rate": 0.97021484375,
+      "logical_failures": 1987,
+      "ler_stage1": 0.97021484375,
+      "ms_scaling": 0.95,
+      "mean_iterations": 14.8525390625
+    },
+    "bp_tuned": {
+      "nonconverged": 1987,
+      "osd_rate": 0.97021484375,
+      "logical_failures": 1987,
+      "ler_stage1": 0.97021484375,
+      "ms_scaling": 0.95,
+      "mean_iterations": 14.8525390625
+    }
+  },
+  "0.004": {
+    "bp": {
+      "nonconverged": 2034,
+      "osd_rate": 0.9931640625,
+      "logical_failures": 2034,
+      "ler_stage1": 0.9931640625,
+      "ms_scaling": 0.95,
+      "mean_iterations": 14.97998046875
+    },
+    "bp_tuned": {
+      "nonconverged": 2037,
+      "osd_rate": 0.99462890625,
+      "logical_failures": 2037,
+      "ler_stage1": 0.99462890625,
+      "ms_scaling": 0.75,
+      "mean_iterations": 14.982421875
+    }
+  },
+  "0.005": {
+    "bp": {
+      "nonconverged": 2047,
+      "osd_rate": 0.99951171875,
+      "logical_failures": 2047,
+      "ler_stage1": 0.99951171875,
+      "ms_scaling": 0.95,
+      "mean_iterations": 14.9990234375
+    },
+    "bp_tuned": {
+      "nonconverged": 2047,
+      "osd_rate": 0.99951171875,
+      "logical_failures": 2047,
+      "ler_stage1": 0.99951171875,
+      "ms_scaling": 0.85,
+      "mean_iterations": 14.99951171875
+    }
+  }
+}
