@@ -1,0 +1,16 @@
+{
+  "cpu": "arm64 (CPU brand unavailable)",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "threads": 1,
+  "known_training_and_accuracy_jobs_finished": true,
+  "other_system_load": "uncontrolled",
+  "confirmation": "results/m6_aux_confirmation/20261109T105342558744Z",
+  "accuracy": "results/m6_aux_accuracy/20261109T110728962020Z",
+  "replications": [
+    "results/m6_aux_replications/seed1235/20261109T105019630107Z",
+    "results/m6_aux_replications/seed1236/20261109T105019630120Z"
+  ],
+  "long_controls": [],
+  "strong_study": null,
+  "cycle100_study": null
+}

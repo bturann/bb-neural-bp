@@ -1,0 +1,292 @@
+{
+  "p": 0.001,
+  "shots": 8192,
+  "target": 8192,
+  "complete": true,
+  "stopping": "fixed_target",
+  "models": [
+    {
+      "decoder": "ordinary",
+      "p": 0.001,
+      "shots": 8192,
+      "logical_failures": 14,
+      "logical_rate": 0.001708984375,
+      "nominal_wilson_lo": 0.0010183117292293835,
+      "nominal_wilson_hi": 0.0028667632787095594,
+      "stage1_fallback_requests": 861
+    },
+    {
+      "decoder": "matched_init",
+      "p": 0.001,
+      "shots": 8192,
+      "logical_failures": 15,
+      "logical_rate": 0.0018310546875,
+      "nominal_wilson_lo": 0.0011099934352441854,
+      "nominal_wilson_hi": 0.0030191077669603286,
+      "stage1_fallback_requests": 935
+    },
+    {
+      "decoder": "selected",
+      "p": 0.001,
+      "shots": 8192,
+      "logical_failures": 15,
+      "logical_rate": 0.0018310546875,
+      "nominal_wilson_lo": 0.0011099934352441854,
+      "nominal_wilson_hi": 0.0030191077669603286,
+      "stage1_fallback_requests": 912
+    }
+  ],
+  "pairs": {
+    "ordinary": {
+      "selected_only_failures": 1,
+      "baseline_only_failures": 0,
+      "extra_failure_probability_upper": 0.0007786658254417459,
+      "mcnemar": {
+        "first_only": 0,
+        "second_only": 1,
+        "pvalue": 1.0
+      }
+    },
+    "matched_init": {
+      "selected_only_failures": 1,
+      "baseline_only_failures": 1,
+      "extra_failure_probability_upper": 0.0007786658254417459,
+      "mcnemar": {
+        "first_only": 1,
+        "second_only": 1,
+        "pvalue": 1.0
+      }
+    }
+  },
+  "actual_unique_fallback_executions": 1067,
+  "actual_internal_osd_executions": 1026,
+  "sum_model_fallback_requests": 2708,
+  "elapsed_s": 644.4980210840004,
+  "batches": [
+    {
+      "input": "results/m6_strong_accuracy/20261109T131507713217Z/input-p0-offset0.npz",
+      "fallback": "results/m6_strong_accuracy/20261109T131507713217Z/fallback-p0-offset0.npz",
+      "used": 256,
+      "offset": 0,
+      "origin": "independent_confirmation_prefix"
+    },
+    {
+      "input": "results/m6_strong_accuracy/20261109T131507713217Z/input-p0-offset256.npz",
+      "fallback": "results/m6_strong_accuracy/20261109T131507713217Z/fallback-p0-offset256.npz",
+      "used": 256,
+      "offset": 256,
+      "origin": "independent_confirmation_prefix"
+    },
+    {
+      "input": "results/m6_strong_accuracy/20261109T131507713217Z/input-p0-offset512.npz",
+      "fallback": "results/m6_strong_accuracy/20261109T131507713217Z/fallback-p0-offset512.npz",
+      "used": 256,
+      "offset": 512,
+      "origin": "independent_confirmation_prefix"
+    },
+    {
+      "input": "results/m6_strong_accuracy/20261109T131507713217Z/input-p0-offset768.npz",
+      "fallback": "results/m6_strong_accuracy/20261109T131507713217Z/fallback-p0-offset768.npz",
+      "used": 256,
+      "offset": 768,
+      "origin": "independent_confirmation_prefix"
+    },
+    {
+      "input": "results/m6_strong_accuracy/20261109T131507713217Z/input-p0-offset1024.npz",
+      "fallback": "results/m6_strong_accuracy/20261109T131507713217Z/fallback-p0-offset1024.npz",
+      "used": 256,
+      "offset": 1024,
+      "origin": "independent_confirmation_prefix"
+    },
+    {
+      "input": "results/m6_strong_accuracy/20261109T131507713217Z/input-p0-offset1280.npz",
+      "fallback": "results/m6_strong_accuracy/20261109T131507713217Z/fallback-p0-offset1280.npz",
+      "used": 256,
+      "offset": 1280,
+      "origin": "independent_confirmation_prefix"
+    },
+    {
+      "input": "results/m6_strong_accuracy/20261109T131507713217Z/input-p0-offset1536.npz",
+      "fallback": "results/m6_strong_accuracy/20261109T131507713217Z/fallback-p0-offset1536.npz",
+      "used": 256,
+      "offset": 1536,
+      "origin": "independent_confirmation_prefix"
+    },
+    {
+      "input": "results/m6_strong_accuracy/20261109T131507713217Z/input-p0-offset1792.npz",
+      "fallback": "results/m6_strong_accuracy/20261109T131507713217Z/fallback-p0-offset1792.npz",
+      "used": 256,
+      "offset": 1792,
+      "origin": "independent_confirmation_prefix"
+    },
+    {
+      "input": "results/m6_strong_accuracy/20261109T131507713217Z/input-p0-offset2048.npz",
+      "fallback": "results/m6_strong_accuracy/20261109T131507713217Z/fallback-p0-offset2048.npz",
+      "used": 256,
+      "offset": 2048,
+      "origin": "independent_confirmation_prefix"
+    },
+    {
+      "input": "results/m6_strong_accuracy/20261109T131507713217Z/input-p0-offset2304.npz",
+      "fallback": "results/m6_strong_accuracy/20261109T131507713217Z/fallback-p0-offset2304.npz",
+      "used": 256,
+      "offset": 2304,
+      "origin": "independent_confirmation_prefix"
+    },
+    {
+      "input": "results/m6_strong_accuracy/20261109T131507713217Z/input-p0-offset2560.npz",
+      "fallback": "results/m6_strong_accuracy/20261109T131507713217Z/fallback-p0-offset2560.npz",
+      "used": 256,
+      "offset": 2560,
+      "origin": "independent_confirmation_prefix"
+    },
+    {
+      "input": "results/m6_strong_accuracy/20261109T131507713217Z/input-p0-offset2816.npz",
+      "fallback": "results/m6_strong_accuracy/20261109T131507713217Z/fallback-p0-offset2816.npz",
+      "used": 256,
+      "offset": 2816,
+      "origin": "independent_confirmation_prefix"
+    },
+    {
+      "input": "results/m6_strong_accuracy/20261109T131507713217Z/input-p0-offset3072.npz",
+      "fallback": "results/m6_strong_accuracy/20261109T131507713217Z/fallback-p0-offset3072.npz",
+      "used": 256,
+      "offset": 3072,
+      "origin": "independent_confirmation_prefix"
+    },
+    {
+      "input": "results/m6_strong_accuracy/20261109T131507713217Z/input-p0-offset3328.npz",
+      "fallback": "results/m6_strong_accuracy/20261109T131507713217Z/fallback-p0-offset3328.npz",
+      "used": 256,
+      "offset": 3328,
+      "origin": "independent_confirmation_prefix"
+    },
+    {
+      "input": "results/m6_strong_accuracy/20261109T131507713217Z/input-p0-offset3584.npz",
+      "fallback": "results/m6_strong_accuracy/20261109T131507713217Z/fallback-p0-offset3584.npz",
+      "used": 256,
+      "offset": 3584,
+      "origin": "independent_confirmation_prefix"
+    },
+    {
+      "input": "results/m6_strong_accuracy/20261109T131507713217Z/input-p0-offset3840.npz",
+      "fallback": "results/m6_strong_accuracy/20261109T131507713217Z/fallback-p0-offset3840.npz",
+      "used": 256,
+      "offset": 3840,
+      "origin": "independent_confirmation_prefix"
+    },
+    {
+      "input": "results/m6_strong_accuracy/20261109T131507713217Z/input-p0-offset4096.npz",
+      "fallback": "results/m6_strong_accuracy/20261109T131507713217Z/fallback-p0-offset4096.npz",
+      "used": 256,
+      "offset": 4096,
+      "origin": "new_extension_stream"
+    },
+    {
+      "input": "results/m6_strong_accuracy/20261109T131507713217Z/input-p0-offset4352.npz",
+      "fallback": "results/m6_strong_accuracy/20261109T131507713217Z/fallback-p0-offset4352.npz",
+      "used": 256,
+      "offset": 4352,
+      "origin": "new_extension_stream"
+    },
+    {
+      "input": "results/m6_strong_accuracy/20261109T131507713217Z/input-p0-offset4608.npz",
+      "fallback": "results/m6_strong_accuracy/20261109T131507713217Z/fallback-p0-offset4608.npz",
+      "used": 256,
+      "offset": 4608,
+      "origin": "new_extension_stream"
+    },
+    {
+      "input": "results/m6_strong_accuracy/20261109T131507713217Z/input-p0-offset4864.npz",
+      "fallback": "results/m6_strong_accuracy/20261109T131507713217Z/fallback-p0-offset4864.npz",
+      "used": 256,
+      "offset": 4864,
+      "origin": "new_extension_stream"
+    },
+    {
+      "input": "results/m6_strong_accuracy/20261109T131507713217Z/input-p0-offset5120.npz",
+      "fallback": "results/m6_strong_accuracy/20261109T131507713217Z/fallback-p0-offset5120.npz",
+      "used": 256,
+      "offset": 5120,
+      "origin": "new_extension_stream"
+    },
+    {
+      "input": "results/m6_strong_accuracy/20261109T131507713217Z/input-p0-offset5376.npz",
+      "fallback": "results/m6_strong_accuracy/20261109T131507713217Z/fallback-p0-offset5376.npz",
+      "used": 256,
+      "offset": 5376,
+      "origin": "new_extension_stream"
+    },
+    {
+      "input": "results/m6_strong_accuracy/20261109T131507713217Z/input-p0-offset5632.npz",
+      "fallback": "results/m6_strong_accuracy/20261109T131507713217Z/fallback-p0-offset5632.npz",
+      "used": 256,
+      "offset": 5632,
+      "origin": "new_extension_stream"
+    },
+    {
+      "input": "results/m6_strong_accuracy/20261109T131507713217Z/input-p0-offset5888.npz",
+      "fallback": "results/m6_strong_accuracy/20261109T131507713217Z/fallback-p0-offset5888.npz",
+      "used": 256,
+      "offset": 5888,
+      "origin": "new_extension_stream"
+    },
+    {
+      "input": "results/m6_strong_accuracy/20261109T131507713217Z/input-p0-offset6144.npz",
+      "fallback": "results/m6_strong_accuracy/20261109T131507713217Z/fallback-p0-offset6144.npz",
+      "used": 256,
+      "offset": 6144,
+      "origin": "new_extension_stream"
+    },
+    {
+      "input": "results/m6_strong_accuracy/20261109T131507713217Z/input-p0-offset6400.npz",
+      "fallback": "results/m6_strong_accuracy/20261109T131507713217Z/fallback-p0-offset6400.npz",
+      "used": 256,
+      "offset": 6400,
+      "origin": "new_extension_stream"
+    },
+    {
+      "input": "results/m6_strong_accuracy/20261109T131507713217Z/input-p0-offset6656.npz",
+      "fallback": "results/m6_strong_accuracy/20261109T131507713217Z/fallback-p0-offset6656.npz",
+      "used": 256,
+      "offset": 6656,
+      "origin": "new_extension_stream"
+    },
+    {
+      "input": "results/m6_strong_accuracy/20261109T131507713217Z/input-p0-offset6912.npz",
+      "fallback": "results/m6_strong_accuracy/20261109T131507713217Z/fallback-p0-offset6912.npz",
+      "used": 256,
+      "offset": 6912,
+      "origin": "new_extension_stream"
+    },
+    {
+      "input": "results/m6_strong_accuracy/20261109T131507713217Z/input-p0-offset7168.npz",
+      "fallback": "results/m6_strong_accuracy/20261109T131507713217Z/fallback-p0-offset7168.npz",
+      "used": 256,
+      "offset": 7168,
+      "origin": "new_extension_stream"
+    },
+    {
+      "input": "results/m6_strong_accuracy/20261109T131507713217Z/input-p0-offset7424.npz",
+      "fallback": "results/m6_strong_accuracy/20261109T131507713217Z/fallback-p0-offset7424.npz",
+      "used": 256,
+      "offset": 7424,
+      "origin": "new_extension_stream"
+    },
+    {
+      "input": "results/m6_strong_accuracy/20261109T131507713217Z/input-p0-offset7680.npz",
+      "fallback": "results/m6_strong_accuracy/20261109T131507713217Z/fallback-p0-offset7680.npz",
+      "used": 256,
+      "offset": 7680,
+      "origin": "new_extension_stream"
+    },
+    {
+      "input": "results/m6_strong_accuracy/20261109T131507713217Z/input-p0-offset7936.npz",
+      "fallback": "results/m6_strong_accuracy/20261109T131507713217Z/fallback-p0-offset7936.npz",
+      "used": 256,
+      "offset": 7936,
+      "origin": "new_extension_stream"
+    }
+  ],
+  "scope": "Supplementary functional accuracy for the frozen strong cascade and its validation-selected ordinary control, irrespective of Stage1 outcome. Reuse the fixed fresh 74234/74235 cases, extend p=.001 with new 78234 stream in 256-case batches. Keep first-pass routing, including wrong-logical valid corrections. Share identical fallback computation only for functional accounting, report per-model requests separately from actual unique executions. Run after all three actual latency pilots finish so CPU timing is uncontaminated. Fixed targets, bounded to 1200 seconds and 13:45 UTC; incomplete targets get no fixed-sample regression bound. Four joint one-sided learned-only-event bounds use alpha/4. No equivalence margin or main M6 acceptance is asserted."
+}

@@ -1,0 +1,96 @@
+{
+  "p": 0.003,
+  "shots": 1024,
+  "target": 1024,
+  "complete": true,
+  "stopping": "fixed_target",
+  "models": [
+    {
+      "decoder": "ordinary",
+      "p": 0.003,
+      "shots": 1024,
+      "logical_failures": 197,
+      "logical_rate": 0.1923828125,
+      "nominal_wilson_lo": 0.16940765033391586,
+      "nominal_wilson_hi": 0.21765735410476694,
+      "stage1_fallback_requests": 922
+    },
+    {
+      "decoder": "matched_init",
+      "p": 0.003,
+      "shots": 1024,
+      "logical_failures": 197,
+      "logical_rate": 0.1923828125,
+      "nominal_wilson_lo": 0.16940765033391586,
+      "nominal_wilson_hi": 0.21765735410476694,
+      "stage1_fallback_requests": 941
+    },
+    {
+      "decoder": "selected",
+      "p": 0.003,
+      "shots": 1024,
+      "logical_failures": 197,
+      "logical_rate": 0.1923828125,
+      "nominal_wilson_lo": 0.16940765033391586,
+      "nominal_wilson_hi": 0.21765735410476694,
+      "stage1_fallback_requests": 914
+    }
+  ],
+  "pairs": {
+    "ordinary": {
+      "selected_only_failures": 0,
+      "baseline_only_failures": 0,
+      "extra_failure_probability_upper": 0.0042701796302083185,
+      "mcnemar": {
+        "first_only": 0,
+        "second_only": 0,
+        "pvalue": 1.0
+      }
+    },
+    "matched_init": {
+      "selected_only_failures": 0,
+      "baseline_only_failures": 0,
+      "extra_failure_probability_upper": 0.0042701796302083185,
+      "mcnemar": {
+        "first_only": 0,
+        "second_only": 0,
+        "pvalue": 1.0
+      }
+    }
+  },
+  "actual_unique_fallback_executions": 1002,
+  "actual_internal_osd_executions": 988,
+  "sum_model_fallback_requests": 2777,
+  "elapsed_s": 535.5591501250165,
+  "batches": [
+    {
+      "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p1-offset0.npz",
+      "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p1-offset0.npz",
+      "used": 256,
+      "offset": 0,
+      "origin": "independent_confirmation_prefix"
+    },
+    {
+      "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p1-offset256.npz",
+      "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p1-offset256.npz",
+      "used": 256,
+      "offset": 256,
+      "origin": "independent_confirmation_prefix"
+    },
+    {
+      "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p1-offset512.npz",
+      "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p1-offset512.npz",
+      "used": 256,
+      "offset": 512,
+      "origin": "independent_confirmation_prefix"
+    },
+    {
+      "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p1-offset768.npz",
+      "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p1-offset768.npz",
+      "used": 256,
+      "offset": 768,
+      "origin": "independent_confirmation_prefix"
+    }
+  ],
+  "scope": "Functional paired accuracy, sharing identical deterministic fallback results across methods. No cached timing claim. Bounds apply to completed fixed samples only; no equivalence margin is asserted."
+}

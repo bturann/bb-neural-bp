@@ -143,9 +143,10 @@ def assess_point(study,d,index,settings,started):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument("study",type=Path)
-    parser.add_argument("--timings",nargs=3,type=Path,required=True)
+    parser.add_argument("--timings",nargs="+",type=Path,required=True)
     parser.add_argument("--settings",default="configs/m6/cpu_strong_accuracy.yaml")
     args=parser.parse_args();study=args.study
+    if len(args.timings)<3:raise ValueError("The three original timing pilots must finish first")
     for root in args.timings:json.loads((root/"summary.json").read_text())
     report=json.loads((study/"summary.json").read_text())
     assert hashlib.sha256((study/"selected-source.pt").read_bytes()).hexdigest()==report.get("primary_checkpoint_sha256",report.get("checkpoint_sha256"))
@@ -171,6 +172,7 @@ def main():
             actual_unique_fallback_executions=sum(point["actual_unique_fallback_executions"] for point in points),
             actual_internal_osd_executions=sum(point["actual_internal_osd_executions"] for point in points),
             alpha=settings["alpha"],regression_bound_family_size=4,scope=settings["scope"],
+            completed_timing_directories=list(map(str,args.timings)),
             final_test_data_used=False,gpu_seconds=0,m6_complete=False)
         (d/"summary.json").write_text(json.dumps(summary,indent=2)+"\n")
         print(json.dumps(summary,indent=2),flush=True)

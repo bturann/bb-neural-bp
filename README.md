@@ -15,10 +15,17 @@ on CPU; cycling its learned 15-step schedule to 100 inference iterations adds no
 training. The confirmation audit passed.
 
 The BP100→learned30 cascade lost to ordinary BP130 and is retained as a negative
-result. Full-pipeline accuracy and uncached CPU timing are still being assessed;
-no auxiliary screen completes M6 or establishes equal LER or lower p99. See the
+result. The audited full-pipeline learned100 sample had 20/8,192 logical failures
+versus 24/8,192 for its ordinary control at p=.001, and 177/1,024 versus 181/1,024
+at p=.003. These differences are inconclusive and do not establish LER equivalence.
+In the 256-case uncached CPU pilot, high-p mean latency was 301 ms versus 355 ms
+for CPP100 and 344 ms for tuned native100, with favorable nominal paired mean
+intervals; low-p and p99 comparisons remained inconclusive. Main M6/E1/E2 remain
+incomplete. See the
 [cycle100 evidence](results/m6_cycle100_study/20261109T114431070320Z/summary.json)
-and [current report](results/m6_aux_report/20261109T121029169632Z/report.md).
+and [audited report](results/m6_aux_report/20261109T135141505262Z/report.md).
+The [frozen CPU inference example](docs/m6_frozen_cycle100.md) loads the tested
+100-step rule from its original 15-step source parameters.
 
 ## Setup
 

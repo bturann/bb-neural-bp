@@ -1,0 +1,77 @@
+{
+  "p": 0.003,
+  "seed": 76235,
+  "measured_paired_cases": 256,
+  "completed": true,
+  "warmup_complete": true,
+  "stopping": "fixed_target",
+  "all_actual_fallback_calls_including_warmup_and_partial": 989,
+  "complete_cases_including_warmup": 320,
+  "models": [
+    {
+      "method": "ordinary",
+      "shots": 256,
+      "lat_mean_us": 349394.63694921875,
+      "lat_p50_us": 501705.50049999997,
+      "lat_p99_us": 752489.2312499997,
+      "lat_max_us": 858087.792,
+      "mean_stage1_us": 39871.69648046875,
+      "mean_fallback_us": 309443.42420703126,
+      "fallback_calls": 153,
+      "internal_osd_executions": 153,
+      "logical_failures": 38
+    },
+    {
+      "method": "selected",
+      "shots": 256,
+      "lat_mean_us": 366631.46960546874,
+      "lat_p50_us": 504270.3545,
+      "lat_p99_us": 746527.9975499997,
+      "lat_max_us": 872629.375,
+      "mean_stage1_us": 37856.46634375,
+      "mean_fallback_us": 328696.44483203127,
+      "fallback_calls": 162,
+      "internal_osd_executions": 162,
+      "logical_failures": 38
+    },
+    {
+      "method": "bp100",
+      "shots": 256,
+      "lat_mean_us": 365485.36034375,
+      "lat_p50_us": 500582.583,
+      "lat_p99_us": 777077.5795,
+      "lat_max_us": 837954.25,
+      "mean_stage1_us": 32903.298042968745,
+      "mean_fallback_us": 332501.8628203125,
+      "fallback_calls": 164,
+      "internal_osd_executions": 164,
+      "logical_failures": 38
+    },
+    {
+      "method": "matched_init",
+      "shots": 256,
+      "lat_mean_us": 359582.0247109375,
+      "lat_p50_us": 501221.375,
+      "lat_p99_us": 738521.5394,
+      "lat_max_us": 845052.542,
+      "mean_stage1_us": 37839.99540234375,
+      "mean_fallback_us": 321664.30486328126,
+      "fallback_calls": 159,
+      "internal_osd_executions": 159,
+      "logical_failures": 38
+    },
+    {
+      "method": "learned100",
+      "shots": 256,
+      "lat_mean_us": 338228.48451953125,
+      "lat_p50_us": 478280.854,
+      "lat_p99_us": 729490.8001499999,
+      "lat_max_us": 830941.958,
+      "mean_stage1_us": 21765.98942578125,
+      "mean_fallback_us": 316372.7120742188,
+      "fallback_calls": 156,
+      "internal_osd_executions": 156,
+      "logical_failures": 40
+    }
+  ]
+}

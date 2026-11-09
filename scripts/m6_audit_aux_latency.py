@@ -85,9 +85,10 @@ def main():
             for key,source in (("fallback_calls","fallback_called"),("internal_osd_executions","internal_osd_executed"),("logical_failures","logical")):
                 assert summary[key]==sum(row[source] for row in kept)
         if arrays:
+            candidate=settings.get("latency_candidate","selected")
             for k,name in enumerate(names):
-                if name=="selected" or name not in arrays:continue
-                actual=helper["paired_bootstrap"](arrays[name],arrays["selected"],np.random.default_rng(
+                if name==candidate or name not in arrays:continue
+                actual=helper["paired_bootstrap"](arrays[name],arrays[candidate],np.random.default_rng(
                     np.random.SeedSequence(settings["latency_bootstrap_entropy"]+[index,k])),settings["latency_bootstrap_repeats"])
                 assert point["paired_nominal_bootstrap"][name]==actual
             for k,(baseline,candidate) in enumerate(settings.get("latency_additional_contrasts",[])):

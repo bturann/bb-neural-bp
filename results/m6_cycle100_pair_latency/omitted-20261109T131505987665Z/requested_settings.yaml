@@ -1,0 +1,22 @@
+purpose: focused_cycle100_cpp100_cpu_pilot
+declared_before_cycle100_timing_utc: '2026-11-09T12:39:55+00:00'
+finalization_utc: '2026-11-09T13:20:00+00:00'
+latency_models: [bp100, learned100]
+latency_candidate: learned100
+latency_shots: 512
+latency_warmup: 64
+latency_seed_offset: 87000
+latency_order_entropy: [1234, 973]
+latency_wall_seconds: 900
+latency_bootstrap_repeats: 5000
+latency_bootstrap_entropy: [1234, 974]
+latency_receipt_name: cycle100_pair_latency_receipt.json
+latency_output_root: results/m6_cycle100_pair_latency
+latency_scope: Focused fixed CPU pilot specified before any learned100 timing.
+  Compare fixed learned100 and CPP100 on 512 fresh paired measured cases plus 64
+  warmups per noise point, seeds 88234/88235, random method order and fresh
+  uncached fallback calls. Run after the three existing pilots, only if time
+  remains before 13:20 UTC. Preserves all other studies. Nominal descriptive
+  bootstrap intervals; no main E2 or p99 acceptance. Predeclared pooling with
+  the 256-case longer-BP and 256-case strong-cascade blocks targets 1024 paired
+  cases per point, resampling cases within blocks with fixed block sizes.

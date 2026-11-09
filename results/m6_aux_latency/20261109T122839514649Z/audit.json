@@ -1,0 +1,11 @@
+{
+  "checks_passed": true,
+  "raw_method_calls_verified": 2560,
+  "actual_uncached_fallback_calls_accounted": 1713,
+  "functional_pipeline_outputs_replayed": 256,
+  "randomized_seeded_case_orders_reproduced": true,
+  "warmup_and_partial_pair_exclusion_verified": true,
+  "statistics_and_paired_bootstrap_reproduced": true,
+  "scope": "Verifies saved timing/accounting and sampled functional outputs; uncontrolled external system load and pilot p99 uncertainty remain limitations.",
+  "audit_source_sha256": "7f160b0c4301c20ae1b61fed1afdf092c3019b20c8c320cbdbdf25ddb64b3752"
+}

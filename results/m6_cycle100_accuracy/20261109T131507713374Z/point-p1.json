@@ -1,0 +1,96 @@
+{
+  "p": 0.003,
+  "shots": 1024,
+  "target": 1024,
+  "complete": true,
+  "stopping": "fixed_target",
+  "models": [
+    {
+      "decoder": "ordinary",
+      "p": 0.003,
+      "shots": 1024,
+      "logical_failures": 181,
+      "logical_rate": 0.1767578125,
+      "nominal_wilson_lo": 0.1546141131545228,
+      "nominal_wilson_hi": 0.20131768516041051,
+      "stage1_fallback_requests": 652
+    },
+    {
+      "decoder": "matched_init",
+      "p": 0.003,
+      "shots": 1024,
+      "logical_failures": 181,
+      "logical_rate": 0.1767578125,
+      "nominal_wilson_lo": 0.1546141131545228,
+      "nominal_wilson_hi": 0.20131768516041051,
+      "stage1_fallback_requests": 734
+    },
+    {
+      "decoder": "selected",
+      "p": 0.003,
+      "shots": 1024,
+      "logical_failures": 177,
+      "logical_rate": 0.1728515625,
+      "nominal_wilson_lo": 0.1509258965786511,
+      "nominal_wilson_hi": 0.1972226002053449,
+      "stage1_fallback_requests": 661
+    }
+  ],
+  "pairs": {
+    "ordinary": {
+      "selected_only_failures": 9,
+      "baseline_only_failures": 13,
+      "extra_failure_probability_upper": 0.017867338422276464,
+      "mcnemar": {
+        "first_only": 13,
+        "second_only": 9,
+        "pvalue": 0.5234670639038086
+      }
+    },
+    "matched_init": {
+      "selected_only_failures": 7,
+      "baseline_only_failures": 11,
+      "extra_failure_probability_upper": 0.015194654590732314,
+      "mcnemar": {
+        "first_only": 11,
+        "second_only": 7,
+        "pvalue": 0.480682373046875
+      }
+    }
+  },
+  "actual_unique_fallback_executions": 839,
+  "actual_internal_osd_executions": 836,
+  "sum_model_fallback_requests": 2047,
+  "elapsed_s": 444.12749937496847,
+  "batches": [
+    {
+      "input": "results/m6_cycle100_accuracy/20261109T131507713374Z/input-p1-offset0.npz",
+      "fallback": "results/m6_cycle100_accuracy/20261109T131507713374Z/fallback-p1-offset0.npz",
+      "used": 256,
+      "offset": 0,
+      "origin": "independent_confirmation_prefix"
+    },
+    {
+      "input": "results/m6_cycle100_accuracy/20261109T131507713374Z/input-p1-offset256.npz",
+      "fallback": "results/m6_cycle100_accuracy/20261109T131507713374Z/fallback-p1-offset256.npz",
+      "used": 256,
+      "offset": 256,
+      "origin": "independent_confirmation_prefix"
+    },
+    {
+      "input": "results/m6_cycle100_accuracy/20261109T131507713374Z/input-p1-offset512.npz",
+      "fallback": "results/m6_cycle100_accuracy/20261109T131507713374Z/fallback-p1-offset512.npz",
+      "used": 256,
+      "offset": 512,
+      "origin": "independent_confirmation_prefix"
+    },
+    {
+      "input": "results/m6_cycle100_accuracy/20261109T131507713374Z/input-p1-offset768.npz",
+      "fallback": "results/m6_cycle100_accuracy/20261109T131507713374Z/fallback-p1-offset768.npz",
+      "used": 256,
+      "offset": 768,
+      "origin": "independent_confirmation_prefix"
+    }
+  ],
+  "scope": "Supplementary fixed-target full-pipeline accuracy for the original frozen cycle100 checkpoint, validation-best CPP100/native100 and matched initialization. Reuse this study's fresh 80234/80235 cases without outcome selection; extend p=.001 with new 82234 stream in fixed 256-case batches. Functional shared fallback accounting only, separate per-model requests and unique executions, no cached timing claim. Run after all three uncached timing pilots. Four joint learned-only-event upper bounds use alpha/4 only for completed fixed samples. No equivalence margin, primary replacement or main M6 completion."
+}

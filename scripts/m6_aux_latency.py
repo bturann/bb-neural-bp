@@ -222,12 +222,14 @@ def main():
             points.append(point); arrays.append(values)
         measurement_wall = time.perf_counter()-started
         for index, (point, values) in enumerate(zip(points, arrays)):
-            if "selected" not in values: continue
+            candidate=settings.get("latency_candidate","selected")
+            if candidate not in values: continue
+            point["comparison_candidate"]=candidate
             point["paired_nominal_bootstrap"] = {
-                name: paired_bootstrap(values[name],values["selected"],np.random.default_rng(
+                name: paired_bootstrap(values[name],values[candidate],np.random.default_rng(
                     np.random.SeedSequence(settings["latency_bootstrap_entropy"]+[index,k])),
                     settings["latency_bootstrap_repeats"])
-                for k,name in enumerate(settings["latency_models"]) if name!="selected" and name in values}
+                for k,name in enumerate(settings["latency_models"]) if name!=candidate and name in values}
             point["additional_paired_contrasts"]={}
             for k,(baseline,candidate) in enumerate(settings.get("latency_additional_contrasts",[])):
                 if baseline not in values or candidate not in values:continue

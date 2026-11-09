@@ -1652,3 +1652,67 @@ M5 passed: `results/m5/20261030T220645511485Z-3a224cbf`; wins 4/7, best step 100
   original fixed high-p functional sample, then collect the three uncached timing
   pilots sequentially. Main M6/E1/E2 remain incomplete.
 - Full software suite before final assessment work: **134 passed in 27.22 s**.
+- At **12:39:55 UTC**, before any learned100 timing, reserve an optional focused
+  CPP100/learned100 pilot: 512 measured + 64 warmups per p, fresh 88234/88235,
+  order [1234,973,p-index], bootstrap [1234,974,p-index,baseline-index], cap900s
+  and stop by 13:20 UTC. It follows all three original pilots, preserving them.
+  If complete, pool its paired cases with the longer-BP and strong-cascade
+  256-case blocks for 1,024 cases/p. Resample paired cases **within each block**,
+  preserving sizes, 5,000 repetitions, entropy [1234,975,p-index]. Report block
+  effects and nominal descriptive mean/p99 intervals; no main E2 acceptance.
+  Add the generic candidate-name option only after the first timing process exits;
+  its default remains the original selected model for the three existing pilots.
+- All three actual timing pilots completed their 256 measured +64 warmups/p;
+  all three audits passed, checking **9,600 raw method calls**, **4,683 actual
+  uncached fallback calls** including warmups, and **960** sampled functional
+  pipeline outputs. Randomized order, warmup exclusions and bootstrap statistics
+  reproduced. These are pilot measurements, not main E2 acceptance.
+- In the longer-decoder pilot at p=.003, learned100 mean was **301.031 ms** vs
+  CPP100 **354.723 ms** and tuned native100 **343.666 ms**. Nominal paired mean
+  differences were -53.691 ms (95% bootstrap -85.353 to -22.859) and -42.634 ms
+  (-76.036 to -8.952). Low-p mean comparisons and both p99 contrasts remained
+  inconclusive. The strong-control timing pilot's learned100-vs-BP130 intervals
+  also included zero; do not claim it beats every ordinary iteration budget.
+- The focused timing launch was omitted at 13:15 UTC: its declared workload
+  estimate was **479.8 s**, while only **294.0 s** remained to 13:20. Save the
+  operational decision packet under `results/m6_cycle100_pair_latency/omitted-*`.
+  No extra 512-case timing sample or planned 1,024-case pool was collected.
+  Both supplementary fixed functional-accuracy runs started instead, and their
+  outcomes still await completion/audit. Preserve all negative/positive studies.
+
+### Completed CPU assessment and final evidence
+
+- Both supplementary fixed-target runs completed before the 13:45 UTC cutoff.
+  Strong cascade: 15/8,192 logical failures vs BP130 14/8,192 at p=.001;
+  190/1,024 vs 185/1,024 at p=.003. It provides no improvement over this control.
+- Direct cycle100: **20/8,192 vs 24/8,192** logical failures at p=.001;
+  **177/1,024 vs 181/1,024** at p=.003. Neither paired error-rate contrast was
+  decisive. The joint one-sided learned-only event upper bounds vs ordinary are
+  **0.09911 pp** and **1.78673 pp**. Observed rates alone do not establish
+  equivalence; no margin has been asserted or chosen after the results.
+- The high-p 1,024-case accuracy prefix recorded 661 learned vs 652 ordinary
+  fallback requests, while the primary full 4,096-case Stage1 comparison showed
+  2,518 vs 2,654. Retain both actual samples and their different sizes; do not
+  describe the smaller prefix as an additional confirmation of call reduction.
+- Each supplementary accuracy audit regenerated/verified **9,216 paired cases**,
+  redecoded **12,288 extension model-cases**, checked every saved fallback
+  correction and reproduced the CSV, paired tests and four joint bounds. Strong
+  used 1,732 actual shared fallback calls; cycle100 used 2,848. Each audit also
+  replayed 16 uncached fallback calls. All checks passed.
+- The original accuracy audit passed **17,408 paired cases**, **36,864 extension
+  model-cases**, **10,433** shared outputs and 16 uncached replays. All three
+  timing audits passed. Saved numerical acceptance verifies 10,000 exact
+  Torch/Numba cases. Main final-test data remain reserved: a scan found zero
+  reserved-seed matches among 1,458 recorded circuit-bb72 CSV rows.
+- Added a tested frozen CPU inference guide. Its eight saved-case example returned
+  an 8×16,164 fault-correction matrix and one fallback call. It is a functional
+  example, not extra independent accuracy/timing evidence.
+- The supported result is a learned100 Stage1 gain with a promising high-p mean
+  CPU cost signal. p99 superiority and LER equivalence are **not established**.
+  Main M6/M7 remain incomplete; original configs/matrix/reference files stay intact.
+- Final full software suite: **134 passed in 27.02 s**, including slow checks.
+- Final handover verification after report changes: **134 passed in 25.95 s**.
+  Final audited report: `results/m6_aux_report/20261109T135141505262Z/report.md`.
+  All launched numerical jobs and audits finished. The optional focused timing
+  and its planned pool were explicitly omitted for schedule; their outcomes are
+  not claimed. No further training or benchmark jobs are queued past 09:00 NY.

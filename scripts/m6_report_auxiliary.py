@@ -41,6 +41,8 @@ def main():
     parser.add_argument("--extended-validation",type=Path)
     parser.add_argument("--cycle100-study",type=Path)
     parser.add_argument("--cycle100-accuracy",type=Path)
+    parser.add_argument("--export-acceptance",type=Path)
+    parser.add_argument("--launch-decision",type=Path)
     args=parser.parse_args()
     d=Path("results/m6_aux_report")/datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
     d.mkdir(parents=True,exist_ok=False)
@@ -62,6 +64,66 @@ def main():
         "The model and controls were frozen before drawing the 4,096 independent cases per noise point.","",
         "| Noise p | Tuned BP30 fallback | Matched initialization | Learned30 fallback | Primary Holm p |",
         "|---|---:|---:|---:|---:|"]
+    if args.cycle100_study:
+        latest=read(args.cycle100_study)
+        screen="passed" if latest["clear_gain"] else "did not pass"
+        direction=all(point["failures"][name]<point["failures"][point["ordinary_name"]]
+            for point in latest["points"] for name in ("selected","seed1235","seed1236"))
+        seed_statement=("All three training seeds improved in direction; the per-seed corrected tests are reported below. "
+            if direction else "Training-seed outcomes differ and are reported below. ")
+        brief=["## Current finding","",
+            f"The fixed learned100 inference rule {screen} its independent Stage1 screen, with "
+            f"{latest['primary_benefits']} corrected primary benefits across {len(latest['points'])} noise points. "
+            "It uses the original 1,455 learned source parameters and adds no optimizer updates. "
+            +seed_statement,"",
+            "| p | Validation-selected ordinary100 fallback | Learned100 fallback | Corrected primary p |",
+            "|---|---:|---:|---:|"]
+        for point in latest["points"]:
+            n=point["shots"];counts=point["failures"];base=point["ordinary_name"]
+            brief.append(f"| {point['p']:g} | {counts[base]}/{n} ({100*counts[base]/n:.2f}%) | "
+                f"{counts['selected']}/{n} ({100*counts['selected']/n:.2f}%) | "
+                f"{point['comparisons']['selected']['primary']['holm_pvalue']:.3g} |")
+        cascade_statement="The strong-first-pass cascade is assessed separately below. "
+        if args.strong_study:
+            cascade=read(args.strong_study)
+            if all(point["failures"]["strong_cascade"]>point["failures"][point["best_ordinary"]] for point in cascade["points"]):
+                cascade_statement="The strong-first-pass cascade had more fallback requests than its ordinary control at both noise points. "
+        brief.extend(["",cascade_statement+
+            "The timing pilots do not establish p99 superiority, and this report asserts no LER equivalence margin. "
+            "The detailed accuracy, timing and negative controls follow below.",""])
+        if args.cycle100_accuracy:
+            final_accuracy=read(args.cycle100_accuracy)
+            brief.extend(["Cycle100 full-pipeline observed logical accuracy:","",
+                "| p | Fixed target complete | Learned100 failures | Ordinary100 failures | Learned-only event upper bound |",
+                "|---|---|---:|---:|---:|"])
+            for point in final_accuracy["points"]:
+                rows={row["decoder"]:row for row in point["models"]}
+                upper=point["pairs"]["ordinary"]["extra_failure_probability_upper"]
+                bound=f"{100*upper:.4f}%" if upper is not None else "Unavailable"
+                brief.append(f"| {point['p']:g} | {point['complete']} | {rows['selected']['logical_failures']}/{point['shots']} | "
+                    f"{rows['ordinary']['logical_failures']}/{point['shots']} | {bound} |")
+            brief.extend(["","The event bounds are jointly one-sided at the declared family level; "
+                "they do not assert a chosen equivalence margin.",""])
+            for point in final_accuracy["points"]:
+                rows={row["decoder"]:row for row in point["models"]}
+                if rows["selected"]["stage1_fallback_requests"]>rows["ordinary"]["stage1_fallback_requests"]:
+                    brief.extend([f"The smaller fixed accuracy sample at p={point['p']:g} recorded "
+                        f"{rows['selected']['stage1_fallback_requests']} learned versus "
+                        f"{rows['ordinary']['stage1_fallback_requests']} ordinary fallback requests. "
+                        f"This fixed accuracy prefix contains the first {point['shots']:,} cases of "
+                        "the full 4,096-case Stage1 pool.",""])
+        if args.long_latency:
+            observed_timing=read(args.long_latency)
+            brief.extend(["Observed CPU means in the 256-case longer-decoder pilot:","",
+                "| p | CPP100 mean (ms) | Tuned native100 mean (ms) | Learned100 mean (ms) |",
+                "|---|---:|---:|---:|"])
+            for point in observed_timing["points"]:
+                rows={row["method"]:row for row in point["models"]}
+                brief.append(f"| {point['p']:g} | {rows['bp100']['lat_mean_us']/1000:.3f} | "
+                    f"{rows['native100']['lat_mean_us']/1000:.3f} | {rows['learned100']['lat_mean_us']/1000:.3f} |")
+            brief.extend(["","These are pilot point estimates; paired intervals and the stronger BP130 comparison "
+                "are reported below. No main E2/p99 acceptance is claimed.",""])
+        text[4:4]=brief
     fig,axes=plt.subplots(1,2,figsize=(9,3.8),sharey=True)
     for index,(point,axis) in enumerate(zip(points,axes)):
         n=point["shots"];counts=point["failures"]
@@ -238,6 +300,36 @@ def main():
                 text.append(f"| {challenge['p']:g} | {row['T']} | {row['factor']:g} | "
                     f"{row['failures']}/{row['shots']} ({100*row['failures']/row['shots']:.3f}%) |")
         text.append("")
+    if args.export_acceptance:
+        acceptance=read(args.export_acceptance)
+        assert acceptance["checks_passed"] and acceptance["total_exact_cases"]==10000
+        assert acceptance["checkpoint_sha256"]==primary["checkpoint_sha256"]
+        text.extend(["## Numerical implementation acceptance","",
+            "The frozen cycle100 PyTorch model and compiled CPU export matched exactly on 10,000 "
+            "saved cases, including full corrections, convergence flags and first-convergence iterations. "
+            "The two noise points used separate single-thread CPU workers. These are numerical "
+            "acceptance cases, not extra independent performance samples.",""])
+    if args.launch_decision:
+        decision=read(args.launch_decision,"decision.json")
+        assert decision["timing_data_collected"] is False
+        text.extend(["## Optional timing extension","",
+            f"The optional extra timing run was omitted for schedule: projected duration "
+            f"{decision['projected_seconds']:.1f} s, versus {decision['remaining_to_cutoff_seconds']:.1f} s "
+            "remaining before its declared cutoff. No extra timing observations or planned 1,024-case "
+            "pool were collected. The three completed 256-case pilots are reported separately.",""])
+    text.extend(["## Evidence audits","","| Evidence | Audit |","|---|---|"])
+    audit_roots=[("Original Stage1 confirmation",args.confirmation),("Training-seed replications",args.replication),
+        ("Original functional accuracy",args.accuracy),("Primary CPU timing",args.latency),
+        ("Longer-BP CPU timing",args.long_latency),("Strong-cascade confirmation",args.strong_study),
+        ("Strong-cascade CPU timing",args.strong_latency),("Strong-cascade functional accuracy",args.strong_accuracy),
+        ("Cycle100 confirmation",args.cycle100_study),("Cycle100 functional accuracy",args.cycle100_accuracy)]
+    for label,root in audit_roots:
+        if root is None:continue
+        if (root/"audit.json").exists():
+            audit=read(root,"audit.json");assert audit["checks_passed"]
+            text.append(f"| {label} | [Passed]({link(root)}/audit.json) |")
+        else:text.append(f"| {label} | Pending |")
+    text.append("")
     text.extend(["## Remaining work","",
         "The original three-seed main E1 training/evaluation, full p grid, main E2 sample regime, "
         "ablations and scaling experiments remain pending. An auxiliary Stage 1 screen or a 256-shot "

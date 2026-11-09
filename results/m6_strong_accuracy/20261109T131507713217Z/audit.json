@@ -1,0 +1,11 @@
+{
+  "checks_passed": true,
+  "paired_cases_verified": 9216,
+  "extension_stage1_cases_redecoded": 12288,
+  "shared_fallback_outputs_verified": 1732,
+  "uncached_fallback_replays": 16,
+  "custom_csv_rows_verified": 6,
+  "paired_statistics_and_joint_bounds_reproduced": true,
+  "scope": "Functional correctness and accounting only; cached accuracy execution times are not latency evidence.",
+  "audit_source_sha256": "db9ed7682c6976273927ec947fc816163066e56e3965337713dc2cd75350a2b4"
+}

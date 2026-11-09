@@ -1,0 +1,628 @@
+{
+  "purpose": "paired_auxiliary_functional_accuracy",
+  "confirmation_directory": "results/m6_aux_confirmation/20261109T105342558744Z",
+  "points": [
+    {
+      "p": 0.001,
+      "shots": 16384,
+      "target": 16384,
+      "complete": true,
+      "stopping": "fixed_target",
+      "models": [
+        {
+          "decoder": "ordinary",
+          "p": 0.001,
+          "shots": 16384,
+          "logical_failures": 64,
+          "logical_rate": 0.00390625,
+          "nominal_wilson_lo": 0.003060454283440273,
+          "nominal_wilson_hi": 0.004984623474480736,
+          "stage1_fallback_requests": 7191
+        },
+        {
+          "decoder": "matched_init",
+          "p": 0.001,
+          "shots": 16384,
+          "logical_failures": 64,
+          "logical_rate": 0.00390625,
+          "nominal_wilson_lo": 0.003060454283440273,
+          "nominal_wilson_hi": 0.004984623474480736,
+          "stage1_fallback_requests": 7176
+        },
+        {
+          "decoder": "selected",
+          "p": 0.001,
+          "shots": 16384,
+          "logical_failures": 63,
+          "logical_rate": 0.00384521484375,
+          "nominal_wilson_lo": 0.0030068380816291617,
+          "nominal_wilson_hi": 0.004916197978181354,
+          "stage1_fallback_requests": 6470
+        }
+      ],
+      "pairs": {
+        "ordinary": {
+          "selected_only_failures": 4,
+          "baseline_only_failures": 5,
+          "extra_failure_probability_upper": 0.0006882701653291905,
+          "mcnemar": {
+            "first_only": 5,
+            "second_only": 4,
+            "pvalue": 1.0
+          }
+        },
+        "matched_init": {
+          "selected_only_failures": 5,
+          "baseline_only_failures": 6,
+          "extra_failure_probability_upper": 0.0007789419113662663,
+          "mcnemar": {
+            "first_only": 6,
+            "second_only": 5,
+            "pvalue": 1.0
+          }
+        }
+      },
+      "actual_unique_fallback_executions": 9431,
+      "actual_internal_osd_executions": 8322,
+      "sum_model_fallback_requests": 20837,
+      "elapsed_s": 4299.265711999964,
+      "batches": [
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset0.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset0.npz",
+          "used": 256,
+          "offset": 0,
+          "origin": "independent_confirmation_prefix"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset256.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset256.npz",
+          "used": 256,
+          "offset": 256,
+          "origin": "independent_confirmation_prefix"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset512.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset512.npz",
+          "used": 256,
+          "offset": 512,
+          "origin": "independent_confirmation_prefix"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset768.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset768.npz",
+          "used": 256,
+          "offset": 768,
+          "origin": "independent_confirmation_prefix"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset1024.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset1024.npz",
+          "used": 256,
+          "offset": 1024,
+          "origin": "independent_confirmation_prefix"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset1280.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset1280.npz",
+          "used": 256,
+          "offset": 1280,
+          "origin": "independent_confirmation_prefix"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset1536.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset1536.npz",
+          "used": 256,
+          "offset": 1536,
+          "origin": "independent_confirmation_prefix"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset1792.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset1792.npz",
+          "used": 256,
+          "offset": 1792,
+          "origin": "independent_confirmation_prefix"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset2048.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset2048.npz",
+          "used": 256,
+          "offset": 2048,
+          "origin": "independent_confirmation_prefix"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset2304.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset2304.npz",
+          "used": 256,
+          "offset": 2304,
+          "origin": "independent_confirmation_prefix"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset2560.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset2560.npz",
+          "used": 256,
+          "offset": 2560,
+          "origin": "independent_confirmation_prefix"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset2816.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset2816.npz",
+          "used": 256,
+          "offset": 2816,
+          "origin": "independent_confirmation_prefix"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset3072.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset3072.npz",
+          "used": 256,
+          "offset": 3072,
+          "origin": "independent_confirmation_prefix"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset3328.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset3328.npz",
+          "used": 256,
+          "offset": 3328,
+          "origin": "independent_confirmation_prefix"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset3584.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset3584.npz",
+          "used": 256,
+          "offset": 3584,
+          "origin": "independent_confirmation_prefix"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset3840.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset3840.npz",
+          "used": 256,
+          "offset": 3840,
+          "origin": "independent_confirmation_prefix"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset4096.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset4096.npz",
+          "used": 256,
+          "offset": 4096,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset4352.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset4352.npz",
+          "used": 256,
+          "offset": 4352,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset4608.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset4608.npz",
+          "used": 256,
+          "offset": 4608,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset4864.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset4864.npz",
+          "used": 256,
+          "offset": 4864,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset5120.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset5120.npz",
+          "used": 256,
+          "offset": 5120,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset5376.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset5376.npz",
+          "used": 256,
+          "offset": 5376,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset5632.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset5632.npz",
+          "used": 256,
+          "offset": 5632,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset5888.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset5888.npz",
+          "used": 256,
+          "offset": 5888,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset6144.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset6144.npz",
+          "used": 256,
+          "offset": 6144,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset6400.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset6400.npz",
+          "used": 256,
+          "offset": 6400,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset6656.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset6656.npz",
+          "used": 256,
+          "offset": 6656,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset6912.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset6912.npz",
+          "used": 256,
+          "offset": 6912,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset7168.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset7168.npz",
+          "used": 256,
+          "offset": 7168,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset7424.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset7424.npz",
+          "used": 256,
+          "offset": 7424,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset7680.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset7680.npz",
+          "used": 256,
+          "offset": 7680,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset7936.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset7936.npz",
+          "used": 256,
+          "offset": 7936,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset8192.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset8192.npz",
+          "used": 256,
+          "offset": 8192,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset8448.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset8448.npz",
+          "used": 256,
+          "offset": 8448,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset8704.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset8704.npz",
+          "used": 256,
+          "offset": 8704,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset8960.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset8960.npz",
+          "used": 256,
+          "offset": 8960,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset9216.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset9216.npz",
+          "used": 256,
+          "offset": 9216,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset9472.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset9472.npz",
+          "used": 256,
+          "offset": 9472,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset9728.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset9728.npz",
+          "used": 256,
+          "offset": 9728,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset9984.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset9984.npz",
+          "used": 256,
+          "offset": 9984,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset10240.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset10240.npz",
+          "used": 256,
+          "offset": 10240,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset10496.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset10496.npz",
+          "used": 256,
+          "offset": 10496,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset10752.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset10752.npz",
+          "used": 256,
+          "offset": 10752,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset11008.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset11008.npz",
+          "used": 256,
+          "offset": 11008,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset11264.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset11264.npz",
+          "used": 256,
+          "offset": 11264,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset11520.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset11520.npz",
+          "used": 256,
+          "offset": 11520,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset11776.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset11776.npz",
+          "used": 256,
+          "offset": 11776,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset12032.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset12032.npz",
+          "used": 256,
+          "offset": 12032,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset12288.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset12288.npz",
+          "used": 256,
+          "offset": 12288,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset12544.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset12544.npz",
+          "used": 256,
+          "offset": 12544,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset12800.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset12800.npz",
+          "used": 256,
+          "offset": 12800,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset13056.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset13056.npz",
+          "used": 256,
+          "offset": 13056,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset13312.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset13312.npz",
+          "used": 256,
+          "offset": 13312,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset13568.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset13568.npz",
+          "used": 256,
+          "offset": 13568,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset13824.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset13824.npz",
+          "used": 256,
+          "offset": 13824,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset14080.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset14080.npz",
+          "used": 256,
+          "offset": 14080,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset14336.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset14336.npz",
+          "used": 256,
+          "offset": 14336,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset14592.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset14592.npz",
+          "used": 256,
+          "offset": 14592,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset14848.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset14848.npz",
+          "used": 256,
+          "offset": 14848,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset15104.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset15104.npz",
+          "used": 256,
+          "offset": 15104,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset15360.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset15360.npz",
+          "used": 256,
+          "offset": 15360,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset15616.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset15616.npz",
+          "used": 256,
+          "offset": 15616,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset15872.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset15872.npz",
+          "used": 256,
+          "offset": 15872,
+          "origin": "new_extension_stream"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p0-offset16128.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p0-offset16128.npz",
+          "used": 256,
+          "offset": 16128,
+          "origin": "new_extension_stream"
+        }
+      ],
+      "scope": "Functional paired accuracy, sharing identical deterministic fallback results across methods. No cached timing claim. Bounds apply to completed fixed samples only; no equivalence margin is asserted."
+    },
+    {
+      "p": 0.003,
+      "shots": 1024,
+      "target": 1024,
+      "complete": true,
+      "stopping": "fixed_target",
+      "models": [
+        {
+          "decoder": "ordinary",
+          "p": 0.003,
+          "shots": 1024,
+          "logical_failures": 197,
+          "logical_rate": 0.1923828125,
+          "nominal_wilson_lo": 0.16940765033391586,
+          "nominal_wilson_hi": 0.21765735410476694,
+          "stage1_fallback_requests": 922
+        },
+        {
+          "decoder": "matched_init",
+          "p": 0.003,
+          "shots": 1024,
+          "logical_failures": 197,
+          "logical_rate": 0.1923828125,
+          "nominal_wilson_lo": 0.16940765033391586,
+          "nominal_wilson_hi": 0.21765735410476694,
+          "stage1_fallback_requests": 941
+        },
+        {
+          "decoder": "selected",
+          "p": 0.003,
+          "shots": 1024,
+          "logical_failures": 197,
+          "logical_rate": 0.1923828125,
+          "nominal_wilson_lo": 0.16940765033391586,
+          "nominal_wilson_hi": 0.21765735410476694,
+          "stage1_fallback_requests": 914
+        }
+      ],
+      "pairs": {
+        "ordinary": {
+          "selected_only_failures": 0,
+          "baseline_only_failures": 0,
+          "extra_failure_probability_upper": 0.0042701796302083185,
+          "mcnemar": {
+            "first_only": 0,
+            "second_only": 0,
+            "pvalue": 1.0
+          }
+        },
+        "matched_init": {
+          "selected_only_failures": 0,
+          "baseline_only_failures": 0,
+          "extra_failure_probability_upper": 0.0042701796302083185,
+          "mcnemar": {
+            "first_only": 0,
+            "second_only": 0,
+            "pvalue": 1.0
+          }
+        }
+      },
+      "actual_unique_fallback_executions": 1002,
+      "actual_internal_osd_executions": 988,
+      "sum_model_fallback_requests": 2777,
+      "elapsed_s": 535.5591501250165,
+      "batches": [
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p1-offset0.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p1-offset0.npz",
+          "used": 256,
+          "offset": 0,
+          "origin": "independent_confirmation_prefix"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p1-offset256.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p1-offset256.npz",
+          "used": 256,
+          "offset": 256,
+          "origin": "independent_confirmation_prefix"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p1-offset512.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p1-offset512.npz",
+          "used": 256,
+          "offset": 512,
+          "origin": "independent_confirmation_prefix"
+        },
+        {
+          "input": "results/m6_aux_accuracy/20261109T110728962020Z/input-p1-offset768.npz",
+          "fallback": "results/m6_aux_accuracy/20261109T110728962020Z/fallback-p1-offset768.npz",
+          "used": 256,
+          "offset": 768,
+          "origin": "independent_confirmation_prefix"
+        }
+      ],
+      "scope": "Functional paired accuracy, sharing identical deterministic fallback results across methods. No cached timing claim. Bounds apply to completed fixed samples only; no equivalence margin is asserted."
+    }
+  ],
+  "completed": true,
+  "elapsed_s": 4835.4271416249685,
+  "actual_unique_fallback_executions": 10433,
+  "actual_internal_osd_executions": 9310,
+  "alpha": 0.05,
+  "regression_bound_family_size": 4,
+  "scope": "Auxiliary fixed-target accuracy. Per-model fallback requests are hypothetical independent pipeline calls; actual shared executions are reported separately. No performance claim uses these cached execution times. Main M6/E1 remains incomplete.",
+  "final_test_data_used": false,
+  "gpu_seconds": 0,
+  "m6_complete": false
+}

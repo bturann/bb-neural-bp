@@ -1,0 +1,11 @@
+{
+  "checked_at_utc": "2026-11-09T13:15:05.987665+00:00",
+  "timing_data_collected": false,
+  "projected_seconds": 479.7642959984999,
+  "remaining_to_cutoff_seconds": 294.012335,
+  "action": "omitted_for_schedule",
+  "source_summary": "results/m6_long_bp_latency/20261109T124523000569Z/summary.json",
+  "source_summary_sha256": "98179402d43936933e9372e3b17b1ded5c75bd57d5ac998eec682d3608455722",
+  "calculation": "576 * sum of CPP100 and learned100 mean seconds over both p values + 30 setup seconds",
+  "scope": "Operational launch decision only. The optional extra timing and planned 1024-case pool were not collected; original three pilots are preserved. Fixed supplementary accuracy has priority."
+}
