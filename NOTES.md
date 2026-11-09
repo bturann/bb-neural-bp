@@ -569,3 +569,74 @@ M5 passed: `results/m5/20261030T220645511485Z-3a224cbf`; wins 4/7, best step 100
   no mining batch exhausted its draw cap. Full suite before the pilot checkpoint
   commit: **103 passed** (31.84 s). Research implementation and reference files
   are unchanged by this pilot.
+
+## Independent CPU pilot check — November 8, 2026 (started)
+
+- User authorized the stronger-baseline/fresh-data check. The step-500 CPU pilot
+  checkpoint is frozen before this check; its SHA-256 is
+  `2861bf998133848ebea62f97732037ac60f81571569ec9cd9f249212d6f15770`.
+  No retraining or additional checkpoint selection is allowed on the new cases.
+- `configs/m6/cpu_pilot_check.yaml` tunes all 11 factors .50, .55, …, 1.00 at T=15,
+  on 1,024 new shots/p (seeds 15234–15238). It then compares ordinary BP,
+  independently tuned BP and the frozen Numba neural model on 2,048 paired fresh
+  shots/p (seeds 16234–16238). Both regions are separate from checkpoint-selection
+  validation (13234–13238), previous tuning, and reserved final-test seeds.
+- This is a Stage-1 fallback-demand check. No OSD calls are made. Exact-schema
+  CSVs label decoders `*_only`, set actual `osd_calls` and `osd_rate` to zero, and
+  report potential fallback demand as `stage1_failures / shots` in the summary.
+  Nonconvergence counts as failure in standalone logical-error statistics.
+- The predeclared development screen for proceeding to CPU optimization is a
+  strictly lower grid-mean fallback demand and at least one paired improvement
+  with McNemar Holm-adjusted p<.05 across five points. All pointwise regressions
+  will be reported. This screen cannot establish the main research claim.
+- The study has a 900-second wall-clock cap, plus a short interrupt/kill cleanup
+  allowance. Source hashes, configs, tuning rows, paired flags, sampled syndromes
+  and observables, checkpoint identity, failures and exit status are retained.
+  Main experiments and final-test data remain untouched.
+- Bundle: `results/m6_cpu_pilot_check/20261109T040246608374Z-cb99df2f/`.
+
+### Independent check outcome — completed, optimization screen not met
+
+- Completed both phases in **516.27 s** (8 min 36 s), using CPU only. Tuning took
+  346.78 s; fresh comparison plus process overhead took another 169.44 s. The
+  wall-clock cap did not trigger. All 55 tuning candidates and 15 evaluation rows
+  are saved. There were 5,120 unique tuning shots and 10,240 unique comparison
+  shots, with the latter shared by the three decoders.
+- The selected factors by increasing p were **1.00, 1.00, .95, .75, .85**.
+  Fresh mean fallback demand was **93.69140625% ordinary BP**, **88.75% tuned BP**,
+  and **88.57421875% neural BP**. The neural/tuned gap is **0.17578125 percentage
+  points**, or only 18 fewer potential fallback calls across 10,240 paired cases.
+
+  | p | Tuned BP | Frozen neural | Neural minus tuned (percentage points) |
+  |---|---|---|---|
+  | .001 | 59.375% | 60.302734375% | +0.927734375 |
+  | .002 | 87.6953125% | 87.255859375% | -0.439453125 |
+  | .003 | 97.412109375% | 96.435546875% | -0.9765625 |
+  | .004 | 99.31640625% | 98.92578125% | -0.390625 |
+  | .005 | 99.951171875% | 99.951171875% | 0 |
+
+- Neural BP is strictly better at three points, worse at one and tied at one.
+  The smallest raw paired McNemar p-value is .04221 at p=.003, but its Holm-adjusted
+  value is **.21105**; no point passes corrected .05. The predeclared screen
+  therefore returned `supports_cpu_optimization=false`. CPU optimization and
+  additional training were not launched. This is insufficient evidence of an
+  advantage, not evidence that a true effect must be zero.
+- The previous small validation result was optimistic relative to this fresh,
+  more thoroughly tuned comparison. Learning relative to initialization remains
+  demonstrated, while a useful improvement over the strong baseline is unproven.
+  No main M6 completion, equal two-stage LER, or latency-speedup claim is made.
+- The comparison process loaded its source before an extra export-verification
+  check was added to the tool. The exact executed source is retained as
+  `comparison/executed_compare_source.py`, recovered by reversing only that added
+  check and verified byte-for-byte against the recorded SHA-256
+  `81eb2d7a7608b058fd2fdca81fccfeed31e1dea23440045e2553aaf285237da7`.
+  PyTorch/Numba subset agreement is checked separately by the retained audit.
+  No experimental outcome or existing result artifact was edited.
+- Independent artifact audit regenerated **all 10,240** comparison cases from their
+  seeds and checked the true-fault H/L parity labels. It verified **30,720** decoder
+  flag counts, all 55 tuning candidates' selections, all 15 CSV rows, paired tests
+  and adjusted p-values. It independently replayed 960 subset decodes and checked
+  exact PyTorch/Numba corrections, convergence and stopping iterations on 320 shots.
+  See the bundle's `audit.json`; all checks passed and the frozen checkpoint hash
+  is unchanged. The full suite passed **105 tests** (32.16 s), including seed-reuse
+  rejection and Holm-adjustment checks. M6 remains incomplete.

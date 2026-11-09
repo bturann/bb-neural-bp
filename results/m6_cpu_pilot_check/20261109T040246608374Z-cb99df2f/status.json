@@ -1,0 +1,23 @@
+{
+  "purpose": "independent_development_check_of_cpu_pilot",
+  "git_sha": "193945d63e41d0f6b77bee1cbcbf81348a3e402f-dirty",
+  "stages": [
+    {
+      "name": "tuning",
+      "returncode": 0,
+      "elapsed_s": 346.7843448750209
+    },
+    {
+      "name": "comparison",
+      "returncode": 0,
+      "elapsed_s": 516.2260413750191
+    }
+  ],
+  "elapsed_s": 516.2655687499791,
+  "wall_limit_reached_or_interrupted": false,
+  "complete": true,
+  "checkpoint_sha256": "2861bf998133848ebea62f97732037ac60f81571569ec9cd9f249212d6f15770",
+  "gpu_seconds": 0,
+  "final_test_data_used": false,
+  "m6_complete": false
+}

@@ -1,0 +1,4 @@
+interrupt_grace_seconds: 15
+kill_grace_seconds: 5
+purpose: independent_development_check_of_cpu_pilot
+wall_seconds: 900

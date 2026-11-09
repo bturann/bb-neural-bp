@@ -1,0 +1,5 @@
+p=0.001 T=15: alpha=1, nonconvergence=0.6045
+p=0.002 T=15: alpha=1, nonconvergence=0.8672
+p=0.003 T=15: alpha=0.95, nonconvergence=0.9600
+p=0.004 T=15: alpha=0.75, nonconvergence=0.9941
+p=0.005 T=15: alpha=0.85, nonconvergence=0.9980

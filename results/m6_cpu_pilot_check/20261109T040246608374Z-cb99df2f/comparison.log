@@ -1,0 +1,25 @@
+p=0.001 bp: fallback demand=0.749023; elapsed=11.8s
+p=0.001 bp_tuned: fallback demand=0.593750; elapsed=22.7s
+p=0.001 nbp: fallback demand=0.603027; elapsed=29.6s
+p=0.002 bp: fallback demand=0.947266; elapsed=43.0s
+p=0.002 bp_tuned: fallback demand=0.876953; elapsed=55.6s
+p=0.002 nbp: fallback demand=0.872559; elapsed=63.6s
+p=0.003 bp: fallback demand=0.990723; elapsed=77.2s
+p=0.003 bp_tuned: fallback demand=0.974121; elapsed=90.2s
+p=0.003 nbp: fallback demand=0.964355; elapsed=98.2s
+p=0.004 bp: fallback demand=0.997559; elapsed=111.6s
+p=0.004 bp_tuned: fallback demand=0.993164; elapsed=124.8s
+p=0.004 nbp: fallback demand=0.989258; elapsed=132.9s
+p=0.005 bp: fallback demand=1.000000; elapsed=146.5s
+p=0.005 bp_tuned: fallback demand=0.999512; elapsed=159.7s
+p=0.005 nbp: fallback demand=0.999512; elapsed=167.8s
+{
+  "mean_fallback_demand": {
+    "bp": 0.9369140625,
+    "bp_tuned": 0.8875,
+    "nbp": 0.8857421875
+  },
+  "strict_improvement_points": 3,
+  "strict_regression_points": 1,
+  "supports_cpu_optimization": false
+}

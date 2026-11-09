@@ -220,3 +220,24 @@ CPU profile are retained. The summary replays the selected checkpoint and compar
 it with the initial model and the coarse development tuning table. Profiled timing
 includes instrumentation overhead; batch-8 costs do not estimate batch-32 costs.
 This pilot uses separate development streams and cannot establish M6 acceptance.
+
+## Independent check of the CPU pilot
+
+```sh
+BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib .venv/bin/python -u scripts/m6_check_cpu_pilot.py
+BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib .venv/bin/python scripts/m6_audit_cpu_check.py <printed-check-bundle-directory>
+```
+
+This freezes the selected pilot checkpoint, tunes all 11 BP scaling factors at T=15
+on 1,024 new shots per p, then compares all three Stage-1 decoders on 2,048 different
+paired shots per p. The study has a 15-minute wall-clock cap. Raw cases, per-shot
+nonconvergence/logical flags, configs, source hashes, the tuning table, and a copy of
+the checkpoint are retained. CSV `osd_calls` and `osd_rate` are zero because this
+check makes no Stage-2 calls; potential fallback demand is `stage1_failures/shots`.
+
+The completed independent check found mean neural fallback demand of 88.574% versus
+88.750% for tuned BP. Neural BP improved at three p values, worsened at one, and
+tied at one. None of the five paired differences passed Holm correction at .05.
+This did not meet the predeclared screen for proceeding with CPU optimization.
+The earlier pilot demonstrated learning relative to initialization; a clear
+advantage over the stronger tuned baseline remains unestablished.
