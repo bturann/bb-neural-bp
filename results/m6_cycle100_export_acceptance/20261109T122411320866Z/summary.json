@@ -1,0 +1,28 @@
+{
+  "checks_passed": true,
+  "study": "results/m6_cycle100_study/20261109T114431070320Z",
+  "points": [
+    {
+      "p": 0.001,
+      "cases": 5000,
+      "syndrome_sha256": "6ba3e03a79e63b81da3426c0a71045000558233ea7e6d923550cb69b5a7c88bb"
+    },
+    {
+      "p": 0.003,
+      "cases": 5000,
+      "syndrome_sha256": "c48e475109b92a65c57e18645c989c635c2d88401fe9818d94164ecd7edfb74f"
+    }
+  ],
+  "total_exact_cases": 10000,
+  "checkpoint_sha256": "48591637735919bb3e12febe8793eca7f9a81e8e23584dfe53a07d9f6b098c3d",
+  "worker_directories": [
+    "results/m6_cycle100_export_acceptance/20261109T121531793867Z",
+    "results/m6_cycle100_export_acceptance/20261109T121453055950Z"
+  ],
+  "worker_summary_hashes": [
+    "fb470b33db898a9b5ad1c04ee62719174a085192bbf3ebb34d6799403bdbe1ef",
+    "89a55c8e364bafd16a62710a897edebd412ebb6299ae2778b1afc2ab989a6a89"
+  ],
+  "scope": "Exactly 10000 numerical acceptance cases, not a decoder performance experiment. Use each completed cycle100 study's 4096 saved fresh syndromes per point followed by the first 904 existing validation syndromes, preserving order. Compare full corrections, convergence flags and first-convergence iterations between the frozen PyTorch cycle100 model and compiled CPU export. No new training, checkpoint selection, independent performance sample or main M6 pass. Independent noise-point workers each used one CPU thread; no cases or comparison tolerances changed.",
+  "m6_complete": false
+}

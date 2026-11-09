@@ -1,0 +1,10 @@
+batch: 64
+cases_per_point: 5000
+purpose: auxiliary_cycle100_exact_compiled_inference_acceptance
+scope: Exactly 10000 numerical acceptance cases, not a decoder performance experiment.
+  Use each completed cycle100 study's 4096 saved fresh syndromes per point followed
+  by the first 904 existing validation syndromes, preserving order. Compare full corrections,
+  convergence flags and first-convergence iterations between the frozen PyTorch cycle100
+  model and compiled CPU export. No new training, checkpoint selection, independent
+  performance sample or main M6 pass.
+wall_seconds: 900

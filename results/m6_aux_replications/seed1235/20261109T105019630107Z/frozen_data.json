@@ -1,0 +1,33 @@
+{
+  "frozen_before_updates": true,
+  "training_pool_seed": 68234,
+  "drawn": 52736,
+  "selected": 32000,
+  "first_pass_factor": 1.0,
+  "mining_rng_state": {
+    "bit_generator": "PCG64",
+    "state": {
+      "state": 256882781078777480612179501364613374810,
+      "inc": 209031578797879886255917334857983568289
+    },
+    "has_uint32": 0,
+    "uinteger": 0
+  },
+  "shuffle_rng_state": {
+    "bit_generator": "PCG64",
+    "state": {
+      "state": 12302494858854985467544636797600366395,
+      "inc": 153562782939804023472305783279543184777
+    },
+    "has_uint32": 1,
+    "uinteger": 3263928709
+  },
+  "hashes": {
+    "cases-train.npz": "4af31267a0d6b145fd7f2d78bf14f47cf248b6d8122f2b405fd5c1b39590a3c0",
+    "mining-pool.npz": "83aa3702f37b613fb83e29c84ac7d9bea42f1420459d1f57667cf54a7b5e5c77",
+    "batch-plan.npz": "049f9c746c9131a01be101d3d757ce4c963f04eec19562ee55b7384f144bfc9c"
+  },
+  "validation_used_for_selection_only": true,
+  "confirmation_data_used": false,
+  "final_test_data_used": false
+}

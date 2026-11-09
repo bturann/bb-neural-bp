@@ -17,6 +17,8 @@ from numba import set_num_threads
 
 from bbnbp.config import load_config
 from bbnbp.decoders.bp_ldpc import LdpcBP, LdpcBPOSD
+from bbnbp.decoders.cascade import CascadeDecoder
+from bbnbp.decoders.neural_bp import NeuralMinSum
 from bbnbp.decoders.pipeline import TwoStageDecoder
 from bbnbp.evaluate import cpu_model_label
 from bbnbp.io import source_manifest
@@ -43,14 +45,45 @@ def paired_bootstrap(first, second, rng, repeats):
                 np.percentile(differences, [2.5, 97.5], axis=0).T)}
 
 
-def measure_point(confirmation, out, index, settings, started, long_controls=None):
+def strong_decoders(problem, checkpoint, builder, study, index):
+    frozen=json.loads((study/"selection.json").read_text())
+    if hashlib.sha256(checkpoint.read_bytes()).hexdigest()!=frozen["checkpoint_sha256"]:
+        raise ValueError("Strong cascade must retain the frozen learned parameters")
+    choice=frozen["points"][index]
+    first_factor=choice["first"]["factor"]
+    first=lambda:LdpcBP(problem,100,first_factor)
+    result={"bp100":first()}
+    for name,initial in (("selected",False),("matched_init",True)):
+        result[name]=CascadeDecoder(first(),builder["neural_model"](
+            checkpoint,problem,"cycle30",initial=initial).export_cpu())
+    spec=choice["best_ordinary"]
+    if spec["name"]=="bp100":result["ordinary"]=first()
+    elif spec["name"]=="bp130":result["ordinary"]=LdpcBP(problem,130,spec["factor"])
+    elif spec["name"]=="two_bp":result["ordinary"]=CascadeDecoder(first(),LdpcBP(problem,30,spec["factor"]))
+    else:raise ValueError("Unknown frozen strong-cascade control")
+    return result
+
+
+def extended_decoders(problem, study, index):
+    frozen=json.loads((study/"selection.json").read_text())
+    if hashlib.sha256((study/"selected-source.pt").read_bytes()).hexdigest()!=frozen["checkpoints"]["selected-source.pt"]:
+        raise ValueError("Cycle100 timing must retain its frozen learned parameters")
+    module=runpy.run_path(str(study/"executed_source.py"))
+    return dict(learned100=module["neural"](study,problem,"selected").export_cpu(),
+        native100=NeuralMinSum(problem,100,"scalar",frozen["points"][index]["native"]["factor"],20.,dtype=torch.float32).export_cpu())
+
+
+def measure_point(confirmation, out, index, settings, started, long_controls=None, strong_study=None, cycle100_study=None):
     c = load_config(confirmation/"config.yaml")
     sampler = make_sampler(c, c.noise.p_grid[index])
+    if hasattr(sampler,"circuit"):(out/f"circuit-p{index}.stim").write_text(str(sampler.circuit)+"\n")
+    if hasattr(sampler,"dem"):(out/f"dem-p{index}.dem").write_text(str(sampler.dem)+"\n")
+    (out/f"problem-p{index}.json").write_text(json.dumps(sampler.problem.meta,indent=2)+"\n")
     names = settings["latency_models"]
     selection = json.loads((confirmation/"selection.json").read_text())
     controls = json.loads((confirmation/f"controls-p{index}.json").read_text())
-    builder = runpy.run_path(str(confirmation/"models_source.py"))["make_decoders"]
-    nodes = builder(sampler.problem, confirmation/"selected-source.pt", selection["model_design"], controls)
+    module = runpy.run_path(str(confirmation/"models_source.py"))
+    nodes = module["make_decoders"](sampler.problem, confirmation/"selected-source.pt", selection["model_design"], controls)
     if long_controls:
         root=long_controls[index]
         challenge=json.loads((root/"summary.json").read_text())
@@ -58,6 +91,10 @@ def measure_point(confirmation, out, index, settings, started, long_controls=Non
         frozen=json.loads((root/"selection.json").read_text())
         for key,choice in frozen["choices"].items():
             nodes[f"bp{key}"]=LdpcBP(sampler.problem,int(key),choice["factor"])
+    if strong_study:
+        nodes=strong_decoders(sampler.problem,confirmation/"selected-source.pt",module,strong_study,index)
+    if cycle100_study:
+        nodes.update(extended_decoders(sampler.problem,cycle100_study,index))
     spec = c.eval.osd
     # Separate fallback objects and actual calls, including when inputs are identical.
     models = {name: TwoStageDecoder(nodes[name], LdpcBPOSD(
@@ -132,7 +169,13 @@ def main():
     parser.add_argument("--replications", nargs=2, type=Path, required=True)
     parser.add_argument("--settings", default="configs/m6/cpu_aux_assessment.yaml")
     parser.add_argument("--long-controls", nargs=2, type=Path)
+    parser.add_argument("--strong-study", type=Path)
+    parser.add_argument("--cycle100-study", type=Path)
     args = parser.parse_args()
+    if args.strong_study:
+        if args.long_controls:raise ValueError("Specify only one secondary timing design")
+        json.loads((args.strong_study/"summary.json").read_text())
+    if args.cycle100_study:json.loads((args.cycle100_study/"summary.json").read_text())
     # Prevent our known CPU jobs from overlapping timing; external system load is uncontrolled.
     for path in [args.accuracy, *[root/"struct_standard" for root in args.replications]]:
         summary = json.loads((path/"summary.json").read_text())
@@ -149,12 +192,24 @@ def main():
     d = Path(settings.get("latency_output_root","results/m6_aux_latency"))/datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
     d.mkdir(parents=True, exist_ok=False)
     shutil.copyfile(__file__, d/"executed_source.py")
+    load_config(confirmation/"config.yaml").save(d/"config.yaml")
     (d/"settings.yaml").write_text(yaml.safe_dump(settings))
     (d/"source_manifest.json").write_text(json.dumps(source_manifest(), indent=2)+"\n")
+    frozen_paths=[confirmation/name for name in ("config.yaml","selection.json","selected-source.pt",
+        "models_source.py","neural_extensions_source.py","controls-p0.json","controls-p1.json")]
+    for root in args.long_controls or []:frozen_paths.append(root/"selection.json")
+    if args.strong_study:frozen_paths.append(args.strong_study/"selection.json")
+    if args.cycle100_study:
+        frozen_paths.extend(args.cycle100_study/name for name in ("selection.json","selected-source.pt",
+            "executed_source.py","neural_extensions_source.py"))
+    input_hashes={str(path):hashlib.sha256(path.read_bytes()).hexdigest() for path in frozen_paths}
+    (d/"frozen_input_hashes.json").write_text(json.dumps(input_hashes,indent=2)+"\n")
     (d/"machine.json").write_text(json.dumps(dict(cpu=cpu_model_label(), platform=platform.platform(),
         threads=1, known_training_and_accuracy_jobs_finished=True,
         other_system_load="uncontrolled", confirmation=str(confirmation), accuracy=str(args.accuracy),
-        replications=list(map(str,args.replications)),long_controls=list(map(str,args.long_controls or []))), indent=2)+"\n")
+        replications=list(map(str,args.replications)),long_controls=list(map(str,args.long_controls or [])),
+        strong_study=str(args.strong_study) if args.strong_study else None,
+        cycle100_study=str(args.cycle100_study) if args.cycle100_study else None), indent=2)+"\n")
     (confirmation/receipt_name).write_text(json.dumps(dict(directory=str(d),
         requested_at_utc=datetime.now(timezone.utc).isoformat()),indent=2)+"\n")
     torch.set_num_threads(1); set_num_threads(1)
@@ -163,7 +218,7 @@ def main():
     try:
         points, arrays = [], []
         for index in range(2):
-            point, values = measure_point(confirmation,d,index,settings,started,args.long_controls)
+            point, values = measure_point(confirmation,d,index,settings,started,args.long_controls,args.strong_study,args.cycle100_study)
             points.append(point); arrays.append(values)
         measurement_wall = time.perf_counter()-started
         for index, (point, values) in enumerate(zip(points, arrays)):
@@ -173,10 +228,20 @@ def main():
                     np.random.SeedSequence(settings["latency_bootstrap_entropy"]+[index,k])),
                     settings["latency_bootstrap_repeats"])
                 for k,name in enumerate(settings["latency_models"]) if name!="selected" and name in values}
+            point["additional_paired_contrasts"]={}
+            for k,(baseline,candidate) in enumerate(settings.get("latency_additional_contrasts",[])):
+                if baseline not in values or candidate not in values:continue
+                point["additional_paired_contrasts"][f"{candidate}_vs_{baseline}"]=dict(
+                    baseline=baseline,candidate=candidate,statistics=paired_bootstrap(values[baseline],values[candidate],
+                        np.random.default_rng(np.random.SeedSequence(settings["latency_bootstrap_entropy"]+[index,len(settings["latency_models"])+k])),
+                        settings["latency_bootstrap_repeats"]))
         report = dict(points=points, completed=all(point["completed"] for point in points),
             measurement_wall_s=measurement_wall, elapsed_s=time.perf_counter()-started,
-            scope=settings.get("latency_scope","Auxiliary single-thread paired CPU pilot, fresh uncached fallback calls, randomized per-case method order. Nominal bootstrap intervals are descriptive, not multiplicity-corrected or main E2 acceptance; 512 samples weakly characterize p99."),
+            scope=settings.get("latency_scope","Auxiliary single-thread paired CPU pilot, fresh uncached fallback calls, randomized per-case method order. Nominal bootstrap intervals are descriptive, not multiplicity-corrected or main E2 acceptance; 256 samples cannot establish a p99 advantage."),
             final_test_data_used=False, gpu_seconds=0, m6_complete=False)
+        for path,digest in input_hashes.items():
+            if hashlib.sha256(Path(path).read_bytes()).hexdigest()!=digest:raise ValueError("A frozen timing input changed")
+        report["frozen_inputs_unchanged"]=True
         (d/"summary.json").write_text(json.dumps(report,indent=2)+"\n")
         print(json.dumps(report,indent=2),flush=True)
     except BaseException as exc:

@@ -1,0 +1,28 @@
+purpose: auxiliary_strong_cascade_latency_pilot
+finalization_utc: '2026-11-09T13:50:00+00:00'
+latency_models: [ordinary, selected, bp100, matched_init, learned100]
+latency_additional_contrasts:
+  - [ordinary, learned100]
+  - [bp100, learned100]
+latency_labels:
+  ordinary: Best ordinary up to 130
+  selected: BP100 then learned30
+  bp100: Tuned BP100
+  matched_init: BP100 then untrained30
+  learned100: Learned100
+latency_shots: 256
+latency_warmup: 64
+latency_seed_offset: 75000
+latency_order_entropy: [1234, 971]
+latency_wall_seconds: 1500
+latency_bootstrap_repeats: 5000
+latency_bootstrap_entropy: [1234, 972]
+latency_receipt_name: strong_cascade_latency_receipt.json
+latency_output_root: results/m6_strong_cascade_latency
+latency_scope: Auxiliary strong-first-pass cascade CPU pilot. The learned parameters
+  are unchanged; BP100 factors and the best ordinary up-to-130-iteration option
+  are frozen from validation before this study's fresh cases. Fresh uncached
+  fallback calls, randomized per-case order, single thread, 256 measured cases
+  and 64 warmups per point, new seeds 76234/76235. Known compute jobs finish first.
+  Nominal paired-bootstrap intervals are descriptive and p99 remains uncertain.
+  This pilot does not establish LER equivalence or complete main M6/E2.

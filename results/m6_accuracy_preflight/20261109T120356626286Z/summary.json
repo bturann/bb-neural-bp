@@ -1,0 +1,9 @@
+{
+  "checks_passed": true,
+  "study": "results/m6_strong_cascade/20261109T113533689212Z",
+  "study_kind": "strong_cascade",
+  "actual_pipeline_method_cases": 48,
+  "elapsed_s": 18.018726249982137,
+  "scope": "Integration preflight on already saved cases, not a new independent research result or timing comparison. Fresh uncached actual pipeline outputs match shared functional composition. No model or control selection.",
+  "functional_driver_sha256": "1630f9a24a078411a20007cfb58d353e2d4ceb1b1d569ae122834fde555d523b"
+}

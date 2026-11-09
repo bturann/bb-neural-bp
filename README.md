@@ -3,17 +3,22 @@
 Research implementation of a neural min-sum first stage with BP-OSD fallback.
 The target is fewer fallback calls at preserved logical error performance, measured
 against ordinary and tuned-scaling BP. M0–M5 acceptance checks are complete;
-circuit-level neural results and the final performance claim remain pending.
+the main circuit-level experiments and final performance claim remain pending.
 
-The November 9 CPU auxiliary study has its first independent Stage 1 gain:
-learned30 requested fallback on 1,640/4,096 cases at p=.001, versus 1,830/4,096
-for validation-tuned BP30 (10.4% fewer requests). The p=.003 primary difference
-was inconclusive. Matched-initialization comparisons support a learning effect;
-the raw-data/statistics audit passed. Full-pipeline accuracy, additional training
-seeds, and uncached CPU timing are still being assessed. See the
-[confirmation evidence](results/m6_aux_confirmation/20261109T105342558744Z/summary.json)
-and [initial report](results/m6_aux_report/20261109T112138324849Z/report.md).
-This auxiliary result does not complete M6 or establish equal LER or lower p99.
+The November 9 CPU auxiliary study found an independent gain at equal 100-iteration
+budgets. Learned100 requested fallback on 443/4,096 cases at p=.001 (10.82%),
+versus the validation-selected ordinary control's 495/4,096 (12.08%). At p=.003,
+the counts were 2,518/4,096 (61.47%) versus 2,654/4,096 (64.79%). Both primary
+paired differences passed their two-point Holm correction, and all three training
+seeds improved in direction at both points. The source model took about 36 minutes
+on CPU; cycling its learned 15-step schedule to 100 inference iterations adds no
+training. The confirmation audit passed.
+
+The BP100→learned30 cascade lost to ordinary BP130 and is retained as a negative
+result. Full-pipeline accuracy and uncached CPU timing are still being assessed;
+no auxiliary screen completes M6 or establishes equal LER or lower p99. See the
+[cycle100 evidence](results/m6_cycle100_study/20261109T114431070320Z/summary.json)
+and [current report](results/m6_aux_report/20261109T121029169632Z/report.md).
 
 ## Setup
 

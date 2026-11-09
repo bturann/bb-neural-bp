@@ -1,0 +1,481 @@
+{
+  "points": [
+    {
+      "p": 0.001,
+      "first": {
+        "T": 100,
+        "factor": 1.0,
+        "failures": 124,
+        "logical_failures": 124,
+        "mean_iterations": 33.7802734375
+      },
+      "choices": {
+        "bp100": {
+          "name": "bp100",
+          "T": 100,
+          "total_T": 100,
+          "factor": 1.0,
+          "failures": 124,
+          "logical_failures": 124
+        },
+        "bp130": {
+          "name": "bp130",
+          "T": 130,
+          "total_T": 130,
+          "factor": 1.0,
+          "failures": 101,
+          "logical_failures": 101
+        },
+        "two_bp": {
+          "name": "two_bp",
+          "T": 30,
+          "total_T": 130,
+          "factor": 0.9,
+          "failures": 104,
+          "logical_failures": 104
+        }
+      },
+      "best_ordinary": {
+        "name": "bp130",
+        "T": 130,
+        "total_T": 130,
+        "factor": 1.0,
+        "failures": 101,
+        "logical_failures": 101
+      },
+      "grid": [
+        {
+          "name": "bp100",
+          "T": 100,
+          "total_T": 100,
+          "factor": 1.0,
+          "failures": 124,
+          "logical_failures": 124
+        },
+        {
+          "name": "bp130",
+          "T": 130,
+          "total_T": 130,
+          "factor": 0.5,
+          "failures": 769,
+          "logical_failures": 769
+        },
+        {
+          "name": "two_bp",
+          "T": 30,
+          "total_T": 130,
+          "factor": 0.5,
+          "failures": 122,
+          "logical_failures": 122
+        },
+        {
+          "name": "bp130",
+          "T": 130,
+          "total_T": 130,
+          "factor": 0.55,
+          "failures": 731,
+          "logical_failures": 731
+        },
+        {
+          "name": "two_bp",
+          "T": 30,
+          "total_T": 130,
+          "factor": 0.55,
+          "failures": 121,
+          "logical_failures": 121
+        },
+        {
+          "name": "bp130",
+          "T": 130,
+          "total_T": 130,
+          "factor": 0.6,
+          "failures": 712,
+          "logical_failures": 712
+        },
+        {
+          "name": "two_bp",
+          "T": 30,
+          "total_T": 130,
+          "factor": 0.6,
+          "failures": 122,
+          "logical_failures": 122
+        },
+        {
+          "name": "bp130",
+          "T": 130,
+          "total_T": 130,
+          "factor": 0.65,
+          "failures": 667,
+          "logical_failures": 667
+        },
+        {
+          "name": "two_bp",
+          "T": 30,
+          "total_T": 130,
+          "factor": 0.65,
+          "failures": 121,
+          "logical_failures": 121
+        },
+        {
+          "name": "bp130",
+          "T": 130,
+          "total_T": 130,
+          "factor": 0.7,
+          "failures": 640,
+          "logical_failures": 640
+        },
+        {
+          "name": "two_bp",
+          "T": 30,
+          "total_T": 130,
+          "factor": 0.7,
+          "failures": 120,
+          "logical_failures": 120
+        },
+        {
+          "name": "bp130",
+          "T": 130,
+          "total_T": 130,
+          "factor": 0.75,
+          "failures": 554,
+          "logical_failures": 554
+        },
+        {
+          "name": "two_bp",
+          "T": 30,
+          "total_T": 130,
+          "factor": 0.75,
+          "failures": 118,
+          "logical_failures": 118
+        },
+        {
+          "name": "bp130",
+          "T": 130,
+          "total_T": 130,
+          "factor": 0.8,
+          "failures": 388,
+          "logical_failures": 388
+        },
+        {
+          "name": "two_bp",
+          "T": 30,
+          "total_T": 130,
+          "factor": 0.8,
+          "failures": 116,
+          "logical_failures": 116
+        },
+        {
+          "name": "bp130",
+          "T": 130,
+          "total_T": 130,
+          "factor": 0.85,
+          "failures": 255,
+          "logical_failures": 255
+        },
+        {
+          "name": "two_bp",
+          "T": 30,
+          "total_T": 130,
+          "factor": 0.85,
+          "failures": 110,
+          "logical_failures": 110
+        },
+        {
+          "name": "bp130",
+          "T": 130,
+          "total_T": 130,
+          "factor": 0.9,
+          "failures": 158,
+          "logical_failures": 158
+        },
+        {
+          "name": "two_bp",
+          "T": 30,
+          "total_T": 130,
+          "factor": 0.9,
+          "failures": 104,
+          "logical_failures": 104
+        },
+        {
+          "name": "bp130",
+          "T": 130,
+          "total_T": 130,
+          "factor": 0.95,
+          "failures": 130,
+          "logical_failures": 130
+        },
+        {
+          "name": "two_bp",
+          "T": 30,
+          "total_T": 130,
+          "factor": 0.95,
+          "failures": 107,
+          "logical_failures": 107
+        },
+        {
+          "name": "bp130",
+          "T": 130,
+          "total_T": 130,
+          "factor": 1.0,
+          "failures": 101,
+          "logical_failures": 101
+        },
+        {
+          "name": "two_bp",
+          "T": 30,
+          "total_T": 130,
+          "factor": 1.0,
+          "failures": 124,
+          "logical_failures": 124
+        }
+      ],
+      "validation_source": "results/m6_cascade_tuning/p0/20261109T090855243984Z-277fb140",
+      "validation_cases_sha256": "c6d71d31f7d9e24dfabe79b130df4351f7904b12932e97b54ba585020e4f02b0",
+      "learned_validation_failures": 98,
+      "initialized_validation_failures": 106
+    },
+    {
+      "p": 0.003,
+      "first": {
+        "T": 100,
+        "factor": 1.0,
+        "failures": 693,
+        "logical_failures": 694,
+        "mean_iterations": 84.041015625
+      },
+      "choices": {
+        "bp100": {
+          "name": "bp100",
+          "T": 100,
+          "total_T": 100,
+          "factor": 1.0,
+          "failures": 693,
+          "logical_failures": 694
+        },
+        "bp130": {
+          "name": "bp130",
+          "T": 130,
+          "total_T": 130,
+          "factor": 1.0,
+          "failures": 626,
+          "logical_failures": 627
+        },
+        "two_bp": {
+          "name": "two_bp",
+          "T": 30,
+          "total_T": 130,
+          "factor": 0.95,
+          "failures": 677,
+          "logical_failures": 678
+        }
+      },
+      "best_ordinary": {
+        "name": "bp130",
+        "T": 130,
+        "total_T": 130,
+        "factor": 1.0,
+        "failures": 626,
+        "logical_failures": 627
+      },
+      "grid": [
+        {
+          "name": "bp100",
+          "T": 100,
+          "total_T": 100,
+          "factor": 1.0,
+          "failures": 693,
+          "logical_failures": 694
+        },
+        {
+          "name": "bp130",
+          "T": 130,
+          "total_T": 130,
+          "factor": 0.5,
+          "failures": 1010,
+          "logical_failures": 1010
+        },
+        {
+          "name": "two_bp",
+          "T": 30,
+          "total_T": 130,
+          "factor": 0.5,
+          "failures": 692,
+          "logical_failures": 693
+        },
+        {
+          "name": "bp130",
+          "T": 130,
+          "total_T": 130,
+          "factor": 0.55,
+          "failures": 1009,
+          "logical_failures": 1009
+        },
+        {
+          "name": "two_bp",
+          "T": 30,
+          "total_T": 130,
+          "factor": 0.55,
+          "failures": 692,
+          "logical_failures": 693
+        },
+        {
+          "name": "bp130",
+          "T": 130,
+          "total_T": 130,
+          "factor": 0.6,
+          "failures": 1008,
+          "logical_failures": 1008
+        },
+        {
+          "name": "two_bp",
+          "T": 30,
+          "total_T": 130,
+          "factor": 0.6,
+          "failures": 693,
+          "logical_failures": 694
+        },
+        {
+          "name": "bp130",
+          "T": 130,
+          "total_T": 130,
+          "factor": 0.65,
+          "failures": 996,
+          "logical_failures": 996
+        },
+        {
+          "name": "two_bp",
+          "T": 30,
+          "total_T": 130,
+          "factor": 0.65,
+          "failures": 693,
+          "logical_failures": 694
+        },
+        {
+          "name": "bp130",
+          "T": 130,
+          "total_T": 130,
+          "factor": 0.7,
+          "failures": 978,
+          "logical_failures": 978
+        },
+        {
+          "name": "two_bp",
+          "T": 30,
+          "total_T": 130,
+          "factor": 0.7,
+          "failures": 692,
+          "logical_failures": 693
+        },
+        {
+          "name": "bp130",
+          "T": 130,
+          "total_T": 130,
+          "factor": 0.75,
+          "failures": 953,
+          "logical_failures": 953
+        },
+        {
+          "name": "two_bp",
+          "T": 30,
+          "total_T": 130,
+          "factor": 0.75,
+          "failures": 689,
+          "logical_failures": 690
+        },
+        {
+          "name": "bp130",
+          "T": 130,
+          "total_T": 130,
+          "factor": 0.8,
+          "failures": 912,
+          "logical_failures": 913
+        },
+        {
+          "name": "two_bp",
+          "T": 30,
+          "total_T": 130,
+          "factor": 0.8,
+          "failures": 690,
+          "logical_failures": 691
+        },
+        {
+          "name": "bp130",
+          "T": 130,
+          "total_T": 130,
+          "factor": 0.85,
+          "failures": 847,
+          "logical_failures": 850
+        },
+        {
+          "name": "two_bp",
+          "T": 30,
+          "total_T": 130,
+          "factor": 0.85,
+          "failures": 691,
+          "logical_failures": 692
+        },
+        {
+          "name": "bp130",
+          "T": 130,
+          "total_T": 130,
+          "factor": 0.9,
+          "failures": 764,
+          "logical_failures": 766
+        },
+        {
+          "name": "two_bp",
+          "T": 30,
+          "total_T": 130,
+          "factor": 0.9,
+          "failures": 686,
+          "logical_failures": 687
+        },
+        {
+          "name": "bp130",
+          "T": 130,
+          "total_T": 130,
+          "factor": 0.95,
+          "failures": 654,
+          "logical_failures": 656
+        },
+        {
+          "name": "two_bp",
+          "T": 30,
+          "total_T": 130,
+          "factor": 0.95,
+          "failures": 677,
+          "logical_failures": 678
+        },
+        {
+          "name": "bp130",
+          "T": 130,
+          "total_T": 130,
+          "factor": 1.0,
+          "failures": 626,
+          "logical_failures": 627
+        },
+        {
+          "name": "two_bp",
+          "T": 30,
+          "total_T": 130,
+          "factor": 1.0,
+          "failures": 693,
+          "logical_failures": 694
+        }
+      ],
+      "validation_source": "results/m6_cascade_tuning/p1/20261109T090855243992Z-277fb140",
+      "validation_cases_sha256": "9149a681d84520542c8ce9b926d8833401ca08fa9e18104da387da4d83294741",
+      "learned_validation_failures": 681,
+      "initialized_validation_failures": 681
+    }
+  ],
+  "checkpoint_sha256": "48591637735919bb3e12febe8793eca7f9a81e8e23584dfe53a07d9f6b098c3d",
+  "source_confirmation": "results/m6_aux_confirmation/20261109T105342558744Z",
+  "long_controls": [
+    "results/m6_long_bp_challenge/p0/20261109T111840039294Z",
+    "results/m6_long_bp_challenge/p1/20261109T111840036201Z"
+  ],
+  "frozen_at_utc": "2026-11-09T11:53:47.437628+00:00",
+  "model_design": "bp100_then_cycle30",
+  "additional_optimizer_updates": 0
+}

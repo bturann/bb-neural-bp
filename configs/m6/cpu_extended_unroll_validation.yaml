@@ -1,0 +1,16 @@
+purpose: fixed_checkpoint_iteration_generalization_validation_only
+confirmation: results/m6_aux_confirmation/20261109T105342558744Z
+source_checkpoint_sha256: 48591637735919bb3e12febe8793eca7f9a81e8e23584dfe53a07d9f6b098c3d
+iterations: [50, 100]
+extension: cycle
+exact_export_cases_per_point: 64
+long_control_sources:
+  - results/m6_long_bp_challenge/p0/20261109T111840039294Z
+  - results/m6_long_bp_challenge/p1/20261109T111840036201Z
+wall_seconds: 600
+scope: Original E5 motivates iteration generalization. Extend the same frozen
+  learned 15-step schedule to 50 and 100 iterations, without new optimizer updates.
+  Existing 42234/42235 validation only; no new independent confirmation, model
+  replacement, LER or latency claim. Longer ordinary controls use their existing
+  validation-selected factors. This auxiliary diagnostic is posthoc to the
+  original 30-iteration confirmation and cannot change that result.

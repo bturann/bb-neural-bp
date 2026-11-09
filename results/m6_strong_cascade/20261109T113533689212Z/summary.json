@@ -1,0 +1,75 @@
+{
+  "points": [
+    {
+      "p": 0.001,
+      "seed": 74234,
+      "shots": 4096,
+      "best_ordinary": "bp130",
+      "failures": {
+        "bp100": 536,
+        "strong_cascade": 435,
+        "strong_init": 455,
+        "bp130": 410,
+        "two_bp": 468
+      },
+      "wrong_logical_converged": {
+        "bp100": 2,
+        "strong_cascade": 2,
+        "strong_init": 2,
+        "bp130": 2,
+        "two_bp": 2
+      },
+      "primary": {
+        "first_only": 61,
+        "second_only": 86,
+        "pvalue": 0.04739135577505952,
+        "holm_pvalue": 0.04739135577505952
+      },
+      "learning": {
+        "first_only": 68,
+        "second_only": 48,
+        "pvalue": 0.07726226461070672,
+        "holm_pvalue": 0.07726226461070672
+      }
+    },
+    {
+      "p": 0.003,
+      "seed": 74235,
+      "shots": 4096,
+      "best_ordinary": "bp130",
+      "failures": {
+        "bp100": 2650,
+        "strong_cascade": 2591,
+        "strong_init": 2610,
+        "bp130": 2390,
+        "two_bp": 2606
+      },
+      "wrong_logical_converged": {
+        "bp100": 4,
+        "strong_cascade": 4,
+        "strong_init": 4,
+        "bp130": 6,
+        "two_bp": 4
+      },
+      "primary": {
+        "first_only": 45,
+        "second_only": 246,
+        "pvalue": 1.0624490964841372e-34,
+        "holm_pvalue": 2.1248981929682744e-34
+      },
+      "learning": {
+        "first_only": 47,
+        "second_only": 28,
+        "pvalue": 0.0369549040273683,
+        "holm_pvalue": 0.0739098080547366
+      }
+    }
+  ],
+  "selection_directory": "results/m6_strong_cascade/20261109T113533689212Z",
+  "primary_checkpoint_sha256": "48591637735919bb3e12febe8793eca7f9a81e8e23584dfe53a07d9f6b098c3d",
+  "elapsed_s": 1623.1170377919916,
+  "scope": "Extension of the approved BP-to-learned-to-OSD auxiliary family after observing that stronger ordinary BP dominates learned30. The learned parameters remain fixed. First BP100 factors come only from the existing validation sweep. Independently tune BP130 and BP100-to-BP30 on the same existing validation, freeze the best ordinary option including BP100 before fresh 74234/74235 cases. Primary two-point Holm family compares the fixed learned cascade with that validation-best ordinary option. A separate two-point family compares the matched initialization cascade. This is a new auxiliary study, not a replacement of the earlier primary or completion of main M6. Stage1 results do not establish equal LER or CPU latency.",
+  "final_test_data_used": false,
+  "gpu_seconds": 0,
+  "m6_complete": false
+}

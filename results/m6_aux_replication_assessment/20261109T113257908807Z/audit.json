@@ -1,0 +1,9 @@
+{
+  "checks_passed": true,
+  "raw_replication_outcomes_verified": 16384,
+  "replayed_exact_neural_export_cases": 256,
+  "separate_four_test_families_reproduced": true,
+  "fixed_final_checkpoint_hashes_verified": true,
+  "primary_unchanged": true,
+  "audit_source_sha256": "ad4022f917e4315e149a7388794c73ac778f64eaba1af9fce00216abdb0c7d30"
+}

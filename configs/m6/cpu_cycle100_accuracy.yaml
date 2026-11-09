@@ -1,0 +1,19 @@
+purpose: supplementary_fixed_cycle100_functional_accuracy
+study_kind: cycle100
+accuracy_output_root: results/m6_cycle100_accuracy
+accuracy_targets: [8192, 1024]
+accuracy_extension_seeds: [82234, 82235]
+accuracy_models: [ordinary, matched_init, selected]
+accuracy_batch: 256
+accuracy_wall_seconds: 1800
+accuracy_point_wall_seconds: [1150, 650]
+accuracy_latest_finish_utc: '2026-11-09T13:45:00+00:00'
+alpha: 0.05
+scope: Supplementary fixed-target full-pipeline accuracy for the original frozen
+  cycle100 checkpoint, validation-best CPP100/native100 and matched initialization.
+  Reuse this study's fresh 80234/80235 cases without outcome selection; extend
+  p=.001 with new 82234 stream in fixed 256-case batches. Functional shared
+  fallback accounting only, separate per-model requests and unique executions,
+  no cached timing claim. Run after all three uncached timing pilots. Four joint
+  learned-only-event upper bounds use alpha/4 only for completed fixed samples.
+  No equivalence margin, primary replacement or main M6 completion.

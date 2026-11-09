@@ -1,0 +1,6 @@
+The simultaneous point-0 launch stopped before creating any numerical evidence:
+FileExistsError: results/m6_cycle100_export_acceptance/20261109T121453055950Z
+Both launches selected the same timestamp directory. Point 1 created that directory
+successfully and continued. Point 0 was retried separately with unchanged settings,
+cases, source weights and exact comparisons. This file belongs to the failed
+launch, not to the continuing point-1 worker.

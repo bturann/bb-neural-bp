@@ -1,0 +1,155 @@
+{
+  "points": [
+    {
+      "p": 0.001,
+      "seed": 80234,
+      "shots": 4096,
+      "ordinary_name": "cpp100",
+      "failures": {
+        "cpp100": 495,
+        "native100": 498,
+        "selected": 443,
+        "matched_init": 627,
+        "seed1235": 449,
+        "seed1236": 467
+      },
+      "wrong_logical_converged": {
+        "cpp100": 0,
+        "native100": 0,
+        "selected": 0,
+        "matched_init": 0,
+        "seed1235": 0,
+        "seed1236": 0
+      },
+      "comparisons": {
+        "selected": {
+          "primary": {
+            "first_only": 273,
+            "second_only": 221,
+            "pvalue": 0.021661295800604642,
+            "holm_pvalue": 0.021661295800604642
+          },
+          "learning": {
+            "first_only": 379,
+            "second_only": 195,
+            "pvalue": 1.3154294664278734e-14,
+            "holm_pvalue": 1.3154294664278734e-14
+          }
+        },
+        "seed1235": {
+          "primary": {
+            "first_only": 275,
+            "second_only": 229,
+            "pvalue": 0.044913704442608435,
+            "holm_pvalue": 0.08982740888521687
+          },
+          "learning": {
+            "first_only": 372,
+            "second_only": 194,
+            "pvalue": 6.303863872641507e-14,
+            "holm_pvalue": 1.2607727745283015e-13
+          }
+        },
+        "seed1236": {
+          "primary": {
+            "first_only": 262,
+            "second_only": 234,
+            "pvalue": 0.22534741650201137,
+            "holm_pvalue": 0.22534741650201137
+          },
+          "learning": {
+            "first_only": 378,
+            "second_only": 218,
+            "pvalue": 5.691802613198295e-11,
+            "holm_pvalue": 5.691802613198295e-11
+          }
+        }
+      }
+    },
+    {
+      "p": 0.003,
+      "seed": 80235,
+      "shots": 4096,
+      "ordinary_name": "native100",
+      "failures": {
+        "cpp100": 2649,
+        "native100": 2654,
+        "selected": 2518,
+        "matched_init": 2892,
+        "seed1235": 2478,
+        "seed1236": 2545
+      },
+      "wrong_logical_converged": {
+        "cpp100": 11,
+        "native100": 6,
+        "selected": 5,
+        "matched_init": 4,
+        "seed1235": 5,
+        "seed1236": 8
+      },
+      "comparisons": {
+        "selected": {
+          "primary": {
+            "first_only": 523,
+            "second_only": 387,
+            "pvalue": 7.3577849813982255e-06,
+            "holm_pvalue": 1.4715569962796451e-05
+          },
+          "learning": {
+            "first_only": 632,
+            "second_only": 258,
+            "pvalue": 6.108184480204672e-37,
+            "holm_pvalue": 1.2216368960409344e-36
+          }
+        },
+        "seed1235": {
+          "primary": {
+            "first_only": 524,
+            "second_only": 348,
+            "pvalue": 2.7501159892275206e-09,
+            "holm_pvalue": 1.1000463956910082e-08
+          },
+          "learning": {
+            "first_only": 680,
+            "second_only": 266,
+            "pvalue": 1.8590144008449433e-42,
+            "holm_pvalue": 7.436057603379773e-42
+          }
+        },
+        "seed1236": {
+          "primary": {
+            "first_only": 482,
+            "second_only": 373,
+            "pvalue": 0.00021721976295974323,
+            "holm_pvalue": 0.0006516592888792297
+          },
+          "learning": {
+            "first_only": 603,
+            "second_only": 256,
+            "pvalue": 4.8670458142406955e-33,
+            "holm_pvalue": 1.4601137442722085e-32
+          }
+        }
+      }
+    }
+  ],
+  "mean_fallback": {
+    "cpp100": 0.3837890625,
+    "native100": 0.384765625,
+    "selected": 0.3614501953125,
+    "matched_init": 0.4295654296875,
+    "seed1235": 0.3572998046875,
+    "seed1236": 0.36767578125
+  },
+  "mean_ordinary": 0.3843994140625,
+  "clear_gain": true,
+  "primary_benefits": 2,
+  "primary_harms": 0,
+  "learning_benefits": 2,
+  "checkpoint_sha256": "48591637735919bb3e12febe8793eca7f9a81e8e23584dfe53a07d9f6b098c3d",
+  "elapsed_s": 1379.5696513750008,
+  "scope": "New auxiliary iteration-generalization study after validation-only evidence favored cycle100 over cycle50. No optimizer updates or source-weight replacement. Tune the native scalar100 implementation across all eleven factors on existing validation and compare the fixed learned100 with validation-best CPP100/native100. Freeze all controls and source checkpoints before fresh 80234/80235 cases. Primary and initialization comparisons each correct two noise points separately. Replication comparisons form separate four-test ordinary/initialization families; these checkpoints use fixed final step and cannot replace the primary. Main final tests are untouched. Stage1 assessment alone asserts no LER equivalence, latency improvement or main M6 completion.",
+  "final_test_data_used": false,
+  "gpu_seconds": 0,
+  "m6_complete": false
+}

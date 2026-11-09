@@ -1,0 +1,25 @@
+purpose: auxiliary_strong_first_pass_cascade
+primary_confirmation: results/m6_aux_confirmation/20261109T105342558744Z
+validation_sources:
+  - results/m6_cascade_tuning/p0/20261109T090855243984Z-277fb140
+  - results/m6_cascade_tuning/p1/20261109T090855243992Z-277fb140
+first_iterations: 100
+second_iterations: 30
+long_iterations: 130
+shots: 4096
+confirmation_seeds: [74234, 74235]
+wall_seconds: 1800
+selection_deadline_utc: '2026-11-09T12:15:00+00:00'
+deadline_utc: '2026-11-09T12:30:00+00:00'
+threads: 1
+alpha: 0.05
+scope: Extension of the approved BP-to-learned-to-OSD auxiliary family after
+  observing that stronger ordinary BP dominates learned30. The learned parameters
+  remain fixed. First BP100 factors come only from the existing validation sweep.
+  Independently tune BP130 and BP100-to-BP30 on the same existing validation,
+  freeze the best ordinary option including BP100 before fresh 74234/74235 cases.
+  Primary two-point Holm family compares the fixed learned cascade with that
+  validation-best ordinary option. A separate two-point family compares the
+  matched initialization cascade. This is a new auxiliary study, not a replacement
+  of the earlier primary or completion of main M6. Stage1 results do not establish
+  equal LER or CPU latency.

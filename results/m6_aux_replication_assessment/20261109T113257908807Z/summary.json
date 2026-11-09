@@ -1,0 +1,116 @@
+{
+  "replications": [
+    {
+      "training_directory": "results/m6_aux_replications/seed1235/20261109T105019630107Z",
+      "training_seed": 1235,
+      "pool_seed": 68234,
+      "checkpoint_sha256": "2ba56ddc0b4e6dd54dfd14c8977518775fd32d580445e76a36c24a1fc00772c5",
+      "step": 4000,
+      "design": "cycle30",
+      "points": [
+        {
+          "p": 0.001,
+          "shots": 4096,
+          "failures": 1658,
+          "logical_failures": 1658,
+          "comparisons": {
+            "ordinary": {
+              "first_only": 660,
+              "second_only": 488,
+              "pvalue": 4.2826867179888257e-07,
+              "holm_pvalue": 1.7130746871955303e-06
+            },
+            "matched_init": {
+              "first_only": 638,
+              "second_only": 493,
+              "pvalue": 1.8081848840369527e-05,
+              "holm_pvalue": 7.232739536147811e-05
+            }
+          },
+          "exact_export_shots": 64
+        },
+        {
+          "p": 0.003,
+          "shots": 4096,
+          "failures": 3670,
+          "logical_failures": 3671,
+          "comparisons": {
+            "ordinary": {
+              "first_only": 245,
+              "second_only": 235,
+              "pvalue": 0.6812687524807707,
+              "holm_pvalue": 0.6812687524807707
+            },
+            "matched_init": {
+              "first_only": 263,
+              "second_only": 182,
+              "pvalue": 0.00014354440106294683,
+              "holm_pvalue": 0.00043063320318884046
+            }
+          },
+          "exact_export_shots": 64
+        }
+      ],
+      "mean_fallback_rate": 0.650390625
+    },
+    {
+      "training_directory": "results/m6_aux_replications/seed1236/20261109T105019630120Z",
+      "training_seed": 1236,
+      "pool_seed": 69234,
+      "checkpoint_sha256": "31496a07a896f039e8394e0aa014dc15c1f3e2fa3fbcf175b26e796673ee773f",
+      "step": 4000,
+      "design": "cycle30",
+      "points": [
+        {
+          "p": 0.001,
+          "shots": 4096,
+          "failures": 1720,
+          "logical_failures": 1720,
+          "comparisons": {
+            "ordinary": {
+              "first_only": 616,
+              "second_only": 506,
+              "pvalue": 0.0011282701833062185,
+              "holm_pvalue": 0.0033848105499186556
+            },
+            "matched_init": {
+              "first_only": 613,
+              "second_only": 530,
+              "pvalue": 0.015253400994128023,
+              "holm_pvalue": 0.030506801988256046
+            }
+          },
+          "exact_export_shots": 64
+        },
+        {
+          "p": 0.003,
+          "shots": 4096,
+          "failures": 3708,
+          "logical_failures": 3709,
+          "comparisons": {
+            "ordinary": {
+              "first_only": 220,
+              "second_only": 248,
+              "pvalue": 0.21195821102873513,
+              "holm_pvalue": 0.42391642205747027
+            },
+            "matched_init": {
+              "first_only": 234,
+              "second_only": 191,
+              "pvalue": 0.04149382279302027,
+              "holm_pvalue": 0.04149382279302027
+            }
+          },
+          "exact_export_shots": 64
+        }
+      ],
+      "mean_fallback_rate": 0.66259765625
+    }
+  ],
+  "primary_checkpoint_unchanged": true,
+  "primary_confirmation": "results/m6_aux_confirmation/20261109T105342558744Z",
+  "scope": "Precommitted method replications using final step, no checkpoint selection. Same fixed confirmation cases across seeds; do not count them as independent extra shots. Stage1 robustness only, separate four-test families over added replications/noise points. Main M6 incomplete.",
+  "final_test_data_used": false,
+  "gpu_seconds": 0,
+  "m6_complete": false
+}

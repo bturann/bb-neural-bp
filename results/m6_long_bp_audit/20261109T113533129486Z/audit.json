@@ -1,0 +1,45 @@
+{
+  "checks_passed": true,
+  "directories": [
+    "results/m6_long_bp_challenge/p0/20261109T111840039294Z",
+    "results/m6_long_bp_challenge/p1/20261109T111840036201Z"
+  ],
+  "raw_outcomes_verified": 61440,
+  "replayed_decoder_cases": 960,
+  "secondary_four_test_family": [
+    {
+      "p": 0.001,
+      "T": 50,
+      "first_only": 295,
+      "second_only": 797,
+      "pvalue": 7.755589884875837e-54,
+      "secondary_holm_pvalue": 1.5511179769751674e-53
+    },
+    {
+      "p": 0.001,
+      "T": 100,
+      "first_only": 96,
+      "second_only": 1170,
+      "pvalue": 2.925895557859562e-235,
+      "secondary_holm_pvalue": 8.777686673578686e-235
+    },
+    {
+      "p": 0.003,
+      "T": 50,
+      "first_only": 161,
+      "second_only": 419,
+      "pvalue": 1.8265172172337453e-27,
+      "secondary_holm_pvalue": 1.8265172172337453e-27
+    },
+    {
+      "p": 0.003,
+      "T": 100,
+      "first_only": 53,
+      "second_only": 1105,
+      "pvalue": 8.921430306991287e-257,
+      "secondary_holm_pvalue": 3.5685721227965146e-256
+    }
+  ],
+  "scope": "Secondary posthoc stronger-iteration-budget challenge. No primary replacement or LER/latency claim.",
+  "audit_source_sha256": "c7513931fb95f09d4d762f3fc00363b425ef38e2967184ad1a9a59627880f54a"
+}

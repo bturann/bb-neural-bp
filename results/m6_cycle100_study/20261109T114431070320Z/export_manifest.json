@@ -1,0 +1,8 @@
+{
+  "rows": 12,
+  "raw_outcomes_reverified": 49152,
+  "csv_sha256": "e34db302e9b96f27b02b987039a9019375905e8ca02fadba02fa23c5549c8fdf",
+  "summary_sha256": "7ad1a1c12427d1269db5be7525053885f728eb5485d29f66f69062962951eb3e",
+  "scope": "Postprocessed standalone Stage1 outcomes. osd_calls/rate are zero; stage1_failures/shots is potential fallback demand. T is inference maximum, source training remains T15. Base config plus frozen design/settings resolves the auxiliary experiment.",
+  "export_source_sha256": "91397850bc950574a0fc02a34326153f626f6a847c7372d7e2dc88df02fc2a44"
+}

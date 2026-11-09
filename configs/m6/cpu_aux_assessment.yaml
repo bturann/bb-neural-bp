@@ -23,7 +23,7 @@ latency_models:
 - ordinary
 - matched_init
 - selected
-latency_shots: 512
+latency_shots: 256
 latency_warmup: 64
 latency_seed_offset: 65000
 latency_order_entropy:

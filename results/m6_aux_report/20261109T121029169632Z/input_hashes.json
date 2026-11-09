@@ -1,0 +1,9 @@
+{
+  "results/m6_aux_confirmation/20261109T105342558744Z/summary.json": "e7476b3fcbd669d478ca9aed598ae26753ecd21b955891168ae8e862b1f47d47",
+  "results/m6_aux_replication_assessment/20261109T113257908807Z/summary.json": "b28612d8933fa46b66176cf23e9da29fc6efc21cec9fc2fd63e7f4ea12091eb5",
+  "results/m6_strong_cascade/20261109T113533689212Z/summary.json": "0bbf899e9e87514def0c090d79c23f0c4d4c73c0993d97534d87fb7ccb3100c9",
+  "results/m6_extended_unroll_validation/20261109T113945592893Z/summary.json": "f69bdb4d74477e5dade20c7dd6a788b1cdf9efe4c7eeba719806540b730476e2",
+  "results/m6_cycle100_study/20261109T114431070320Z/summary.json": "7ad1a1c12427d1269db5be7525053885f728eb5485d29f66f69062962951eb3e",
+  "results/m6_long_bp_challenge/p0/20261109T111840039294Z/summary.json": "5406b997a60c1450dc37b717b2d23fd2db5fb59a5dbf0cb8a20cd0bb9517900f",
+  "results/m6_long_bp_challenge/p1/20261109T111840036201Z/summary.json": "37d1c72f7e0eac1ee029641971a8ab746c4fc32d21e68b941cbb2f2707ce6157"
+}

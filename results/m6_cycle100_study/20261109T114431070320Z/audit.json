@@ -1,0 +1,10 @@
+{
+  "checks_passed": true,
+  "regenerated_fresh_cases": 8192,
+  "raw_outcomes_verified": 71680,
+  "replayed_decoder_cases": 1120,
+  "exact_neural_export_cases": 512,
+  "all_checkpoint_hashes_and_control_choices_verified": true,
+  "all_paired_families_and_screen_reproduced": true,
+  "audit_source_sha256": "fedb2ecd2a2ae93e14e11715a8b03bc71cb4706b60ef8e86fb170aab68bf48c5"
+}

@@ -1,0 +1,29 @@
+alpha: 0.05
+confirmation_seeds:
+- 80234
+- 80235
+deadline_utc: '2026-11-09T12:15:00+00:00'
+exact_export_cases: 64
+extension: cycle
+iterations: 100
+long_control_sources:
+- results/m6_long_bp_challenge/p0/20261109T111840039294Z
+- results/m6_long_bp_challenge/p1/20261109T111840036201Z
+minimum_mean_gain: 0.01
+purpose: independent_auxiliary_cycle100_assessment
+replication_sources:
+  seed1235: results/m6_aux_replications/seed1235/20261109T105019630107Z/struct_standard/last.pt
+  seed1236: results/m6_aux_replications/seed1236/20261109T105019630120Z/struct_standard/last.pt
+scope: New auxiliary iteration-generalization study after validation-only evidence
+  favored cycle100 over cycle50. No optimizer updates or source-weight replacement.
+  Tune the native scalar100 implementation across all eleven factors on existing validation
+  and compare the fixed learned100 with validation-best CPP100/native100. Freeze all
+  controls and source checkpoints before fresh 80234/80235 cases. Primary and initialization
+  comparisons each correct two noise points separately. Replication comparisons form
+  separate four-test ordinary/initialization families; these checkpoints use fixed
+  final step and cannot replace the primary. Main final tests are untouched. Stage1
+  assessment alone asserts no LER equivalence, latency improvement or main M6 completion.
+shots: 4096
+source_checkpoint_sha256: 48591637735919bb3e12febe8793eca7f9a81e8e23584dfe53a07d9f6b098c3d
+source_confirmation: results/m6_aux_confirmation/20261109T105342558744Z
+wall_seconds: 1800

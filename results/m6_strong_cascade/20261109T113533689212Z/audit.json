@@ -1,0 +1,10 @@
+{
+  "checks_passed": true,
+  "regenerated_fresh_cases": 8192,
+  "raw_outcomes_verified": 92160,
+  "routed_pipeline_cases_replayed": 896,
+  "exact_neural_exports": 256,
+  "control_selection_and_pair_families_reproduced": true,
+  "learned_parameters_unchanged": true,
+  "audit_source_sha256": "1ec043d8a3ad683656cbb1b6d3fed3e7f8d2219da2e3bf01583a4f28123853fa"
+}

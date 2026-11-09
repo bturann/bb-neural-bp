@@ -1511,3 +1511,144 @@ M5 passed: `results/m5/20261030T220645511485Z-3a224cbf`; wins 4/7, best step 100
 - The structural/high-rate arm won validation; full weight flexibility, lower
   learning rate and the sine surrogate did not improve the selected result.
   Those negative arms and their complete checkpoints/source are retained.
+
+### Strong ordinary baseline and bounded cascade extension (11:31 UTC)
+
+- The secondary T50/T100 challenge at p=.001 completed: tuned BP50 (factor 1)
+  had **1,138/4,096** potential fallback requests; tuned BP100 (factor 1) had
+  **566/4,096**, versus frozen learned30's 1,640. Its one converged wrong-logical
+  BP100 output is retained. This limits the practical interpretation of the
+  neural T30 gain; ordinary extra iterations may be the better CPU solution.
+- Extend the already approved cascade family to a **fixed BP100 → learned30**
+  Stage1. Keep the learned parameters unchanged. First factors come exclusively
+  from the completed T100 validation choices. Tune BP130 and BP100→BP30 across
+  all eleven factors on existing 42234/42235 validation, include BP100 as an
+  ordinary option, and freeze the validation-best ordinary comparison before
+  sampling fresh **74234/74235**, 4,096 cases each. Compare the fixed learned
+  cascade in a two-point primary Holm family; a separate two-point family uses
+  BP100→matched initialization. No option replaces the earlier frozen primary.
+  This stays within the learned BP/cascade question and changes no main matrix.
+- The extension is CPU-only, no new dependency or training, cap 1,800 s, finish
+  selection by 12:15 UTC and assessment by 12:30. Regardless of its outcome, a
+  separate 512+64 paired uncached timing pilot is prepared for learned cascade,
+  initialized cascade, BP100 and validation-best ordinary up to 130 iterations,
+  fresh seeds **76234/76235**, random order [1234,971,p-index], bootstrap
+  [1234,972,p-index,baseline-index]. It follows the other timing pilots, cap
+  1,500 s and finalization by 13:50. If time is insufficient, retain and label
+  its complete paired prefix as budget-limited; do not declare main E2 passed.
+- Before the strong-cascade fresh outcomes are observed, predeclare supplementary
+  full-pipeline functional accuracy for that fixed cascade, its validation-best
+  ordinary control, and initialized cascade. Target 8,192 at p=.001 and 1,024 at
+  p=.003; reuse the unselected fresh 74234/74235 confirmation pool and extend
+  only with 78234/78235 in fixed 256-case batches. Shared fallback computation is
+  functional accounting only. Run after all three uncached timing pilots, cap
+  1,200 s (750/450 per point), stop by 13:45 UTC. Emit the four Bonferroni joint
+  learned-only-event bounds only for completed fixed targets; assert no LER
+  equivalence margin. This remains supplementary and does not complete main M6.
+- A bounded validation-only iteration-generalization diagnostic extends the same
+  frozen learned schedule by cycling to T50 and T100. This follows original E5's
+  iteration-generalization motivation (T100 is auxiliary); compare with existing
+  same-T ordinary validation controls, 64 exact Torch/Numba exports per point.
+  No optimizer updates, new confirmation or model replacement are authorized by
+  this diagnostic. It uses only existing 42234/42235 data and a 600 s CPU cap.
+- The longer-unroll validation diagnostic found learned cycle100 failures
+  110/1,024 and 617/1,024, versus CPP100 124/1,024 and 693/1,024. Launch a
+  **separate fresh cycle100 study**, fixed original weights and two fixed final
+  replication checkpoints, before sampling 80234/80235 (4,096 per point).
+  Tune native scalar100 over all eleven factors on existing validation, freeze
+  best ordinary CPP100/native100 and all source hashes. Primary/initialization
+  families each correct two points; added replications use separate four-test
+  families. No extra optimizer updates or replacement of prior studies.
+- **Timing protocol amendment before any timed data collection:** set all three
+  auxiliary timing pilots to **256 measured + 64 warmup cases per point**. This
+  fixed reduction reserves time for functional accuracy before the user deadline;
+  it does not depend on timing outcomes. Main E2 remains 20k/1k and unchanged.
+  These pilots cannot establish p99 superiority. Extend the longer-BP timing pilot
+  with frozen learned100/native100, retaining its original four methods and case
+  seeds, randomizing all six. Additional fixed learned100-minus-BP100/native100
+  bootstrap contrasts use entropy [1234,969,p-index,6+contrast-index].
+- Before any cycle100 fresh outcomes are observed, also freeze supplementary
+  cycle100 full-pipeline accuracy: 8,192/1,024 cases, unselected 80234/80235
+  confirmation prefix plus new extension seeds 82234/82235, fixed 256-case
+  batches, same 1,200 s total and 750/450 s point budgets, latest 13:45 UTC.
+  It follows all actual timing pilots and runs independently of Stage1 success.
+  Compare validation-best CPP100/native100 and matched initialization, reporting
+  shared fallback work separately and four joint learned-only-event bounds only
+  on completed fixed samples. No LER equivalence margin is asserted.
+- Before any timing collection, add fixed learned100 as a fifth method in the
+  strong-cascade timing pilot as well. This supplies direct paired CPU comparisons
+  against BP100 and validation-best ordinary up to 130, without selecting another
+  model. Keep 256 measured/64 warmups and the 1,500 s cap. Its two additional
+  bootstrap contrasts use [1234,972,p-index,5+contrast-index].
+- Before timing, require 10,000 exact Torch/Numba cases for the cycle100 primary:
+  5,000/p, each completed fresh 4,096 followed by first 904 existing validation
+  cases. Full corrections, convergence and first-convergence iterations must
+  match. This is numerical acceptance using saved inputs, not extra independent
+  performance evidence, and does not complete main M6.
+- The strong-first-pass cascade completed in 1,623 s and **lost** to BP130:
+  435 versus 410 failures at p=.001, and 2,591 versus 2,390 at p=.003, each
+  on 4,096 new cases. Both primary corrected comparisons favor ordinary BP130.
+  Its learning-family comparisons did not pass corrected .05. Preserve this
+  negative result; do not recommend the cascade as an improvement.
+- Strong-cascade audit passed 8,192 regenerated cases, 92,160 raw outcomes,
+  896 routed-pipeline replays and 256 exact neural exports. The supplementary
+  accuracy preflight matched all 48 actual uncached pipeline method-cases to
+  shared functional composition on existing inputs. CSV export separately
+  reverified 40,960 raw outcomes and emitted ten standalone Stage1 rows.
+- Fresh cycle100 completed its declared Stage1 screen: 443 vs 495 fallback
+  requests at p=.001; 2,518 vs 2,654 at p=.003, both /4,096. Both primary
+  points passed their two-point Holm family (.02166 and 1.472e-5). The two
+  extra seeds improved in direction at both p values; only their high-p ordinary
+  comparisons passed the separate four-test correction. All initialization
+  comparisons passed. Equal-point primary demand is 36.145% vs 38.440% ordinary.
+  This remains Stage1 evidence; full LER and CPU cost are still pending.
+- Cycle100 audit passed 8,192 regenerated cases, 71,680 raw outcomes, 1,120
+  decoder replays and 512 exact neural exports. Its functional preflight matched
+  48 actual uncached pipeline method-cases. Standard CSV export reverified
+  49,152 outcomes and emitted twelve standalone Stage1 rows.
+- The first serial 10k exact-acceptance attempt was intentionally interrupted
+  after at least 3,072 successful cases, because one worker for both points
+  would consume too much of the remaining schedule. Preserve its KeyboardInterrupt
+  and executed source. Rerun the **same** 5,000 saved cases/p as two independent
+  single-thread CPU jobs, aggregate only complete successful worker reports;
+  targets, weights and exact comparisons are unchanged. This is a scheduling
+  change to a numerical software check, not a model-selection or research-sample
+  change. Per-batch successful receipts are retained in the new attempts.
+- The simultaneous point-worker launches initially selected the same timestamp
+  directory. Point 0 stopped with FileExistsError before numerical work; point 1
+  continued safely. Preserve a separate launch-failure source/error packet and
+  retry point 0 separately with identical cases, parameters and comparisons.
+- Before collecting cycle100 full-pipeline outcomes, amend only its CPU allowance
+  to 1,800 s total (1,150/650 per point), retaining fixed 8,192/1,024 targets,
+  cases, models, alpha and the 13:45 UTC hard cutoff. Saved Stage1 masks imply
+  980 shared requests/4,096 at low p and 839/1,024 in the fixed high-p prefix;
+  the original short allowance would likely truncate the low-p target. This
+  resource estimate uses known request masks and earlier fallback calibration,
+  not newly observed full-pipeline logical outcomes. Strong-cascade allowance
+  stays 1,200 s. Incomplete fixed samples still receive no regression bound.
+- The original learned30 low-p functional assessment completed 16,384 cases:
+  63 logical failures vs BP30's 64, with four selected-only and five baseline-only
+  failures. Its one-sided alpha/4 upper learned-only event bound is 0.06883
+  percentage points; no equivalence margin is asserted. Full two-point summary
+  and audit await the fixed high-p sample. Preserve original main seeds.
+- Schedule all unstarted CPU-heavy accuracy/timing audits after the three actual
+  timing pilots, alongside supplementary functional work. Timing can then begin
+  immediately after original accuracy and numerical acceptance finish. Known
+  training/validation/acceptance jobs must be finished first; this change adds
+  no background computation to measured CPU timing. Audits must finish before
+  the final report, irrespective of study outcomes.
+- Cycle100 numerical acceptance passed **10,000 exact cases**: two completed
+  single-thread workers, 5,000/p, full corrections/convergence/iterations equal.
+  The aggregate stores both successful worker-summary hashes. The older serial
+  interruption and timestamp-collision launch failure remain separate. Add a
+  point/aggregate suffix to future acceptance directory names to prevent the
+  observed cross-point collision; numerical comparisons are unchanged.
+- Before actual timing, freeze a self-contained core config, circuit/DEM/problem
+  files and hashes of all model/control source inputs per timing bundle. Recheck
+  those hashes after all measurements. No heavy numerical jobs may overlap the
+  timing calls; deferred audits follow timing.
+- Final pre-timing software suite: **134 passed in 27.15 s**. All training,
+  validation, exact-acceptance and preflight jobs have finished. Await only the
+  original fixed high-p functional sample, then collect the three uncached timing
+  pilots sequentially. Main M6/E1/E2 remain incomplete.
+- Full software suite before final assessment work: **134 passed in 27.22 s**.

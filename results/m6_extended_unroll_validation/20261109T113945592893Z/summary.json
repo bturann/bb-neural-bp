@@ -1,0 +1,56 @@
+{
+  "records": [
+    {
+      "p": 0.001,
+      "shots": 1024,
+      "T": 50,
+      "learned_failures": 237,
+      "learned_logical_failures": 237,
+      "mean_iterations": 24.3203125,
+      "ordinary_failures": 255,
+      "ordinary_factor": 1.0,
+      "exact_export_cases": 64
+    },
+    {
+      "p": 0.001,
+      "shots": 1024,
+      "T": 100,
+      "learned_failures": 110,
+      "learned_logical_failures": 110,
+      "mean_iterations": 32.0185546875,
+      "ordinary_failures": 124,
+      "ordinary_factor": 1.0,
+      "exact_export_cases": 64
+    },
+    {
+      "p": 0.003,
+      "shots": 1024,
+      "T": 50,
+      "learned_failures": 815,
+      "learned_logical_failures": 815,
+      "mean_iterations": 45.8369140625,
+      "ordinary_failures": 849,
+      "ordinary_factor": 0.95,
+      "exact_export_cases": 64
+    },
+    {
+      "p": 0.003,
+      "shots": 1024,
+      "T": 100,
+      "learned_failures": 617,
+      "learned_logical_failures": 617,
+      "mean_iterations": 80.1376953125,
+      "ordinary_failures": 693,
+      "ordinary_factor": 1.0,
+      "exact_export_cases": 64
+    }
+  ],
+  "checkpoint_sha256": "48591637735919bb3e12febe8793eca7f9a81e8e23584dfe53a07d9f6b098c3d",
+  "additional_optimizer_updates": 0,
+  "elapsed_s": 70.80391004204284,
+  "scope": "Original E5 motivates iteration generalization. Extend the same frozen learned 15-step schedule to 50 and 100 iterations, without new optimizer updates. Existing 42234/42235 validation only; no new independent confirmation, model replacement, LER or latency claim. Longer ordinary controls use their existing validation-selected factors. This auxiliary diagnostic is posthoc to the original 30-iteration confirmation and cannot change that result.",
+  "confirmation_data_used": false,
+  "final_test_data_used": false,
+  "gpu_seconds": 0,
+  "m6_complete": false
+}

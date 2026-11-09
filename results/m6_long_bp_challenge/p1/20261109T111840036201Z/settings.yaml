@@ -1,0 +1,17 @@
+confirmation: results/m6_aux_confirmation/20261109T105342558744Z
+deadline_utc: '2026-11-09T12:30:00+00:00'
+iterations:
+- 50
+- 100
+purpose: secondary_posthoc_stronger_iteration_budget_challenge
+replace_primary: false
+scope: T50/T100 are in the original baseline sweep. Tune on existing validation only,
+  freeze each point's factors before decoding its fixed confirmation cases. This secondary
+  challenge was added after seeing the primary T30 result and must be labelled posthoc.
+  It neither changes the frozen model nor replaces the predeclared primary comparison.
+  Stage1 outcomes alone make no latency claim.
+selection: minimum_validation_failures_then_logical_failures_then_lower_factor
+validation_sources:
+- results/m6_cascade_tuning/p0/20261109T090855243984Z-277fb140
+- results/m6_cascade_tuning/p1/20261109T090855243992Z-277fb140
+wall_seconds_per_point: 1500

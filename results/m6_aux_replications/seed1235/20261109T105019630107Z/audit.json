@@ -1,0 +1,21 @@
+{
+  "checks_passed": true,
+  "regenerated_mining_cases": 52736,
+  "unique_selected_cases": 32000,
+  "regenerated_validation_cases": 2048,
+  "matching_batch_plan": true,
+  "training_inputs_sha256": "812b13fb4129f8dd564da66fcf216dac8d52fb2af538175910edbb51dbc3dab9",
+  "arms": [
+    {
+      "directory": "results/m6_aux_replications/seed1235/20261109T105019630107Z/struct_standard",
+      "updates": 4000,
+      "first_loss_reproduced": true,
+      "raw_validation_outcomes_verified": 20480,
+      "exact_replayed_neural_cases": 256,
+      "best_selection_reproduced": true,
+      "checkpoint_hashes_verified": true
+    }
+  ],
+  "scope": "Input, schedule, first-loss, raw outcomes, checkpoint/export and selection audit; does not replay every optimizer update.",
+  "audit_source_sha256": "4755eb7d921ef3e841ce4ab223341f4779462fef8ebac4b7888bc2a1f55e6c21"
+}

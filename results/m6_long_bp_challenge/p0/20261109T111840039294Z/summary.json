@@ -1,0 +1,37 @@
+{
+  "p": 0.001,
+  "confirmation_directory": "results/m6_aux_confirmation/20261109T105342558744Z",
+  "outcomes": [
+    {
+      "T": 50,
+      "factor": 1.0,
+      "shots": 4096,
+      "failures": 1138,
+      "logical_failures": 1138,
+      "mean_iterations": 26.303466796875,
+      "secondary_nominal_comparison": {
+        "first_only": 295,
+        "second_only": 797,
+        "pvalue": 7.755589884875837e-54
+      }
+    },
+    {
+      "T": 100,
+      "factor": 1.0,
+      "shots": 4096,
+      "failures": 566,
+      "logical_failures": 567,
+      "mean_iterations": 35.97021484375,
+      "secondary_nominal_comparison": {
+        "first_only": 96,
+        "second_only": 1170,
+        "pvalue": 2.925895557859562e-235
+      }
+    }
+  ],
+  "elapsed_s": 572.1603919579647,
+  "scope": "T50/T100 are in the original baseline sweep. Tune on existing validation only, freeze each point's factors before decoding its fixed confirmation cases. This secondary challenge was added after seeing the primary T30 result and must be labelled posthoc. It neither changes the frozen model nor replaces the predeclared primary comparison. Stage1 outcomes alone make no latency claim.",
+  "final_test_data_used": false,
+  "gpu_seconds": 0,
+  "m6_complete": false
+}

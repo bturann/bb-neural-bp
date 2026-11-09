@@ -1,0 +1,28 @@
+accuracy_batch: 256
+accuracy_extension_seeds:
+- 78234
+- 78235
+accuracy_latest_finish_utc: '2026-11-09T13:45:00+00:00'
+accuracy_models:
+- ordinary
+- matched_init
+- selected
+accuracy_point_wall_seconds:
+- 60
+- 60
+accuracy_targets:
+- 8
+- 8
+accuracy_wall_seconds: 120
+alpha: 0.05
+purpose: supplementary_fixed_strong_cascade_functional_accuracy
+scope: Supplementary functional accuracy for the frozen strong cascade and its validation-selected
+  ordinary control, irrespective of Stage1 outcome. Reuse the fixed fresh 74234/74235
+  cases, extend p=.001 with new 78234 stream in 256-case batches. Keep first-pass
+  routing, including wrong-logical valid corrections. Share identical fallback computation
+  only for functional accounting, report per-model requests separately from actual
+  unique executions. Run after all three actual latency pilots finish so CPU timing
+  is uncontaminated. Fixed targets, bounded to 1200 seconds and 13:45 UTC; incomplete
+  targets get no fixed-sample regression bound. Four joint one-sided learned-only-event
+  bounds use alpha/4. No equivalence margin or main M6 acceptance is asserted.
+study_kind: strong_cascade

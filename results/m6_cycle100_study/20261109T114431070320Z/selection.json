@@ -1,0 +1,163 @@
+{
+  "points": [
+    {
+      "p": 0.001,
+      "cpp": {
+        "T": 100,
+        "factor": 1.0,
+        "failures": 124,
+        "logical_failures": 124,
+        "mean_iterations": 33.7802734375
+      },
+      "native": {
+        "factor": 1.0,
+        "failures": 132,
+        "logical_failures": 132
+      },
+      "native_grid": [
+        {
+          "factor": 0.5,
+          "failures": 771,
+          "logical_failures": 771
+        },
+        {
+          "factor": 0.55,
+          "failures": 736,
+          "logical_failures": 736
+        },
+        {
+          "factor": 0.6,
+          "failures": 708,
+          "logical_failures": 708
+        },
+        {
+          "factor": 0.65,
+          "failures": 676,
+          "logical_failures": 676
+        },
+        {
+          "factor": 0.7,
+          "failures": 650,
+          "logical_failures": 650
+        },
+        {
+          "factor": 0.75,
+          "failures": 573,
+          "logical_failures": 573
+        },
+        {
+          "factor": 0.8,
+          "failures": 422,
+          "logical_failures": 422
+        },
+        {
+          "factor": 0.85,
+          "failures": 281,
+          "logical_failures": 281
+        },
+        {
+          "factor": 0.9,
+          "failures": 199,
+          "logical_failures": 199
+        },
+        {
+          "factor": 0.95,
+          "failures": 157,
+          "logical_failures": 157
+        },
+        {
+          "factor": 1.0,
+          "failures": 132,
+          "logical_failures": 132
+        }
+      ],
+      "best_ordinary": "cpp100",
+      "validation_source": "results/m6_cascade_tuning/p0/20261109T090855243984Z-277fb140",
+      "validation_cases_sha256": "c6d71d31f7d9e24dfabe79b130df4351f7904b12932e97b54ba585020e4f02b0"
+    },
+    {
+      "p": 0.003,
+      "cpp": {
+        "T": 100,
+        "factor": 1.0,
+        "failures": 693,
+        "logical_failures": 694,
+        "mean_iterations": 84.041015625
+      },
+      "native": {
+        "factor": 1.0,
+        "failures": 670,
+        "logical_failures": 671
+      },
+      "native_grid": [
+        {
+          "factor": 0.5,
+          "failures": 1010,
+          "logical_failures": 1010
+        },
+        {
+          "factor": 0.55,
+          "failures": 1009,
+          "logical_failures": 1009
+        },
+        {
+          "factor": 0.6,
+          "failures": 1008,
+          "logical_failures": 1008
+        },
+        {
+          "factor": 0.65,
+          "failures": 998,
+          "logical_failures": 998
+        },
+        {
+          "factor": 0.7,
+          "failures": 981,
+          "logical_failures": 981
+        },
+        {
+          "factor": 0.75,
+          "failures": 966,
+          "logical_failures": 966
+        },
+        {
+          "factor": 0.8,
+          "failures": 927,
+          "logical_failures": 927
+        },
+        {
+          "factor": 0.85,
+          "failures": 870,
+          "logical_failures": 873
+        },
+        {
+          "factor": 0.9,
+          "failures": 793,
+          "logical_failures": 795
+        },
+        {
+          "factor": 0.95,
+          "failures": 709,
+          "logical_failures": 710
+        },
+        {
+          "factor": 1.0,
+          "failures": 670,
+          "logical_failures": 671
+        }
+      ],
+      "best_ordinary": "native100",
+      "validation_source": "results/m6_cascade_tuning/p1/20261109T090855243992Z-277fb140",
+      "validation_cases_sha256": "9149a681d84520542c8ce9b926d8833401ca08fa9e18104da387da4d83294741"
+    }
+  ],
+  "iterations": 100,
+  "extension": "cycle",
+  "additional_optimizer_updates": 0,
+  "checkpoints": {
+    "selected-source.pt": "48591637735919bb3e12febe8793eca7f9a81e8e23584dfe53a07d9f6b098c3d",
+    "seed1235-source.pt": "2ba56ddc0b4e6dd54dfd14c8977518775fd32d580445e76a36c24a1fc00772c5",
+    "seed1236-source.pt": "31496a07a896f039e8394e0aa014dc15c1f3e2fa3fbcf175b26e796673ee773f"
+  },
+  "frozen_at_utc": "2026-11-09T11:52:22.588657+00:00"
+}

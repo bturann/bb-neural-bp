@@ -1,0 +1,178 @@
+{
+  "choices": {
+    "50": {
+      "T": 50,
+      "factor": 1.0,
+      "failures": 255,
+      "logical_failures": 255,
+      "mean_iterations": 25.2255859375
+    },
+    "100": {
+      "T": 100,
+      "factor": 1.0,
+      "failures": 124,
+      "logical_failures": 124,
+      "mean_iterations": 33.7802734375
+    }
+  },
+  "grid": [
+    {
+      "T": 50,
+      "factor": 0.5,
+      "failures": 773,
+      "logical_failures": 773,
+      "mean_iterations": 39.1953125
+    },
+    {
+      "T": 50,
+      "factor": 0.55,
+      "failures": 742,
+      "logical_failures": 742,
+      "mean_iterations": 38.2119140625
+    },
+    {
+      "T": 50,
+      "factor": 0.6,
+      "failures": 724,
+      "logical_failures": 724,
+      "mean_iterations": 37.0888671875
+    },
+    {
+      "T": 50,
+      "factor": 0.65,
+      "failures": 688,
+      "logical_failures": 688,
+      "mean_iterations": 36.591796875
+    },
+    {
+      "T": 50,
+      "factor": 0.7,
+      "failures": 667,
+      "logical_failures": 667,
+      "mean_iterations": 35.55078125
+    },
+    {
+      "T": 50,
+      "factor": 0.75,
+      "failures": 618,
+      "logical_failures": 618,
+      "mean_iterations": 34.6181640625
+    },
+    {
+      "T": 50,
+      "factor": 0.8,
+      "failures": 503,
+      "logical_failures": 503,
+      "mean_iterations": 31.2490234375
+    },
+    {
+      "T": 50,
+      "factor": 0.85,
+      "failures": 381,
+      "logical_failures": 381,
+      "mean_iterations": 27.0751953125
+    },
+    {
+      "T": 50,
+      "factor": 0.9,
+      "failures": 324,
+      "logical_failures": 324,
+      "mean_iterations": 26.65625
+    },
+    {
+      "T": 50,
+      "factor": 0.95,
+      "failures": 280,
+      "logical_failures": 280,
+      "mean_iterations": 25.490234375
+    },
+    {
+      "T": 50,
+      "factor": 1.0,
+      "failures": 255,
+      "logical_failures": 255,
+      "mean_iterations": 25.2255859375
+    },
+    {
+      "T": 100,
+      "factor": 0.5,
+      "failures": 769,
+      "logical_failures": 769,
+      "mean_iterations": 76.8173828125
+    },
+    {
+      "T": 100,
+      "factor": 0.55,
+      "failures": 731,
+      "logical_failures": 731,
+      "mean_iterations": 74.171875
+    },
+    {
+      "T": 100,
+      "factor": 0.6,
+      "failures": 713,
+      "logical_failures": 713,
+      "mean_iterations": 72.03515625
+    },
+    {
+      "T": 100,
+      "factor": 0.65,
+      "failures": 673,
+      "logical_failures": 673,
+      "mean_iterations": 69.7529296875
+    },
+    {
+      "T": 100,
+      "factor": 0.7,
+      "failures": 647,
+      "logical_failures": 647,
+      "mean_iterations": 67.5087890625
+    },
+    {
+      "T": 100,
+      "factor": 0.75,
+      "failures": 573,
+      "logical_failures": 573,
+      "mean_iterations": 63.61328125
+    },
+    {
+      "T": 100,
+      "factor": 0.8,
+      "failures": 407,
+      "logical_failures": 407,
+      "mean_iterations": 53.1142578125
+    },
+    {
+      "T": 100,
+      "factor": 0.85,
+      "failures": 282,
+      "logical_failures": 282,
+      "mean_iterations": 42.75390625
+    },
+    {
+      "T": 100,
+      "factor": 0.9,
+      "failures": 191,
+      "logical_failures": 191,
+      "mean_iterations": 38.486328125
+    },
+    {
+      "T": 100,
+      "factor": 0.95,
+      "failures": 153,
+      "logical_failures": 153,
+      "mean_iterations": 35.4814453125
+    },
+    {
+      "T": 100,
+      "factor": 1.0,
+      "failures": 124,
+      "logical_failures": 124,
+      "mean_iterations": 33.7802734375
+    }
+  ],
+  "validation_source": "results/m6_cascade_tuning/p0/20261109T090855243984Z-277fb140",
+  "validation_cases_sha256": "c6d71d31f7d9e24dfabe79b130df4351f7904b12932e97b54ba585020e4f02b0",
+  "frozen_at_utc": "2026-11-09T11:26:16.129114+00:00",
+  "primary_unchanged": true
+}

@@ -1,0 +1,75 @@
+{
+  "p": 0.001,
+  "shots": 8,
+  "target": 8,
+  "complete": true,
+  "stopping": "fixed_target",
+  "models": [
+    {
+      "decoder": "ordinary",
+      "p": 0.001,
+      "shots": 8,
+      "logical_failures": 0,
+      "logical_rate": 0.0,
+      "nominal_wilson_lo": 0.0,
+      "nominal_wilson_hi": 0.32440756488388023,
+      "stage1_fallback_requests": 1
+    },
+    {
+      "decoder": "matched_init",
+      "p": 0.001,
+      "shots": 8,
+      "logical_failures": 0,
+      "logical_rate": 0.0,
+      "nominal_wilson_lo": 0.0,
+      "nominal_wilson_hi": 0.32440756488388023,
+      "stage1_fallback_requests": 2
+    },
+    {
+      "decoder": "selected",
+      "p": 0.001,
+      "shots": 8,
+      "logical_failures": 0,
+      "logical_rate": 0.0,
+      "nominal_wilson_lo": 0.0,
+      "nominal_wilson_hi": 0.32440756488388023,
+      "stage1_fallback_requests": 1
+    }
+  ],
+  "pairs": {
+    "ordinary": {
+      "selected_only_failures": 0,
+      "baseline_only_failures": 0,
+      "extra_failure_probability_upper": 0.4217525162283793,
+      "mcnemar": {
+        "first_only": 0,
+        "second_only": 0,
+        "pvalue": 1.0
+      }
+    },
+    "matched_init": {
+      "selected_only_failures": 0,
+      "baseline_only_failures": 0,
+      "extra_failure_probability_upper": 0.4217525162283793,
+      "mcnemar": {
+        "first_only": 0,
+        "second_only": 0,
+        "pvalue": 1.0
+      }
+    }
+  },
+  "actual_unique_fallback_executions": 3,
+  "actual_internal_osd_executions": 3,
+  "sum_model_fallback_requests": 4,
+  "elapsed_s": 1.5230077920132317,
+  "batches": [
+    {
+      "input": "results/m6_accuracy_preflight/20261109T120926663131Z/input-p0-offset0.npz",
+      "fallback": "results/m6_accuracy_preflight/20261109T120926663131Z/fallback-p0-offset0.npz",
+      "used": 8,
+      "offset": 0,
+      "origin": "independent_confirmation_prefix"
+    }
+  ],
+  "scope": "Supplementary fixed-target full-pipeline accuracy for the original frozen cycle100 checkpoint, validation-best CPP100/native100 and matched initialization. Reuse this study's fresh 80234/80235 cases without outcome selection; extend p=.001 with new 82234 stream in fixed 256-case batches. Functional shared fallback accounting only, separate per-model requests and unique executions, no cached timing claim. Run after all three uncached timing pilots. Four joint learned-only-event upper bounds use alpha/4 only for completed fixed samples. No equivalence margin, primary replacement or main M6 completion."
+}

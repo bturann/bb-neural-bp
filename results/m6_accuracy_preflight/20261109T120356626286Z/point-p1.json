@@ -1,0 +1,75 @@
+{
+  "p": 0.003,
+  "shots": 8,
+  "target": 8,
+  "complete": true,
+  "stopping": "fixed_target",
+  "models": [
+    {
+      "decoder": "ordinary",
+      "p": 0.003,
+      "shots": 8,
+      "logical_failures": 2,
+      "logical_rate": 0.25,
+      "nominal_wilson_lo": 0.071479212752109,
+      "nominal_wilson_hi": 0.5907245696898311,
+      "stage1_fallback_requests": 5
+    },
+    {
+      "decoder": "matched_init",
+      "p": 0.003,
+      "shots": 8,
+      "logical_failures": 2,
+      "logical_rate": 0.25,
+      "nominal_wilson_lo": 0.071479212752109,
+      "nominal_wilson_hi": 0.5907245696898311,
+      "stage1_fallback_requests": 5
+    },
+    {
+      "decoder": "selected",
+      "p": 0.003,
+      "shots": 8,
+      "logical_failures": 2,
+      "logical_rate": 0.25,
+      "nominal_wilson_lo": 0.071479212752109,
+      "nominal_wilson_hi": 0.5907245696898311,
+      "stage1_fallback_requests": 5
+    }
+  ],
+  "pairs": {
+    "ordinary": {
+      "selected_only_failures": 0,
+      "baseline_only_failures": 0,
+      "extra_failure_probability_upper": 0.4217525162283793,
+      "mcnemar": {
+        "first_only": 0,
+        "second_only": 0,
+        "pvalue": 1.0
+      }
+    },
+    "matched_init": {
+      "selected_only_failures": 0,
+      "baseline_only_failures": 0,
+      "extra_failure_probability_upper": 0.4217525162283793,
+      "mcnemar": {
+        "first_only": 0,
+        "second_only": 0,
+        "pvalue": 1.0
+      }
+    }
+  },
+  "actual_unique_fallback_executions": 5,
+  "actual_internal_osd_executions": 5,
+  "sum_model_fallback_requests": 15,
+  "elapsed_s": 3.0659896670258604,
+  "batches": [
+    {
+      "input": "results/m6_accuracy_preflight/20261109T120356626286Z/input-p1-offset0.npz",
+      "fallback": "results/m6_accuracy_preflight/20261109T120356626286Z/fallback-p1-offset0.npz",
+      "used": 8,
+      "offset": 0,
+      "origin": "independent_confirmation_prefix"
+    }
+  ],
+  "scope": "Supplementary functional accuracy for the frozen strong cascade and its validation-selected ordinary control, irrespective of Stage1 outcome. Reuse the fixed fresh 74234/74235 cases, extend p=.001 with new 78234 stream in 256-case batches. Keep first-pass routing, including wrong-logical valid corrections. Share identical fallback computation only for functional accounting, report per-model requests separately from actual unique executions. Run after all three actual latency pilots finish so CPU timing is uncontaminated. Fixed targets, bounded to 1200 seconds and 13:45 UTC; incomplete targets get no fixed-sample regression bound. Four joint one-sided learned-only-event bounds use alpha/4. No equivalence margin or main M6 acceptance is asserted."
+}

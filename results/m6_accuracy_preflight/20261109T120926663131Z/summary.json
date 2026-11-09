@@ -1,0 +1,9 @@
+{
+  "checks_passed": true,
+  "study": "results/m6_cycle100_study/20261109T114431070320Z",
+  "study_kind": "cycle100",
+  "actual_pipeline_method_cases": 48,
+  "elapsed_s": 15.986348040984012,
+  "scope": "Integration preflight on already saved cases, not a new independent research result or timing comparison. Fresh uncached actual pipeline outputs match shared functional composition. No model or control selection.",
+  "functional_driver_sha256": "1630f9a24a078411a20007cfb58d353e2d4ceb1b1d569ae122834fde555d523b"
+}
