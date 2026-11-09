@@ -1,0 +1,37 @@
+validation baseline p=0.001: tuned fallback=0.59375
+validation baseline p=0.002: tuned fallback=0.86328
+validation baseline p=0.003: tuned fallback=0.96094
+validation baseline p=0.004: tuned fallback=1.00000
+validation baseline p=0.005: tuned fallback=1.00000
+step=0 validation mean fallback=0.882812; tuned=0.883594
+step=25 p=0.00400 loss=132.60039 elapsed=37.4s
+step=50 p=0.00400 loss=163.39093 elapsed=52.3s
+step=50 validation mean fallback=0.885938; tuned=0.883594
+step=75 p=0.00300 loss=107.39400 elapsed=72.3s
+step=100 p=0.00300 loss=118.80575 elapsed=87.8s
+step=100 validation mean fallback=0.882812; tuned=0.883594
+step=125 p=0.00200 loss=91.05204 elapsed=108.9s
+step=150 p=0.00500 loss=191.09656 elapsed=125.0s
+step=150 validation mean fallback=0.882031; tuned=0.883594
+step=175 p=0.00100 loss=41.41749 elapsed=146.2s
+step=200 p=0.00500 loss=176.48737 elapsed=161.7s
+step=200 validation mean fallback=0.878906; tuned=0.883594
+step=225 p=0.00400 loss=169.39539 elapsed=181.8s
+step=250 p=0.00400 loss=141.52925 elapsed=197.6s
+step=250 validation mean fallback=0.877344; tuned=0.883594
+step=275 p=0.00200 loss=96.32661 elapsed=217.9s
+step=300 p=0.00100 loss=61.95429 elapsed=233.3s
+step=300 validation mean fallback=0.888281; tuned=0.883594
+step=325 p=0.00100 loss=59.21010 elapsed=253.1s
+step=350 p=0.00100 loss=50.41457 elapsed=268.6s
+step=350 validation mean fallback=0.881250; tuned=0.883594
+step=375 p=0.00500 loss=176.98895 elapsed=288.4s
+step=400 p=0.00100 loss=57.41828 elapsed=303.9s
+step=400 validation mean fallback=0.883594; tuned=0.883594
+step=425 p=0.00400 loss=148.54398 elapsed=323.6s
+step=450 p=0.00500 loss=190.11136 elapsed=338.6s
+step=450 validation mean fallback=0.880469; tuned=0.883594
+step=475 p=0.00100 loss=42.52637 elapsed=358.2s
+step=500 p=0.00100 loss=54.43217 elapsed=372.7s
+step=500 validation mean fallback=0.885156; tuned=0.883594
+M5 NOT ACCEPTED: wins=3/5, best_step=250; /Users/berkaybaristuran/Desktop/Research/QuantAI/codebase/results/m6_cpu_loss_ablation/parity/20261109T043538177928Z-9e18c87a/training/20261109T043539690088Z-9e18c87a

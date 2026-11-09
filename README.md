@@ -263,3 +263,33 @@ can reuse valid tuning without changing its provenance. The strong-initializatio
 check budget also enables `scripts/m6_initialization_reference.py`. The recorded
 check config points to the saved selected checkpoint; a new training invocation
 creates a new checkpoint path that must be set in its comparison config.
+
+## Controlled parity-versus-BCE loss pilot
+
+Run the two training commands concurrently, each on one CPU thread:
+
+```sh
+BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib .venv/bin/python -u scripts/m6_cpu_pilot.py --config configs/m6/cpu_loss_parity.yaml --output-root results/m6_cpu_loss_ablation/parity --checkpoint-root checkpoints/m6_cpu_loss_ablation/parity &
+BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib .venv/bin/python -u scripts/m6_cpu_pilot.py --config configs/m6/cpu_loss_bitwise.yaml --output-root results/m6_cpu_loss_ablation/bitwise --checkpoint-root checkpoints/m6_cpu_loss_ablation/bitwise &
+wait
+```
+
+Pass the printed bundle paths to the controlled comparison and audit:
+
+```sh
+BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 .venv/bin/python scripts/m6_loss_ablation.py --parity <parity-bundle> --bitwise <bitwise-bundle>
+BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 .venv/bin/python scripts/m6_audit_loss_ablation.py <comparison-bundle>
+```
+
+Both arms use the same .95 initialization, 500-update budget, frozen mining model,
+training stream, and checkpoint-selection cases. Per-update input hashes and ending
+generator states must match before evaluation. Fresh cases are shared by ordinary
+BP, tuned BP, matched untrained neural BP, and both selected learned models. The
+primary paired loss contrast uses Holm correction over five p values; secondary
+families each correct both losses across all five values. Main final-test data are
+reserved. The complete study is bounded to 15 minutes, with per-stage limits.
+
+The completed pilot found fallback demand of 88.350% for parity and 88.525% for BCE,
+versus 88.467% for matched initialization and 88.672% for tuned BP. No primary or
+secondary point passed corrected .05. This is insufficient evidence to favor a
+different loss or claim useful extra learning; the planned parity default remains.

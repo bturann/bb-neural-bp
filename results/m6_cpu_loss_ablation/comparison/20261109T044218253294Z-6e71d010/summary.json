@@ -1,0 +1,379 @@
+{
+  "purpose": "controlled_development_parity_vs_bitwise_ablation",
+  "controls": {
+    "configurations_differ_only_in_loss": true,
+    "matched_training_batches": 500,
+    "training_inputs_sha256": "443081b06d9608c128db43b614997034b2b94aeeb6e6346077694451dcade70f",
+    "ending_generators_match": true,
+    "baseline_validation_matches": true,
+    "initial_validation_matches": true
+  },
+  "points": [
+    {
+      "p": 0.001,
+      "seed": 24234,
+      "shots": 2048,
+      "tuned_factor": 1.0,
+      "decoders": {
+        "bp": {
+          "fallback_demand": 0.74609375,
+          "failures": 1528,
+          "mean_iterations": 12.25341796875
+        },
+        "bp_tuned": {
+          "fallback_demand": 0.603515625,
+          "failures": 1236,
+          "mean_iterations": 11.73583984375
+        },
+        "nbp_initial": {
+          "fallback_demand": 0.59716796875,
+          "failures": 1223,
+          "mean_iterations": 11.5302734375
+        },
+        "nbp_parity": {
+          "fallback_demand": 0.60693359375,
+          "failures": 1243,
+          "mean_iterations": 11.5849609375
+        },
+        "nbp_bitwise": {
+          "fallback_demand": 0.60400390625,
+          "failures": 1237,
+          "mean_iterations": 11.5830078125
+        }
+      },
+      "parity_vs_bitwise": {
+        "first_only": 227,
+        "second_only": 221,
+        "pvalue": 0.8132882140365427,
+        "holm_pvalue": 1.0
+      },
+      "vs_tuned": {
+        "nbp_parity": {
+          "first_only": 253,
+          "second_only": 260,
+          "pvalue": 0.7911124305837267,
+          "holm_pvalue": 1.0
+        },
+        "nbp_bitwise": {
+          "first_only": 237,
+          "second_only": 238,
+          "pvalue": 1.0,
+          "holm_pvalue": 1.0
+        }
+      },
+      "vs_initial": {
+        "nbp_parity": {
+          "first_only": 208,
+          "second_only": 228,
+          "pvalue": 0.36287287325172424,
+          "holm_pvalue": 1.0
+        },
+        "nbp_bitwise": {
+          "first_only": 216,
+          "second_only": 230,
+          "pvalue": 0.538227190302716,
+          "holm_pvalue": 1.0
+        }
+      }
+    },
+    {
+      "p": 0.002,
+      "seed": 24235,
+      "shots": 2048,
+      "tuned_factor": 1.0,
+      "decoders": {
+        "bp": {
+          "fallback_demand": 0.94287109375,
+          "failures": 1931,
+          "mean_iterations": 14.5107421875
+        },
+        "bp_tuned": {
+          "fallback_demand": 0.86865234375,
+          "failures": 1779,
+          "mean_iterations": 14.22216796875
+        },
+        "nbp_initial": {
+          "fallback_demand": 0.86767578125,
+          "failures": 1777,
+          "mean_iterations": 14.1533203125
+        },
+        "nbp_parity": {
+          "fallback_demand": 0.853515625,
+          "failures": 1748,
+          "mean_iterations": 14.13134765625
+        },
+        "nbp_bitwise": {
+          "fallback_demand": 0.8603515625,
+          "failures": 1762,
+          "mean_iterations": 14.10693359375
+        }
+      },
+      "parity_vs_bitwise": {
+        "first_only": 112,
+        "second_only": 126,
+        "pvalue": 0.399464750911674,
+        "holm_pvalue": 1.0
+      },
+      "vs_tuned": {
+        "nbp_parity": {
+          "first_only": 150,
+          "second_only": 119,
+          "pvalue": 0.06718039272551747,
+          "holm_pvalue": 0.6718039272551747
+        },
+        "nbp_bitwise": {
+          "first_only": 133,
+          "second_only": 116,
+          "pvalue": 0.310598698033716,
+          "holm_pvalue": 1.0
+        }
+      },
+      "vs_initial": {
+        "nbp_parity": {
+          "first_only": 129,
+          "second_only": 100,
+          "pvalue": 0.06403590964473323,
+          "holm_pvalue": 0.6403590964473322
+        },
+        "nbp_bitwise": {
+          "first_only": 114,
+          "second_only": 99,
+          "pvalue": 0.3374419437229782,
+          "holm_pvalue": 1.0
+        }
+      }
+    },
+    {
+      "p": 0.003,
+      "seed": 24236,
+      "shots": 2048,
+      "tuned_factor": 0.95,
+      "decoders": {
+        "bp": {
+          "fallback_demand": 0.9912109375,
+          "failures": 2030,
+          "mean_iterations": 14.94677734375
+        },
+        "bp_tuned": {
+          "fallback_demand": 0.966796875,
+          "failures": 1980,
+          "mean_iterations": 14.84423828125
+        },
+        "nbp_initial": {
+          "fallback_demand": 0.966796875,
+          "failures": 1980,
+          "mean_iterations": 14.84375
+        },
+        "nbp_parity": {
+          "fallback_demand": 0.96630859375,
+          "failures": 1979,
+          "mean_iterations": 14.8525390625
+        },
+        "nbp_bitwise": {
+          "fallback_demand": 0.970703125,
+          "failures": 1988,
+          "mean_iterations": 14.8515625
+        }
+      },
+      "parity_vs_bitwise": {
+        "first_only": 33,
+        "second_only": 42,
+        "pvalue": 0.3556992390814873,
+        "holm_pvalue": 1.0
+      },
+      "vs_tuned": {
+        "nbp_parity": {
+          "first_only": 42,
+          "second_only": 41,
+          "pvalue": 1.0,
+          "holm_pvalue": 1.0
+        },
+        "nbp_bitwise": {
+          "first_only": 33,
+          "second_only": 41,
+          "pvalue": 0.4159851975073046,
+          "holm_pvalue": 1.0
+        }
+      },
+      "vs_initial": {
+        "nbp_parity": {
+          "first_only": 42,
+          "second_only": 41,
+          "pvalue": 1.0,
+          "holm_pvalue": 1.0
+        },
+        "nbp_bitwise": {
+          "first_only": 33,
+          "second_only": 41,
+          "pvalue": 0.4159851975073046,
+          "holm_pvalue": 1.0
+        }
+      }
+    },
+    {
+      "p": 0.004,
+      "seed": 24237,
+      "shots": 2048,
+      "tuned_factor": 0.75,
+      "decoders": {
+        "bp": {
+          "fallback_demand": 0.99951171875,
+          "failures": 2047,
+          "mean_iterations": 14.99609375
+        },
+        "bp_tuned": {
+          "fallback_demand": 0.99560546875,
+          "failures": 2039,
+          "mean_iterations": 14.9716796875
+        },
+        "nbp_initial": {
+          "fallback_demand": 0.9921875,
+          "failures": 2032,
+          "mean_iterations": 14.96240234375
+        },
+        "nbp_parity": {
+          "fallback_demand": 0.99169921875,
+          "failures": 2031,
+          "mean_iterations": 14.97021484375
+        },
+        "nbp_bitwise": {
+          "fallback_demand": 0.99169921875,
+          "failures": 2031,
+          "mean_iterations": 14.96875
+        }
+      },
+      "parity_vs_bitwise": {
+        "first_only": 9,
+        "second_only": 9,
+        "pvalue": 1.0,
+        "holm_pvalue": 1.0
+      },
+      "vs_tuned": {
+        "nbp_parity": {
+          "first_only": 13,
+          "second_only": 5,
+          "pvalue": 0.09625244140625,
+          "holm_pvalue": 0.86627197265625
+        },
+        "nbp_bitwise": {
+          "first_only": 13,
+          "second_only": 5,
+          "pvalue": 0.09625244140625,
+          "holm_pvalue": 0.86627197265625
+        }
+      },
+      "vs_initial": {
+        "nbp_parity": {
+          "first_only": 8,
+          "second_only": 7,
+          "pvalue": 1.0,
+          "holm_pvalue": 1.0
+        },
+        "nbp_bitwise": {
+          "first_only": 10,
+          "second_only": 9,
+          "pvalue": 1.0,
+          "holm_pvalue": 1.0
+        }
+      }
+    },
+    {
+      "p": 0.005,
+      "seed": 24238,
+      "shots": 2048,
+      "tuned_factor": 0.85,
+      "decoders": {
+        "bp": {
+          "fallback_demand": 1.0,
+          "failures": 2048,
+          "mean_iterations": 15.0
+        },
+        "bp_tuned": {
+          "fallback_demand": 0.9990234375,
+          "failures": 2046,
+          "mean_iterations": 14.9990234375
+        },
+        "nbp_initial": {
+          "fallback_demand": 0.99951171875,
+          "failures": 2047,
+          "mean_iterations": 15.0
+        },
+        "nbp_parity": {
+          "fallback_demand": 0.9990234375,
+          "failures": 2046,
+          "mean_iterations": 14.99853515625
+        },
+        "nbp_bitwise": {
+          "fallback_demand": 0.99951171875,
+          "failures": 2047,
+          "mean_iterations": 14.99853515625
+        }
+      },
+      "parity_vs_bitwise": {
+        "first_only": 1,
+        "second_only": 2,
+        "pvalue": 1.0,
+        "holm_pvalue": 1.0
+      },
+      "vs_tuned": {
+        "nbp_parity": {
+          "first_only": 1,
+          "second_only": 1,
+          "pvalue": 1.0,
+          "holm_pvalue": 1.0
+        },
+        "nbp_bitwise": {
+          "first_only": 1,
+          "second_only": 2,
+          "pvalue": 1.0,
+          "holm_pvalue": 1.0
+        }
+      },
+      "vs_initial": {
+        "nbp_parity": {
+          "first_only": 2,
+          "second_only": 1,
+          "pvalue": 1.0,
+          "holm_pvalue": 1.0
+        },
+        "nbp_bitwise": {
+          "first_only": 1,
+          "second_only": 1,
+          "pvalue": 1.0,
+          "holm_pvalue": 1.0
+        }
+      }
+    }
+  ],
+  "mean_fallback": {
+    "bp": 0.9359375,
+    "bp_tuned": 0.88671875,
+    "nbp_initial": 0.88466796875,
+    "nbp_parity": 0.88349609375,
+    "nbp_bitwise": 0.88525390625
+  },
+  "elapsed_s": 298.6926764580421,
+  "total_study_elapsed_s": 698.7680426250445,
+  "parity_improvement_percentage_points": 0.17578124999999556,
+  "significant_primary_points": 0,
+  "checkpoints": {
+    "parity": {
+      "path": "checkpoints/m6_cpu_loss_ablation/parity/20261109T043539690088Z-9e18c87a/best.pt",
+      "step": 250,
+      "sha256": "eb3914e68c1ca479bde054e40f96fff75fb947d9855a8707b640a90752443c0b"
+    },
+    "bitwise": {
+      "path": "checkpoints/m6_cpu_loss_ablation/bitwise/20261109T043540738254Z-7fc55c14/best.pt",
+      "step": 50,
+      "sha256": "7f0514de98e4474a3d0ae500e33250a9a51c22ecc38902a2713202a85cb6cc82"
+    }
+  },
+  "training_roots": {
+    "parity": "results/m6_cpu_loss_ablation/parity/20261109T043538177928Z-9e18c87a",
+    "bitwise": "results/m6_cpu_loss_ablation/bitwise/20261109T043539334114Z-7fc55c14"
+  },
+  "final_test_data_used": false,
+  "gpu_seconds": 0,
+  "m6_complete": false,
+  "scope": "Single-seed, controlled development loss ablation. Primary Holm family: five parity/BCE comparisons. Each secondary family corrects both losses across five p values (ten tests). CSV osd_rate is zero: fallback demand is stage1_failures/shots; no OSD, two-stage LER, or latency claim."
+}

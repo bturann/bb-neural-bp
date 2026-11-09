@@ -107,6 +107,16 @@ def _write_json(path, value):
     Path(path).write_text(json.dumps(value, indent=2, allow_nan=False)+"\n")
 
 
+def training_batch_hash(p, syndromes, faults, weights):
+    digest = hashlib.sha256(np.asarray([p], dtype="<f8").tobytes())
+    for values in (syndromes, faults, weights):
+        array = np.ascontiguousarray(values)
+        digest.update(array.dtype.str.encode())
+        digest.update(np.asarray(array.shape, dtype="<i8").tobytes())
+        digest.update(array.tobytes())
+    return digest.hexdigest()
+
+
 def _plot_history(directory):
     import matplotlib
     matplotlib.use("Agg")
@@ -296,7 +306,8 @@ def run(config, output_root="results/m5", checkpoint_root="checkpoints", *, resu
                 scheduler.step()
                 step += 1
                 record = dict(step=step, p=p, loss=float(loss.detach()), grad_norm=float(norm), lr=used_lr,
-                              effective_batch=len(s), **mining, elapsed_s=time.perf_counter()-started)
+                              effective_batch=len(s), **mining, elapsed_s=time.perf_counter()-started,
+                              batch_sha256=training_batch_hash(p, s, e, weights))
                 training_log.write(json.dumps(record, allow_nan=False)+"\n")
                 training_log.flush()
                 if step % runtime.log_every == 0:

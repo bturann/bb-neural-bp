@@ -1,0 +1,275 @@
+{
+  "total_s": 243.5049865140019,
+  "functions": [
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.exec>",
+      "primitive_calls": 1,
+      "total_calls": 6513,
+      "self_s": 0.098613105,
+      "cumulative_s": 243.511679667
+    },
+    {
+      "file": "<frozen runpy>",
+      "line": 201,
+      "function": "run_module",
+      "primitive_calls": 1,
+      "total_calls": 1,
+      "self_s": 6.292e-06,
+      "cumulative_s": 243.51164066700002
+    },
+    {
+      "file": "<frozen runpy>",
+      "line": 65,
+      "function": "_run_code",
+      "primitive_calls": 1,
+      "total_calls": 1,
+      "self_s": 3.084e-06,
+      "cumulative_s": 243.51127829200001
+    },
+    {
+      "file": "/Users/berkaybaristuran/Desktop/Research/QuantAI/codebase/src/bbnbp/train.py",
+      "line": 1,
+      "function": "<module>",
+      "primitive_calls": 1,
+      "total_calls": 1,
+      "self_s": 0.0007148710000000001,
+      "cumulative_s": 243.510885666
+    },
+    {
+      "file": "/Users/berkaybaristuran/Desktop/Research/QuantAI/codebase/src/bbnbp/train.py",
+      "line": 141,
+      "function": "run",
+      "primitive_calls": 1,
+      "total_calls": 1,
+      "self_s": 0.06265654600000001,
+      "cumulative_s": 242.13436133300002
+    },
+    {
+      "file": "/Users/berkaybaristuran/Desktop/Research/QuantAI/codebase/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py",
+      "line": 1783,
+      "function": "_wrapped_call_impl",
+      "primitive_calls": 1187,
+      "total_calls": 1187,
+      "self_s": 0.0028426280000000003,
+      "cumulative_s": 116.373762665
+    },
+    {
+      "file": "/Users/berkaybaristuran/Desktop/Research/QuantAI/codebase/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py",
+      "line": 1791,
+      "function": "_call_impl",
+      "primitive_calls": 1187,
+      "total_calls": 1187,
+      "self_s": 0.073666513,
+      "cumulative_s": 116.370920037
+    },
+    {
+      "file": "/Users/berkaybaristuran/Desktop/Research/QuantAI/codebase/src/bbnbp/decoders/neural_bp.py",
+      "line": 68,
+      "function": "forward",
+      "primitive_calls": 1187,
+      "total_calls": 1187,
+      "self_s": 61.864412337000005,
+      "cumulative_s": 116.29663040400001
+    },
+    {
+      "file": "/Users/berkaybaristuran/Desktop/Research/QuantAI/codebase/src/bbnbp/train.py",
+      "line": 50,
+      "function": "hard_batch",
+      "primitive_calls": 500,
+      "total_calls": 500,
+      "self_s": 0.039339885000000005,
+      "cumulative_s": 69.97948186900001
+    },
+    {
+      "file": "/Users/berkaybaristuran/Desktop/Research/QuantAI/codebase/src/bbnbp/train.py",
+      "line": 79,
+      "function": "_inference",
+      "primitive_calls": 65,
+      "total_calls": 65,
+      "self_s": 0.012495771000000001,
+      "cumulative_s": 69.883262875
+    },
+    {
+      "file": "/Users/berkaybaristuran/Desktop/Research/QuantAI/codebase/src/bbnbp/train.py",
+      "line": 240,
+      "function": "validate_current",
+      "primitive_calls": 11,
+      "total_calls": 11,
+      "self_s": 0.0033147520000000002,
+      "cumulative_s": 54.555628789000004
+    },
+    {
+      "file": "/Users/berkaybaristuran/Desktop/Research/QuantAI/codebase/src/bbnbp/decoders/fast_nbp.py",
+      "line": 86,
+      "function": "decode_batch",
+      "primitive_calls": 440,
+      "total_calls": 440,
+      "self_s": 0.0056542300000000005,
+      "cumulative_s": 54.153581799
+    },
+    {
+      "file": "/Users/berkaybaristuran/Desktop/Research/QuantAI/codebase/src/bbnbp/decoders/fast_nbp.py",
+      "line": 9,
+      "function": "_decode",
+      "primitive_calls": 440,
+      "total_calls": 440,
+      "self_s": 54.0130885,
+      "cumulative_s": 54.014816417000006
+    },
+    {
+      "file": "/Users/berkaybaristuran/Desktop/Research/QuantAI/codebase/.venv/lib/python3.11/site-packages/torch/_tensor.py",
+      "line": 566,
+      "function": "backward",
+      "primitive_calls": 500,
+      "total_calls": 500,
+      "self_s": 0.002726075,
+      "cumulative_s": 46.701205237
+    },
+    {
+      "file": "/Users/berkaybaristuran/Desktop/Research/QuantAI/codebase/.venv/lib/python3.11/site-packages/torch/autograd/__init__.py",
+      "line": 255,
+      "function": "backward",
+      "primitive_calls": 500,
+      "total_calls": 500,
+      "self_s": 0.008460871,
+      "cumulative_s": 46.698427651
+    },
+    {
+      "file": "/Users/berkaybaristuran/Desktop/Research/QuantAI/codebase/.venv/lib/python3.11/site-packages/torch/autograd/graph.py",
+      "line": 1100,
+      "function": "_engine_run_backward",
+      "primitive_calls": 500,
+      "total_calls": 500,
+      "self_s": 0.007528508000000001,
+      "cumulative_s": 46.679018249
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'run_backward' of 'torch._C._EngineBase' objects>",
+      "primitive_calls": 500,
+      "total_calls": 500,
+      "self_s": 46.664322671,
+      "cumulative_s": 46.664322671
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'topk' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 17805,
+      "total_calls": 17805,
+      "self_s": 18.629715162,
+      "cumulative_s": 18.629715162
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch.where>",
+      "primitive_calls": 75212,
+      "total_calls": 75212,
+      "self_s": 18.437930123,
+      "cumulative_s": 18.437930123
+    },
+    {
+      "file": "/Users/berkaybaristuran/Desktop/Research/QuantAI/codebase/src/bbnbp/decoders/bp_ldpc.py",
+      "line": 26,
+      "function": "decode_batch",
+      "primitive_calls": 80,
+      "total_calls": 80,
+      "self_s": 15.515264255000002,
+      "cumulative_s": 15.561911832000002
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'index_add' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 17805,
+      "total_calls": 17805,
+      "self_s": 4.797102716,
+      "cumulative_s": 4.797102716
+    },
+    {
+      "file": "/Users/berkaybaristuran/Desktop/Research/QuantAI/codebase/src/bbnbp/losses.py",
+      "line": 72,
+      "function": "multi_loss",
+      "primitive_calls": 500,
+      "total_calls": 500,
+      "self_s": 0.044902966,
+      "cumulative_s": 3.961332054
+    },
+    {
+      "file": "/Users/berkaybaristuran/Desktop/Research/QuantAI/codebase/src/bbnbp/train.py",
+      "line": 209,
+      "function": "<lambda>",
+      "primitive_calls": 7500,
+      "total_calls": 7500,
+      "self_s": 0.003372308,
+      "cumulative_s": 3.902151229
+    },
+    {
+      "file": "/Users/berkaybaristuran/Desktop/Research/QuantAI/codebase/src/bbnbp/losses.py",
+      "line": 64,
+      "function": "bitwise_bce",
+      "primitive_calls": 7500,
+      "total_calls": 7500,
+      "self_s": 0.019486823,
+      "cumulative_s": 3.8987789210000003
+    },
+    {
+      "file": "/Users/berkaybaristuran/Desktop/Research/QuantAI/codebase/.venv/lib/python3.11/site-packages/torch/nn/functional.py",
+      "line": 3572,
+      "function": "binary_cross_entropy",
+      "primitive_calls": 7500,
+      "total_calls": 7500,
+      "self_s": 0.011227604,
+      "cumulative_s": 3.5875031760000002
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch._C._nn.binary_cross_entropy>",
+      "primitive_calls": 7500,
+      "total_calls": 7500,
+      "self_s": 3.5724125800000004,
+      "cumulative_s": 3.5724125800000004
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'sum' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 11805,
+      "total_calls": 11805,
+      "self_s": 2.9849818910000003,
+      "cumulative_s": 2.9849818910000003
+    },
+    {
+      "file": "<frozen importlib._bootstrap>",
+      "line": 1165,
+      "function": "_find_and_load",
+      "primitive_calls": 94,
+      "total_calls": 6448,
+      "self_s": 0.007804456,
+      "cumulative_s": 2.6158418350000003
+    },
+    {
+      "file": "<frozen importlib._bootstrap>",
+      "line": 1120,
+      "function": "_find_and_load_unlocked",
+      "primitive_calls": 74,
+      "total_calls": 3535,
+      "self_s": 0.006792327000000001,
+      "cumulative_s": 2.615126044
+    },
+    {
+      "file": "<frozen importlib._bootstrap>",
+      "line": 666,
+      "function": "_load_unlocked",
+      "primitive_calls": 74,
+      "total_calls": 3416,
+      "self_s": 0.005290806,
+      "cumulative_s": 2.610673123
+    }
+  ]
+}

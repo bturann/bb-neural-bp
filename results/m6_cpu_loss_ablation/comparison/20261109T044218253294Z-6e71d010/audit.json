@@ -1,0 +1,17 @@
+{
+  "checks_passed": true,
+  "matched_training_batches": 500,
+  "validation_cases_replayed": 2560,
+  "regenerated_comparison_cases": 10240,
+  "checked_decoder_flags": 51200,
+  "independently_replayed_decodes": 1600,
+  "exact_export_shots": 960,
+  "checked_csv_rows": 25,
+  "statistical_families_verified": [
+    5,
+    10,
+    10
+  ],
+  "final_test_data_used": false,
+  "m6_complete": false
+}

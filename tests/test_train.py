@@ -1,5 +1,6 @@
 import csv
 import json
+import runpy
 from dataclasses import replace
 from pathlib import Path
 
@@ -98,3 +99,25 @@ def test_m6_training_reports_completion_without_claiming_m5_acceptance(tmp_path)
     assert report["training_complete"] and report["steps_completed"] == 1
     assert "passed" not in report and "eligible_for_m6" not in report
     assert not (output/"m5_gate.json").exists()
+
+
+def test_loss_ablation_uses_identical_actual_batches(tmp_path):
+    config = tiny_config(tmp_path)
+    parity = run(config, tmp_path/"parity", tmp_path/"parity_checkpoints", record_notes=False)
+    bce_config = replace(config, train=replace(config.train, loss="bitwise"))
+    bitwise = run(bce_config, tmp_path/"bitwise", tmp_path/"bitwise_checkpoints", record_notes=False)
+    a = [json.loads(line) for line in (parity/"training.jsonl").read_text().splitlines()]
+    b = [json.loads(line) for line in (bitwise/"training.jsonl").read_text().splitlines()]
+    assert [row["batch_sha256"] for row in a] == [row["batch_sha256"] for row in b]
+    assert all(len(row["batch_sha256"]) == 64 for row in a)
+    assert [row["loss"] for row in a] != [row["loss"] for row in b]
+    def arm(directory, c, history):
+        report = json.loads((directory/"m5_gate.json").read_text())
+        return dict(config=c, history=history, run=directory,
+                    checkpoint=Path(report["checkpoint_directory"])/"best.pt")
+    first, second = arm(parity, config, a), arm(bitwise, bce_config, b)
+    verify = runpy.run_path("scripts/m6_loss_ablation.py")["verify_control"]
+    assert verify(first, second)["matched_training_batches"] == config.train.max_steps
+    b[0]["batch_sha256"] = "different"
+    with pytest.raises(ValueError, match="inputs"):
+        verify(first, second)

@@ -1,0 +1,11 @@
+comparison_wall_seconds: 300
+evaluation_batch: 64
+evaluation_seed_offset: 23000
+evaluation_shots: 2048
+interrupt_grace_seconds: 15
+kill_grace_seconds: 5
+primary_alpha: 0.05
+profile_top_functions: 30
+purpose: controlled_development_parity_vs_bitwise_ablation
+training_wall_seconds: 600
+wall_seconds: 900

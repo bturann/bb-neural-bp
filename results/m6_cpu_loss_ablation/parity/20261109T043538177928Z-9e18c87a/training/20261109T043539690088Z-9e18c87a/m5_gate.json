@@ -1,0 +1,175 @@
+{
+  "passed": false,
+  "purpose": "smoke",
+  "wins": 3,
+  "required_wins": 4,
+  "best_step": 250,
+  "best_mean_osd_rate": 0.87734375,
+  "steps_completed": 500,
+  "stopping": "max_steps",
+  "elapsed_s": 377.5378080829978,
+  "m3_passed": true,
+  "eligible_for_m6": false,
+  "final_test_data_used": false,
+  "rows": [
+    {
+      "p": 0.001,
+      "shots": 256,
+      "seed": 22234,
+      "nonconverged": 148,
+      "osd_rate": 0.578125,
+      "ler_stage1": 0.578125,
+      "logical_failures": 148,
+      "mean_iterations": 11.30859375,
+      "tuned": {
+        "nonconverged": 152,
+        "osd_rate": 0.59375,
+        "logical_failures": 152,
+        "ler_stage1": 0.59375,
+        "ms_scaling": 1.0,
+        "mean_iterations": 11.57421875
+      },
+      "bp": {
+        "nonconverged": 151,
+        "osd_rate": 0.58984375,
+        "logical_failures": 151,
+        "ler_stage1": 0.58984375,
+        "ms_scaling": 0.95,
+        "mean_iterations": 11.44921875
+      },
+      "paired_vs_tuned": {
+        "first_only": 31,
+        "second_only": 27,
+        "pvalue": 0.6940040940761318
+      }
+    },
+    {
+      "p": 0.002,
+      "shots": 256,
+      "seed": 22235,
+      "nonconverged": 218,
+      "osd_rate": 0.8515625,
+      "ler_stage1": 0.8515625,
+      "logical_failures": 218,
+      "mean_iterations": 14.18359375,
+      "tuned": {
+        "nonconverged": 221,
+        "osd_rate": 0.86328125,
+        "logical_failures": 221,
+        "ler_stage1": 0.86328125,
+        "ms_scaling": 1.0,
+        "mean_iterations": 14.2578125
+      },
+      "bp": {
+        "nonconverged": 223,
+        "osd_rate": 0.87109375,
+        "logical_failures": 223,
+        "ler_stage1": 0.87109375,
+        "ms_scaling": 0.95,
+        "mean_iterations": 14.22265625
+      },
+      "paired_vs_tuned": {
+        "first_only": 21,
+        "second_only": 18,
+        "pvalue": 0.7492586247608418
+      }
+    },
+    {
+      "p": 0.003,
+      "shots": 256,
+      "seed": 22236,
+      "nonconverged": 248,
+      "osd_rate": 0.96875,
+      "ler_stage1": 0.96875,
+      "logical_failures": 248,
+      "mean_iterations": 14.85546875,
+      "tuned": {
+        "nonconverged": 246,
+        "osd_rate": 0.9609375,
+        "logical_failures": 246,
+        "ler_stage1": 0.9609375,
+        "ms_scaling": 0.95,
+        "mean_iterations": 14.7890625
+      },
+      "bp": {
+        "nonconverged": 246,
+        "osd_rate": 0.9609375,
+        "logical_failures": 246,
+        "ler_stage1": 0.9609375,
+        "ms_scaling": 0.95,
+        "mean_iterations": 14.7890625
+      },
+      "paired_vs_tuned": {
+        "first_only": 2,
+        "second_only": 4,
+        "pvalue": 0.6875
+      }
+    },
+    {
+      "p": 0.004,
+      "shots": 256,
+      "seed": 22237,
+      "nonconverged": 253,
+      "osd_rate": 0.98828125,
+      "ler_stage1": 0.98828125,
+      "logical_failures": 253,
+      "mean_iterations": 14.95703125,
+      "tuned": {
+        "nonconverged": 256,
+        "osd_rate": 1.0,
+        "logical_failures": 256,
+        "ler_stage1": 1.0,
+        "ms_scaling": 0.75,
+        "mean_iterations": 15.0
+      },
+      "bp": {
+        "nonconverged": 254,
+        "osd_rate": 0.9921875,
+        "logical_failures": 254,
+        "ler_stage1": 0.9921875,
+        "ms_scaling": 0.95,
+        "mean_iterations": 14.96484375
+      },
+      "paired_vs_tuned": {
+        "first_only": 3,
+        "second_only": 0,
+        "pvalue": 0.25
+      }
+    },
+    {
+      "p": 0.005,
+      "shots": 256,
+      "seed": 22238,
+      "nonconverged": 256,
+      "osd_rate": 1.0,
+      "ler_stage1": 1.0,
+      "logical_failures": 256,
+      "mean_iterations": 15.0,
+      "tuned": {
+        "nonconverged": 256,
+        "osd_rate": 1.0,
+        "logical_failures": 256,
+        "ler_stage1": 1.0,
+        "ms_scaling": 0.85,
+        "mean_iterations": 15.0
+      },
+      "bp": {
+        "nonconverged": 256,
+        "osd_rate": 1.0,
+        "logical_failures": 256,
+        "ler_stage1": 1.0,
+        "ms_scaling": 0.95,
+        "mean_iterations": 15.0
+      },
+      "paired_vs_tuned": {
+        "first_only": 0,
+        "second_only": 0,
+        "pvalue": 1.0
+      }
+    }
+  ],
+  "checkpoint_directory": "checkpoints/m6_cpu_loss_ablation/parity/20261109T043539690088Z-9e18c87a",
+  "best_checkpoint_sha256": "eb3914e68c1ca479bde054e40f96fff75fb947d9855a8707b640a90752443c0b",
+  "training_complete": true,
+  "gpu_elapsed_s": 0.0
+}

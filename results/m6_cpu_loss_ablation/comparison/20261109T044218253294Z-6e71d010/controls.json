@@ -1,0 +1,8 @@
+{
+  "configurations_differ_only_in_loss": true,
+  "matched_training_batches": 500,
+  "training_inputs_sha256": "443081b06d9608c128db43b614997034b2b94aeeb6e6346077694451dcade70f",
+  "ending_generators_match": true,
+  "baseline_validation_matches": true,
+  "initial_validation_matches": true
+}

@@ -723,3 +723,80 @@ M5 passed: `results/m5/20261030T220645511485Z-3a224cbf`; wins 4/7, best step 100
 - Full suite before this development checkpoint commit: **107 passed** (32.10 s),
   including compatible tuning reuse and rejection of mismatched row provenance.
   Source whitespace checks are clean; executed CSV line endings remain preserved.
+
+## Controlled CPU loss ablation — November 8, 2026 (started)
+
+- User authorized parity-versus-bitwise BCE after the initialization diagnostic.
+  `configs/m6/cpu_loss_parity.yaml` and `cpu_loss_bitwise.yaml` differ only in
+  `train.loss`. Both use .95 initialization, structural T=15, six-round bb72,
+  batch 8, Adam/cosine, the same frozen hard-mining model, and 500 updates.
+  Patience 11 guarantees the equal 500-update budget with ten post-update validations.
+- Training entropy is [1234, 708]. Shared fresh checkpoint-selection seeds are
+  22234–22238; new paired comparison seeds are 24234–24238. Both regions are
+  separate from prior tuning, prior selection/comparison cases and final-test seeds.
+- The trainer now records a SHA-256 digest of each actual p/syndrome/fault/weight
+  batch. Before comparing models, all 500 batch hashes, sampling metadata and
+  ending generator states must match. This logging changes no decoder or loss math.
+- Each CPU arm has a 600-second cap and uses one thread. They run concurrently;
+  their wall times are not an isolated speed comparison. The study targets a
+  900-second total envelope. No GPU is used and no final-test data are sampled.
+- The primary comparison is selected parity versus selected BCE on 2,048 fresh
+  paired shots/p, with exact McNemar tests and Holm correction over the five points.
+  Secondary contrasts versus tuned BP and matched untrained .95 each use correction
+  over both losses × five p values. All outcomes, including regressions and any
+  selection of an untrained step-zero checkpoint, will be reported.
+- This is a development subset of the specified E3 loss ablation. It does not
+  complete E3/M7 or the pending three-seed E1 and E2 experiments.
+
+### Controlled loss-ablation outcome — completed
+
+- Both arms completed all 500 updates with finite losses. Their configs differ
+  only in loss; **all 500 actual batch hashes and sampling metadata match**, as
+  do ending NumPy/Torch generator states, initial validation results and baseline
+  flags. Each sampled 5,496 candidates and optimized on 4,000 hard shots, with no
+  mining caps. Shared training-input digest:
+  `443081b06d9608c128db43b614997034b2b94aeeb6e6346077694451dcade70f`.
+- The parity arm selected step **250**; BCE selected **50**. Shared initial
+  validation fallback was 88.28125%; selected parity was 87.734375%, BCE 88.203125%.
+  Individual profiled wall times were 381.23 s and 244.42 s, respectively. Because
+  they ran concurrently, these do not establish an isolated training speedup.
+- The five-model fresh-data comparison completed in 298.6 s; total study time from
+  the first training launch was **698.77 s** (11 min 39 s), below its 900-second cap.
+  Bundle: `results/m6_cpu_loss_ablation/comparison/20261109T044218253294Z-6e71d010/`.
+
+  | Decoder | Mean potential fallback demand |
+  |---|---|
+  | Ordinary BP | 93.59375% |
+  | Independently tuned BP | 88.671875% |
+  | Matched untrained .95 neural | 88.466796875% |
+  | Selected parity neural | 88.349609375% |
+  | Selected BCE neural | 88.525390625% |
+
+- Parity's mean was 0.17578125 percentage points lower than BCE (18 fewer potential
+  calls/10,240 paired cases), but **no primary point passed Holm-adjusted .05**;
+  all five adjusted primary p-values were 1.0. Parity improved at three points,
+  worsened at one, and tied at one relative to BCE. This does not establish equality
+  of the objectives or a reliable winner.
+- Relative to matched initialization, parity had only 12 fewer potential calls and
+  BCE six more. Smallest adjusted learning p-values were .64036 (parity) and 1.0
+  (BCE). Neither objective showed convincing learning gains in this short run.
+  Neither passed the secondary tuned-BP comparison family either (smallest adjusted
+  p-values .67180 and .86627). Parity remains the planned default; no main config
+  was changed and no large run was launched based on these exploratory differences.
+- Selected checkpoint SHA-256 values:
+  parity `eb3914e68c1ca479bde054e40f96fff75fb947d9855a8707b640a90752443c0b`;
+  BCE `7f0514de98e4474a3d0ae500e33250a9a51c22ecc38902a2713202a85cb6cc82`.
+  Selected and continuation checkpoints, configs, raw cases/flags, controlled-input
+  proof, event logs, profiles and PNG/PDF learning curves are retained. Both sets
+  of curves were visually inspected; raw loss magnitudes are on different scales
+  and must not be compared directly between objectives.
+- Independent audit rechecked the 500 matched batches, replayed all **2,560** selected
+  validation cases, regenerated **10,240** comparison cases with true H/L parity
+  labels, and checked **51,200** decoder flags and all **25** exact-schema CSV rows.
+  It independently replayed 1,600 subset decodes, verified exact CPU PyTorch/Numba
+  corrections/convergence/iterations on 960 shots, and recomputed all three
+  statistical families (5/10/10 tests). All checks passed.
+- Full suite before the development checkpoint commit: **108 passed** (33.25 s),
+  including the controlled-input match and deliberate batch-mismatch rejection.
+  Final-test seeds, decoder equations, loss definitions and reference files remain
+  unchanged. This is a development E3 subset; M6/M7 remain incomplete.
