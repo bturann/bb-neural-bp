@@ -1123,3 +1123,106 @@ M5 passed: `results/m5/20261030T220645511485Z-3a224cbf`; wins 4/7, best step 100
   hashes matched. A search across **31** prior CSV seed sources found no collisions.
   Final parameter differences (max |delta w|=.0422532, |delta alpha|=.0272748)
   confirm the readout treatment affected optimization despite the small outcome.
+
+## Fixed-hard-case learning diagnostic — November 9, 2026 (predeclared)
+
+- User authorized a bounded test of whether the existing circuit model can learn
+  a small fixed dataset before further hyperparameter pilots or main training.
+  This is a development diagnostic, not a replacement for the main experiment
+  matrix. No core decoder, loss, main configuration, or reference file is changed.
+- `configs/m6/cpu_fixed_case.yaml` resolves BB72, six rounds, p=.001, structural
+  T=15, .95 initialization, the existing parity/logical full-unroll multi-loss,
+  Adam 1e-3 with cosine decay to 1e-5, gradient clip 1, batch 8, and 1,200 updates.
+  The fixed p and repeated cases intentionally replace curriculum/streaming only
+  inside this diagnostic. One CPU thread; no GPU or OSD. Resolved config hash:
+  `9fa92ed15632f63a6f80dcd3d699e2f84257dde4`.
+- Train on the first 128 unique syndromes where the initial .95 model fails.
+  Pool seed **34234**, draw batch 256 with a 4,096-shot maximum. Preserve the full
+  sampled pool, selected indices, true faults, syndromes and observable labels.
+  Shuffle each epoch with explicit entropy **[1234, 911]**. Whole-set training loss
+  and canonical first-convergence decoding are checked every 100 updates.
+- Freeze 2,048 independent, unfiltered development cases with seed **36234** before
+  any update. Reject train/unseen syndrome overlap and validate all H/L labels.
+  Evaluate this set only initially and at the fixed final update (or budget stop).
+  It never selects a checkpoint or changes training. The independently tuned BP
+  baseline is descriptive context, using its existing table with original provenance.
+- `cpu_fixed_case_diagnostic.yaml` fixes a **1,200-second hard wall deadline** from
+  diagnostic setup onward, including final evaluation. Reserve the last 120 s for
+  finalization; stop new training updates by 1,080 s. A budget-truncated run is
+  explicitly `budget_limited`, not successful completion of the update protocol.
+- Practical screens fixed before outcomes: useful training gain requires at least
+  10 percentage points more logically correct Stage-1 decodes on the initial-hard
+  set (at least 13/128). A relative whole-set loss drop of at least 10% without that
+  decoding gain is labelled loss/decoding disconnection. Useful local generalization
+  requires at least 2 pp gains in both correct decoding and fallback reduction on
+  unseen cases, with both paired McNemar contrasts passing joint two-test Holm .05.
+  These thresholds guide the next decision; they are not M6 acceptance criteria,
+  proof of a mechanism, or evidence of equal two-stage LER/latency.
+- If training decoding improves but the unseen screen does not pass, report
+  generalization unconfirmed. If neither meaningful loss nor training-decoding gain
+  occurs, report no useful learning under this budget. Main runs wait for evidence;
+  no further variant will be launched automatically from an inconclusive result.
+
+### Fixed-case outcome — local learning, no net unseen benefit
+
+- Completed all **1,200 updates** (75 shuffled passes over the 128 cases) in
+  **783.23 s** / 13 min 3 s, including setup and final scoring, within the
+  predeclared 1,200-second CPU cap. No timeout, GPU, OSD or final-test use occurred.
+  Bundle: `results/m6_fixed_case/20261109T083753363297Z-9fa92ed1/`.
+- Whole-set training multi-loss decreased from **56.7148743 to 48.0201035**,
+  a **15.3307%** reduction. Logically correct training decodes increased from
+  **0/128 to 30/128** (23.4375%), passing the practical training-learning screen.
+  The model still failed on **98/128** repeated cases; it did not memorize or solve
+  the whole training set. Training success fluctuated between intermediate checks;
+  the final step was fixed in advance and no earlier checkpoint was substituted.
+
+  | Unfiltered unseen decoder | Nonconverged / 2,048 | Fallback demand | Logically correct Stage-1 decodes |
+  |---|---|---|---|
+  | Matched initial .95 | 1,295 | 63.232421875% | 753 |
+  | Fixed step-1,200 model | 1,301 | 63.525390625% | 747 |
+  | Independently tuned BP | 1,249 | 60.986328125% | 798 |
+
+- On unseen data, final training produced **six more** potential fallback calls
+  and **six fewer** correct decodes than initialization: **+0.29296875 pp** demand.
+  Both paired contrasts had discordant counts **232 gained / 238 lost**, exact
+  McNemar p=**.8176302604**, and joint two-test Holm p=**1.0**. The unseen gain
+  screen failed. This does not demonstrate a statistically significant regression
+  or equivalence; it establishes no useful net benefit in this diagnostic.
+  Tuned BP's 52 fewer nonconvergences than the final model are descriptive context;
+  no additional confirmatory test versus tuned BP was introduced after outcomes.
+  Tuned BP had one converged wrong-logical case; both neural states had none.
+- A descriptive decomposition of the fixed unseen flags is more informative than
+  calling this simple memorization: **232/1,295** initially nonconvergent cases
+  became logically correct (**17.9151%**), while **238/753** initially correct
+  cases became failures (**31.6069%**). Thus some learned rescues transfer to
+  unseen cases, but regressions cancel those gains. This is an observed stability
+  trade-off, not an isolated causal explanation. The machine decision
+  `training_learning_generalization_unconfirmed` refers to the failed *net-gain*
+  screen, not absence of any transferable casewise changes.
+- Hard-only training omits initially successful examples. Loss of those successes
+  is compatible with that sampling policy, but this single-arm diagnostic cannot
+  establish that mining caused it, or rule out objective/optimizer/model effects.
+  It does not justify buying more compute or promising that longer training fixes
+  the problem. The useful next hypothesis, if the user continues, is preserving
+  initially correct decodes while learning hard cases (a controlled hard-only versus
+  mixed/upweighted comparison), rather than another arbitrary loss/readout tweak.
+  No follow-up run is launched automatically. Main M6/M7 remain incomplete and
+  their experiment matrix and configs are intact.
+- All cases were frozen before updates, all 1,200 minibatch index lists and input
+  hashes are saved, and all 100-update training checkpoints plus initial/final
+  models are retained. Final checkpoint SHA-256:
+  `1d3f6b6e6b4f51d30353ef749ed5f61ce0818f7edfe2d2e895c51a3495c464ac`.
+  The reporting tool generated five exact-schema CSV rows, a PNG/PDF figure, and
+  the descriptive transition decomposition without changing experimental outcomes.
+- Final full suite: **120 passed** (25.44 s). The first targeted command referenced
+  the nonexistent `test_losses.py` and ran zero tests; the corrected targeted
+  diagnostic/readout suite passed all six checks before training. Source whitespace
+  checks passed. The figure was rendered and visually inspected.
+- Independent audit passed: regenerated the full 256-shot mining pool, the exact
+  128 training and 2,048 unseen cases and their H/L labels; verified all 1,200
+  shuffled batch lists/input hashes, ending RNG/order state, the first training
+  loss and learning-rate schedule; replayed **5,888** model/case scores and all
+  **13** training checkpoint evaluations; verified **1,024** exact Torch/Numba
+  corrections/convergence/iteration results and all five CSV rows. Initial/final
+  losses, paired tests, transition counts, checkpoint hashes and the predeclared
+  decision reproduced. The source snapshot and audit source are retained.

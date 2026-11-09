@@ -1,0 +1,80 @@
+code:
+  name: bb72
+eval:
+  batch: 64
+  checkpoints:
+  - checkpoints/m6_cpu_pilot/20261109T024454206893Z-832e804d/best.pt
+  cpu_model: Apple M4 Pro
+  latency_shots: 0
+  latency_warmup: 1000
+  max_shots: 2048
+  osd:
+    bp_iters: 50
+    method: osd_cs
+    ms_scaling: 0.625
+    order: 7
+  purpose: development
+  seed_offset: 15000
+  stage1_iters: 15
+  stop_failures: 2049
+  threads: 1
+model:
+  T: 15
+  ms_scaling: 0.625
+  msg_clip: 20.0
+  sharing: struct
+noise:
+  basis: Z
+  circuit:
+    decompose_errors: false
+    get_all_detectors: true
+    idle_noise: true
+    noisy_final_meas: true
+    noisy_zeroth_round: true
+    strategy: custom
+    total_rounds_include_zeroth: true
+  model: circuit_level
+  p_grid:
+  - 0.001
+  - 0.002
+  - 0.003
+  - 0.004
+  - 0.005
+  rounds: 6
+seed: 1234
+sweep:
+  factors:
+  - 0.5
+  - 0.55
+  - 0.6
+  - 0.65
+  - 0.7
+  - 0.75
+  - 0.8
+  - 0.85
+  - 0.9
+  - 0.95
+  - 1.0
+  iterations:
+  - 15
+  seed_offset: 14000
+  shots: 1024
+train:
+  batch: 8
+  beta_logical: 5.0
+  curriculum:
+    p_end: 0.002
+    p_start: 0.005
+    steps: 125
+  device: cpu
+  grad_clip: 1.0
+  hard_mining: filter
+  hard_weight: 10.0
+  loss: parity
+  lr: 0.001
+  max_steps: 500
+  min_lr: 1.0e-05
+  mining_max_draws: 50
+  patience: 8
+  val_every: 50
+  val_shots: 256

@@ -1,0 +1,20 @@
+purpose: fixed_hard_case_learning_diagnostic
+wall_seconds: 1200
+finalization_reserve_seconds: 120
+training_cases: 128
+training_pool_seed: 34234
+training_pool_batch: 256
+training_pool_max_shots: 4096
+unseen_cases: 2048
+unseen_seed: 36234
+shuffle_seed_entropy:
+- 1234
+- 911
+training_min_correct_gain: 0.1
+loss_min_relative_reduction: 0.1
+unseen_min_correct_gain: 0.02
+unseen_min_fallback_reduction: 0.02
+alpha: 0.05
+export_check_shots: 64
+checkpoint_rule: fixed_final_update_or_budget_stop
+unseen_evaluation_steps: initial_and_final_only

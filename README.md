@@ -388,3 +388,27 @@ On 10,240 fixed fresh development cases, frozen-readout demand was 88.691%, vers
 control was inconclusive: no primary or secondary paired point passed corrected
 .05. Both arms selected step 200. The optional readout remains experimental, and
 M6's three-seed accuracy/latency claim is still pending.
+
+## Fixed-case learning diagnostic
+
+```sh
+BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 .venv/bin/python scripts/m6_fixed_case_diagnostic.py
+MPLCONFIGDIR=.cache/matplotlib .venv/bin/python scripts/m6_report_fixed_case.py <diagnostic-bundle>
+BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 .venv/bin/python scripts/m6_audit_fixed_case.py <diagnostic-bundle>
+```
+
+This repeats 128 fixed, initially unsolved training cases at p=.001 for 1,200
+updates, with a 20-minute CPU deadline and reserved final-evaluation time. The
+2,048 unseen cases are frozen before training and evaluated only initially and
+finally. Whole-set training loss and logically correct decoding distinguish
+local learning from loss reduction alone. The unseen set never selects a checkpoint;
+the practical screens in `cpu_fixed_case_diagnostic.yaml` are not M6 gates.
+CSV rows labelled `fixed_train` describe the selected hard set, not the natural
+noise distribution. All cases, batch orders, checkpoints and failed runs are retained.
+
+The completed diagnostic learned 30/128 training cases from an initial zero and
+reduced loss by 15.3%, but unseen fallback demand changed from 63.23% to 63.53%
+(tuned BP: 60.99%). It rescued 232 previously failing unseen cases while breaking
+238 previously correct cases; no net improvement was established. This points to
+a gain/regression trade-off worth isolating, without proving that hard-only mining
+caused it. The complete 1,200-update experiment took 13 minutes 3 seconds on CPU.
