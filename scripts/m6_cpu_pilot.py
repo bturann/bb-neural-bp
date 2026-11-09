@@ -24,6 +24,7 @@ def main():
     parser.add_argument("--config", default="configs/m6/cpu_pilot.yaml")
     parser.add_argument("--budget", default="configs/m6/cpu_pilot_budget.yaml")
     parser.add_argument("--output-root", default="results/m6_cpu_pilot")
+    parser.add_argument("--checkpoint-root", default="checkpoints/m6_cpu_pilot")
     args = parser.parse_args()
     os.chdir(ROOT)
     config = load_config(args.config)
@@ -41,7 +42,7 @@ def main():
     profile = directory/"profile.pstats"
     command = [sys.executable, "-u", "-m", "cProfile", "-o", str(profile), "-m", "bbnbp.train",
                "--config", str(directory/"config.yaml"), "--output-root", str(directory/"training"),
-               "--checkpoint-root", "checkpoints/m6_cpu_pilot"]
+               "--checkpoint-root", args.checkpoint_root]
     print(f"CPU pilot bundle: {directory}", flush=True)
     started = time.perf_counter()
     timed_out = False

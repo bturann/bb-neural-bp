@@ -1,0 +1,5 @@
+interrupt_grace_seconds: 15
+kill_grace_seconds: 5
+profile_top_functions: 30
+purpose: cpu_development_learning_pilot
+wall_seconds: 600

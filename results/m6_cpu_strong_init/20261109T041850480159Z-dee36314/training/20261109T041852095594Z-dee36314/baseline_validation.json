@@ -1,0 +1,92 @@
+{
+  "0.001": {
+    "bp": {
+      "nonconverged": 148,
+      "osd_rate": 0.578125,
+      "logical_failures": 148,
+      "ler_stage1": 0.578125,
+      "ms_scaling": 0.95,
+      "mean_iterations": 11.26171875
+    },
+    "bp_tuned": {
+      "nonconverged": 152,
+      "osd_rate": 0.59375,
+      "logical_failures": 152,
+      "ler_stage1": 0.59375,
+      "ms_scaling": 1.0,
+      "mean_iterations": 11.37890625
+    }
+  },
+  "0.002": {
+    "bp": {
+      "nonconverged": 223,
+      "osd_rate": 0.87109375,
+      "logical_failures": 223,
+      "ler_stage1": 0.87109375,
+      "ms_scaling": 0.95,
+      "mean_iterations": 14.0390625
+    },
+    "bp_tuned": {
+      "nonconverged": 222,
+      "osd_rate": 0.8671875,
+      "logical_failures": 222,
+      "ler_stage1": 0.8671875,
+      "ms_scaling": 1.0,
+      "mean_iterations": 14.32421875
+    }
+  },
+  "0.003": {
+    "bp": {
+      "nonconverged": 241,
+      "osd_rate": 0.94140625,
+      "logical_failures": 241,
+      "ler_stage1": 0.94140625,
+      "ms_scaling": 0.95,
+      "mean_iterations": 14.75390625
+    },
+    "bp_tuned": {
+      "nonconverged": 241,
+      "osd_rate": 0.94140625,
+      "logical_failures": 241,
+      "ler_stage1": 0.94140625,
+      "ms_scaling": 0.95,
+      "mean_iterations": 14.75390625
+    }
+  },
+  "0.004": {
+    "bp": {
+      "nonconverged": 255,
+      "osd_rate": 0.99609375,
+      "logical_failures": 255,
+      "ler_stage1": 0.99609375,
+      "ms_scaling": 0.95,
+      "mean_iterations": 14.98828125
+    },
+    "bp_tuned": {
+      "nonconverged": 256,
+      "osd_rate": 1.0,
+      "logical_failures": 256,
+      "ler_stage1": 1.0,
+      "ms_scaling": 0.75,
+      "mean_iterations": 15.0
+    }
+  },
+  "0.005": {
+    "bp": {
+      "nonconverged": 256,
+      "osd_rate": 1.0,
+      "logical_failures": 256,
+      "ler_stage1": 1.0,
+      "ms_scaling": 0.95,
+      "mean_iterations": 15.0
+    },
+    "bp_tuned": {
+      "nonconverged": 256,
+      "osd_rate": 1.0,
+      "logical_failures": 256,
+      "ler_stage1": 1.0,
+      "ms_scaling": 0.85,
+      "mean_iterations": 15.0
+    }
+  }
+}

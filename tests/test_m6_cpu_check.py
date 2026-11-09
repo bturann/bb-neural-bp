@@ -2,6 +2,8 @@ import os
 import runpy
 import subprocess
 import sys
+import shutil
+import csv
 from dataclasses import replace
 
 import pytest
@@ -28,3 +30,30 @@ def test_fresh_comparison_rejects_checkpoint_selection_seed_reuse(tmp_path):
                             env=env, capture_output=True, text=True)
     assert result.returncode != 0 and "must be disjoint" in result.stderr
     assert not output.exists()
+
+
+def test_reusing_tuning_preserves_source_hash_and_rejects_incompatible_noise():
+    validate = runpy.run_path("scripts/m6_compare_stage1.py")["validate_tuning_table"]
+    config = load_config("configs/m6/cpu_pilot_check.yaml")
+    changed = replace(config, eval=replace(config.eval, seed_offset=19000))
+    table = "results/m6_cpu_pilot_check/20261109T040246608374Z-cb99df2f/tuned_scaling.csv"
+    assert changed.config_hash != config.config_hash
+    assert validate(changed, table).config_hash == config.config_hash
+    with pytest.raises(ValueError, match="configurations differ"):
+        validate(replace(changed, noise=replace(changed.noise, basis="X")), table)
+
+
+def test_reused_tuning_requires_actual_row_provenance(tmp_path):
+    validate = runpy.run_path("scripts/m6_compare_stage1.py")["validate_tuning_table"]
+    config = load_config("configs/m6/cpu_pilot_check.yaml")
+    source = "results/m6_cpu_pilot_check/20261109T040246608374Z-cb99df2f/tuned_scaling"
+    with open(source+".csv", newline="") as stream:
+        rows = list(csv.DictReader(stream))
+    rows[0]["config_hash"] = "wrong"
+    with (tmp_path/"table.csv").open("w", newline="") as stream:
+        writer = csv.DictWriter(stream, fieldnames=list(rows[0]))
+        writer.writeheader()
+        writer.writerows(rows)
+    shutil.copyfile(source+".config.yaml", tmp_path/"table.config.yaml")
+    with pytest.raises(ValueError, match="source provenance"):
+        validate(config, tmp_path/"table.csv")

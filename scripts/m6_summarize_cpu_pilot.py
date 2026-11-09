@@ -1,6 +1,7 @@
 """Replay CPU pilot validation and summarize learning and measured update costs."""
 
 import argparse
+import csv
 import hashlib
 import json
 from pathlib import Path
@@ -18,8 +19,9 @@ from bbnbp.train import _inference, make_model, validation_sets
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("directory", type=Path)
+    parser.add_argument("--output", type=Path)
     args = parser.parse_args()
-    output = args.directory/"pilot_summary.json"
+    output = args.output or args.directory/"pilot_summary.json"
     if output.exists():
         parser.error("Refusing to overwrite pilot evidence")
     status = json.loads((args.directory/"pilot_status.json").read_text())
@@ -33,6 +35,8 @@ def main():
     validations = [json.loads(line) for line in (run/"validation.jsonl").read_text().splitlines()]
     provenance = json.loads((run/"provenance.json").read_text())
     checkpoint = Path(provenance["checkpoint_directory"])/"best.pt"
+    with (run/"tuned_scaling.csv").open(newline="") as stream:
+        tuning_factors = sorted({float(row["ms_scaling"]) for row in csv.DictReader(stream)})
     selected_step = read_checkpoint(checkpoint)["step"]
     samplers = {p: make_sampler(config, p) for p in config.noise.p_grid}
     sets = validation_sets(config, samplers)
@@ -50,7 +54,7 @@ def main():
             rows.append(dict(p=p, shots=len(s), seed=seed,
                              initial_nonconverged=int(first.sum()), selected_nonconverged=int(chosen.sum()),
                              initial_osd_rate=float(first.mean()), selected_osd_rate=float(chosen.mean()),
-                             coarse_tuned_osd_rate=float(baseline[f"bp_tuned-p{i}"].mean()),
+                             development_tuned_osd_rate=float(baseline[f"bp_tuned-p{i}"].mean()),
                              exploratory_paired_vs_initial=mcnemar(first, chosen)))
             replay[f"initial-p{i}"], replay[f"selected-p{i}"] = first, chosen
     intervals = [current["elapsed_s"]-previous["elapsed_s"]
@@ -68,10 +72,11 @@ def main():
                    finite_logged_losses=all(np.isfinite(row["loss"]) for row in history),
                    initial_mean_osd_rate=initial_mean, selected_mean_osd_rate=best_mean,
                    last_mean_osd_rate=validations[-1]["mean_osd_rate"],
-                   coarse_tuned_mean_osd_rate=float(np.mean([row["coarse_tuned_osd_rate"] for row in rows])),
+                   development_tuned_mean_osd_rate=float(np.mean([row["development_tuned_osd_rate"] for row in rows])),
+                   tuning_factor_count=len(tuning_factors),
                    absolute_reduction_percentage_points=100*(initial_mean-best_mean),
                    improved_p_points_vs_initial=sum(row["selected_osd_rate"] < row["initial_osd_rate"] for row in rows),
-                   improved_p_points_vs_coarse_tuned=sum(row["selected_osd_rate"] < row["coarse_tuned_osd_rate"] for row in rows),
+                   improved_p_points_vs_development_tuned=sum(row["selected_osd_rate"] < row["development_tuned_osd_rate"] for row in rows),
                    timing=dict(update_intervals=len(intervals),
                                median_update_s=float(np.median(intervals)) if intervals else None,
                                p10_update_s=float(np.percentile(intervals, 10)) if intervals else None,
@@ -81,9 +86,10 @@ def main():
                    checkpoint=str(checkpoint), checkpoint_sha256=hashlib.sha256(checkpoint.read_bytes()).hexdigest(),
                    validated_shots_replayed=sum(row["shots"] for row in rows), rows=rows,
                    uncertainty="Exploratory single-seed pilot; repeated validation selects this checkpoint. "
-                               "Paired p-values are post-selection diagnostics. Comparator uses only the coarse "
+                               f"Paired p-values are post-selection diagnostics. Comparator uses a {len(tuning_factors)}-factor "
                                "development sweep. No main E1/E2 or final-test claim.")
-    np.savez_compressed(args.directory/"replayed_validation.npz", **replay)
+    if not (args.directory/"replayed_validation.npz").exists():
+        np.savez_compressed(args.directory/"replayed_validation.npz", **replay)
     output.write_text(json.dumps(summary, indent=2, allow_nan=False)+"\n")
     print(json.dumps(summary, indent=2), flush=True)
 

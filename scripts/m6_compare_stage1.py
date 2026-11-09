@@ -34,6 +34,28 @@ def holm(pvalues):
     return adjusted.tolist()
 
 
+def validate_tuning_table(config, path):
+    """Accept compatible earlier tuning without rewriting its original provenance."""
+    path = Path(path)
+    tuning_config = load_config(path.with_suffix(".config.yaml"))
+    if (tuning_config.code != config.code or tuning_config.noise != config.noise
+            or tuning_config.sweep != config.sweep or tuning_config.seed != config.seed):
+        raise ValueError("Tuning and comparison problem/sampling configurations differ")
+    with path.open(newline="") as stream:
+        rows = list(csv.DictReader(stream))
+    expected = {(p, T, factor) for p in config.noise.p_grid for T in config.sweep.iterations
+                for factor in config.sweep.factors}
+    actual = {(float(row["p"]), int(row["T"]), float(row["ms_scaling"])) for row in rows}
+    if actual != expected or len(rows) != len(expected):
+        raise ValueError("Tuning table does not contain the complete configured factor grid")
+    for row in rows:
+        index = config.noise.p_grid.index(float(row["p"]))
+        if (int(row["seed"]) != config.seed+config.sweep.seed_offset+index
+                or int(row["shots"]) != config.sweep.shots or row["config_hash"] != tuning_config.config_hash):
+            raise ValueError("Actual tuning seeds, shot counts or configuration differ from their source provenance")
+    return tuning_config
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", required=True)
@@ -57,23 +79,14 @@ def main():
         raise ValueError("Tuning, checkpoint validation, comparison and final streams must be disjoint")
     if config.eval.purpose != "development" or config.model.T != config.eval.stage1_iters:
         raise ValueError("Expected a matched-budget development comparison")
-    with Path(args.tuning_table).open(newline="") as stream:
-        tuning_rows = list(csv.DictReader(stream))
-    expected = {(p, T, factor) for p in config.noise.p_grid for T in config.sweep.iterations
-                for factor in config.sweep.factors}
-    actual = {(float(row["p"]), int(row["T"]), float(row["ms_scaling"])) for row in tuning_rows}
-    if actual != expected or len(tuning_rows) != len(expected):
-        raise ValueError("Tuning table does not contain the complete configured factor grid")
-    for row in tuning_rows:
-        index = config.noise.p_grid.index(float(row["p"]))
-        if (int(row["seed"]) != config.seed+config.sweep.seed_offset+index
-                or int(row["shots"]) != config.sweep.shots or row["config_hash"] != config.config_hash):
-            raise ValueError("Actual tuning seeds, shot counts or configuration differ from the declared study")
+    validate_tuning_table(config, args.tuning_table)
     torch.set_num_threads(config.eval.threads)
     set_num_threads(config.eval.threads)
     args.output.mkdir(parents=True, exist_ok=False)
     config.save(args.output/"config.yaml")
     shutil.copyfile(args.tuning_table, args.output/"tuned_scaling.csv")
+    shutil.copyfile(Path(args.tuning_table).with_suffix(".config.yaml"), args.output/"tuned_scaling.config.yaml")
+    shutil.copyfile(__file__, args.output/"executed_compare_source.py")
     shutil.copyfile(checkpoint, args.output/"checkpoint.pt")
     (args.output/"source_manifest.json").write_text(json.dumps(source_manifest(), indent=2)+"\n")
     timestamp = datetime.now(timezone.utc)
@@ -108,7 +121,8 @@ def main():
                            rounds=config.noise.rounds, basis=config.noise.basis, p=p,
                            decoder=name+"_only", stage1=name, T=config.model.T,
                            weight_sharing=model.sharing if name == "nbp" else "scalar",
-                           osd_method="", osd_order="", ms_scaling=factor if name == "bp_tuned" else config.model.ms_scaling,
+                           osd_method="", osd_order="",
+                           ms_scaling=payload["model_config"]["ms_scaling"] if name == "nbp" else factor if name == "bp_tuned" else config.model.ms_scaling,
                            shots=shots, stage1_failures=int(failed.sum()), osd_calls=0, osd_rate=0,
                            logical_failures=failures, ler=failures/shots, ler_lo=lo, ler_hi=hi,
                            ler_stage1=failures/shots, lat_mean_us="", lat_p50_us="", lat_p99_us="", lat_max_us="",

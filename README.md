@@ -241,3 +241,25 @@ tied at one. None of the five paired differences passed Holm correction at .05.
 This did not meet the predeclared screen for proceeding with CPU optimization.
 The earlier pilot demonstrated learning relative to initialization; a clear
 advantage over the stronger tuned baseline remains unestablished.
+
+## Stronger-initialization diagnostic
+
+```sh
+BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib .venv/bin/python -u scripts/m6_cpu_pilot.py --config configs/m6/cpu_strong_init.yaml --output-root results/m6_cpu_strong_init --checkpoint-root checkpoints/m6_cpu_strong_init
+```
+
+The .95-initialized CPU variant uses fresh training/validation streams and the
+existing 11-factor tuning table. Its matched untrained reference distinguishes
+the starting point from learned changes. The completed 500-update run selected
+step 300. On a new 10,240-shot paired comparison, fallback demand was 88.398% for
+the selected model, 89.072% for its untrained .95 reference, and 88.936% for tuned BP.
+All five observed differences versus tuned BP favored the selected model, but none
+passed Holm correction. The learning contrast also did not pass corrected .05.
+These are development findings; main configs and final-test seeds are unchanged.
+
+`scripts/m6_check_cpu_pilot.py --reuse-tuning <table.csv>` validates the original
+table's resolved-config sidecar and row hashes, so independent evaluation configs
+can reuse valid tuning without changing its provenance. The strong-initialization
+check budget also enables `scripts/m6_initialization_reference.py`. The recorded
+check config points to the saved selected checkpoint; a new training invocation
+creates a new checkpoint path that must be set in its comparison config.

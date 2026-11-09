@@ -1,0 +1,15 @@
+p=0.001: initial=0.621582, selected=0.598145
+p=0.002: initial=0.872559, selected=0.865234
+p=0.003: initial=0.968262, selected=0.966309
+p=0.004: initial=0.991699, selected=0.991699
+p=0.005: initial=0.999512, selected=0.998535
+{
+  "selected_step": 300,
+  "mean_fallback": {
+    "initial": 0.89072265625,
+    "selected": 0.883984375,
+    "tuned": 0.88935546875
+  },
+  "learning_improvement_percentage_points": 0.6738281249999978,
+  "learning_signal": false
+}

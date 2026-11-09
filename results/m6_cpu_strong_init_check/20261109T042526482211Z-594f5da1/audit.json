@@ -1,0 +1,16 @@
+{
+  "checks_passed": true,
+  "actual_tuning_rows": 55,
+  "checked_result_rows": 15,
+  "regenerated_comparison_cases": 10240,
+  "checked_decoder_flags": 30720,
+  "independently_replayed_decodes": 960,
+  "torch_numba_exact_shots": 320,
+  "checked_initialization_flags": 10240,
+  "independently_replayed_initialization_decodes": 320,
+  "checkpoint_sha256": "e0187b03bce6970b5a7b20562f85b62baeded967522431bcb4254caeaa1e2bd2",
+  "statistical_summary_verified": true,
+  "final_test_data_used": false,
+  "m6_complete": false,
+  "optimization_screen_passed": false
+}

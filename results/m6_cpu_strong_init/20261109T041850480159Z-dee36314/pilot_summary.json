@@ -1,0 +1,115 @@
+{
+  "purpose": "cpu_development_learning_pilot",
+  "status": {
+    "purpose": "cpu_development_learning_pilot",
+    "git_sha": "15c09adc6547ecf9f6e9a787e7e139e914a38b30-dirty",
+    "device": "cpu",
+    "gpu_seconds": 0,
+    "elapsed_s": 380.9817382500041,
+    "returncode": 0,
+    "stopping": "child_completed",
+    "final_test_data_used": false,
+    "m6_complete": false,
+    "timing_scope": "Profiled end-to-end CPU pilot; profiler overhead included"
+  },
+  "steps_completed": 500,
+  "selected_step": 300,
+  "train_batch": 8,
+  "parameter_count": 1455,
+  "finite_logged_losses": true,
+  "initial_mean_osd_rate": 0.87734375,
+  "selected_mean_osd_rate": 0.86953125,
+  "last_mean_osd_rate": 0.87734375,
+  "coarse_tuned_mean_osd_rate": 0.88046875,
+  "absolute_reduction_percentage_points": 0.78125,
+  "improved_p_points_vs_initial": 2,
+  "improved_p_points_vs_coarse_tuned": 2,
+  "timing": {
+    "update_intervals": 490,
+    "median_update_s": 0.5830832915089559,
+    "p10_update_s": 0.5529926709015853,
+    "p90_update_s": 0.6798887166602071,
+    "definition": "Consecutive logged update intervals, excluding intervals across validation; includes mining, sampling, optimization and cProfile overhead; batch 8 only"
+  },
+  "checkpoint": "checkpoints/m6_cpu_strong_init/20261109T041852095594Z-dee36314/best.pt",
+  "checkpoint_sha256": "e0187b03bce6970b5a7b20562f85b62baeded967522431bcb4254caeaa1e2bd2",
+  "validated_shots_replayed": 1280,
+  "rows": [
+    {
+      "p": 0.001,
+      "shots": 256,
+      "seed": 18234,
+      "initial_nonconverged": 148,
+      "selected_nonconverged": 140,
+      "initial_osd_rate": 0.578125,
+      "selected_osd_rate": 0.546875,
+      "coarse_tuned_osd_rate": 0.59375,
+      "exploratory_paired_vs_initial": {
+        "first_only": 34,
+        "second_only": 26,
+        "pvalue": 0.36629400670329104
+      }
+    },
+    {
+      "p": 0.002,
+      "shots": 256,
+      "seed": 18235,
+      "initial_nonconverged": 223,
+      "selected_nonconverged": 214,
+      "initial_osd_rate": 0.87109375,
+      "selected_osd_rate": 0.8359375,
+      "coarse_tuned_osd_rate": 0.8671875,
+      "exploratory_paired_vs_initial": {
+        "first_only": 22,
+        "second_only": 13,
+        "pvalue": 0.175465248990804
+      }
+    },
+    {
+      "p": 0.003,
+      "shots": 256,
+      "seed": 18236,
+      "initial_nonconverged": 241,
+      "selected_nonconverged": 247,
+      "initial_osd_rate": 0.94140625,
+      "selected_osd_rate": 0.96484375,
+      "coarse_tuned_osd_rate": 0.94140625,
+      "exploratory_paired_vs_initial": {
+        "first_only": 6,
+        "second_only": 12,
+        "pvalue": 0.237884521484375
+      }
+    },
+    {
+      "p": 0.004,
+      "shots": 256,
+      "seed": 18237,
+      "initial_nonconverged": 255,
+      "selected_nonconverged": 256,
+      "initial_osd_rate": 0.99609375,
+      "selected_osd_rate": 1.0,
+      "coarse_tuned_osd_rate": 1.0,
+      "exploratory_paired_vs_initial": {
+        "first_only": 0,
+        "second_only": 1,
+        "pvalue": 1.0
+      }
+    },
+    {
+      "p": 0.005,
+      "shots": 256,
+      "seed": 18238,
+      "initial_nonconverged": 256,
+      "selected_nonconverged": 256,
+      "initial_osd_rate": 1.0,
+      "selected_osd_rate": 1.0,
+      "coarse_tuned_osd_rate": 1.0,
+      "exploratory_paired_vs_initial": {
+        "first_only": 0,
+        "second_only": 0,
+        "pvalue": 1.0
+      }
+    }
+  ],
+  "uncertainty": "Exploratory single-seed pilot; repeated validation selects this checkpoint. Paired p-values are post-selection diagnostics. Comparator uses only the coarse development sweep. No main E1/E2 or final-test claim."
+}

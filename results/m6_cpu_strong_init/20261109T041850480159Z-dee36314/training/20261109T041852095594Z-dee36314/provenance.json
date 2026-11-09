@@ -1,0 +1,19 @@
+{
+  "git_sha": "15c09adc6547ecf9f6e9a787e7e139e914a38b30-dirty",
+  "config_hash": "dee363147aa99292542ec6063a22e864e3f384a5",
+  "purpose": "smoke",
+  "checkpoint_directory": "checkpoints/m6_cpu_strong_init/20261109T041852095594Z-dee36314",
+  "validation_seeds": [
+    18234,
+    18235,
+    18236,
+    18237,
+    18238
+  ],
+  "training_entropy": [
+    1234,
+    707
+  ],
+  "final_test_data_used": false,
+  "validation_metric": "Stage-1 nonconvergence; OSD is not called during training validation"
+}

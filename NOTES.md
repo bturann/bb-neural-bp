@@ -640,3 +640,86 @@ M5 passed: `results/m5/20261030T220645511485Z-3a224cbf`; wins 4/7, best step 100
   See the bundle's `audit.json`; all checks passed and the frozen checkpoint hash
   is unchanged. The full suite passed **105 tests** (32.16 s), including seed-reuse
   rejection and Holm-adjustment checks. M6 remains incomplete.
+
+## Stronger-initialization CPU diagnostic — November 8, 2026 (started)
+
+- User requested continuation after the fresh-data check found no clear advantage.
+  Inspection of the selected .625-initialized weights showed mean .626685 and
+  range .548504–.771213, while independently tuned BP selected .95–1.00 at the
+  lower/middle p values. Hypothesis: the short run's starting point limits learning.
+  This is a hypothesis, not a demonstrated mechanism.
+- `configs/m6/cpu_strong_init.yaml` uses structural weights initialized to .95,
+  still T=15, six rounds, batch 8, parity loss, up to 500 CPU updates and a 600-second
+  training budget. Validation uses new seeds 18234–18238; training entropy is
+  [1234, 707]. The existing full 11-factor tuning table is reused unchanged.
+  Main experiment configs and reference implementations are unchanged.
+- The frozen hard-mining model follows the same .95 initialization, as specified
+  by the trainer. This variant is not a causal isolation with identical training
+  samples to the earlier .625 run. A matched untrained .95 reference will separate
+  initialization gains from additional learning on the new comparison cases.
+- New comparison seeds are 20234–20238, disjoint from both pilots' selection sets,
+  tuning, the earlier independent comparison, and reserved final-test seeds.
+  Selected weights will be frozen before generating these cases. Ordinary BP
+  retains .625 in that comparison; tuned BP reuses the independent full sweep.
+- The tuning-table validator now accepts compatible previously executed tuning
+  through its original resolved-config sidecar and row hashes, rather than requiring
+  that an evaluation with a different checkpoint/seed have the same config hash.
+  Actual tuning seeds/counts and all factor-grid rows remain checked. New studies
+  retain their executed comparison source before decoding.
+- Training bundle: `results/m6_cpu_strong_init/20261109T041850480159Z-dee36314/`.
+  Training and fresh-data checks remain development diagnostics, not main M6 results.
+
+### Stronger-initialization diagnostic outcome — completed
+
+- The CPU run completed 500 updates in **380.98 s** (6 min 21 s), with finite losses
+  and zero GPU use. It sampled 5,472 candidates, optimized on 4,000 hard shots,
+  and hit no mining caps. Median batch-8 update time excluding validation was
+  .583 s. Selected checkpoint was **step 300**, not the step-500 continuation.
+  Validation fallback was 87.734375% initially, 86.953125% selected, and 87.734375%
+  finally, versus 88.046875% for independently tuned BP. Selection remains exploratory.
+- All 1,280 selected validation outcomes replayed exactly. The selected checkpoint
+  SHA-256 is `e0187b03bce6970b5a7b20562f85b62baeded967522431bcb4254caeaa1e2bd2`.
+  Curves were visually inspected; validation fluctuates and does not establish
+  steady improvement. The source initializer and frozen mining model both use .95.
+- The fresh check reused the original 55-row tuning table unchanged, verified its
+  resolved config and original hashes, and finished comparison plus the matched
+  untrained reference in **223.90 s**. No training or selection used these cases.
+  Bundle: `results/m6_cpu_strong_init_check/20261109T042526482211Z-594f5da1/`.
+
+  | p | Tuned BP | Untrained .95 neural | Selected neural |
+  |---|---|---|---|
+  | .001 | 61.376953125% | 62.158203125% | 59.814453125% |
+  | .002 | 86.9140625% | 87.255859375% | 86.5234375% |
+  | .003 | 96.826171875% | 96.826171875% | 96.630859375% |
+  | .004 | 99.658203125% | 99.169921875% | 99.169921875% |
+  | .005 | 99.90234375% | 99.951171875% | 99.853515625% |
+
+- Grid means were **88.935546875% tuned BP**, **89.072265625% untrained reference**,
+  and **88.3984375% selected neural**. Selected neural had 55 fewer potential fallback
+  calls than tuned BP and 69 fewer than its untrained reference across 10,240 paired
+  cases. All five observed neural/tuned differences favored neural; four favored
+  learned weights over the initial model and one tied. These are small observed gains.
+- Neither five-point comparison passed Holm-adjusted .05: the smallest adjusted
+  p-value versus tuned BP was **.2069473**, and versus the matched initial model
+  **.2035642**. The optimization and learning screens remain unmet. No CPU optimization
+  or main configuration replacement was performed. The variant is retained as a
+  development result, not as a proven improvement. Different training streams and
+  mining sets prevent causal attribution to initialization alone across pilots.
+- The legacy generic pilot summary used `coarse_tuned` field names even though this
+  run used the full 11-factor table. The summary tool now reports the actual factor
+  count with generic development-tuning labels. `pilot_summary_full_tuning.json`
+  recomputes the same outcomes with corrected labels; the original artifact was
+  preserved. Main comparison results use the correct original tuning provenance.
+- Decoder equations, parity loss, main experiment matrix and reserved final-test
+  seeds are unchanged. M6 remains incomplete. A short controlled loss-function
+  ablation is a more informative next diagnostic than assuming longer training
+  or faster computation will resolve the weak advantage.
+- Independent audit regenerated all 10,240 fresh cases and checked their H/L
+  true-fault labels, 30,720 main decoder flags, another 10,240 untrained-reference
+  flags, all 55 tuning selections, all 15 main CSV rows, means and adjusted tests.
+  It independently replayed 960 main subset decodes plus 320 initialization subset
+  decodes; exact PyTorch/Numba agreement was verified on 320 selected-model shots.
+  All audit checks passed, and the frozen checkpoint hash is unchanged.
+- Full suite before this development checkpoint commit: **107 passed** (32.10 s),
+  including compatible tuning reuse and rejection of mismatched row provenance.
+  Source whitespace checks are clean; executed CSV line endings remain preserved.

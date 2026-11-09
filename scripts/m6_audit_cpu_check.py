@@ -13,6 +13,7 @@ import torch
 from bbnbp.checkpoints import load_model
 from bbnbp.config import load_config
 from bbnbp.decoders.bp_ldpc import LdpcBP
+from bbnbp.decoders.neural_bp import NeuralMinSum
 from bbnbp.metrics import mcnemar, wilson
 from bbnbp.noise.base import parity
 from bbnbp.noise.factory import make_sampler
@@ -46,6 +47,10 @@ def main():
     checked_flags, regenerated_cases, replayed_decodes, torch_numba = 0, 0, 0, 0
     means = {name: [] for name in ("bp", "bp_tuned", "nbp")}
     pvalues = []
+    reference_path = directory/"initialization_reference.json"
+    reference = json.loads(reference_path.read_text()) if reference_path.exists() else None
+    reference_rates, reference_pvalues = [], []
+    reference_flags, reference_replays = 0, 0
     for i, point in enumerate(summary["points"]):
         p = point["p"]
         candidates = [row for row in tuning if float(row["p"]) == p]
@@ -92,13 +97,35 @@ def main():
             for key, value in paired.items():
                 assert value == point["paired_vs_tuned"][key]
             pvalues.append(paired["pvalue"])
+            if reference:
+                with np.load(directory/f"initialization-p{i}.npz") as data:
+                    ref_point = reference["rows"][i]
+                    assert ref_point["p"] == p
+                    rate = float(data["failed"].mean())
+                    assert rate == ref_point["initial_fallback"]
+                    reference_rates.append(rate)
+                    compared = mcnemar(data["failed"], flags["nbp"])
+                    for key, value in compared.items():
+                        assert value == ref_point["learned_vs_initial"][key]
+                    reference_pvalues.append(compared["pvalue"])
+                    initial = NeuralMinSum(sampler.problem, **reference["initialization"], dtype=model.w.dtype)
+                    failed, initial_logical, _ = _inference(initial.export_cpu(), s[:n], o[:n], sampler.problem, n)
+                    np.testing.assert_array_equal(failed, data["failed"][:n])
+                    np.testing.assert_array_equal(initial_logical, data["logical"][:n])
+                    reference_flags += len(data["failed"])
+                    reference_replays += n
     adjust = runpy.run_path("scripts/m6_compare_stage1.py")["holm"]
     np.testing.assert_allclose(adjust(pvalues), [p["paired_vs_tuned"]["holm_pvalue"] for p in summary["points"]])
     for name, values in means.items():
         assert float(np.mean(values)) == summary["mean_fallback_demand"][name]
+    if reference:
+        assert reference["mean_fallback"]["initial"] == float(np.mean(reference_rates))
+        assert reference["mean_fallback"]["selected"] == summary["mean_fallback_demand"]["nbp"]
+        np.testing.assert_allclose(adjust(reference_pvalues), [p["learned_vs_initial"]["holm_pvalue"] for p in reference["rows"]])
     report = dict(checks_passed=True, actual_tuning_rows=len(tuning), checked_result_rows=len(rows),
                   regenerated_comparison_cases=regenerated_cases, checked_decoder_flags=checked_flags,
                   independently_replayed_decodes=replayed_decodes, torch_numba_exact_shots=torch_numba,
+                  checked_initialization_flags=reference_flags, independently_replayed_initialization_decodes=reference_replays,
                   checkpoint_sha256=summary["checkpoint_sha256"], statistical_summary_verified=True,
                   final_test_data_used=False, m6_complete=False,
                   optimization_screen_passed=summary["supports_cpu_optimization"])

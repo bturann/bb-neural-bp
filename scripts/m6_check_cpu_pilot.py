@@ -5,6 +5,7 @@ import hashlib
 import json
 import os
 import signal
+import shutil
 import subprocess
 import sys
 import time
@@ -24,6 +25,7 @@ def main():
     parser.add_argument("--config", default="configs/m6/cpu_pilot_check.yaml")
     parser.add_argument("--budget", default="configs/m6/cpu_pilot_check_budget.yaml")
     parser.add_argument("--output-root", default="results/m6_cpu_pilot_check")
+    parser.add_argument("--reuse-tuning", type=Path)
     args = parser.parse_args()
     os.chdir(ROOT)
     config = load_config(args.config)
@@ -50,6 +52,20 @@ def main():
     print(f"CPU pilot check bundle: {directory}", flush=True)
     started = time.perf_counter()
     stages, stopped = [], False
+    if args.reuse_tuning:
+        from m6_compare_stage1 import validate_tuning_table
+        validate_tuning_table(config, args.reuse_tuning)
+        shutil.copyfile(args.reuse_tuning, directory/"tuned_scaling.csv")
+        shutil.copyfile(args.reuse_tuning.with_suffix(".config.yaml"), directory/"tuned_scaling.config.yaml")
+        if args.reuse_tuning.with_suffix(".meta.json").exists():
+            shutil.copyfile(args.reuse_tuning.with_suffix(".meta.json"), directory/"tuned_scaling.meta.json")
+        (directory/"reused_tuning.json").write_text(json.dumps(dict(
+            source=str(args.reuse_tuning), sha256=hashlib.sha256(args.reuse_tuning.read_bytes()).hexdigest()), indent=2)+"\n")
+        commands = commands[1:]
+        stages.append(dict(name="reuse_tuning", returncode=0, elapsed_s=time.perf_counter()-started))
+    if budget.get("include_initial_reference", False):
+        commands.append(("initial_reference", [sys.executable, "-u", "scripts/m6_initialization_reference.py", str(directory/"comparison")]))
+    expected_stages = len(stages)+len(commands)
     try:
         for name, command in commands:
             remaining = budget["wall_seconds"]-(time.perf_counter()-started)
@@ -77,7 +93,7 @@ def main():
     finally:
         report = dict(purpose=budget["purpose"], git_sha=git_sha(), stages=stages,
                       elapsed_s=time.perf_counter()-started, wall_limit_reached_or_interrupted=stopped,
-                      complete=len(stages) == 2 and all(row["returncode"] == 0 for row in stages) and not stopped,
+                      complete=len(stages) == expected_stages and all(row["returncode"] == 0 for row in stages) and not stopped,
                       checkpoint_sha256=sha, gpu_seconds=0, final_test_data_used=False, m6_complete=False)
         (directory/"status.json").write_text(json.dumps(report, indent=2)+"\n")
     print(json.dumps(report, indent=2), flush=True)

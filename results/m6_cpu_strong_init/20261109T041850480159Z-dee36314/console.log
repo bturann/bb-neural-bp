@@ -1,0 +1,37 @@
+validation baseline p=0.001: tuned fallback=0.59375
+validation baseline p=0.002: tuned fallback=0.86719
+validation baseline p=0.003: tuned fallback=0.94141
+validation baseline p=0.004: tuned fallback=1.00000
+validation baseline p=0.005: tuned fallback=1.00000
+step=0 validation mean fallback=0.877344; tuned=0.880469
+step=25 p=0.00400 loss=122.79768 elapsed=37.0s
+step=50 p=0.00400 loss=158.48636 elapsed=51.2s
+step=50 validation mean fallback=0.878906; tuned=0.880469
+step=75 p=0.00300 loss=89.40472 elapsed=70.7s
+step=100 p=0.00300 loss=100.49025 elapsed=85.3s
+step=100 validation mean fallback=0.879687; tuned=0.880469
+step=125 p=0.00200 loss=88.78626 elapsed=105.8s
+step=150 p=0.00400 loss=119.37804 elapsed=121.6s
+step=150 validation mean fallback=0.876563; tuned=0.880469
+step=175 p=0.00400 loss=169.36086 elapsed=141.8s
+step=200 p=0.00400 loss=122.64745 elapsed=157.1s
+step=200 validation mean fallback=0.882031; tuned=0.880469
+step=225 p=0.00100 loss=49.09379 elapsed=176.9s
+step=250 p=0.00300 loss=118.48564 elapsed=192.4s
+step=250 validation mean fallback=0.881250; tuned=0.880469
+step=275 p=0.00200 loss=79.51597 elapsed=212.8s
+step=300 p=0.00100 loss=45.47539 elapsed=229.0s
+step=300 validation mean fallback=0.869531; tuned=0.880469
+step=325 p=0.00100 loss=61.14402 elapsed=249.3s
+step=350 p=0.00500 loss=183.84702 elapsed=264.5s
+step=350 validation mean fallback=0.883594; tuned=0.880469
+step=375 p=0.00300 loss=122.35249 elapsed=285.0s
+step=400 p=0.00200 loss=77.52428 elapsed=300.7s
+step=400 validation mean fallback=0.878125; tuned=0.880469
+step=425 p=0.00500 loss=170.68628 elapsed=321.5s
+step=450 p=0.00200 loss=61.90851 elapsed=336.7s
+step=450 validation mean fallback=0.882031; tuned=0.880469
+step=475 p=0.00300 loss=126.65257 elapsed=356.7s
+step=500 p=0.00300 loss=110.42374 elapsed=372.3s
+step=500 validation mean fallback=0.877344; tuned=0.880469
+M5 NOT ACCEPTED: wins=2/5, best_step=300; /Users/berkaybaristuran/Desktop/Research/QuantAI/codebase/results/m6_cpu_strong_init/20261109T041850480159Z-dee36314/training/20261109T041852095594Z-dee36314

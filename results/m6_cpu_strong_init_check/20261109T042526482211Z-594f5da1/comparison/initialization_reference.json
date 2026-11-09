@@ -1,0 +1,123 @@
+{
+  "purpose": "matched_initialization_reference_on_fresh_development_cases",
+  "rows": [
+    {
+      "p": 0.001,
+      "shots": 2048,
+      "initial_fallback": 0.62158203125,
+      "selected_fallback": 0.59814453125,
+      "tuned_fallback": 0.61376953125,
+      "learned_vs_initial": {
+        "first_only": 288,
+        "second_only": 240,
+        "pvalue": 0.040712843528253134,
+        "holm_pvalue": 0.20356421764126567
+      },
+      "initial_vs_tuned": {
+        "first_only": 250,
+        "second_only": 266,
+        "pvalue": 0.5090756147187263
+      },
+      "initial_mean_iterations": 11.9150390625,
+      "exact_export_shots": 64
+    },
+    {
+      "p": 0.002,
+      "shots": 2048,
+      "initial_fallback": 0.87255859375,
+      "selected_fallback": 0.865234375,
+      "tuned_fallback": 0.869140625,
+      "learned_vs_initial": {
+        "first_only": 127,
+        "second_only": 112,
+        "pvalue": 0.36518674528795586,
+        "holm_pvalue": 1.0
+      },
+      "initial_vs_tuned": {
+        "first_only": 117,
+        "second_only": 124,
+        "pvalue": 0.6992156357596094
+      },
+      "initial_mean_iterations": 14.19775390625,
+      "exact_export_shots": 64
+    },
+    {
+      "p": 0.003,
+      "shots": 2048,
+      "initial_fallback": 0.96826171875,
+      "selected_fallback": 0.96630859375,
+      "tuned_fallback": 0.96826171875,
+      "learned_vs_initial": {
+        "first_only": 43,
+        "second_only": 39,
+        "pvalue": 0.7406528413457827,
+        "holm_pvalue": 1.0
+      },
+      "initial_vs_tuned": {
+        "first_only": 0,
+        "second_only": 0,
+        "pvalue": 1.0
+      },
+      "initial_mean_iterations": 14.876953125,
+      "exact_export_shots": 64
+    },
+    {
+      "p": 0.004,
+      "shots": 2048,
+      "initial_fallback": 0.99169921875,
+      "selected_fallback": 0.99169921875,
+      "tuned_fallback": 0.99658203125,
+      "learned_vs_initial": {
+        "first_only": 11,
+        "second_only": 11,
+        "pvalue": 1.0,
+        "holm_pvalue": 1.0
+      },
+      "initial_vs_tuned": {
+        "first_only": 16,
+        "second_only": 6,
+        "pvalue": 0.052478790283203125
+      },
+      "initial_mean_iterations": 14.97314453125,
+      "exact_export_shots": 64
+    },
+    {
+      "p": 0.005,
+      "shots": 2048,
+      "initial_fallback": 0.99951171875,
+      "selected_fallback": 0.99853515625,
+      "tuned_fallback": 0.9990234375,
+      "learned_vs_initial": {
+        "first_only": 3,
+        "second_only": 1,
+        "pvalue": 0.625,
+        "holm_pvalue": 1.0
+      },
+      "initial_vs_tuned": {
+        "first_only": 0,
+        "second_only": 1,
+        "pvalue": 1.0
+      },
+      "initial_mean_iterations": 15.0,
+      "exact_export_shots": 64
+    }
+  ],
+  "checkpoint_sha256": "e0187b03bce6970b5a7b20562f85b62baeded967522431bcb4254caeaa1e2bd2",
+  "initialization": {
+    "T": 15,
+    "sharing": "struct",
+    "ms_scaling": 0.95,
+    "msg_clip": 20.0
+  },
+  "selected_step": 300,
+  "mean_fallback": {
+    "initial": 0.89072265625,
+    "selected": 0.883984375,
+    "tuned": 0.88935546875
+  },
+  "learning_improvement_percentage_points": 0.6738281249999978,
+  "learning_signal": false,
+  "final_test_data_used": false,
+  "m6_complete": false,
+  "scope": "Single-seed development initialization diagnostic; fresh cases remain separate from checkpoint selection. Initialization also sets the frozen hard-mining model. This is not a paired training-data isolation of initialization alone."
+}

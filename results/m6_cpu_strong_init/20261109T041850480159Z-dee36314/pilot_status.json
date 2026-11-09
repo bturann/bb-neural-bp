@@ -1,0 +1,12 @@
+{
+  "purpose": "cpu_development_learning_pilot",
+  "git_sha": "15c09adc6547ecf9f6e9a787e7e139e914a38b30-dirty",
+  "device": "cpu",
+  "gpu_seconds": 0,
+  "elapsed_s": 380.9817382500041,
+  "returncode": 0,
+  "stopping": "child_completed",
+  "final_test_data_used": false,
+  "m6_complete": false,
+  "timing_scope": "Profiled end-to-end CPU pilot; profiler overhead included"
+}

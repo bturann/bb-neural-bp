@@ -1,0 +1,238 @@
+{
+  "purpose": "independent_stage1_development_comparison",
+  "elapsed_s": 175.04901687504025,
+  "checkpoint": "checkpoints/m6_cpu_strong_init/20261109T041852095594Z-dee36314/best.pt",
+  "checkpoint_sha256": "e0187b03bce6970b5a7b20562f85b62baeded967522431bcb4254caeaa1e2bd2",
+  "training_seed": 1234,
+  "checkpoint_step": 300,
+  "points": [
+    {
+      "p": 0.001,
+      "seed": 20234,
+      "shots": 2048,
+      "tuned_factor": 1.0,
+      "decoders": {
+        "bp": {
+          "failures": 1550,
+          "fallback_demand": 0.7568359375,
+          "fallback_wilson": [
+            0.7377867769158749,
+            0.7749234012889471
+          ],
+          "mean_iterations": 12.42138671875
+        },
+        "bp_tuned": {
+          "failures": 1257,
+          "fallback_demand": 0.61376953125,
+          "fallback_wilson": [
+            0.5924884830754703,
+            0.6346245806540421
+          ],
+          "mean_iterations": 11.9775390625
+        },
+        "nbp": {
+          "failures": 1225,
+          "fallback_demand": 0.59814453125,
+          "fallback_wilson": [
+            0.5767463977986022,
+            0.6191751721998183
+          ],
+          "mean_iterations": 11.806640625
+        }
+      },
+      "torch_numba_checked_shots": 64,
+      "syndrome_sha256": "381a1462cbe28c8209fcdc7af815e9b507511af8168ee9e17ccf8972208d6fb7",
+      "paired_vs_tuned": {
+        "first_only": 274,
+        "second_only": 242,
+        "pvalue": 0.172288030831764,
+        "holm_pvalue": 0.689152123327056
+      }
+    },
+    {
+      "p": 0.002,
+      "seed": 20235,
+      "shots": 2048,
+      "tuned_factor": 1.0,
+      "decoders": {
+        "bp": {
+          "failures": 1933,
+          "fallback_demand": 0.94384765625,
+          "fallback_wilson": [
+            0.9330208974274267,
+            0.9530124713714007
+          ],
+          "mean_iterations": 14.45361328125
+        },
+        "bp_tuned": {
+          "failures": 1780,
+          "fallback_demand": 0.869140625,
+          "fallback_wilson": [
+            0.8538408669586297,
+            0.8830581724384148
+          ],
+          "mean_iterations": 14.2373046875
+        },
+        "nbp": {
+          "failures": 1772,
+          "fallback_demand": 0.865234375,
+          "fallback_wilson": [
+            0.8497595934102912,
+            0.8793415725539803
+          ],
+          "mean_iterations": 14.16748046875
+        }
+      },
+      "torch_numba_checked_shots": 64,
+      "syndrome_sha256": "8921955a8e0262e1dcc9b3a01a2647e149178668879b97964b71479d6d477890",
+      "paired_vs_tuned": {
+        "first_only": 127,
+        "second_only": 119,
+        "pvalue": 0.6554659776114768,
+        "holm_pvalue": 1.0
+      }
+    },
+    {
+      "p": 0.003,
+      "seed": 20236,
+      "shots": 2048,
+      "tuned_factor": 0.95,
+      "decoders": {
+        "bp": {
+          "failures": 2030,
+          "fallback_demand": 0.9912109375,
+          "fallback_wilson": [
+            0.9861493103402946,
+            0.9944332738309049
+          ],
+          "mean_iterations": 14.955078125
+        },
+        "bp_tuned": {
+          "failures": 1983,
+          "fallback_demand": 0.96826171875,
+          "fallback_wilson": [
+            0.959749392560972,
+            0.9750206851926863
+          ],
+          "mean_iterations": 14.876953125
+        },
+        "nbp": {
+          "failures": 1979,
+          "fallback_demand": 0.96630859375,
+          "fallback_wilson": [
+            0.9575797392132052,
+            0.9732914018240667
+          ],
+          "mean_iterations": 14.88818359375
+        }
+      },
+      "torch_numba_checked_shots": 64,
+      "syndrome_sha256": "4cfba75efafc27ff5331044cc034e6e872219789ac6f7eb143c80a6bb0b15238",
+      "paired_vs_tuned": {
+        "first_only": 43,
+        "second_only": 39,
+        "pvalue": 0.7406528413457827,
+        "holm_pvalue": 1.0
+      }
+    },
+    {
+      "p": 0.004,
+      "seed": 20237,
+      "shots": 2048,
+      "tuned_factor": 0.75,
+      "decoders": {
+        "bp": {
+          "failures": 2042,
+          "fallback_demand": 0.9970703125,
+          "fallback_wilson": [
+            0.9936227668087076,
+            0.9986566275116513
+          ],
+          "mean_iterations": 14.9912109375
+        },
+        "bp_tuned": {
+          "failures": 2041,
+          "fallback_demand": 0.99658203125,
+          "fallback_wilson": [
+            0.992961308806918,
+            0.9983433513343443
+          ],
+          "mean_iterations": 14.98876953125
+        },
+        "nbp": {
+          "failures": 2031,
+          "fallback_demand": 0.99169921875,
+          "fallback_wilson": [
+            0.9867463946217417,
+            0.9948109237285544
+          ],
+          "mean_iterations": 14.9794921875
+        }
+      },
+      "torch_numba_checked_shots": 64,
+      "syndrome_sha256": "e3380843317a881d1403f5e18a2fe52be861ffc8f0fea1b727945348326ddab6",
+      "paired_vs_tuned": {
+        "first_only": 15,
+        "second_only": 5,
+        "pvalue": 0.04138946533203125,
+        "holm_pvalue": 0.20694732666015625
+      }
+    },
+    {
+      "p": 0.005,
+      "seed": 20238,
+      "shots": 2048,
+      "tuned_factor": 0.85,
+      "decoders": {
+        "bp": {
+          "failures": 2048,
+          "fallback_demand": 1.0,
+          "fallback_wilson": [
+            0.9981277993949387,
+            1.0
+          ],
+          "mean_iterations": 15.0
+        },
+        "bp_tuned": {
+          "failures": 2046,
+          "fallback_demand": 0.9990234375,
+          "fallback_wilson": [
+            0.9964461805612286,
+            0.9997321504755168
+          ],
+          "mean_iterations": 14.99853515625
+        },
+        "nbp": {
+          "failures": 2045,
+          "fallback_demand": 0.99853515625,
+          "fallback_wilson": [
+            0.9957018982022999,
+            0.9995016986553488
+          ],
+          "mean_iterations": 14.9970703125
+        }
+      },
+      "torch_numba_checked_shots": 64,
+      "syndrome_sha256": "cd129f9c521a013ff76c1061b026569e3a48679a20468288c69f5707f454c518",
+      "paired_vs_tuned": {
+        "first_only": 2,
+        "second_only": 1,
+        "pvalue": 1.0,
+        "holm_pvalue": 1.0
+      }
+    }
+  ],
+  "mean_fallback_demand": {
+    "bp": 0.93779296875,
+    "bp_tuned": 0.88935546875,
+    "nbp": 0.883984375
+  },
+  "strict_improvement_points": 5,
+  "strict_regression_points": 0,
+  "absolute_reduction_percentage_points": 0.537109375,
+  "supports_cpu_optimization": false,
+  "decision_rule": "Predeclared development screen: lower grid-mean fallback demand and at least one improvement with paired McNemar Holm-adjusted p<.05 across 5 points; report all regressions.",
+  "final_test_data_used": false,
+  "m6_complete": false,
+  "scope": "Frozen single-seed checkpoint; 11-factor T=15 tuning on independent 1024 shots/p; fresh paired 2048 shots/p. Stage-1 demand only. CSV osd_rate=0 because no stage-2 calls are made; fallback demand=stage1_failures/shots. No two-stage LER or latency claim."
+}

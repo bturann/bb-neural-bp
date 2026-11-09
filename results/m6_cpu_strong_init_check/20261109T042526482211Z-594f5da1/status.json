@@ -1,0 +1,28 @@
+{
+  "purpose": "strong_initialization_fresh_development_check",
+  "git_sha": "15c09adc6547ecf9f6e9a787e7e139e914a38b30-dirty",
+  "stages": [
+    {
+      "name": "reuse_tuning",
+      "returncode": 0,
+      "elapsed_s": 0.988038957992103
+    },
+    {
+      "name": "comparison",
+      "returncode": 0,
+      "elapsed_s": 177.4193192080129
+    },
+    {
+      "name": "initial_reference",
+      "returncode": 0,
+      "elapsed_s": 223.8647804170032
+    }
+  ],
+  "elapsed_s": 223.9030137080117,
+  "wall_limit_reached_or_interrupted": false,
+  "complete": true,
+  "checkpoint_sha256": "e0187b03bce6970b5a7b20562f85b62baeded967522431bcb4254caeaa1e2bd2",
+  "gpu_seconds": 0,
+  "final_test_data_used": false,
+  "m6_complete": false
+}

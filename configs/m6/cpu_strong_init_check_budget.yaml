@@ -1,0 +1,5 @@
+purpose: strong_initialization_fresh_development_check
+wall_seconds: 360
+interrupt_grace_seconds: 15
+kill_grace_seconds: 5
+include_initial_reference: true
