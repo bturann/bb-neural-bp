@@ -204,3 +204,19 @@ Local development evidence is under `results/m6_development/`; preflight receipt
 are under `results/m6_preflight/`. These short checks use distinct development
 seeds and establish mechanics only. They are not the three main models or final
 accuracy/latency evidence.
+
+## Bounded CPU learning pilot
+
+```sh
+BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib .venv/bin/python -u scripts/m6_cpu_pilot.py
+BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib .venv/bin/python scripts/m6_summarize_cpu_pilot.py <printed-pilot-bundle-directory>
+```
+
+This development pilot uses the full six-round circuit and T=15 structural model,
+batch 8, up to 500 updates, a 125-update curriculum, and 256 fixed validation shots
+at each p. It stops the training process after ten minutes, allowing a short cleanup
+interval. Logs, selected/continuation checkpoints, loss curves, source hashes and a
+CPU profile are retained. The summary replays the selected checkpoint and compares
+it with the initial model and the coarse development tuning table. Profiled timing
+includes instrumentation overhead; batch-8 costs do not estimate batch-32 costs.
+This pilot uses separate development streams and cannot establish M6 acceptance.

@@ -502,3 +502,70 @@ M5 passed: `results/m5/20261030T220645511485Z-3a224cbf`; wins 4/7, best step 100
   the slow checks. Shell entry points pass `bash -n`; the source whitespace check
   is clean. Retained CSV artifacts use Python csv.writer's CRLF line endings,
   which Git's global whitespace check flags. Their executed bytes were preserved.
+
+## CPU learning pilot — November 8, 2026 (started)
+
+- User authorized a CPU pilot after discussing the main run's compute cost.
+  `configs/m6/cpu_pilot.yaml` retains six-round bb72, the five circuit p values,
+  structural T=15 and parity loss. It uses batch 8, up to 500 updates, a 125-update
+  curriculum, validation every 50 updates on 256 shots/p, and patience 8.
+- The existing coarse three-factor development tuning table is a development
+  comparator only. The main full baseline sweep and experiment matrix are unchanged.
+  Training entropy is [1234, 704]; fresh fixed validation seeds are 13234–13238,
+  disjoint from tuning, previous development validation and final-test seeds.
+- `scripts/m6_cpu_pilot.py` limits the child to 600 wall-clock seconds, then sends
+  an interrupt with a 15-second cleanup allowance and retains checkpoints and
+  logs. The resolved config, budget, source hashes, console output, cProfile data
+  and final exit status are retained. Timings include profiler overhead. GPU use
+  is zero; no final-test data or two-stage performance experiment is involved.
+- Pilot bundle: `results/m6_cpu_pilot/20261109T024448577043Z-832e804d/`.
+  This is a development learning/profiling run, not M6 acceptance.
+
+### CPU pilot outcome — completed
+
+- Completed all **500 updates** on one CPU thread in **373.94 s** (6 min 14 s),
+  including imports, setup, validation, plotting and cProfile instrumentation.
+  GPU use was zero. The wall-clock limit did not trigger. All logged losses were
+  finite; selected and final checkpoints are both at step 500.
+- On 256 fixed validation shots at each of five p values, mean fallback demand
+  decreased from **94.84375% to 88.828125%** (6.015625 percentage points).
+  The coarse tuned development comparator was **90.78125%**. Selected neural
+  weights had strictly lower fallback at four p values and tied at p=.005.
+  The initial model improved at the same four points. No uniform improvement
+  or final held-out performance claim is made.
+
+  | p | Initial neural | Selected neural | Coarse tuned BP |
+  |---|---|---|---|
+  | .001 | 78.515625% | 64.0625% | 64.84375% |
+  | .002 | 96.484375% | 85.546875% | 91.015625% |
+  | .003 | 99.609375% | 96.09375% | 98.828125% |
+  | .004 | 99.609375% | 98.4375% | 99.21875% |
+  | .005 | 100% | 100% | 100% |
+
+- Independently reloaded the selected checkpoint with each p's current priors,
+  reproduced **all 1,280** saved selected validation outcomes, and recomputed the
+  initialized model on the identical shots. Replayed flags and the derived summary
+  are retained as `replayed_validation.npz` and `pilot_summary.json` in the bundle.
+- The median batch-8 update interval excluding validation boundaries was **0.562 s**
+  (10th–90th percentile 0.547–0.660 s). This includes sampling, mining, optimization
+  and profiler overhead. It is not an estimate for the main batch-32 experiment.
+- The profile recorded 75.91 s in multi-loss evaluation and 110.42 s in backward
+  propagation, together about half the elapsed run. All neural forward calls,
+  including frozen mining, took 105.59 s; validation inference took 69.32 s.
+  Nested profile entries must not be added as disjoint totals. These observations
+  identify useful targets for later CPU optimization; no optimization was applied.
+- Selected checkpoint SHA-256:
+  `2861bf998133848ebea62f97732037ac60f81571569ec9cd9f249212d6f15770`.
+  PNG/PDF curves were visually inspected. The loss varies with the sampled p;
+  the fixed validation curve, rather than raw loss alone, establishes pilot progress.
+- This is a single-seed, repeatedly selected development result against a coarse
+  tuning table. Paired p-values in the summary are exploratory after selection.
+  Main full baseline tuning, three-seed training, final accuracy and latency remain
+  outstanding. Main configs and final-test seeds were not changed or consumed.
+- The trainer's legacy smoke output says `M5 NOT ACCEPTED` and writes `m5_gate.json`
+  because smoke runs cannot establish an acceptance gate. This does not reverse
+  the earlier M5 pass and does not indicate a CPU execution failure.
+- The run sampled 4,856 candidate shots and optimized on 4,000 selected hard shots;
+  no mining batch exhausted its draw cap. Full suite before the pilot checkpoint
+  commit: **103 passed** (31.84 s). Research implementation and reference files
+  are unchanged by this pilot.
