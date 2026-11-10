@@ -1,0 +1,44 @@
+{
+  "reviewed_parent_commit": "dcd9aac0f903664a53ef9bab942834d4d531ec63",
+  "reachable_commits": 26,
+  "exact_match": {
+    "known_credential_values_checked": 1,
+    "reachable_file_blobs": 2087,
+    "expanded_archive_members": 5580,
+    "expanded_bytes": 16976912198,
+    "tracked_working_tree_checked": true,
+    "nonblob_objects": 434,
+    "ref_names_checked": true,
+    "matches": 0
+  },
+  "pattern_scanner": {
+    "name": "Gitleaks",
+    "version": "8.30.1",
+    "public_distribution_sha256": "b40ab0ae55c505963e365f271a8d3846efbc170aa17f2607f13df610a9aeb6a5",
+    "download_source": "https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/",
+    "checksums_verified": true,
+    "default_rules": true,
+    "archive_depth": 2,
+    "decode_depth": 3,
+    "baseline_suppression": false,
+    "repository_or_inline_allowlist_suppression": false,
+    "history_alerts": 101,
+    "tracked_tree_alerts": 101,
+    "all_alerts_verified_as_named_source_sha256": true,
+    "unresolved_alerts": 0
+  },
+  "credential_file_paths_in_history": 0,
+  "sensitive_ignore_examples_checked": 15,
+  "existing_ignored_but_tracked_checkpoint_files": 24,
+  "software_tests_passed": 142,
+  "software_test_seconds": 30.33,
+  "secret_values_or_secret_fingerprints_in_report": false,
+  "raw_reports_in_repository": false,
+  "scanner_installed_as_project_dependency": false,
+  "push_performed": false,
+  "limitations": [
+    "Exact matching covers locally readable known credentials, not unknown rotated values or macOS Keychain.",
+    "Pattern scanning is not an absolute guarantee; rescan changes before future pushes.",
+    "The history and tree were scanned at the recorded parent; the security-only diff is separately scanned before commit."
+  ]
+}

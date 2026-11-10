@@ -1901,3 +1901,33 @@ M5 passed: `results/m5/20261030T220645511485Z-3a224cbf`; wins 4/7, best step 100
   corrections and one fallback request, using saved development cases only.
 - Full software gate for this commit: **142 passed in33.07 s**, including slow
   checks. No new research training, decoding dataset or timing study was run.
+
+### User-requested IBM/token check before GitHub push
+
+- User explicitly requested checking IBM and any other keys/tokens before pushing.
+  No push, remote creation, account login or credential-validation API call was
+  performed. Actual credential values were never printed, saved in the audit,
+  copied into this repository or sent to an external service.
+- Located the home-directory Qiskit account configuration outside Git and compared
+  its one credential value in memory against all2,087 reachable Git file blobs
+  across26 local commits, plus tracked working-tree contents. Checked raw,
+  URL/base64/hex forms and decompressed5,580 NPZ/PT members (about16.98GB total
+  expanded bytes). No exact matches. This does not read macOS Keychain or cover
+  unknown rotated credentials by exact matching.
+- Downloaded official Gitleaks8.30.1 into temporary storage with published SHA-256
+  verification; no project dependency added. Offline history and tracked-tree
+  scans used stock rules, archives/decode support, redacted output and no local
+  baseline/inline allowlist suppression. Each reported101 generic API-key alerts.
+  Independently verified **every alert** as an actual named source-file SHA-256
+  checksum, with **zero unresolved findings**. No data/hash manifest was edited.
+- Hardened `.gitignore` for local IBM/cloud/dotenv/key files. Fifteen sensitive
+  path examples are ignored; placeholder example filenames remain permitted.
+  No credential paths are tracked. The ignored-but-tracked files are24 existing
+  checkpoint/config artifacts, which were scanned and retained. The first broad
+  ignore assertion was corrected to distinguish those pre-existing artifacts.
+- Scope/limits are recorded in `docs/pre_push_secret_review.md`. Raw scanner
+  reports and the downloaded scanner remain outside the repository. No actual
+  secret values or secret hashes are included in the committed summary.
+- Also exact-matched the known credential against434 non-blob Git objects and
+  ref names, covering commit messages, tags and tree metadata; no matches.
+  Full software gate after ignore-rule hardening: **142 passed in30.33 s**.
