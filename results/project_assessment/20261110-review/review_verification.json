@@ -1,0 +1,10 @@
+{
+  "input_hashes_verified": 9,
+  "local_assessment_links_valid": true,
+  "empirical_tail_checks_verified": 4,
+  "new_experimental_cases": 0,
+  "assessment_sha256": "d7c6a43493fc8773507ac7ea29291abf58e7db9639f35ec97222ee86a81b72eb",
+  "recommendation": "Hold current expansion; original headline not established; preserve narrow result and reassess novelty/strong baselines",
+  "original_matrix_changed": false,
+  "benchmark_launched": false
+}

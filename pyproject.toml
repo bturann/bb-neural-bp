@@ -6,6 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "bbnbp"
 version = "0.1.0"
 description = "Reproducible learned min-sum decoding experiments for bivariate bicycle codes"
+license = {file = "LICENSE"}
 requires-python = ">=3.11,<3.12"
 dynamic = ["dependencies"]
 

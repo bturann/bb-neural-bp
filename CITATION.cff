@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: >-
+  If you use this exploratory research archive, cite this software and the
+  relevant methods and dependencies listed in ATTRIBUTION.md. The archive
+  does not establish an end-to-end latency or accuracy advantage.
+type: software
+title: "Learned BP for bivariate bicycle codes: exploratory research archive"
+version: 0.1.0
+authors:
+  - family-names: Turan
+    given-names: Berkay Barış
+license: MIT
+abstract: >-
+  Reproducible experiments on learned min-sum belief propagation with BP-OSD
+  fallback for bivariate bicycle codes. Includes saved configurations, seeds,
+  model snapshots, paired outcomes, audits, negative results and a feasibility
+  assessment. Development is paused. Modest first-stage gains were observed;
+  preserved logical accuracy and an end-to-end latency advantage over strong
+  controls were not established.

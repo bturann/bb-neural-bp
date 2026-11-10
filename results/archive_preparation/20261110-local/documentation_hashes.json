@@ -1,0 +1,12 @@
+{
+  "README.md": "42b204c9d8038717c19a9fa8f4f4adc9860aa25dea3a42758698fae6aee6c49d",
+  "ATTRIBUTION.md": "4986752aa1261d3427d6100d37a297796eabb3a0e700798a35ce9214c8f404bc",
+  "CITATION.cff": "80fdda472e411cc8488af523b15882bd2cc0690635a2cbb145a569a20cb3ba9d",
+  "LICENSE": "fb2ee071f2ca35d20ee386e954a6f398ac8f52ba571a0baafcb4fdac1e06cc89",
+  "pyproject.toml": "e460178044ecc3255ef205579911bd1587a7440e2c43489fd5beb1b59b23ad39",
+  "docs/archive_guide.md": "f6120f1581d27862f804ba210ff4b39ed0b1e89e8c651e6937b3c0973860f19f",
+  "docs/project_viability_assessment.md": "ddb442062cc249c6425dd7ddeb88bc48b061639a0461f06e8d97cdf6d1cf5e66",
+  "docs/experiment_history.md": "f9e6a801677f7ab4e3b176876a811d927b3a7b82d596abcf9efe10b763325f67",
+  "docs/m6_frozen_cycle100.md": "5a02302aa34dcacf72501a0fe92810114d9acd39c39a901c71ff7b30462e377d",
+  "docs/m6_scaling_selector.md": "c8597052e1fa70f7ac05e6c2bec693efa2b999e1afb060eb41c07f182985333c"
+}

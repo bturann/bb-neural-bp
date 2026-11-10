@@ -1,0 +1,25 @@
+{
+  "purpose": "Local research archive preparation; no upload or new research experiment",
+  "full_software_tests_passed": 142,
+  "software_test_seconds": 33.07,
+  "slow_checks_included": true,
+  "local_publication_links_checked": 48,
+  "citation_and_package_metadata_consistent": true,
+  "project_license": "MIT; dependency licenses remain separate",
+  "frozen_model_sha256": "48591637735919bb3e12febe8793eca7f9a81e8e23584dfe53a07d9f6b098c3d",
+  "original_review_snapshot_preserves_recorded_hash": true,
+  "checked_history_commits": 25,
+  "history_pattern_check": "Selected high-confidence AWS/GitHub/private-key patterns only; no matches; not a comprehensive secret audit",
+  "tracked_file_at_or_above_100_mib": false,
+  "frozen_example": {
+    "correction_shape": [
+      8,
+      16164
+    ],
+    "fallback_requests": 1,
+    "source": "Eight already saved development cases; functional verification only"
+  },
+  "github_remote_created": false,
+  "pushed": false,
+  "new_research_runs": 0
+}

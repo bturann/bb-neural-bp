@@ -1,454 +1,112 @@
 # Learned BP for bivariate bicycle codes
 
-Research implementation of a neural min-sum first stage with BP-OSD fallback.
-The target is fewer fallback calls at preserved logical error performance, measured
-against ordinary and tuned-scaling BP. M0–M5 acceptance checks are complete;
-the main circuit-level experiments and final performance claim remain pending.
+**Status: exploratory research archive; development paused after feasibility review.**
 
-The November 9 CPU auxiliary study found an independent gain at equal 100-iteration
-budgets. Learned100 requested fallback on 443/4,096 cases at p=.001 (10.82%),
-versus the validation-selected ordinary control's 495/4,096 (12.08%). At p=.003,
-the counts were 2,518/4,096 (61.47%) versus 2,654/4,096 (64.79%). Both primary
-paired differences passed their two-point Holm correction, and all three training
-seeds improved in direction at both points. The source model took about 36 minutes
-on CPU; cycling its learned 15-step schedule to 100 inference iterations adds no
-training. The confirmation audit passed.
+This repository studies a small neural min-sum belief-propagation (BP) first stage
+with BP-OSD fallback for bivariate bicycle quantum error-correcting codes.
+Modest first-stage improvements were observed. An end-to-end advantage in latency
+and preserved logical accuracy over strong controls was **not established**.
+This is a research prototype, not a validated commercial decoder or a completed
+lab-to-market product. The original main M6/E1/E2 and M7 experiments are incomplete.
 
-The BP100→learned30 cascade lost to ordinary BP130 and is retained as a negative
-result. The audited full-pipeline learned100 sample had 20/8,192 logical failures
-versus 24/8,192 for its ordinary control at p=.001, and 177/1,024 versus 181/1,024
-at p=.003. These differences are inconclusive and do not establish LER equivalence.
-In the 256-case uncached CPU pilot, high-p mean latency was 301 ms versus 355 ms
-for CPP100 and 344 ms for tuned native100, with favorable nominal paired mean
-intervals; low-p and p99 comparisons remained inconclusive. Main M6/E1/E2 remain
-incomplete. See the
-[cycle100 evidence](results/m6_cycle100_study/20261109T114431070320Z/summary.json)
-and [audited report](results/m6_aux_report/20261109T135141505262Z/report.md).
-The [frozen CPU inference example](docs/m6_frozen_cycle100.md) loads the tested
-100-step rule from its original 15-step source parameters.
+Start with the [project assessment](docs/project_viability_assessment.md) and
+[archive guide](docs/archive_guide.md). The guide maps claims to their evidence
+and distinguishes completed studies from proposals that were never run.
 
-The separately approved CPU factor-selector study is complete and negative.
-After 64,000 unfiltered training cases and validation-only selection, its frozen
-syndrome-to-BP30 predictor requested fallback on 1,779/4,096 fresh cases versus
-fixed BP30's 1,774 at p=.001, and 3,687 versus 3,677 at p=.003. Neither paired
-comparison established a gain. The predeclared gate stopped additional selector
-accuracy/timing work. Both audits passed; original studies remain intact. See the
-[selector report](results/m6_scaling_selector/20261109-approved/report/report.md)
-and [reproduction/inference guide](docs/m6_scaling_selector.md).
+## Results and limits
 
-The [learned100 evaluation plan](results/m6_cycle100_planning/20261110T015309813879Z/report.md)
-estimates about 1.27 CPU hours for 2,000 measured paired cases per p, or 8.91 hours
-for the original 20,000-case regime, including warmups and a 25% planning cushion.
-Small samples cannot promise decisive p99 or accuracy evidence. The plan includes
-fixed controls, multiplicity rules and accuracy-sensitivity calculations; no new
-benchmark or training was launched, and the accuracy tolerance remains unset.
-These runtime options concern the frozen auxiliary checkpoint; even the larger
-option does not by itself complete the original main training/evaluation matrix.
+On independent BB72 circuit-level cases with a 100-iteration cap, the frozen
+learned model requested fallback less often than the validation-selected ordinary
+control:
 
-## Setup
+| Physical noise p | Ordinary100 fallback requests | Learned100 fallback requests |
+|---|---:|---:|
+| .001 | 495 / 4,096 (12.08%) | 443 / 4,096 (10.82%) |
+| .003 | 2,654 / 4,096 (64.79%) | 2,518 / 4,096 (61.47%) |
+
+Both primary paired differences passed their declared two-point Holm correction.
+All three training seeds improved in direction; the additional low-noise seed
+comparisons were not individually significant after their declared correction.
+These are first-stage request counts, not speedups or full-pipeline error rates.
+
+- The [audited CPU report](results/m6_aux_report/20261109T135141505262Z/report.md)
+  contains paired comparisons, logical errors, actual timing measurements,
+  uncertainty intervals and negative controls. Timing pilots used 256 measured
+  cases per noise point; p99 superiority and LER equivalence remain unproven.
+- The BP100-to-learned30 cascade lost to its stronger ordinary control.
+- The [CPU scaling-selector study](results/m6_scaling_selector/20261109-approved/report/report.md)
+  found no improvement over fixed BP30 on fresh cases at either noise rate.
+  Its predeclared gate stopped additional selector accuracy/timing work.
+- The [sample-size/runtime analysis](results/m6_cycle100_planning/20261110T015309813879Z/report.md)
+  is planning from saved data. Its hypothetical simulations are not new decoder
+  observations. Neither proposed follow-up benchmark was launched.
+- BB144 scaling and the full original experiment matrix were not demonstrated.
+  Main final-test streams remain reserved and unused in the reported studies.
+
+Positive, negative and inconclusive outcomes are retained. No experiment is
+queued by this archive. [NOTES.md](NOTES.md) records development decisions,
+failed attempts, protocol deviations, gates and verification results.
+
+## Install and verify
+
+Use Python 3.11 and the pinned environment from the repository root:
 
 ```sh
 uv venv --python 3.11 .venv
 uv pip install --python .venv/bin/python -r requirements.txt -c environment.lock.txt
 uv pip install --python .venv/bin/python --no-deps -e .
-MPLCONFIGDIR=.cache/matplotlib .venv/bin/python scripts/m0_verify_apis.py
-.venv/bin/python -m pytest -q
+BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 .venv/bin/python -m pytest -q
 ```
 
-See `NOTES.md` for milestone status, API findings, and recorded deviations.
-The unchanged handoff is preserved in `docs/implementation_spec.md`.
-
-M0–M2 are complete: environment/API verification, both BB code constructions and
-their symmetries, code-capacity sampling, BP/BP-OSD baselines, scaling tuning, and
-paired E0 evaluation. M3 passed with the specified OSD-CS order-7 baseline; the
-earlier OSD-0 failed development check remains recorded. M4's neural model and matching
-compiled CPU inference passed their acceptance checks. See `NOTES.md` for the
-latest full-suite test count and evidence, including the slow checks.
-
-## Code-capacity baseline experiment (E0)
-
-```sh
-bash scripts/run_experiment.sh
-```
-
-This runs the full scaling sweep on separate validation samples, then evaluates
-ordinary and tuned BP, both alone and with BP-OSD fallback, on paired development
-shots. It writes the sweep, its config, and a timestamped evaluation directory under
-`results/e0-<timestamp>/`. Each invocation creates a fresh bundle, including a new
-tuning table, so the command can be run again without overwriting evidence. Use
-`--config <path> --output-root <directory>` to customize the run. Final-test seeds are
-reserved for later milestones; E0 uses a separate development seed range.
-
-Every evaluation includes the resolved YAML, exact-schema CSV, paired per-shot
-fallback flags, and diagnostic counts of actual internal OSD executions. `osd_rate`
-is actual stage-2 calls divided by shots. For standalone BP it is zero; its potential
-fallback demand is `stage1_failures / shots`. Standalone LER counts nonconvergence
-as failure. With several decoders, stopping occurs at a shared batch boundary when
-all reach the logical-failure target, or at the configured maximum shot count.
-
-Latency is disabled in E0. The primary latency comparison, including compiled neural
-inference, belongs to M6.
-
-Set `BBNBP_CACHE_DIR` to control logical-operator caching (default `~/.cache/bbnbp`).
-The experiment script uses a repository-local cache so it also works in a restricted
-workspace. The supplied `reference/` files are immutable copies of the handoff.
-
-## Circuit-level development check (M3)
-
-```sh
-BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib OMP_NUM_THREADS=1 .venv/bin/python scripts/m3_validate_circuit.py
-```
-
-This builds six total syndrome-extraction cycles using QUITS, with noisy preparation,
-final measurements, gates, and idle qubits, and both bases of detectors. It preserves
-the order of every DEM fault column. Circuit-level `basis` denotes the stored and
-measured logical basis; code-capacity `basis` denotes the error basis.
-
-Each invocation writes a new directory under `results/m3/`, including the actual
-circuits, DEMs, resolved configuration, CSV, metadata, and gate report. The M3 config
-uses the cheaper OSD-0 decoder for development; the base experiment retains OSD-CS
-order 7. Verification samples use a separate recorded RNG stream.
-
-The first development run had 20/2048 logical failures at p=0.001 (0.98%, Wilson
-95% interval 0.63%–1.50%) and failed the low-error gate. The command returns nonzero
-on this gate failure and records it. These OSD-0 results make no claim about neural performance.
-
-The authorized stronger-baseline check uses the same circuit and sample streams:
-
-```sh
-BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib OMP_NUM_THREADS=1 .venv/bin/python -u scripts/m3_validate_order7.py
-```
-
-Its predeclared plan starts with 2,048 paired low-p shots, extends to 4,096 and
-8,192 only if needed, and runs the rest of the grid only after the low-p check
-passes. Each segment, per-shot logical outcomes, pairing checks, and gate decision
-are saved in a new `results/m3/order7-<timestamp>/` bundle. These are exploratory
-development confidence checks; final statistical claims require the later experiments.
-
-The stronger baseline passed at 2,048 shots: 8 logical failures at p=0.001 (0.39%,
-95% Wilson interval 0.20%–0.77%), with identical circuit, DEM, and stage-1 fallback
-flags to the OSD-0 reference. The full grid is monotonic and exact labels were
-verified on 50,000 samples. Evidence is in
-`results/m3/order7-20261030T212238643481Z/m3_gate.json`.
-
-## Neural decoder readiness (M4)
-
-```sh
-BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 .venv/bin/python scripts/m4_verify_model.py
-```
-
-`NeuralMinSum` supports scalar, exact code-capacity edge-orbit, structural, and full
-edge weights. It initializes to min-sum weights, returns differentiable probability
-tensors for every unrolled iteration, and freezes corrections at first convergence
-during inference. `model.export_cpu()` creates an independent Numba decoder snapshot
-with the same stopping and clipping rules.
-
-The configured circuit model has 1,455 parameters (96 structural message groups,
-15 iterations). Circuit temporal features use earliest affected detector rounds,
-not unique physical gate times. CPU tests cover exact initialization decisions,
-gradients, padding, edge cases, and trained-like PyTorch/Numba agreement on 10,000
-shots. The readiness command saves an explicitly **untrained** smoke result with
-configuration, source hashes, and per-shot corrections.
-
-## Streamed training and validation (M5)
-
-```sh
-BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 .venv/bin/python -u -m bbnbp.train --config configs/cc_bb72_m5_cpu.yaml
-```
-
-The CPU acceptance run streams fresh samples, filters the initial BP's hard cases,
-and trains orbit-tied min-sum with the parity multi-loss. Validation uses 20,000
-fixed, paired shots per p and the independently tuned scaling table at the same T.
-The gate requires improvement at four of seven p values. Final-test seeds are not
-used. The process returns nonzero if an acceptance run fails its gate.
-
-Results, scalar event logs, JSONL history, and loss curves are saved under
-`results/m5/<run_id>/`; `best.pt`, `last.pt`, and their config are saved under
-`checkpoints/<run_id>/`. To resume an interrupted run with the exact same config,
-add `--resume checkpoints/<run_id>/last.pt`. Parameter-only restoration preserves
-the evaluation problem's current prior probabilities. Checkpoints include generator,
-optimizer, and scheduler state. The TensorBoard scalar format is written directly;
-no TensorBoard package is required to train. A reader/viewer is not installed here.
-
-`configs/cc_bb72_m5_smoke.yaml` is a short, separately labelled mechanics check.
-It cannot establish M5 acceptance.
-
-The completed acceptance run selected step 1,000 and stopped at step 3,000. On the
-fixed 20k-shot-per-p validation grid, Neural BP beat tuned BP at four of seven noise
-rates (p=0.02–0.05); higher-noise points were worse. Mean fallback demand was
-15.184% vs 15.286%. This passes M5's screening rule, with a modest mean improvement.
-The final test data have not been used and equal two-stage LER/latency is untested.
-
-Evidence: `results/m5/20261030T220645511485Z-3a224cbf/m5_gate.json` and
-`checkpoint_replay.json`. The selected weights are
-`checkpoints/20261030T220645511485Z-3a224cbf/best.pt`; use `last.pt` only to continue
-the final training state. An artifact audit reproduced every saved outcome on all
-140,000 validation shots using the selected weights. M6 is in progress.
-
-## Circuit training and paired evaluation (M6, in progress)
-
-The main configs preserve bb72, six rounds, structural sharing, T=15, three training
-seeds (1234–1236), and OSD-CS order 7. Training uses a 5,000-step high-to-low
-curriculum, then a uniform p-grid mixture, batch 32, at most 20,000 updates, and
-20,000 fixed validation shots per p. Selection uses the canonical compiled CPU
-decoder; eight validations without improvement stop training. M6 has not passed.
-
-Run the independent full baseline sweep first, then one training job per seed:
-
-```sh
-bash scripts/run_experiment.sh m6-tune
-bash scripts/run_experiment.sh m6-train --device cuda --seed 1234
-bash scripts/run_experiment.sh m6-train --device cuda --seed 1235
-bash scripts/run_experiment.sh m6-train --device cuda --seed 1236
-```
-
-Use `--device mps` for local Apple GPU jobs. Deterministic gather-and-sum reductions
-avoid unsupported MPS scatter backward operations; the parity loss runs on CPU
-with differentiable transfers. No determinism checks are disabled. The Slurm array
-template is `scripts/m6_gpu.slurm`; set the site's partition/account and install the
-pinned environment before submitting it. No cluster jobs have been submitted here.
-Each training command has a four-hour wall-clock deadline and tracks cumulative
-GPU budget across resumes. A budget-stopped run remains incomplete and cannot be
-fed to E1/E2 through the launcher. Resume adds `--resume <run>/last.pt`.
-
-At the measured local MPS rate, all 20,000 optimizer updates would require at least
-9.2 hours per seed before mining and validation. Early stopping may finish sooner;
-otherwise a faster accelerator or explicit approval for a larger per-run budget
-is required. The four-hour cap is not an experimental success criterion.
-
-After all three training reports are complete, use the selected checkpoints:
-
-```sh
-bash scripts/run_experiment.sh e1 --checkpoint <seed1234>/best.pt --checkpoint <seed1235>/best.pt --checkpoint <seed1236>/best.pt
-bash scripts/run_experiment.sh e2 --checkpoint <seed1234>/best.pt --checkpoint <seed1235>/best.pt --checkpoint <seed1236>/best.pt
-.venv/bin/python -m bbnbp.m6_report --e1 <E1-output-directory> --e2 <E2-output-directory> --output results/m6/summary.json
-```
-
-E1 pairs all five decoders on the same held-out shots until every decoder reaches
-100 logical failures or 10 million shots. E2 uses 1,000 warmups and 20,000 measured
-shots at each of p=0.001 and 0.003, single thread, batch one, compiled Numba versus
-ldpc C++. Run it on an otherwise idle machine. It saves total, Stage-1, fallback,
-and overhead timing samples, with mean/p50/p99/max in the CSV. Fallback time includes
-the fresh BP+OSD call. Timing samples use a separate deterministic sampling stream;
-warmups do not enter reported counts. GPU throughput is a separate Stage-1 regime:
-
-```sh
-BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib .venv/bin/python scripts/m6_throughput.py --device cuda --checkpoint <seed1234>/best.pt --checkpoint <seed1235>/best.pt --checkpoint <seed1236>/best.pt
-```
-
-The summary reports mean and sample standard deviation of fallback rate across
-training seeds. LER counts and Wilson intervals remain separate per model because
-their shared test shots cannot be pooled as independent observations.
-
-Local development evidence is under `results/m6_development/`; preflight receipts
-are under `results/m6_preflight/`. These short checks use distinct development
-seeds and establish mechanics only. They are not the three main models or final
-accuracy/latency evidence.
-
-## Bounded CPU learning pilot
-
-```sh
-BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib .venv/bin/python -u scripts/m6_cpu_pilot.py
-BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib .venv/bin/python scripts/m6_summarize_cpu_pilot.py <printed-pilot-bundle-directory>
-```
-
-This development pilot uses the full six-round circuit and T=15 structural model,
-batch 8, up to 500 updates, a 125-update curriculum, and 256 fixed validation shots
-at each p. It stops the training process after ten minutes, allowing a short cleanup
-interval. Logs, selected/continuation checkpoints, loss curves, source hashes and a
-CPU profile are retained. The summary replays the selected checkpoint and compares
-it with the initial model and the coarse development tuning table. Profiled timing
-includes instrumentation overhead; batch-8 costs do not estimate batch-32 costs.
-This pilot uses separate development streams and cannot establish M6 acceptance.
-
-## Independent check of the CPU pilot
-
-```sh
-BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib .venv/bin/python -u scripts/m6_check_cpu_pilot.py
-BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib .venv/bin/python scripts/m6_audit_cpu_check.py <printed-check-bundle-directory>
-```
-
-This freezes the selected pilot checkpoint, tunes all 11 BP scaling factors at T=15
-on 1,024 new shots per p, then compares all three Stage-1 decoders on 2,048 different
-paired shots per p. The study has a 15-minute wall-clock cap. Raw cases, per-shot
-nonconvergence/logical flags, configs, source hashes, the tuning table, and a copy of
-the checkpoint are retained. CSV `osd_calls` and `osd_rate` are zero because this
-check makes no Stage-2 calls; potential fallback demand is `stage1_failures/shots`.
-
-The completed independent check found mean neural fallback demand of 88.574% versus
-88.750% for tuned BP. Neural BP improved at three p values, worsened at one, and
-tied at one. None of the five paired differences passed Holm correction at .05.
-This did not meet the predeclared screen for proceeding with CPU optimization.
-The earlier pilot demonstrated learning relative to initialization; a clear
-advantage over the stronger tuned baseline remains unestablished.
-
-## Stronger-initialization diagnostic
-
-```sh
-BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib .venv/bin/python -u scripts/m6_cpu_pilot.py --config configs/m6/cpu_strong_init.yaml --output-root results/m6_cpu_strong_init --checkpoint-root checkpoints/m6_cpu_strong_init
-```
-
-The .95-initialized CPU variant uses fresh training/validation streams and the
-existing 11-factor tuning table. Its matched untrained reference distinguishes
-the starting point from learned changes. The completed 500-update run selected
-step 300. On a new 10,240-shot paired comparison, fallback demand was 88.398% for
-the selected model, 89.072% for its untrained .95 reference, and 88.936% for tuned BP.
-All five observed differences versus tuned BP favored the selected model, but none
-passed Holm correction. The learning contrast also did not pass corrected .05.
-These are development findings; main configs and final-test seeds are unchanged.
-
-`scripts/m6_check_cpu_pilot.py --reuse-tuning <table.csv>` validates the original
-table's resolved-config sidecar and row hashes, so independent evaluation configs
-can reuse valid tuning without changing its provenance. The strong-initialization
-check budget also enables `scripts/m6_initialization_reference.py`. The recorded
-check config points to the saved selected checkpoint; a new training invocation
-creates a new checkpoint path that must be set in its comparison config.
-
-## Controlled parity-versus-BCE loss pilot
-
-Run the two training commands concurrently, each on one CPU thread:
-
-```sh
-BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib .venv/bin/python -u scripts/m6_cpu_pilot.py --config configs/m6/cpu_loss_parity.yaml --output-root results/m6_cpu_loss_ablation/parity --checkpoint-root checkpoints/m6_cpu_loss_ablation/parity &
-BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib .venv/bin/python -u scripts/m6_cpu_pilot.py --config configs/m6/cpu_loss_bitwise.yaml --output-root results/m6_cpu_loss_ablation/bitwise --checkpoint-root checkpoints/m6_cpu_loss_ablation/bitwise &
-wait
-```
-
-Pass the printed bundle paths to the controlled comparison and audit:
-
-```sh
-BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 .venv/bin/python scripts/m6_loss_ablation.py --parity <parity-bundle> --bitwise <bitwise-bundle>
-BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 .venv/bin/python scripts/m6_audit_loss_ablation.py <comparison-bundle>
-```
-
-Both arms use the same .95 initialization, 500-update budget, frozen mining model,
-training stream, and checkpoint-selection cases. Per-update input hashes and ending
-generator states must match before evaluation. Fresh cases are shared by ordinary
-BP, tuned BP, matched untrained neural BP, and both selected learned models. The
-primary paired loss contrast uses Holm correction over five p values; secondary
-families each correct both losses across all five values. Main final-test data are
-reserved. The complete study is bounded to 15 minutes, with per-stage limits.
-
-The completed pilot found fallback demand of 88.350% for parity and 88.525% for BCE,
-versus 88.467% for matched initialization and 88.672% for tuned BP. No primary or
-secondary point passed corrected .05. This is insufficient evidence to favor a
-different loss or claim useful extra learning; the planned parity default remains.
-
-## Objective-alignment and checkpoint review
-
-```sh
-BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 .venv/bin/python scripts/m6_objective_diagnostic.py
-.venv/bin/python scripts/m6_summarize_objective.py <printed-diagnostic-bundle>
-BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 .venv/bin/python scripts/m6_checkpoint_review.py --output <new-review-directory>
-```
-
-These tools reuse saved development cases for diagnosis. They measure both losses,
-first-versus-final convergence, probability clipping, and final-output gradients
-for initialization, selected checkpoints and final checkpoints. Failure-ranking
-AUC is computed within each p only. The first-convergence trace must match Numba.
-The separate review measures final checkpoints on all saved comparison cases and
-preserves the original checkpoint selections. Neither tool trains or uses final tests.
-
-The check found an informative loss ranking and correct first-convergence inference,
-alongside non-monotonic changes in loss and hard decoding. The retrospective BCE
-checkpoint ranking reversed between the tiny selection set and the larger saved
-comparison. A larger fixed development validation set is the next stability check;
-the planned main runs already use 20k shots per p.
-
-## Larger fixed validation for checkpoint stability
-
-```sh
-BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 .venv/bin/python scripts/m6_validation_stability.py
-BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 .venv/bin/python scripts/m6_audit_validation_stability.py <validation-bundle>
-MPLCONFIGDIR=.cache/matplotlib .venv/bin/python scripts/m6_plot_validation_stability.py <validation-bundle>
-```
-
-This compares existing selected/final checkpoints on 2,048 fixed new cases per p,
-eight times the pilot selection pool. It does not retrain or overwrite weights.
-Eight disjoint smaller blocks and a seeded, paired bootstrap describe how rankings
-change with sampling. Original and resolved configs are saved separately, and the
-CSV hash identifies the resolved sampling and candidate configuration.
-
-The corrected completed run favored BCE step 500 over its old step-50 selection:
-88.916% versus 89.609% fallback demand, with a descriptive paired interval excluding
-zero. Parity's 0.303-percentage-point difference remained uncertain, and its small
-blocks split 4–4. `validation_preferences.json` retains candidate hashes and the
-validation cases used for those preferences. They require independent confirmation;
-the original selected checkpoints and main experiment choices are unchanged.
-
-## Independent confirmation of frozen validation candidates
-
-```sh
-BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 .venv/bin/python -u scripts/m6_independent_confirmation.py
-BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 .venv/bin/python scripts/m6_audit_independent_confirmation.py <confirmation-bundle>
-```
-
-This freezes both step-500 candidates, matched initialization, and the independently
-tuned T=15 baseline before drawing 2,048 new paired cases per p. The guard excludes
-the larger validation set as well as training selection, tuning, and reserved final
-tests. Primary inference is BCE versus tuned BP with five-point Holm correction;
-two secondary contrasts are corrected jointly over ten tests. The predeclared
-clear-gain screen is saved in the settings and evaluated without changing the sample.
-
-The completed run found fallback demand of 88.916% for BCE and 88.789% for tuned BP.
-Its paired interval included zero and no primary point passed corrected .05.
-Parity's 88.643% is descriptive. A performance advantage was not confirmed, so no
-longer run or main model replacement followed. Full M6 still requires three-seed
-training and independent two-stage accuracy/latency evaluation.
-
-## Controlled first-convergence training readout
-
-`train.runtime.readout: first_converged` freezes the differentiable soft prediction
-at the first syndrome-valid decision while retaining the existing parity/logical
-multi-loss. Wrong-logical convergence is still penalized. The default remains
-`full_unroll`; inference and the main experiment configurations are unchanged.
-
-Run the matched `cpu_readout_full_unroll.yaml` and
-`cpu_readout_first_converged.yaml` configs through `scripts/m6_cpu_pilot.py`, each
-with `--budget configs/m6/cpu_readout_training_budget.yaml` and separate output and
-checkpoint roots. Pass the printed training bundle paths to:
-
-```sh
-BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 .venv/bin/python scripts/m6_readout_ablation.py --full <full-training-bundle> --frozen <frozen-training-bundle>
-BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 .venv/bin/python scripts/m6_audit_readout_ablation.py <comparison-bundle>
-MPLCONFIGDIR=.cache/matplotlib .venv/bin/python scripts/m6_plot_readout_ablation.py <comparison-bundle>
-```
-
-Both arms receive 400 identical streamed batches, .95 initialization and 2,048
-fixed selection cases per p. The primary fresh comparison uses another 2,048
-paired cases per p and five-point Holm correction; frozen/tuned and frozen/initial
-contrasts form a separate ten-test family. Main final-test seeds remain reserved.
-The recorded first comparison timed out after an inter-stage delay consumed part
-of its overall allowance. `cpu_readout_completion.yaml` permits a separately
-capped four-minute repetition only with identical candidates and sampling choices;
-the failed attempt remains preserved. See `NOTES.md` for timing and evidence.
-
-On 10,240 fixed fresh development cases, frozen-readout demand was 88.691%, versus
-88.730% for full-unroll and 88.955% for tuned BP. The four-call difference from the
-control was inconclusive: no primary or secondary paired point passed corrected
-.05. Both arms selected step 200. The optional readout remains experimental, and
-M6's three-seed accuracy/latency claim is still pending.
-
-## Fixed-case learning diagnostic
-
-```sh
-BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 .venv/bin/python scripts/m6_fixed_case_diagnostic.py
-MPLCONFIGDIR=.cache/matplotlib .venv/bin/python scripts/m6_report_fixed_case.py <diagnostic-bundle>
-BBNBP_CACHE_DIR=.cache/bbnbp MPLCONFIGDIR=.cache/matplotlib OMP_NUM_THREADS=1 NUMBA_NUM_THREADS=1 .venv/bin/python scripts/m6_audit_fixed_case.py <diagnostic-bundle>
-```
-
-This repeats 128 fixed, initially unsolved training cases at p=.001 for 1,200
-updates, with a 20-minute CPU deadline and reserved final-evaluation time. The
-2,048 unseen cases are frozen before training and evaluated only initially and
-finally. Whole-set training loss and logically correct decoding distinguish
-local learning from loss reduction alone. The unseen set never selects a checkpoint;
-the practical screens in `cpu_fixed_case_diagnostic.yaml` are not M6 gates.
-CSV rows labelled `fixed_train` describe the selected hard set, not the natural
-noise distribution. All cases, batch orders, checkpoints and failed runs are retained.
-
-The completed diagnostic learned 30/128 training cases from an initial zero and
-reduced loss by 15.3%, but unseen fallback demand changed from 63.23% to 63.53%
-(tuned BP: 60.99%). It rescued 232 previously failing unseen cases while breaking
-238 previously correct cases; no net improvement was established. This points to
-a gain/regression trade-off worth isolating, without proving that hard-only mining
-caused it. The complete 1,200-update experiment took 13 minutes 3 seconds on CPU.
+The full suite includes slow acceptance checks and small software-test fixtures.
+Tests verify implementation behavior; they do not establish the research claim.
+Dependencies are installed separately; no runtime environment is vendored.
+
+For a functional eight-case example using the tracked frozen checkpoint, follow
+[the cycle100 CPU inference guide](docs/m6_frozen_cycle100.md). The example uses
+saved development cases and is not a new benchmark. The checkpoint holds the
+original 15-step parameters: use the saved builder to obtain the tested
+100-iteration rule. No new training or GPU is needed for that example.
+
+## Repository map
+
+| Path | Contents |
+|---|---|
+| `src/bbnbp/` | Code construction, noise adapters, BP/neural decoders, training and evaluation |
+| `tests/`, `reference/` | Software checks and immutable handoff reference code |
+| `configs/` | Experiment settings, including unexecuted plans clearly identified in the archive guide |
+| `scripts/` | Experiment, analysis, audit and figure-generation commands |
+| `results/` | Saved configurations, source snapshots/hashes, model copies, cases, per-shot outcomes, reports and plots |
+| `docs/` | Assessment, evidence guide, inference examples and historical instructions |
+| `checkpoints/` | Ignored local training output; reviewed frozen model copies are tracked under `results/` |
+
+The recorded CPU pilots used an Apple M4 Pro, one decoding thread and fresh
+uncached fallback calls for timing. Shared fallback outputs in functional accuracy
+studies were used only for outcome assessment, never as timing evidence. Absolute
+runtime depends on hardware and system load.
+
+The repository retains the full evidence history. Raw provenance can contain
+original local paths or host labels; see the archive guide for portability limits.
+Some early training checkpoints and the original planning PDF were local-only.
+The final frozen inference checkpoint and primary evidence bundles are included.
+
+## Reproduction and historical scope
+
+[Historical setup and experiment commands](docs/experiment_history.md) preserve
+the original development instructions. Running them explicitly may launch
+substantial computation and creates new result bundles. Reusing recorded seeds
+reproduces the same streams; it is not independent confirmation.
+
+The [implementation handoff](docs/implementation_spec.md) remains unchanged as a
+historical specification. Its aspirational claims and proposed matrix describe
+the plan, not completed results. See the assessment and evidence reports for
+what actually ran. Source snapshots and configs in each result bundle document
+its execution state; current documentation changes do not rewrite that history.
+
+## License and citation
+
+Project code and associated materials: [MIT](LICENSE). Dependencies retain their
+own licenses. [ATTRIBUTION.md](ATTRIBUTION.md) identifies the reference-code origin,
+direct dependencies, AI-assisted development and relevant research methods.
+[CITATION.cff](CITATION.cff) supplies software citation metadata. Cite the original
+methods as applicable, alongside this archive.

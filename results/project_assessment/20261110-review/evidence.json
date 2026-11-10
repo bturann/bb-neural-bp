@@ -1,0 +1,148 @@
+{
+  "stage1": [
+    {
+      "p": 0.001,
+      "shots": 4096,
+      "ordinary_fallback": 495,
+      "learned_fallback": 443,
+      "absolute_reduction_pp": 1.26953125,
+      "relative_reduction_percent": 10.505050505050505,
+      "illustrative_common_fallback_quantile_ordinary": 0.9172525252525252,
+      "illustrative_common_fallback_quantile_learned": 0.9075395033860045
+    },
+    {
+      "p": 0.003,
+      "shots": 4096,
+      "ordinary_fallback": 2654,
+      "learned_fallback": 2518,
+      "absolute_reduction_pp": 3.3203125,
+      "relative_reduction_percent": 5.124340617935192,
+      "illustrative_common_fallback_quantile_ordinary": 0.9845666917859834,
+      "illustrative_common_fallback_quantile_learned": 0.9837331215250199
+    }
+  ],
+  "tail_checks": [
+    {
+      "block": "longer",
+      "p": 0.001,
+      "method": "learned100",
+      "measured_cases": 256,
+      "fallback_requests": 28,
+      "empirical_tail_cases": 3,
+      "empirical_tail_fallback_cases": 3
+    },
+    {
+      "block": "longer",
+      "p": 0.001,
+      "method": "bp100",
+      "measured_cases": 256,
+      "fallback_requests": 32,
+      "empirical_tail_cases": 3,
+      "empirical_tail_fallback_cases": 3
+    },
+    {
+      "block": "longer",
+      "p": 0.001,
+      "method": "native100",
+      "measured_cases": 256,
+      "fallback_requests": 28,
+      "empirical_tail_cases": 3,
+      "empirical_tail_fallback_cases": 3
+    },
+    {
+      "block": "longer",
+      "p": 0.003,
+      "method": "learned100",
+      "measured_cases": 256,
+      "fallback_requests": 140,
+      "empirical_tail_cases": 3,
+      "empirical_tail_fallback_cases": 3
+    },
+    {
+      "block": "longer",
+      "p": 0.003,
+      "method": "bp100",
+      "measured_cases": 256,
+      "fallback_requests": 161,
+      "empirical_tail_cases": 3,
+      "empirical_tail_fallback_cases": 3
+    },
+    {
+      "block": "longer",
+      "p": 0.003,
+      "method": "native100",
+      "measured_cases": 256,
+      "fallback_requests": 161,
+      "empirical_tail_cases": 3,
+      "empirical_tail_fallback_cases": 3
+    },
+    {
+      "block": "strong",
+      "p": 0.001,
+      "method": "learned100",
+      "measured_cases": 256,
+      "fallback_requests": 29,
+      "empirical_tail_cases": 3,
+      "empirical_tail_fallback_cases": 3
+    },
+    {
+      "block": "strong",
+      "p": 0.001,
+      "method": "bp100",
+      "measured_cases": 256,
+      "fallback_requests": 33,
+      "empirical_tail_cases": 3,
+      "empirical_tail_fallback_cases": 3
+    },
+    {
+      "block": "strong",
+      "p": 0.001,
+      "method": "ordinary",
+      "measured_cases": 256,
+      "fallback_requests": 22,
+      "empirical_tail_cases": 3,
+      "empirical_tail_fallback_cases": 3
+    },
+    {
+      "block": "strong",
+      "p": 0.003,
+      "method": "learned100",
+      "measured_cases": 256,
+      "fallback_requests": 156,
+      "empirical_tail_cases": 3,
+      "empirical_tail_fallback_cases": 3
+    },
+    {
+      "block": "strong",
+      "p": 0.003,
+      "method": "bp100",
+      "measured_cases": 256,
+      "fallback_requests": 164,
+      "empirical_tail_cases": 3,
+      "empirical_tail_fallback_cases": 3
+    },
+    {
+      "block": "strong",
+      "p": 0.003,
+      "method": "ordinary",
+      "measured_cases": 256,
+      "fallback_requests": 153,
+      "empirical_tail_cases": 3,
+      "empirical_tail_fallback_cases": 3
+    }
+  ],
+  "interpretation": "Derived read-only from saved evidence. Quantile mapping is an illustrative common-fallback/separated-components approximation, not a prediction or extra measurement.",
+  "scope": "Project viability assessment only; no new training, decoding, benchmark or final-test data",
+  "new_experimental_cases": 0,
+  "input_hashes": {
+    "results/m6_cycle100_study/20261109T114431070320Z/summary.json": "7ad1a1c12427d1269db5be7525053885f728eb5485d29f66f69062962951eb3e",
+    "results/m6_aux_report/20261109T135141505262Z/report.md": "21260e89cbae142a00ab3fad8b5f19d7544125e050da55f06d9ec3d1eff891de",
+    "results/m6_scaling_selector/20261109-approved/confirmation/summary.json": "791efdae10071a5f5053e3cb4addf3815fb7a101e4bd9d8d7e9f26c7d0b7d78a",
+    "results/m6_cycle100_planning/20261110T015309813879Z/analysis.json": "9dab32920bd9f255efabd2957e78322349d593591474bca352c43d4847372418",
+    "../01_Research_Plan_Learned_BP_Decoder.pdf": "dc1a0215ca5538e89a81840350447e6b98ece4db44fb05b37ac0518d7ab96acf",
+    "results/m6_long_bp_latency/20261109T124523000569Z/raw-p0.jsonl": "8d4588b936799c75081fa34c45ebc83cb50a1a2165197c94084472d5d9d85bf0",
+    "results/m6_long_bp_latency/20261109T124523000569Z/raw-p1.jsonl": "f300214bbfbdddde6b1a5be628e9e774cf9acb241f6eee821d0512f38ac961c6",
+    "results/m6_strong_cascade_latency/20261109T130204474636Z/raw-p0.jsonl": "fcb734fad3bd42d2192385f6b334af27cfb76a50c5722cc78ca383dc7f40ce81",
+    "results/m6_strong_cascade_latency/20261109T130204474636Z/raw-p1.jsonl": "ae8eabf8c88bed244c62e97bce07e97b9bb4a0fcfd796338d03f6376a4ebcb8c"
+  }
+}

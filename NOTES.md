@@ -1839,3 +1839,65 @@ M5 passed: `results/m5/20261030T220645511485Z-3a224cbf`; wins 4/7, best step 100
   The larger20,000-case runtime option concerns this frozen auxiliary checkpoint;
   it does not by itself complete original E1/E2 training/evaluation or main M6.
   The planning analysis and audit finished; no research benchmark was launched.
+
+### User-requested stop and project viability assessment
+
+- User explicitly requested stopping experiment work to assess whether the effort
+  is likely to work. No research run, training, benchmark or new dataset was
+  launched. The prepared90-minute and full timing plans remain unexecuted.
+- Read the original14-page research-plan PDF and reviewed its baseline settings,
+  risks, claimed gap and deliverables, plus the saved experimental results and
+  primary literature. Used native PDFKit for read-only extraction/rendering;
+  no dependency was added. Original PDF/specification/reference files unchanged.
+- Assessment: credible small fixed-100-iteration Stage1 gain; no demonstrated
+  end-to-end advantage over BP130, preserved-accuracy guarantee, p99 advantage,
+  BB144 scaling or complete main experiment matrix. Original plan also lists
+  BP1,000 among ordinary controls; the recent auxiliary challenge stops at130.
+- Read-only derivation confirms the empirical slowest1% of learned100 cases in
+  every inspected timing block/noise point all invoked fallback. An explicitly
+  illustrative separated-mixture calculation explains why modest request-count
+  reductions need not translate into a meaningful p99 improvement. These are
+  reused observations and a derivation, not new timing samples.
+- Primary-source review includes Liu/Poulin quantum NBP, Gong's2025 institutional
+  thesis abstract (NBP+OSD onBB), Blue's circuit-level transformer work, Relay-BP,
+  LSD and a recent code-capacity BB failure-mechanism preprint. Exact duplicate
+  of our particular circuit-level scheme is **not** established. Broad novelty
+  and competitiveness require a more specific argument and matched baselines.
+- Recommendation is to hold expansion unchanged, preserve and consolidate the
+  narrow result, and reconsider the research direction before more compute.
+  This is a recommendation, not a silent deletion/change of the original matrix.
+  No new architecture, dependency, hardware purchase or automatic pivot is
+  justified by the current evidence. Course/reproducibility deliverables remain
+  viable; a competitive decoder paper with the original headline is uncertain.
+- Full assessment: `docs/project_viability_assessment.md`. Derived evidence/source
+  hashes: `results/project_assessment/20261110-review/evidence.json`. No software
+  tests were rerun for this read-only review/documentation task; the last recorded
+  full implementation gate remains142 passing tests. Main M6/M7 remain incomplete.
+
+### Research archive preparation and local commit
+
+- User clarified that an unsuccessful research result is not an acceptable
+  lab-to-market course product. The recommendation is to switch the course
+  project and retain this work only as an exploratory research archive. User then
+  explicitly requested preparation and a local commit; no GitHub publishing or
+  remote creation was requested or performed.
+- Replaced the front README with paused status, bounded measured claims, negative
+  results, preserved uncertainty and a route to the evidence. Original setup and
+  experiment instructions are retained in `docs/experiment_history.md`, with
+  clear historical scope and no queued execution. Added `docs/archive_guide.md`
+  to distinguish completed studies, omitted extensions and unexecuted proposals.
+- Added MIT licensing for project-owned materials, citation metadata and
+  attribution of reference-code provenance, AI-assisted development, direct
+  dependencies and relevant papers. Checked pinned installed license metadata;
+  dependency code/binaries retain their own licenses and are not vendored.
+- Included the assessment and derived evidence. The original assessment text is
+  preserved byte-for-byte in `assessment_at_review.txt`, matching its previously
+  recorded SHA. The public memo adds course-status and missing-local-PDF context.
+  Raw numerical outputs, source snapshots, config/seed histories, failures and
+  prior verification receipts were not rewritten.
+- Publication checks verified48 relative links against files included in Git,
+  citation/package metadata, the frozen model hash, original memo snapshot and
+  sealed planning outputs. The tracked inference example returned8×16,164
+  corrections and one fallback request, using saved development cases only.
+- Full software gate for this commit: **142 passed in33.07 s**, including slow
+  checks. No new research training, decoding dataset or timing study was run.
