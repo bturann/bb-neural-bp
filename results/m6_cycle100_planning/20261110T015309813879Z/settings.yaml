@@ -1,0 +1,54 @@
+accuracy: results/m6_cycle100_accuracy/20261109T131507713374Z
+accuracy_case_grid:
+- 1000
+- 2000
+- 5000
+- 10000
+- 20000
+- 50000
+- 100000
+accuracy_family_alpha: 0.05
+accuracy_family_size: 4
+accuracy_margins_probability:
+- 0.0
+- 0.0001
+- 0.0005
+- 0.001
+- 0.005
+- 0.01
+accuracy_simulation_repetitions: 2000
+cycle100_study: results/m6_cycle100_study/20261109T114431070320Z
+decision_plan: configs/m6/cpu_cycle100_decision_plan.yaml
+design_relative_mean_reduction: 0.05
+latency_family_alpha: 0.05
+latency_family_size: 8
+launch_benchmark: false
+measured_cases_per_point:
+- 1000
+- 2000
+- 5000
+- 10000
+- 20000
+noise_points:
+- 0.001
+- 0.003
+proposed_bounded_cases_per_point: 2000
+proposed_bounded_wall_seconds: 5400
+proposed_fresh_seeds:
+- 100234
+- 100235
+prospective_accuracy_margin: null
+purpose: Read-only sample-size and runtime planning; no new decoding or training
+quantile: 0.99
+runtime_cushion: 1.25
+simulation_entropy:
+- 1234
+- 1200
+strong_study: results/m6_strong_cascade/20261109T113533689212Z
+target_power: 0.8
+timing_blocks:
+- directory: results/m6_long_bp_latency/20261109T124523000569Z
+  name: longer
+- directory: results/m6_strong_cascade_latency/20261109T130204474636Z
+  name: strong
+warmup_cases_per_point: 1000

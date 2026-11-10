@@ -1,0 +1,10 @@
+{
+  "checks_passed": true,
+  "input_hashes_verified": 14,
+  "runtime_options_verified": 5,
+  "exact_accuracy_bounds_verified": 4,
+  "hypothetical_simulation_rows_reproduced": 504,
+  "all_analysis_fields_reproduced": true,
+  "new_decoding_or_training": false,
+  "audit_source_sha256": "84631a78e27e56d93174cf8e12c33716283a6de5424f19f37d354ef40d4ba992"
+}

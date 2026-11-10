@@ -1,0 +1,45 @@
+status: prepared_not_run
+scope: Auxiliary bounded decision study; preserves original E1/E2 and final-test streams
+planning_config: configs/m6/cpu_cycle100_planning.yaml
+cycle100_study: results/m6_cycle100_study/20261109T114431070320Z
+strong_study: results/m6_strong_cascade/20261109T113533689212Z
+noise_points: [0.001, 0.003]
+models: [learned100, ordinary100, bp130]
+ordinary100_backend_by_point: [cpp100, native100]
+scaling_factors_by_point:
+  ordinary100: [1.0, 1.0]
+  bp130: [1.0, 1.0]
+learned_checkpoint_sha256: 48591637735919bb3e12febe8793eca7f9a81e8e23584dfe53a07d9f6b098c3d
+training_updates: 0
+measured_cases_per_point: 2000
+warmup_cases_per_point: 1000
+wall_seconds: 5400
+threads: 1
+batch: 1
+chronological_mean_block_cases: 50
+mean_upper_bound_rule: Paired mean plus block-df t critical times the larger of case-SE and fixed chronological block-mean SE; approximate inference conditional on sufficiently independent stable blocks
+timing_stability_rule: Preserve chronological records and report drift; invalidate nominal precision claims when stationarity or independence is not credible
+proposed_fresh_seeds: [100234, 100235]
+order_entropy: [1234, 1201]
+bootstrap_entropy: [1234, 1202]
+fallback:
+  bp_iters: 50
+  scaling: 0.625
+  method: osd_cs
+  order: 7
+latency_family:
+  alpha: 0.05
+  contrasts: 8
+  endpoints: [mean, p99]
+  one_sided_alpha_per_contrast: 0.00625
+  p99_alpha_per_marginal_tail: 0.003125
+accuracy_family:
+  alpha: 0.05
+  contrasts: 4
+  marginal_tail_alpha: 0.00625
+  prospective_excess_ler_tolerance_probability: null
+  safety_acceptance_enabled: false
+stopping: Fixed sample only; wall-cap interruption means incomplete, never successful early stopping
+full_benefit_rule: Accuracy within a prospectively chosen tolerance AND mean and p99 upper differences below zero against both controls at both noise points
+partial_result_rule: Report each endpoint separately; no full M6, p99 or accuracy claim from a partial result
+launch_benchmark: false

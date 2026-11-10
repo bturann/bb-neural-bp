@@ -36,6 +36,15 @@ accuracy/timing work. Both audits passed; original studies remain intact. See th
 [selector report](results/m6_scaling_selector/20261109-approved/report/report.md)
 and [reproduction/inference guide](docs/m6_scaling_selector.md).
 
+The [learned100 evaluation plan](results/m6_cycle100_planning/20261110T015309813879Z/report.md)
+estimates about 1.27 CPU hours for 2,000 measured paired cases per p, or 8.91 hours
+for the original 20,000-case regime, including warmups and a 25% planning cushion.
+Small samples cannot promise decisive p99 or accuracy evidence. The plan includes
+fixed controls, multiplicity rules and accuracy-sensitivity calculations; no new
+benchmark or training was launched, and the accuracy tolerance remains unset.
+These runtime options concern the frozen auxiliary checkpoint; even the larger
+option does not by itself complete the original main training/evaluation matrix.
+
 ## Setup
 
 ```sh

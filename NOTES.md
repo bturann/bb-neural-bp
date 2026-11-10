@@ -1788,3 +1788,54 @@ M5 passed: `results/m5/20261030T220645511485Z-3a224cbf`; wins 4/7, best step 100
   README and the reproduction/inference guide point to the completed study.
   All launched labeling, training, confirmation, audit and software-test jobs
   finished. Conditional selector accuracy/timing phases were not launched.
+
+### Frozen learned100 sample-size/runtime planning
+
+- User requested the next step and then authorized continuation of the proposed
+  sample-size/runtime analysis. This scope is read-only reuse of completed data
+  and a concrete prospective evaluation plan; no new training or decoder run.
+- Added `m6_plan_cycle100.py`, planning settings and a prepared-not-run decision
+  config. Fixed comparators are the already validation-selected ordinary100
+  (CPP at p=.001, native at p=.003) and BP130. Model parameters and all original
+  evidence remain unchanged. New seed proposals100234/100235 were checked unused;
+  main final streams11234–11238 are still reserved.
+- Runtime uses the largest available historical per-method mean and includes
+  1,000 warmups/p. Full20,000/p: **7.131 h**, **8.914 h** with a25% engineering
+  cushion. Bounded2,000/p: **1.019 h**, **1.273 h** cushioned. These are estimates,
+  not wall-time guarantees or confidence limits; no benchmark is launched.
+- Mean power is normal-approximation sensitivity, not a prediction. At a
+  hypothetical5% mean gain and the declared8-test latency allocation, 80% power
+  estimates are29,464/35,653 cases at low p (ordinary100/BP130), versus
+  2,812/2,125 at high p. The actual low-p BP130 pilot difference is **+4.711 ms**
+  (learned slower), so that observed effect has no finite superiority n estimate.
+- Exact binomial/order-statistic p99 bounds at the planned confidence level
+  have **no finite upper endpoint with256 cases**. Rank precision is reported
+  for larger n; no p99 power forecast is extrapolated from three tail cases.
+- Accuracy analysis reports conservative paired excess-LER upper bounds and
+  clearly labeled hypothetical multinomial planning simulations. Equal-risk and
+  upper-discordance sensitivity cases prevent zero observed discordance from
+  silently implying zero risk. Acceptable excess LER remains **unset**; the
+  prepared plan cannot declare equivalence/noninferiority without that choice.
+- Initial planning tests: **3 passed in0.56 s**, checking exact quantile coverage,
+  paired bounds against SciPy's exact binomial API (including boundary counts),
+  and refusal to report a finite observed-effect n for a slower candidate.
+- Final planning artifact: `results/m6_cycle100_planning/20261110T015309813879Z`.
+  The earlier015026 bundle is preserved as the first draft; the second also
+  snapshots the prepared decision config and documents temporal-block/drift
+  protections and IID assumptions. No original numerical evidence was edited.
+- Independent planning audit **passed**: verified14 input hashes, reconstructed
+  five runtime options from raw per-method data, checked four paired bounds
+  through SciPy's exact binomial API, and reproduced all504 hypothetical
+  simulation rows and every analysis field from explicit seeded generators.
+  Runtime and sample-size estimates are planning, not extra measured outcomes.
+- Concrete draft:2,000 measured+1,000 warmups per p, three frozen methods,
+  90-minute cap, chronological50-case mean blocks and randomized per-case order.
+  Eight mean/p99 contrasts share latency alpha=.05; four accuracy contrasts
+  have a separate family. Timeout is incomplete, with no outcome-driven
+  extension. A full benefit needs both timing endpoints against both controls
+  at both points and a prechosen accuracy tolerance. That tolerance is null,
+  so accuracy acceptance is disabled. No new benchmark is running or queued.
+- Final full software gate: **142 passed in32.05 s**, including slow checks.
+  The larger20,000-case runtime option concerns this frozen auxiliary checkpoint;
+  it does not by itself complete original E1/E2 training/evaluation or main M6.
+  The planning analysis and audit finished; no research benchmark was launched.

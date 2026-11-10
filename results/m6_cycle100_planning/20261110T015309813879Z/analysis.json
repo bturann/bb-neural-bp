@@ -1,0 +1,4881 @@
+{
+  "runtime_points": [
+    {
+      "p": 0.001,
+      "ordinary_backend": "cpp100",
+      "conservative_method_mean_ms": {
+        "learned100": 60.426759445312506,
+        "ordinary100": 75.02871841796875,
+        "bp130": 55.715980480468744
+      },
+      "ms_per_three_method_case": 191.17145834375
+    },
+    {
+      "p": 0.003,
+      "ordinary_backend": "native100",
+      "conservative_method_mean_ms": {
+        "learned100": 338.2284845195312,
+        "ordinary100": 343.66579521874996,
+        "bp130": 349.3946369492188
+      },
+      "ms_per_three_method_case": 1031.2889166875
+    }
+  ],
+  "runtime_options": [
+    {
+      "cases_per_point": 1000,
+      "warmup_per_point": 1000,
+      "estimated_hours": 0.6791446527951388,
+      "cushioned_hours": 0.8489308159939235,
+      "expected_tail_cases_per_method": 10.000000000000009,
+      "quantile_ranks": {
+        "lower_rank": 980,
+        "upper_rank": 998,
+        "finite_upper": true,
+        "binomial_coverage_lower_bound": 0.9958240864584993
+      }
+    },
+    {
+      "cases_per_point": 2000,
+      "warmup_per_point": 1000,
+      "estimated_hours": 1.0187169791927082,
+      "cushioned_hours": 1.2733962239908854,
+      "expected_tail_cases_per_method": 20.000000000000018,
+      "quantile_ranks": {
+        "lower_rank": 1967,
+        "upper_rank": 1992,
+        "finite_upper": true,
+        "binomial_coverage_lower_bound": 0.9954327795857411
+      }
+    },
+    {
+      "cases_per_point": 5000,
+      "warmup_per_point": 1000,
+      "estimated_hours": 2.0374339583854164,
+      "cushioned_hours": 2.5467924479817707,
+      "expected_tail_cases_per_method": 50.00000000000004,
+      "quantile_ranks": {
+        "lower_rank": 4930,
+        "upper_rank": 4969,
+        "finite_upper": true,
+        "binomial_coverage_lower_bound": 0.9945803518244661
+      }
+    },
+    {
+      "cases_per_point": 10000,
+      "warmup_per_point": 1000,
+      "estimated_hours": 3.735295590373264,
+      "cushioned_hours": 4.669119487966579,
+      "expected_tail_cases_per_method": 100.00000000000009,
+      "quantile_ranks": {
+        "lower_rank": 9872,
+        "upper_rank": 9927,
+        "finite_upper": true,
+        "binomial_coverage_lower_bound": 0.9943660757090895
+      }
+    },
+    {
+      "cases_per_point": 20000,
+      "warmup_per_point": 1000,
+      "estimated_hours": 7.131018854348958,
+      "cushioned_hours": 8.913773567936197,
+      "expected_tail_cases_per_method": 200.00000000000017,
+      "quantile_ranks": {
+        "lower_rank": 19760,
+        "upper_rank": 19838,
+        "finite_upper": true,
+        "binomial_coverage_lower_bound": 0.9944024388276677
+      }
+    }
+  ],
+  "mean_contrasts": [
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "evidence": [
+        {
+          "block": "longer",
+          "cases": 256,
+          "candidate_mean_ms": 58.34704544140625,
+          "baseline_mean_ms": 66.73986146875001,
+          "candidate_minus_baseline_ms": -8.39281602734375,
+          "paired_sd_ms": 154.7496745042836,
+          "observed_effect_n80": 3792,
+          "empirical_p99_difference_ms": -44.33369619999985,
+          "exact_p99_ranks": {
+            "lower_rank": 248,
+            "upper_rank": 257,
+            "finite_upper": false,
+            "binomial_coverage_lower_bound": 0.9987550546743678
+          }
+        },
+        {
+          "block": "strong",
+          "cases": 256,
+          "candidate_mean_ms": 60.426759445312506,
+          "baseline_mean_ms": 75.02871841796875,
+          "candidate_minus_baseline_ms": -14.60195897265625,
+          "paired_sd_ms": 171.52837147810732,
+          "observed_effect_n80": 1539,
+          "empirical_p99_difference_ms": -29.044987499999934,
+          "exact_p99_ranks": {
+            "lower_rank": 248,
+            "upper_rank": 257,
+            "finite_upper": false,
+            "binomial_coverage_lower_bound": 0.9987550546743678
+          }
+        }
+      ],
+      "worst_block_sd_ms": 171.52837147810732,
+      "five_percent_design_effect_ms": 3.3369930734375006,
+      "five_percent_design_n80": 29464,
+      "approximate_design_power": {
+        "1000": 0.029883998221627333,
+        "2000": 0.05179688158387379,
+        "5000": 0.13091699645655025,
+        "10000": 0.2903855417966979,
+        "20000": 0.6000867530599994
+      }
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "evidence": [
+        {
+          "block": "strong",
+          "cases": 256,
+          "candidate_mean_ms": 60.426759445312506,
+          "baseline_mean_ms": 55.715980480468744,
+          "candidate_minus_baseline_ms": 4.71077896484375,
+          "paired_sd_ms": 157.5191160763517,
+          "observed_effect_n80": null,
+          "empirical_p99_difference_ms": -24.117050149999727,
+          "exact_p99_ranks": {
+            "lower_rank": 248,
+            "upper_rank": 257,
+            "finite_upper": false,
+            "binomial_coverage_lower_bound": 0.9987550546743678
+          }
+        }
+      ],
+      "worst_block_sd_ms": 157.5191160763517,
+      "five_percent_design_effect_ms": 2.7857990240234374,
+      "five_percent_design_n80": 35653,
+      "approximate_design_power": {
+        "1000": 0.026284664916534695,
+        "2000": 0.04393078985745319,
+        "5000": 0.10617048916647837,
+        "10000": 0.23295225239992906,
+        "20000": 0.5013552681330128
+      }
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "evidence": [
+        {
+          "block": "longer",
+          "cases": 256,
+          "candidate_mean_ms": 301.03132159765624,
+          "baseline_mean_ms": 343.66579521874996,
+          "candidate_minus_baseline_ms": -42.634473621093754,
+          "paired_sd_ms": 272.82742970793015,
+          "observed_effect_n80": 457,
+          "empirical_p99_difference_ms": -24.944894050000016,
+          "exact_p99_ranks": {
+            "lower_rank": 248,
+            "upper_rank": 257,
+            "finite_upper": false,
+            "binomial_coverage_lower_bound": 0.9987550546743678
+          }
+        }
+      ],
+      "worst_block_sd_ms": 272.82742970793015,
+      "five_percent_design_effect_ms": 17.183289760937498,
+      "five_percent_design_n80": 2812,
+      "approximate_design_power": {
+        "1000": 0.3064173224928477,
+        "2000": 0.625116682695362,
+        "5000": 0.9747564222661341,
+        "10000": 0.9999278039477122,
+        "20000": 0.9999999999269207
+      }
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "evidence": [
+        {
+          "block": "strong",
+          "cases": 256,
+          "candidate_mean_ms": 338.2284845195312,
+          "baseline_mean_ms": 349.3946369492188,
+          "candidate_minus_baseline_ms": -11.166152429687502,
+          "paired_sd_ms": 241.12154775494912,
+          "observed_effect_n80": 5200,
+          "empirical_p99_difference_ms": -22.998431099999834,
+          "exact_p99_ranks": {
+            "lower_rank": 248,
+            "upper_rank": 257,
+            "finite_upper": false,
+            "binomial_coverage_lower_bound": 0.9987550546743678
+          }
+        }
+      ],
+      "worst_block_sd_ms": 241.12154775494912,
+      "five_percent_design_effect_ms": 17.46973184746094,
+      "five_percent_design_n80": 2125,
+      "approximate_design_power": {
+        "1000": 0.41817170519105706,
+        "2000": 0.7710911959156834,
+        "5000": 0.9956729266765534,
+        "10000": 0.9999989702264016,
+        "20000": 0.9999999999999953
+      }
+    }
+  ],
+  "accuracy_sources": [
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "source": "results/m6_cycle100_accuracy/20261109T131507713374Z",
+      "cases": 8192,
+      "candidate_only_errors": 2,
+      "baseline_only_errors": 6,
+      "observed_risk_difference": -0.00048828125,
+      "simultaneous_risk_difference_upper": 0.0009009434227218791,
+      "scenarios": {
+        "pilot_point": [
+          0.000244140625,
+          0.000732421875
+        ],
+        "equal_risk_same_discordance": [
+          0.00048828125,
+          0.00048828125
+        ],
+        "equal_risk_upper95_discordance": [
+          0.000880675103539666,
+          0.000880675103539666
+        ]
+      }
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "source": "results/m6_strong_cascade_latency/20261109T130204474636Z",
+      "cases": 256,
+      "candidate_only_errors": 0,
+      "baseline_only_errors": 0,
+      "observed_risk_difference": 0.0,
+      "simultaneous_risk_difference_upper": 0.01962967663881714,
+      "scenarios": {
+        "pilot_point": [
+          0.0,
+          0.0
+        ],
+        "equal_risk_same_discordance": [
+          0.0,
+          0.0
+        ],
+        "equal_risk_upper95_discordance": [
+          0.0058169380815816405,
+          0.0058169380815816405
+        ]
+      }
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "source": "results/m6_cycle100_accuracy/20261109T131507713374Z",
+      "cases": 1024,
+      "candidate_only_errors": 9,
+      "baseline_only_errors": 13,
+      "observed_risk_difference": -0.00390625,
+      "simultaneous_risk_difference_upper": 0.013432085521517352,
+      "scenarios": {
+        "pilot_point": [
+          0.0087890625,
+          0.0126953125
+        ],
+        "equal_risk_same_discordance": [
+          0.0107421875,
+          0.0107421875
+        ],
+        "equal_risk_upper95_discordance": [
+          0.015268609000424139,
+          0.015268609000424139
+        ]
+      }
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "source": "results/m6_strong_cascade_latency/20261109T130204474636Z",
+      "cases": 256,
+      "candidate_only_errors": 3,
+      "baseline_only_errors": 1,
+      "observed_risk_difference": 0.0078125,
+      "simultaneous_risk_difference_upper": 0.041073177962715625,
+      "scenarios": {
+        "pilot_point": [
+          0.01171875,
+          0.00390625
+        ],
+        "equal_risk_same_discordance": [
+          0.0078125,
+          0.0078125
+        ],
+        "equal_risk_upper95_discordance": [
+          0.017698609028910323,
+          0.017698609028910323
+        ]
+      }
+    }
+  ],
+  "accuracy_scenario_simulations": [
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 1000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 1000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 1000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 1000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 1000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.129,
+      "monte_carlo_se": 0.007495298526409739
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 1000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 0.997,
+      "monte_carlo_se": 0.0012229063741758816
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 2000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 2000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 2000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 2000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 2000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.9835,
+      "monte_carlo_se": 0.002848486440199423
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 2000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 5000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0005,
+      "monte_carlo_se": 0.0004998749843710925
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 5000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0005,
+      "monte_carlo_se": 0.0004998749843710925
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 5000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.01,
+      "monte_carlo_se": 0.0022248595461286987
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 5000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.258,
+      "monte_carlo_se": 0.009783557635134573
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 5000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 5000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 10000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.009,
+      "monte_carlo_se": 0.002111752826445368
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 10000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0185,
+      "monte_carlo_se": 0.003013117156700018
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 10000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.2295,
+      "monte_carlo_se": 0.0094029184299344
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 10000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.836,
+      "monte_carlo_se": 0.0082796135175502
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 10000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 10000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 20000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0555,
+      "monte_carlo_se": 0.005119558086397693
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 20000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.1515,
+      "monte_carlo_se": 0.008017098914195832
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 20000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.7875,
+      "monte_carlo_se": 0.009147233188237852
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 20000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.9985,
+      "monte_carlo_se": 0.0008653756409790912
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 20000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 20000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 50000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.46,
+      "monte_carlo_se": 0.011144505372604026
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 50000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.7345,
+      "monte_carlo_se": 0.009874455681200862
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 50000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 50000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 50000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 50000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 100000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.931,
+      "monte_carlo_se": 0.0056674068144081545
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 100000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.996,
+      "monte_carlo_se": 0.0014113823011501884
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 100000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 100000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 100000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 100000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 1000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 1000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 1000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 1000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 1000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.052,
+      "monte_carlo_se": 0.004964675215963275
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 1000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 0.9865,
+      "monte_carlo_se": 0.0025804796065847873
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 2000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 2000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 2000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 2000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 2000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.9285,
+      "monte_carlo_se": 0.005761412587204635
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 2000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 5000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 5000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 5000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0005,
+      "monte_carlo_se": 0.0004998749843710925
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 5000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.062,
+      "monte_carlo_se": 0.005392402062161166
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 5000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 5000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 10000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 10000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 10000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.012,
+      "monte_carlo_se": 0.002434748446965312
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 10000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.263,
+      "monte_carlo_se": 0.009844567029585404
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 10000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 10000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 20000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 20000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 20000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.072,
+      "monte_carlo_se": 0.005779965397820302
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 20000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.7685,
+      "monte_carlo_se": 0.009431536195127495
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 20000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 20000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 50000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 50000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0015,
+      "monte_carlo_se": 0.0008653756409791069
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 50000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.4375,
+      "monte_carlo_se": 0.01109264959331178
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 50000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.999,
+      "monte_carlo_se": 0.0007067531393633852
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 50000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 50000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 100000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0005,
+      "monte_carlo_se": 0.0004998749843710925
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 100000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0055,
+      "monte_carlo_se": 0.0016537457482938543
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 100000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.9205,
+      "monte_carlo_se": 0.006048956521582876
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 100000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 100000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 100000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 1000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 1000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 1000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 1000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 1000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.09,
+      "monte_carlo_se": 0.006399218702310462
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 1000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 0.9425,
+      "monte_carlo_se": 0.005205465877325487
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 2000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 2000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 2000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 2000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 2000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.755,
+      "monte_carlo_se": 0.00961704216482386
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 2000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 5000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 5000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 5000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0015,
+      "monte_carlo_se": 0.0008653756409791069
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 5000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.021,
+      "monte_carlo_se": 0.0032061659345704488
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 5000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.9995,
+      "monte_carlo_se": 0.000499874984371065
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 5000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 10000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 10000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.001,
+      "monte_carlo_se": 0.0007067531393633848
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 10000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0065,
+      "monte_carlo_se": 0.0017969070649312946
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 10000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.091,
+      "monte_carlo_se": 0.006431135203057078
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 10000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 10000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 20000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 20000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 20000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.024,
+      "monte_carlo_se": 0.00342227994179319
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 20000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.4,
+      "monte_carlo_se": 0.010954451150103323
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 20000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 20000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 50000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 50000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0005,
+      "monte_carlo_se": 0.0004998749843710925
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 50000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.182,
+      "monte_carlo_se": 0.00862774593969943
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 50000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.947,
+      "monte_carlo_se": 0.005009540897128201
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 50000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 50000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 100000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 100000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.003,
+      "monte_carlo_se": 0.0012229063741758812
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 100000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.5775,
+      "monte_carlo_se": 0.01104521955417818
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 100000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.999,
+      "monte_carlo_se": 0.0007067531393633852
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 100000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 100000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 1000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 1000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 1000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 1000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 1000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 1000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 2000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 2000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 2000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 2000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 2000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 2000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 5000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 5000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 5000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 5000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 5000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 5000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 10000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 10000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 10000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 10000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 10000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 10000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 20000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 20000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 20000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 20000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 20000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 20000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 50000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 50000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 50000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 50000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 50000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 50000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 100000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 100000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 100000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 100000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 100000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 100000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 1000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 1000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 1000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 1000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 1000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 1000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 2000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 2000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 2000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 2000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 2000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 2000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 5000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 5000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 5000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 5000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 5000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 5000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 10000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 10000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 10000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 10000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 10000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 10000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 20000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 20000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 20000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 20000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 20000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 20000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 50000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 50000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 50000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 50000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 50000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 50000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 100000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 100000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 100000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 100000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 100000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 100000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 1000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 1000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0005,
+      "monte_carlo_se": 0.0004998749843710925
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 1000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0005,
+      "monte_carlo_se": 0.0004998749843710925
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 1000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0005,
+      "monte_carlo_se": 0.0004998749843710925
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 1000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.0075,
+      "monte_carlo_se": 0.0019292161620720473
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 1000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 0.2035,
+      "monte_carlo_se": 0.00900243717001124
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 2000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 2000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 2000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 2000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0005,
+      "monte_carlo_se": 0.0004998749843710925
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 2000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.046,
+      "monte_carlo_se": 0.00468422885862764
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 2000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 0.6625,
+      "monte_carlo_se": 0.010573404134903763
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 5000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 5000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 5000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0005,
+      "monte_carlo_se": 0.0004998749843710925
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 5000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0015,
+      "monte_carlo_se": 0.0008653756409791069
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 5000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.3515,
+      "monte_carlo_se": 0.010675854766715403
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 5000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 0.997,
+      "monte_carlo_se": 0.0012229063741758816
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 10000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 10000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 10000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.002,
+      "monte_carlo_se": 0.0009989994994993741
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 10000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.005,
+      "monte_carlo_se": 0.0015771810295587506
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 10000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.851,
+      "monte_carlo_se": 0.007962380297373393
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 10000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 20000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 20000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 20000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0015,
+      "monte_carlo_se": 0.0008653756409791069
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 20000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.006,
+      "monte_carlo_se": 0.0017268468374467957
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 20000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.998,
+      "monte_carlo_se": 0.0009989994994993746
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 20000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 50000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 50000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 50000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0045,
+      "monte_carlo_se": 0.0014966211945579282
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 50000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0655,
+      "monte_carlo_se": 0.005532167296819575
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 50000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 50000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 100000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 100000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 100000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.017,
+      "monte_carlo_se": 0.002890588175441116
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 100000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.2755,
+      "monte_carlo_se": 0.009989988738732391
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 100000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.001,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 100000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 1000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.002,
+      "monte_carlo_se": 0.0009989994994993741
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 1000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.002,
+      "monte_carlo_se": 0.0009989994994993741
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 1000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0035,
+      "monte_carlo_se": 0.0013205585939290994
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 1000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0055,
+      "monte_carlo_se": 0.0016537457482938543
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 1000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.0365,
+      "monte_carlo_se": 0.004193313129257103
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 1000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 0.225,
+      "monte_carlo_se": 0.00933742469849155
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 2000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0055,
+      "monte_carlo_se": 0.0016537457482938543
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 2000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.006,
+      "monte_carlo_se": 0.0017268468374467957
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 2000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0065,
+      "monte_carlo_se": 0.0017969070649312946
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 2000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.011,
+      "monte_carlo_se": 0.002332273568859365
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 2000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.1875,
+      "monte_carlo_se": 0.008727650027355588
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 2000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 0.7365,
+      "monte_carlo_se": 0.009850577394244461
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 5000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.043,
+      "monte_carlo_se": 0.004536022486716748
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 5000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0475,
+      "monte_carlo_se": 0.004756245893559331
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 5000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.069,
+      "monte_carlo_se": 0.005667406814408156
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 5000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.1065,
+      "monte_carlo_se": 0.006897744196474671
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 5000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.745,
+      "monte_carlo_se": 0.009746153087244218
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 5000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 0.999,
+      "monte_carlo_se": 0.0007067531393633852
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 10000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.1945,
+      "monte_carlo_se": 0.00885069912492793
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 10000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.214,
+      "monte_carlo_se": 0.009170714257897256
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 10000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.297,
+      "monte_carlo_se": 0.010217411609600545
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 10000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.4305,
+      "monte_carlo_se": 0.011071805408333366
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 10000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.993,
+      "monte_carlo_se": 0.0018642692938521525
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 10000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 20000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.581,
+      "monte_carlo_se": 0.011032656071862297
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 20000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.615,
+      "monte_carlo_se": 0.010880602005403929
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 20000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.755,
+      "monte_carlo_se": 0.00961704216482386
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 20000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.875,
+      "monte_carlo_se": 0.00739509972887452
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 20000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 20000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 50000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.9965,
+      "monte_carlo_se": 0.0013205585939290896
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 50000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.998,
+      "monte_carlo_se": 0.0009989994994993746
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 50000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 50000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 50000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 50000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 100000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 100000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 100000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 100000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 100000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "pilot_point",
+      "cases": 100000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 1000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 1000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 1000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 1000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 1000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.0055,
+      "monte_carlo_se": 0.0016537457482938543
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 1000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 0.062,
+      "monte_carlo_se": 0.005392402062161166
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 2000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 2000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 2000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 2000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 2000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.0145,
+      "monte_carlo_se": 0.0026729898989708138
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 2000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 0.2715,
+      "monte_carlo_se": 0.009944539959193687
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 5000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 5000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 5000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0005,
+      "monte_carlo_se": 0.0004998749843710925
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 5000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.003,
+      "monte_carlo_se": 0.0012229063741758812
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 5000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.1175,
+      "monte_carlo_se": 0.007200477414727443
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 5000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 0.875,
+      "monte_carlo_se": 0.00739509972887452
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 10000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 10000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 10000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 10000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0005,
+      "monte_carlo_se": 0.0004998749843710925
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 10000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.435,
+      "monte_carlo_se": 0.01108546345445241
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 10000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 0.999,
+      "monte_carlo_se": 0.0007067531393633852
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 20000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0005,
+      "monte_carlo_se": 0.0004998749843710925
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 20000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0005,
+      "monte_carlo_se": 0.0004998749843710925
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 20000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.001,
+      "monte_carlo_se": 0.0007067531393633848
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 20000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0025,
+      "monte_carlo_se": 0.001116635571706365
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 20000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.893,
+      "monte_carlo_se": 0.0069119823495145
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 20000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 50000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 50000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 50000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0015,
+      "monte_carlo_se": 0.0008653756409791069
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 50000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.02,
+      "monte_carlo_se": 0.0031304951684997056
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 50000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 50000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 100000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 100000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 100000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.004,
+      "monte_carlo_se": 0.001411382301150188
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 100000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0855,
+      "monte_carlo_se": 0.006252589463574272
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 100000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 100000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 1000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 1000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 1000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 1000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 1000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.0015,
+      "monte_carlo_se": 0.0008653756409791069
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 1000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 0.025,
+      "monte_carlo_se": 0.0034910600109422352
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 2000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 2000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 2000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 2000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0005,
+      "monte_carlo_se": 0.0004998749843710925
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 2000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.015,
+      "monte_carlo_se": 0.0027179955849853765
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 2000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 0.1475,
+      "monte_carlo_se": 0.007929178709046731
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 5000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0015,
+      "monte_carlo_se": 0.0008653756409791069
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 5000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0015,
+      "monte_carlo_se": 0.0008653756409791069
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 5000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.002,
+      "monte_carlo_se": 0.0009989994994993741
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 5000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.002,
+      "monte_carlo_se": 0.0009989994994993741
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 5000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.0705,
+      "monte_carlo_se": 0.0057240610583745525
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 5000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 0.6835,
+      "monte_carlo_se": 0.010400186296408348
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 10000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0005,
+      "monte_carlo_se": 0.0004998749843710925
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 10000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0005,
+      "monte_carlo_se": 0.0004998749843710925
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 10000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.001,
+      "monte_carlo_se": 0.0007067531393633848
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 10000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.001,
+      "monte_carlo_se": 0.0007067531393633848
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 10000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.254,
+      "monte_carlo_se": 0.009733550225893941
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 10000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 0.9895,
+      "monte_carlo_se": 0.0022792268425937726
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 20000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 20000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 20000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 20000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.001,
+      "monte_carlo_se": 0.0007067531393633848
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 20000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.6985,
+      "monte_carlo_se": 0.010261524009619624
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 20000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 50000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 50000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 50000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0015,
+      "monte_carlo_se": 0.0008653756409791069
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 50000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.015,
+      "monte_carlo_se": 0.0027179955849853765
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 50000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.9995,
+      "monte_carlo_se": 0.000499874984371065
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 50000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 100000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 100000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 100000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0045,
+      "monte_carlo_se": 0.0014966211945579282
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 100000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0365,
+      "monte_carlo_se": 0.004193313129257103
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 100000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "ordinary100",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 100000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 1000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 1000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 1000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 1000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 1000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 1000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 0.0015,
+      "monte_carlo_se": 0.0008653756409791069
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 2000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 2000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 2000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 2000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 2000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 2000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 0.0035,
+      "monte_carlo_se": 0.0013205585939290994
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 5000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 5000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 5000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 5000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 5000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 5000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 0.018,
+      "monte_carlo_se": 0.0029728773940409987
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 10000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 10000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 10000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 10000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 10000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 10000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 0.058,
+      "monte_carlo_se": 0.0052266624149642565
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 20000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 20000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 20000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 20000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 20000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 20000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 0.176,
+      "monte_carlo_se": 0.00851539781807051
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 50000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 50000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 50000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 50000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 50000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 50000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 0.702,
+      "monte_carlo_se": 0.010227316363543274
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 100000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 100000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 100000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 100000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 100000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "pilot_point",
+      "cases": 100000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 0.9865,
+      "monte_carlo_se": 0.0025804796065847873
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 1000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0005,
+      "monte_carlo_se": 0.0004998749843710925
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 1000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0005,
+      "monte_carlo_se": 0.0004998749843710925
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 1000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0005,
+      "monte_carlo_se": 0.0004998749843710925
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 1000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0005,
+      "monte_carlo_se": 0.0004998749843710925
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 1000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.0075,
+      "monte_carlo_se": 0.0019292161620720473
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 1000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 0.119,
+      "monte_carlo_se": 0.0072401312142805815
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 2000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 2000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 2000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 2000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0005,
+      "monte_carlo_se": 0.0004998749843710925
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 2000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.0345,
+      "monte_carlo_se": 0.004081038470781672
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 2000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 0.4805,
+      "monte_carlo_se": 0.011171834003421283
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 5000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 5000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 5000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 5000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0005,
+      "monte_carlo_se": 0.0004998749843710925
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 5000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.204,
+      "monte_carlo_se": 0.009010660353159474
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 5000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 0.976,
+      "monte_carlo_se": 0.0034222799417931915
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 10000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.001,
+      "monte_carlo_se": 0.0007067531393633848
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 10000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.001,
+      "monte_carlo_se": 0.0007067531393633848
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 10000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0025,
+      "monte_carlo_se": 0.001116635571706365
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 10000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0065,
+      "monte_carlo_se": 0.0017969070649312946
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 10000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.662,
+      "monte_carlo_se": 0.010577239715540155
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 10000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 20000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0005,
+      "monte_carlo_se": 0.0004998749843710925
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 20000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0005,
+      "monte_carlo_se": 0.0004998749843710925
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 20000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0015,
+      "monte_carlo_se": 0.0008653756409791069
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 20000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0075,
+      "monte_carlo_se": 0.0019292161620720473
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 20000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.9815,
+      "monte_carlo_se": 0.003013117156700015
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 20000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 50000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.001,
+      "monte_carlo_se": 0.0007067531393633848
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 50000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0015,
+      "monte_carlo_se": 0.0008653756409791069
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 50000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0065,
+      "monte_carlo_se": 0.0017969070649312946
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 50000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.04,
+      "monte_carlo_se": 0.004381780460041329
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 50000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 50000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 100000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 100000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 100000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.01,
+      "monte_carlo_se": 0.0022248595461286987
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 100000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.158,
+      "monte_carlo_se": 0.008155856791288085
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 100000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_same_discordance",
+      "cases": 100000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 1000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 1000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 1000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 1000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0005,
+      "monte_carlo_se": 0.0004998749843710925
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 1000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.0025,
+      "monte_carlo_se": 0.001116635571706365
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 1000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 0.021,
+      "monte_carlo_se": 0.0032061659345704488
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 2000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 2000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 2000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 2000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0005,
+      "monte_carlo_se": 0.0004998749843710925
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 2000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.0055,
+      "monte_carlo_se": 0.0016537457482938543
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 2000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 0.1035,
+      "monte_carlo_se": 0.006811304941052044
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 5000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0005,
+      "monte_carlo_se": 0.0004998749843710925
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 5000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0005,
+      "monte_carlo_se": 0.0004998749843710925
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 5000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0005,
+      "monte_carlo_se": 0.0004998749843710925
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 5000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0005,
+      "monte_carlo_se": 0.0004998749843710925
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 5000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.045,
+      "monte_carlo_se": 0.004635461142108733
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 5000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 0.5795,
+      "monte_carlo_se": 0.011038110119037587
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 10000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.001,
+      "monte_carlo_se": 0.0007067531393633848
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 10000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.001,
+      "monte_carlo_se": 0.0007067531393633848
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 10000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.001,
+      "monte_carlo_se": 0.0007067531393633848
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 10000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.001,
+      "monte_carlo_se": 0.0007067531393633848
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 10000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.1945,
+      "monte_carlo_se": 0.00885069912492793
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 10000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 0.9615,
+      "monte_carlo_se": 0.004302194207610808
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 20000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 20000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 20000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 20000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.0005,
+      "monte_carlo_se": 0.0004998749843710925
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 20000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.5745,
+      "monte_carlo_se": 0.011055535943589528
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 20000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 50000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0005,
+      "monte_carlo_se": 0.0004998749843710925
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 50000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0005,
+      "monte_carlo_se": 0.0004998749843710925
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 50000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.003,
+      "monte_carlo_se": 0.0012229063741758812
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 50000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.009,
+      "monte_carlo_se": 0.002111752826445368
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 50000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 0.9955,
+      "monte_carlo_se": 0.0014966211945579198
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 50000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 100000,
+      "margin_probability": 0.0,
+      "probability_bound_passes": 0.0015,
+      "monte_carlo_se": 0.0008653756409791069
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 100000,
+      "margin_probability": 0.0001,
+      "probability_bound_passes": 0.0015,
+      "monte_carlo_se": 0.0008653756409791069
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 100000,
+      "margin_probability": 0.0005,
+      "probability_bound_passes": 0.0055,
+      "monte_carlo_se": 0.0016537457482938543
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 100000,
+      "margin_probability": 0.001,
+      "probability_bound_passes": 0.035,
+      "monte_carlo_se": 0.004109440351191388
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 100000,
+      "margin_probability": 0.005,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    },
+    {
+      "p": 0.003,
+      "baseline": "bp130",
+      "scenario": "equal_risk_upper95_discordance",
+      "cases": 100000,
+      "margin_probability": 0.01,
+      "probability_bound_passes": 1.0,
+      "monte_carlo_se": 0.0
+    }
+  ],
+  "mean_test_alpha": 0.00625,
+  "p99_marginal_tail_alpha": 0.003125,
+  "accuracy_marginal_tail_alpha": 0.00625,
+  "new_decoder_cases": 0,
+  "new_training_updates": 0,
+  "final_test_data_used": false,
+  "benchmark_launched": false,
+  "scope": "Planning calculations and labeled hypothetical simulations from reused evidence; not independent confirmation or main M6 completion"
+}

@@ -1,0 +1,30 @@
+purpose: Read-only sample-size and runtime planning; no new decoding or training
+decision_plan: configs/m6/cpu_cycle100_decision_plan.yaml
+cycle100_study: results/m6_cycle100_study/20261109T114431070320Z
+strong_study: results/m6_strong_cascade/20261109T113533689212Z
+accuracy: results/m6_cycle100_accuracy/20261109T131507713374Z
+timing_blocks:
+  - name: longer
+    directory: results/m6_long_bp_latency/20261109T124523000569Z
+  - name: strong
+    directory: results/m6_strong_cascade_latency/20261109T130204474636Z
+noise_points: [0.001, 0.003]
+measured_cases_per_point: [1000, 2000, 5000, 10000, 20000]
+accuracy_case_grid: [1000, 2000, 5000, 10000, 20000, 50000, 100000]
+warmup_cases_per_point: 1000
+runtime_cushion: 1.25
+latency_family_alpha: 0.05
+latency_family_size: 8
+accuracy_family_alpha: 0.05
+accuracy_family_size: 4
+design_relative_mean_reduction: 0.05
+target_power: 0.8
+quantile: 0.99
+accuracy_margins_probability: [0.0, 0.0001, 0.0005, 0.001, 0.005, 0.01]
+accuracy_simulation_repetitions: 2000
+simulation_entropy: [1234, 1200]
+prospective_accuracy_margin: null
+proposed_fresh_seeds: [100234, 100235]
+proposed_bounded_cases_per_point: 2000
+proposed_bounded_wall_seconds: 5400
+launch_benchmark: false
